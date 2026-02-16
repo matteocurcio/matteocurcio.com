@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import { CONTACT_MAILTO, SITE_CONFIG } from "../config/site";
 
 interface Props {
   title: string;
@@ -9,11 +10,28 @@ interface Props {
 
 const {
   title,
-  description = "Portfolio of Matteo Curcio. Post, motion, and training.",
+  description = "Portfolio of Matteo Curcio. Finishing, motion, editorial, tutoring, and studio workflow consulting.",
   path = "/"
 } = Astro.props;
 
 const canonical = new URL(path, Astro.site);
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      name: SITE_CONFIG.ownerName,
+      email: SITE_CONFIG.contactEmail,
+      url: `https://${SITE_CONFIG.primaryDomain}`
+    },
+    {
+      "@type": "Organization",
+      name: SITE_CONFIG.ownerName,
+      email: SITE_CONFIG.contactEmail,
+      url: `https://${SITE_CONFIG.primaryDomain}`
+    }
+  ]
+};
 ---
 
 <!doctype html>
@@ -28,10 +46,12 @@ const canonical = new URL(path, Astro.site);
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical.href} />
-    <meta property="og:site_name" content="Matteo Curcio" />
+    <meta property="og:site_name" content={SITE_CONFIG.ownerName} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:site" content={SITE_CONFIG.social.x} />
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -44,13 +64,11 @@ const canonical = new URL(path, Astro.site);
       <div class="shell nav">
         <a class="brand" href="/">Matteo Curcio</a>
         <nav class="nav-links" aria-label="Main">
-          <a href="/projects" aria-current={path.startsWith("/projects") ? "page" : undefined}>Projects</a>
+          <a href="/work" aria-current={path === "/work" || path.startsWith("/projects") ? "page" : undefined}>Work</a>
+          <a href="/services" aria-current={path === "/services" ? "page" : undefined}>Services</a>
+          <a href="/tutoring" aria-current={path === "/tutoring" ? "page" : undefined}>Studying & Tutoring</a>
+          <a href="/for-studios" aria-current={path === "/for-studios" ? "page" : undefined}>For Studios</a>
           <a href="/about" aria-current={path === "/about" ? "page" : undefined}>About</a>
-          <a href="/training" aria-current={path === "/training" ? "page" : undefined}>Training</a>
-          <a href="/blog" aria-current={path.startsWith("/blog") ? "page" : undefined}>Blog</a>
-          <a href="/color" aria-current={path === "/color" ? "page" : undefined}>Color</a>
-          <a href="/editing" aria-current={path === "/editing" ? "page" : undefined}>Edit</a>
-          <a href="/motion" aria-current={path === "/motion" ? "page" : undefined}>Motion</a>
           <a href="/contact" aria-current={path === "/contact" ? "page" : undefined}>Contact</a>
         </nav>
       </div>
@@ -62,7 +80,10 @@ const canonical = new URL(path, Astro.site);
     </main>
     <footer class="site-footer">
       <div class="shell">
-        <p>© {new Date().getFullYear()} Matteo Curcio. Built for speed on Astro + Cloudflare Pages.</p>
+        <p>
+          © {new Date().getFullYear()} {SITE_CONFIG.ownerName}. Built for speed on Astro + Cloudflare Pages.
+          <a href={CONTACT_MAILTO}> {SITE_CONFIG.contactEmail}</a>
+        </p>
       </div>
     </footer>
   </body>

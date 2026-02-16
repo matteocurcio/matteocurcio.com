@@ -1,0 +1,28 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import { getCollection } from "astro:content";
+
+const all = (await getCollection("projects")).sort((a, b) => b.data.year - a.data.year);
+---
+
+<BaseLayout title="Work | Matteo Curcio" description="Selected work across finishing, editorial, motion, and delivery." path="/work">
+  <p class="kicker">Work</p>
+  <h1>Selected Projects</h1>
+  <p class="post-meta">Outcome-first post-production work for campaigns, narrative, and studio teams.</p>
+
+  <div class="section projects-grid">
+    {all.map((project) => (
+      <ProjectCard
+        slug={project.slug}
+        title={project.data.title}
+        client={project.data.client}
+        year={project.data.year}
+        service={project.data.service}
+        excerpt={project.data.excerpt}
+        cover={project.data.cover}
+        coverAlt={project.data.coverAlt}
+      />
+    ))}
+  </div>
+</BaseLayout>

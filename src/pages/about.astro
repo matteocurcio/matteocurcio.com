@@ -2,35 +2,64 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<BaseLayout title="About | Matteo Curcio" path="/about">
-  <p class="kicker">About</p>
-  <h1>Post-production with taste, restraint, and repeatable process.</h1>
-
-  <div class="two-col section">
-    <div class="prose">
-      <p>
-        I work across color, editing, and motion, with an emphasis on systems that stay stable under deadlines:
-        clean handoffs, consistent versions, and a clear story for every deliverable.
-      </p>
-      <p>
-        This site is intentionally lightweight. It’s designed so the work loads instantly and the pages are easy to
-        maintain without a plugin stack.
-      </p>
-      <p>
-        If you want, send a brief and I’ll reply with a suggested workflow: what to lock, what to iterate, and what to
-        deliver.
-      </p>
+<BaseLayout
+  title="About | Matteo Curcio"
+  description="Colour, edit, motion, and the pipeline behind them: taste plus operational fluency under deadline pressure."
+  path="/about"
+>
+  <section>
+    <p class="kicker">About</p>
+    <h1>Colour, edit, motion, and the pipeline behind them.</h1>
+    <p class="post-meta">
+      Matteo Curcio helps producers and studios finish premium work with dependable workflows, calm revisions, and
+      delivery-ready masters.
+    </p>
+    <div class="pill-row">
+      <a class="button-link" href="/contact?intent=project">Start a Project</a>
+      <a class="button-link" href="/tutoring">Book 1:1 Resolve Session</a>
+      <a class="button-link" href="/contact?intent=studio">Studio Workflow & Security Review</a>
     </div>
-    <aside class="panel">
-      <p class="kicker">Links</p>
-      <p class="post-meta">
-        Behance, Instagram, YouTube, and more live on the current homepage footer. I can also surface them here as a
-        dedicated “Links” section.
-      </p>
-      <p>
-        <a href="/contact">Contact</a>
-      </p>
-    </aside>
-  </div>
-</BaseLayout>
+  </section>
 
+  <section class="section">
+    <h2>Why Matteo</h2>
+    <ul>
+      <li>Taste plus operational fluency under deadline pressure.</li>
+      <li>Clean conform, disciplined media management, predictable versioning.</li>
+      <li>AI used only where it measurably improves speed or consistency.</li>
+    </ul>
+  </section>
+
+  <section class="section lane-grid">
+    <article class="lane">
+      <h3>Producers</h3>
+      <p>Decisive finishing, clear comms, schedule protection, and confidence in approvals.</p>
+    </article>
+    <article class="lane">
+      <h3>Studios</h3>
+      <p>Resolve pipeline standards, collaboration discipline, templates, version control, secure handoff.</p>
+    </article>
+    <article class="lane">
+      <h3>Students</h3>
+      <p>Outcome-based tutoring using real footage and professional constraints.</p>
+    </article>
+  </section>
+
+  <section class="section">
+    <h2>Proof</h2>
+    <div class="proof-grid">
+      <article class="panel">
+        <h3>Selected Projects / Reels</h3>
+        <p><a href="/work">View work</a> and <a href="/reels">watch reels</a>.</p>
+      </article>
+      <article class="panel">
+        <h3>Process Snapshots</h3>
+        <p>Templates, delivery checklist, and versioning examples can be shared during scoping.</p>
+      </article>
+      <article class="panel">
+        <h3>Testimonials</h3>
+        <p>Client feedback blocks can be added as soon as approved quotes are available.</p>
+      </article>
+    </div>
+  </section>
+</BaseLayout>
