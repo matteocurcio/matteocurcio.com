@@ -1,19 +1,23 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { LEGACY_BY_SLUG, getLegacyItem } from "../../data/legacyPortfolio";
+import { LEGACY_BY_SLUG, LEGACY_REELS, getLegacyItem } from "../../data/legacyPortfolio";
 import wpProjectContent from "../../data/wpProjectContent.json";
 
 const WP_WORK_BASE = "https://matteocurcio.com/work";
 
 type WpContentMap = Record<string, { paragraphs?: string[]; embedUrl?: string; images?: string[] }>;
 const wpContent = wpProjectContent as WpContentMap;
+const LEGACY_REEL_SLUGS = new Set(LEGACY_REELS.map((item) => item.slug));
 
 const CREDIT_LABELS = new Set([
   "production",
   "producers",
   "producer",
+  "co-producers",
+  "co producers",
   "director",
+  "directors",
   "dop",
   "camera",
   "hairs",
@@ -23,14 +27,61 @@ const CREDIT_LABELS = new Set([
   "editor",
   "colorist",
   "colourist",
+  "color",
+  "vfx",
   "agency",
+  "agency producer",
   "client",
   "campaign",
+  "project",
   "cinematographer",
+  "cinematography",
   "writer",
   "line producer",
-  "executive producer"
+  "executive producer",
+  "creative director",
+  "interactive",
+  "post supervisor",
+  "assistant director",
+  "art director",
+  "assistant art",
+  "lighting asst",
+  "sound",
+  "animation",
+  "titles",
+  "music",
+  "featuring",
+  "production design",
+  "5.1 sound mix",
+  "sound mix",
+  "finishing"
 ]);
+
+const CREDIT_COMPOUND_LABELS: Record<string, string[]> = {
+  "director & writer": ["Director", "Writer"],
+  "color & finishing": ["Color", "Finishing"],
+  "color and finishing": ["Color", "Finishing"],
+  "color, vfx": ["Color", "VFX"],
+  "vfx, color": ["VFX", "Color"]
+};
+
+const CREDIT_CANONICAL: Record<string, string> = {
+  "co-producers": "Co-producers",
+  "co producers": "Co-producers",
+  "dop": "DOP",
+  "vfx": "VFX",
+  "5.1 sound mix": "5.1 Sound Mix",
+  "lighting asst": "Lighting Asst.",
+  "creative director": "Creative Director",
+  "post supervisor": "Post Supervisor",
+  "line producer": "Line Producer",
+  "executive producer": "Executive Producer",
+  "assistant director": "Assistant Director",
+  "art director": "Art Director",
+  "assistant art": "Assistant Art",
+  "agency producer": "Agency Producer",
+  "production design": "Production Design"
+};
 
 function cleanExcerpt(input?: string) {
   if (!input) return "";
@@ -51,7 +102,45 @@ function isEmbedUrl(url?: string) {
 }
 
 function normalizeCreditLabel(input: string) {
-  return input.toLowerCase().replace(/[.:]/g, "").trim();
+  return input
+    .toLowerCase()
+    .replace(/[“”"']/g, "")
+    .replace(/\s+/g, " ")
+    .replace(/[.:]/g, "")
+    .trim();
+}
+
+function formatCreditLabel(label: string) {
+  const normalized = normalizeCreditLabel(label);
+  if (CREDIT_CANONICAL[normalized]) return CREDIT_CANONICAL[normalized];
+  return normalized
+    .split(" ")
+    .map((part) => (part ? part[0].toUpperCase() + part.slice(1) : part))
+    .join(" ");
+}
+
+function extractCreditLabels(line: string) {
+  const normalized = normalizeCreditLabel(line);
+  if (!normalized) return [];
+
+  if (CREDIT_COMPOUND_LABELS[normalized]) {
+    return CREDIT_COMPOUND_LABELS[normalized];
+  }
+
+  if (CREDIT_LABELS.has(normalized)) {
+    return [formatCreditLabel(normalized)];
+  }
+
+  const splitParts = normalized
+    .split(/,|\s+&\s+|\s+and\s+|\s*\/\s*|\s*\+\s*/)
+    .map((part) => part.trim())
+    .filter(Boolean);
+
+  if (splitParts.length > 1 && splitParts.every((part) => CREDIT_LABELS.has(part))) {
+    return splitParts.map((part) => formatCreditLabel(part));
+  }
+
+  return [];
 }
 
 function splitDescriptionAndCredits(paragraphs: string[]) {
@@ -59,38 +148,55 @@ function splitDescriptionAndCredits(paragraphs: string[]) {
   const credits = new Map<string, string[]>();
   const creditOrder: string[] = [];
 
+  const pushCredit = (label: string, value: string) => {
+    const clean = value.replace(/^[-•\s]+/, "").trim();
+    if (!clean) return;
+    if (!credits.has(label)) {
+      credits.set(label, []);
+      creditOrder.push(label);
+    }
+    credits.get(label)?.push(clean);
+  };
+
   for (const paragraph of paragraphs) {
     const lines = paragraph
       .split("\n")
       .map((line) => line.trim())
       .filter(Boolean);
 
-    if (lines.length < 2) {
-      intro.push(paragraph);
-      continue;
-    }
+    if (lines.length === 0) continue;
 
-    const labelHits = lines.filter((line) => CREDIT_LABELS.has(normalizeCreditLabel(line))).length;
-    if (labelHits < 2) {
-      intro.push(paragraph);
-      continue;
-    }
+    let currentLabels: string[] = [];
+    let sawCreditLabel = false;
+    const paragraphIntro: string[] = [];
 
-    let currentLabel = "";
     for (const line of lines) {
-      const normalized = normalizeCreditLabel(line);
-      if (CREDIT_LABELS.has(normalized)) {
-        currentLabel = line;
-        if (!credits.has(currentLabel)) {
-          credits.set(currentLabel, []);
-          creditOrder.push(currentLabel);
+      const labels = extractCreditLabels(line);
+      if (labels.length > 0) {
+        currentLabels = labels;
+        sawCreditLabel = true;
+        for (const label of currentLabels) {
+          if (!credits.has(label)) {
+            credits.set(label, []);
+            creditOrder.push(label);
+          }
         }
         continue;
       }
 
-      if (currentLabel) {
-        credits.get(currentLabel)?.push(line);
+      if (currentLabels.length > 0) {
+        for (const label of currentLabels) {
+          pushCredit(label, line);
+        }
+      } else {
+        paragraphIntro.push(line);
       }
+    }
+
+    if (paragraphIntro.length > 0) {
+      intro.push(paragraphIntro.join(" "));
+    } else if (!sawCreditLabel) {
+      intro.push(paragraph);
     }
   }
 
@@ -105,21 +211,25 @@ function splitDescriptionAndCredits(paragraphs: string[]) {
   };
 }
 
-function buildBeforeAfterPairs(images: string[]) {
-  const flats = new Map<string, string>();
-  const grades = new Map<string, string>();
+function buildBeforeAfterPairs(images: string[], fallbackImage?: string) {
+  const befores = new Map<string, string>();
+  const afters = new Map<string, string>();
   const extras: string[] = [];
 
-  const keyFor = (src: string) => src.replace(/flat|grade/gi, "").replace(/[-_]+/g, "-").toLowerCase();
+  const keyFor = (src: string) =>
+    src
+      .replace(/flat|before|raw|log|grade|after|final|look/gi, "")
+      .replace(/[-_]+/g, "-")
+      .toLowerCase();
 
   for (const src of images) {
-    if (/flat/i.test(src)) {
-      flats.set(keyFor(src), src);
+    if (/flat|before|raw|log/i.test(src)) {
+      befores.set(keyFor(src), src);
       continue;
     }
 
-    if (/grade/i.test(src)) {
-      grades.set(keyFor(src), src);
+    if (/grade|after|final|look/i.test(src)) {
+      afters.set(keyFor(src), src);
       continue;
     }
 
@@ -127,18 +237,29 @@ function buildBeforeAfterPairs(images: string[]) {
   }
 
   const pairs: Array<{ before: string; after: string }> = [];
-  for (const [key, before] of flats.entries()) {
-    const after = grades.get(key);
+
+  for (const [key, before] of befores.entries()) {
+    const after = afters.get(key);
     if (after) {
       pairs.push({ before, after });
-      grades.delete(key);
+      afters.delete(key);
     } else {
       extras.push(before);
     }
   }
 
-  for (const [, leftoverAfter] of grades.entries()) {
+  for (const [, leftoverAfter] of afters.entries()) {
     extras.push(leftoverAfter);
+  }
+
+  if (pairs.length === 0 && images.length >= 2) {
+    for (let i = 0; i + 1 < images.length; i += 2) {
+      pairs.push({ before: images[i], after: images[i + 1] });
+    }
+  }
+
+  if (pairs.length === 0 && fallbackImage) {
+    pairs.push({ before: fallbackImage, after: fallbackImage });
   }
 
   return { pairs, extras };
@@ -159,7 +280,7 @@ const legacy = getLegacyItem(slug);
 const migrated = wpContent[slug] || {};
 
 const title = legacy?.title || project?.data.title || slug;
-const service = project?.data.service || "work";
+const service = LEGACY_REEL_SLUGS.has(slug) ? "REELS" : "COLOUR";
 const client = project?.data.client || "Selected Work";
 const year = project?.data.year;
 const cover = legacy?.image || project?.data.cover;
@@ -171,7 +292,8 @@ const previewVideo =
 const originalUrl = project?.data.originalUrl || `${WP_WORK_BASE}/${slug}`;
 const excerpt = cleanExcerpt(project?.data.excerpt);
 
-const embeddedUrl = migrated.embedUrl || previewVideo;
+const embeddedUrl = isEmbedUrl(migrated.embedUrl) ? migrated.embedUrl : undefined;
+const videoUrl = embeddedUrl ? undefined : previewVideo;
 
 const descriptionParagraphs =
   (migrated.paragraphs || []).length > 0
@@ -182,7 +304,7 @@ const descriptionParagraphs =
 
 const parsed = splitDescriptionAndCredits(descriptionParagraphs);
 const galleryImages = (migrated.images || []).filter((src) => src && src !== cover).slice(0, 16);
-const gallery = buildBeforeAfterPairs(galleryImages);
+const gallery = buildBeforeAfterPairs(galleryImages, service === "COLOUR" ? cover : undefined);
 
 const pageTitle = `${title} | Matteo Curcio`;
 ---
@@ -196,32 +318,26 @@ const pageTitle = `${title} | Matteo Curcio`;
     </header>
 
     {
-      cover && (
+      embeddedUrl ? (
+        <div class="cover project-embed">
+          <iframe
+            src={embeddedUrl}
+            title={`${title} video`}
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          />
+        </div>
+      ) : videoUrl ? (
+        <div class="cover">
+          <video class="project-full-video" src={videoUrl} controls playsinline preload="metadata" />
+        </div>
+      ) : cover ? (
         <div class="cover">
           <img src={cover} alt={coverAlt} loading="eager" />
         </div>
-      )
+      ) : null
     }
-
-    {
-      embeddedUrl &&
-        (isEmbedUrl(embeddedUrl) ? (
-          <div class="cover project-embed">
-            <iframe
-              src={embeddedUrl}
-              title={`${title} video`}
-              loading="lazy"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
-            />
-          </div>
-        ) : (
-          <div class="cover">
-            <video class="project-full-video" src={embeddedUrl} controls playsinline preload="metadata" />
-          </div>
-        ))
-    }
-
     <section class={`project-details ${parsed.credits.length === 0 ? "single" : ""}`}>
       <div class="project-description">
         {parsed.intro.length > 0 ? (
@@ -232,9 +348,6 @@ const pageTitle = `${title} | Matteo Curcio`;
             available on the original project page.
           </p>
         )}
-        <p>
-          <a href={originalUrl} target="_blank" rel="noreferrer">View original case study</a>
-        </p>
       </div>
 
       {
@@ -244,7 +357,9 @@ const pageTitle = `${title} | Matteo Curcio`;
               {parsed.credits.map((item) => (
                 <div class="credit-item">
                   <p class="credit-label">{item.label}</p>
-                  <p class="credit-values">{item.values.join(" · ")}</p>
+                  <div class="credit-values-lines">
+                    {item.values.map((value) => <p class="credit-value-line">{value}</p>)}
+                  </div>
                 </div>
               ))}
             </section>
@@ -258,9 +373,9 @@ const pageTitle = `${title} | Matteo Curcio`;
         <section class="before-after-grid" aria-label="Before and after grade comparisons">
           {gallery.pairs.map((pair, idx) => (
             <figure class="ba-slider" style="--ba-pos:50%">
-              <img src={pair.after} alt={`${title} after`} loading="lazy" />
+              <img class="ba-after" src={pair.after} alt={`${title} after`} loading="lazy" />
               <div class="ba-before-wrap">
-                <img src={pair.before} alt={`${title} before`} loading="lazy" />
+                <img class="ba-before" src={pair.before} alt={`${title} before`} loading="lazy" />
               </div>
               <div class="ba-handle" aria-hidden="true"></div>
               <input
@@ -335,5 +450,41 @@ const pageTitle = `${title} | Matteo Curcio`;
 
     setPos(Number(range.value));
   });
+
+  const details = document.querySelector(".project-details");
+  const description = details?.querySelector(".project-description");
+  const credits = details?.querySelector(".project-credits");
+
+  if (details && description && credits && !details.classList.contains("single")) {
+    const getWordCount = () =>
+      (description.textContent || "")
+        .trim()
+        .split(/\s+/)
+        .filter(Boolean).length;
+
+    const fitDescription = () => {
+      description.style.removeProperty("--desc-font-size");
+      description.style.removeProperty("--desc-line-height");
+      description.classList.remove("desc-expanded");
+
+      const words = getWordCount();
+      if (words > 70) return;
+
+      const descriptionHeight = description.scrollHeight;
+      const creditsHeight = credits.scrollHeight;
+      if (!descriptionHeight || creditsHeight <= descriptionHeight + 20) return;
+
+      const ratio = Math.min(1.3, creditsHeight / descriptionHeight);
+      const fontSize = Math.min(1.18, Math.max(1.02, Math.pow(ratio, 0.42)));
+      const lineHeight = Math.min(2.15, Math.max(1.75, 1.65 * ratio));
+
+      description.style.setProperty("--desc-font-size", `${fontSize}rem`);
+      description.style.setProperty("--desc-line-height", String(lineHeight));
+      description.classList.add("desc-expanded");
+    };
+
+    fitDescription();
+    window.addEventListener("resize", () => requestAnimationFrame(fitDescription));
+  }
 </script>
 </BaseLayout>

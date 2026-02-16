@@ -790,18 +790,19 @@ h1 {
 .ba-before-wrap {
   position: absolute;
   inset: 0;
-  width: var(--ba-pos);
+  width: 100%;
+  clip-path: inset(0 calc(100% - var(--ba-pos)) 0 0);
   overflow: hidden;
-  border-right: 2px solid rgb(255 255 255 / 85%);
 }
 
 .ba-range {
   position: absolute;
-  inset: auto 0 0 0;
+  inset: 0;
   width: 100%;
-  z-index: 3;
+  z-index: 5;
   margin: 0;
-  background: transparent;
+  opacity: 0;
+  cursor: ew-resize;
 }
 
 .ba-tag {
@@ -894,7 +895,7 @@ h1 {
 .ba-before-wrap {
   position: absolute;
   inset: 0;
-  width: var(--ba-pos);
+  width: 100%;
   overflow: hidden;
 }
 
@@ -937,5 +938,125 @@ h1 {
   .before-after-grid,
   .project-gallery {
     grid-template-columns: 1fr;
+  }
+}
+
+/* Overlay compare: reveal via clipping so frames stay fixed, no scaling drift */
+.before-after-grid .ba-slider {
+  touch-action: none;
+}
+
+.before-after-grid .ba-slider .ba-after,
+.before-after-grid .ba-slider .ba-before {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: none;
+  pointer-events: none;
+}
+
+.before-after-grid .ba-before-wrap {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  clip-path: inset(0 calc(100% - var(--ba-pos)) 0 0);
+  overflow: hidden;
+}
+
+
+/* Project details three-column layout override */
+.project-details:not(.single) {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+  align-items: stretch;
+}
+
+.project-details:not(.single) .project-description {
+  grid-column: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  font-size: var(--desc-font-size, 1rem);
+  line-height: var(--desc-line-height, 1.68);
+}
+
+.project-details:not(.single) .project-credits {
+  grid-column: 2 / span 2;
+}
+
+.project-details:not(.single) .credits-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.project-details .project-description p {
+  margin: 0;
+}
+
+.project-details .project-description p + p {
+  margin-top: 0.9rem;
+}
+
+@media (max-width: 1000px) {
+  .project-details:not(.single),
+  .project-details:not(.single) .project-credits,
+  .project-details:not(.single) .project-description {
+    grid-column: auto;
+  }
+
+  .project-details:not(.single) .credits-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+.credit-values-lines {
+  margin-top: 0.25rem;
+}
+
+.credit-value-line {
+  margin: 0;
+  color: #2b2723;
+  font-size: 0.95rem;
+}
+
+.credit-value-line + .credit-value-line {
+  margin-top: 0.2rem;
+}
+
+
+/* Brand wheel icon */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: "Manrope", "Avenir Next", "Segoe UI", sans-serif;
+  font-size: 0.92rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.brand::before {
+  content: "";
+  width: 0.92rem;
+  height: 0.92rem;
+  border-radius: 999px;
+  background: conic-gradient(#ff0037, #ff8a00, #ffd400, #1ad100, #0080ff, #8f2bff, #ff0037);
+  animation: brand-wheel-spin 5s linear infinite;
+  flex: 0 0 auto;
+}
+
+@keyframes brand-wheel-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand::before {
+    animation: none;
   }
 }
