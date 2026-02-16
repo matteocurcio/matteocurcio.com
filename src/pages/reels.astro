@@ -1,45 +1,43 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import ProjectCard from "../components/ProjectCard.astro";
 import { getCollection } from "astro:content";
+import { LEGACY_REELS } from "../data/legacyPortfolio";
 
-const all = (await getCollection("projects")).sort((a, b) => b.data.year - a.data.year);
-
-const reels = all.filter((p) => {
-  const slug = p.slug.toLowerCase();
-  const title = p.data.title.toLowerCase();
-  const tags = (p.data.tags || []).map((t) => t.toLowerCase());
-  return slug.includes("reel") || title.includes("reel") || tags.includes("reel") || tags.includes("showreel");
-});
+const projects = await getCollection("projects");
+const available = new Set(projects.map((p) => p.slug));
 ---
 
 <BaseLayout title="Reels | Matteo Curcio" path="/reels">
-  <p class="kicker">Reels</p>
-  <h1>Curated reels and highlights.</h1>
-  <p class="post-meta">
-    This section is focused on reel-style work. In the next iteration I can map it directly to a dedicated “reel”
-    category from your source data.
-  </p>
-
-  <div class="section projects-grid">
-    {reels.length > 0 ? (
-      reels.map((project) => (
-        <ProjectCard
-          slug={project.slug}
-          title={project.data.title}
-          client={project.data.client}
-          year={project.data.year}
-          service={project.data.service}
-          cover={project.data.cover}
-          coverAlt={project.data.coverAlt}
-          previewVideo={project.data.previewVideo}
-          videoUrl={project.data.videoUrl}
-        />
-      ))
-    ) : (
-      <article class="panel">
-        <p>No reel-tagged projects yet. Add `reel` in a project’s `tags` field to show it here.</p>
-      </article>
-    )}
-  </div>
+  <section class="reels-grid" aria-label="Reel categories">
+    {LEGACY_REELS.map((item) => {
+      const link = available.has(item.slug) ? `/projects/${item.slug}/` : undefined;
+      return link ? (
+        <a class="reel-tile" href={link} aria-label={item.title}>
+          <div class="reel-media" data-hover-preview={item.video ? "true" : undefined}>
+            <img src={item.image} alt={item.title} loading="lazy" />
+            {item.video ? (
+              <video class="reel-preview" src={item.video} muted loop playsinline preload="none" aria-hidden="true" />
+            ) : null}
+          </div>
+          <div class="reel-overlay">
+            <p class="reel-brand"><span class="reel-dot" aria-hidden="true"></span>matteocurcio</p>
+            <p class="reel-title">{item.title}</p>
+          </div>
+        </a>
+      ) : (
+        <article class="reel-tile" aria-label={item.title}>
+          <div class="reel-media" data-hover-preview={item.video ? "true" : undefined}>
+            <img src={item.image} alt={item.title} loading="lazy" />
+            {item.video ? (
+              <video class="reel-preview" src={item.video} muted loop playsinline preload="none" aria-hidden="true" />
+            ) : null}
+          </div>
+          <div class="reel-overlay">
+            <p class="reel-brand"><span class="reel-dot" aria-hidden="true"></span>matteocurcio</p>
+            <p class="reel-title">{item.title}</p>
+          </div>
+        </article>
+      );
+    })}
+  </section>
 </BaseLayout>

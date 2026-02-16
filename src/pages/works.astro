@@ -1,29 +1,19 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import ProjectCard from "../components/ProjectCard.astro";
-import { getCollection } from "astro:content";
-
-const all = (await getCollection("projects")).sort((a, b) => b.data.year - a.data.year);
+import { LEGACY_WORKS } from "../data/legacyPortfolio";
 ---
 
-<BaseLayout title="Works | Matteo Curcio" description="Selected works across finishing, editorial, motion, and delivery." path="/works">
-  <p class="kicker">Works</p>
-  <h1>Selected Works</h1>
-  <p class="post-meta">Outcome-first post-production work for campaigns, narrative, and studio teams.</p>
-
-  <div class="section projects-grid">
-    {all.map((project) => (
-      <ProjectCard
-        slug={project.slug}
-        title={project.data.title}
-        client={project.data.client}
-        year={project.data.year}
-        service={project.data.service}
-        cover={project.data.cover}
-        coverAlt={project.data.coverAlt}
-        previewVideo={project.data.previewVideo}
-        videoUrl={project.data.videoUrl}
-      />
+<BaseLayout title="Works | Matteo Curcio" description="Selected works." path="/works">
+  <section class="works-grid" aria-label="Selected works">
+    {LEGACY_WORKS.map((item) => (
+      <a class="works-tile" href={`/projects/${item.slug}/`} aria-label={item.title}>
+        <div class="works-media" data-hover-preview={item.video ? "true" : undefined}>
+          <img src={item.image} alt={item.title} loading="lazy" />
+          {item.video ? (
+            <video class="works-preview" src={item.video} muted loop playsinline preload="none" aria-hidden="true" />
+          ) : null}
+        </div>
+      </a>
     ))}
-  </div>
+  </section>
 </BaseLayout>
