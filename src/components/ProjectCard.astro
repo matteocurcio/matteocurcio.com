@@ -37,25 +37,3 @@ const hoverVideo = previewVideo || (videoUrl && /\.mp4(\?|#|$)/i.test(videoUrl) 
     </div>
   </a>
 </article>
-
-<script is:inline>
-  if (!window.__projectPreviewBound) {
-    window.__projectPreviewBound = true;
-    const cards = document.querySelectorAll("[data-hover-preview='true']");
-    cards.forEach((card) => {
-      const video = card.querySelector("video");
-      if (!video) return;
-      const play = () => {
-        video.play().catch(() => {});
-      };
-      const stop = () => {
-        video.pause();
-        video.currentTime = 0;
-      };
-      card.addEventListener("mouseenter", play);
-      card.addEventListener("mouseleave", stop);
-      card.addEventListener("focusin", play);
-      card.addEventListener("focusout", stop);
-    });
-  }
-</script>
