@@ -65,3 +65,32 @@ export const LEGACY_REELS: LegacyReelTile[] = [
   { slug: "royaltyfree", title: "Royalty Free Music", image: "https://matteocurcio.com/wp-content/uploads/reel-royalty-free-music-1.webp" },
   { slug: "music", title: "Original Music", image: "https://matteocurcio.com/wp-content/uploads/reel-original-music-1.webp" },
 ];
+
+export interface LegacyPortfolioItem {
+  slug: string;
+  title: string;
+  image: string;
+  video?: string;
+}
+
+const mergedLegacy = new Map<string, LegacyPortfolioItem>();
+for (const item of [...LEGACY_REELS, ...LEGACY_WORKS]) {
+  const existing = mergedLegacy.get(item.slug);
+  if (!existing) {
+    mergedLegacy.set(item.slug, { ...item });
+    continue;
+  }
+
+  mergedLegacy.set(item.slug, {
+    slug: item.slug,
+    title: existing.title || item.title,
+    image: existing.image || item.image,
+    video: existing.video || item.video
+  });
+}
+
+export const LEGACY_BY_SLUG: Record<string, LegacyPortfolioItem> = Object.fromEntries(mergedLegacy.entries());
+
+export function getLegacyItem(slug: string): LegacyPortfolioItem | undefined {
+  return LEGACY_BY_SLUG[slug];
+}

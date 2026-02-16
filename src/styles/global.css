@@ -681,3 +681,9 @@ h1 {
     grid-template-columns: 1fr;
   }
 }
+
+.project-full-video {
+  width: 100%;
+  display: block;
+  background: #000;
+}
