@@ -2,8 +2,12 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { LEGACY_BY_SLUG, getLegacyItem } from "../../data/legacyPortfolio";
+import wpProjectContent from "../../data/wpProjectContent.json";
 
 const WP_WORK_BASE = "https://matteocurcio.com/work";
+
+type WpContentMap = Record<string, { paragraphs?: string[]; embedUrl?: string; images?: string[] }>;
+const wpContent = wpProjectContent as WpContentMap;
 
 function cleanExcerpt(input?: string) {
   if (!input) return "";
@@ -18,6 +22,11 @@ function cleanExcerpt(input?: string) {
     .trim();
 }
 
+function isEmbedUrl(url?: string) {
+  if (!url) return false;
+  return /youtube\.com|youtu\.be|vimeo\.com/i.test(url);
+}
+
 export async function getStaticPaths() {
   const projects = await getCollection("projects");
   const slugs = new Set<string>(projects.map((project) => project.slug));
@@ -30,6 +39,7 @@ const slug = Astro.params.slug ?? "";
 const projects = await getCollection("projects");
 const project = projects.find((entry) => entry.slug === slug);
 const legacy = getLegacyItem(slug);
+const migrated = wpContent[slug] || {};
 
 const title = legacy?.title || project?.data.title || slug;
 const service = project?.data.service || "work";
@@ -43,6 +53,17 @@ const previewVideo =
   (project?.data.videoUrl && /\.(mp4|mov)(\?|#|$)/i.test(project.data.videoUrl) ? project.data.videoUrl : undefined);
 const originalUrl = project?.data.originalUrl || `${WP_WORK_BASE}/${slug}`;
 const excerpt = cleanExcerpt(project?.data.excerpt);
+
+const embeddedUrl = migrated.embedUrl || previewVideo;
+
+const descriptionParagraphs =
+  (migrated.paragraphs || []).length > 0
+    ? (migrated.paragraphs || [])
+    : excerpt
+      ? [excerpt]
+      : [];
+
+const galleryImages = (migrated.images || []).filter((src) => src && src !== cover).slice(0, 12);
 
 const pageTitle = `${title} | Matteo Curcio`;
 ---
@@ -64,21 +85,46 @@ const pageTitle = `${title} | Matteo Curcio`;
     }
 
     {
-      previewVideo && (
-        <div class="cover">
-          <video class="project-full-video" src={previewVideo} controls playsinline preload="metadata" />
-        </div>
-      )
+      embeddedUrl &&
+        (isEmbedUrl(embeddedUrl) ? (
+          <div class="cover project-embed">
+            <iframe
+              src={embeddedUrl}
+              title={`${title} video`}
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            />
+          </div>
+        ) : (
+          <div class="cover">
+            <video class="project-full-video" src={embeddedUrl} controls playsinline preload="metadata" />
+          </div>
+        ))
     }
 
     <div class="project-content">
-      <p>
-        {excerpt ||
-          "Case study snapshot migrated for parity. Full production notes, credits, and legacy formatting are available on the original project page."}
-      </p>
+      {descriptionParagraphs.length > 0 ? (
+        descriptionParagraphs.map((paragraph) => <p>{paragraph}</p>)
+      ) : (
+        <p>
+          Case study snapshot migrated for parity. Full production notes, credits, and legacy formatting are available
+          on the original project page.
+        </p>
+      )}
       <p>
         <a href={originalUrl} target="_blank" rel="noreferrer">View original case study</a>
       </p>
     </div>
+
+    {
+      galleryImages.length > 0 && (
+        <section class="project-gallery" aria-label="Project stills">
+          {galleryImages.map((src) => (
+            <img src={src} alt={title} loading="lazy" />
+          ))}
+        </section>
+      )
+    }
   </article>
 </BaseLayout>
