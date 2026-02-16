@@ -222,33 +222,36 @@ const pageTitle = `${title} | Matteo Curcio`;
         ))
     }
 
-    <div class="project-content">
-      {parsed.intro.length > 0 ? (
-        parsed.intro.map((paragraph) => <p>{paragraph}</p>)
-      ) : (
+    <section class={`project-details ${parsed.credits.length === 0 ? "single" : ""}`}>
+      <div class="project-description">
+        {parsed.intro.length > 0 ? (
+          parsed.intro.map((paragraph) => <p>{paragraph}</p>)
+        ) : (
+          <p>
+            Case study snapshot migrated for parity. Full production notes, credits, and legacy formatting are
+            available on the original project page.
+          </p>
+        )}
         <p>
-          Case study snapshot migrated for parity. Full production notes, credits, and legacy formatting are available
-          on the original project page.
+          <a href={originalUrl} target="_blank" rel="noreferrer">View original case study</a>
         </p>
-      )}
+      </div>
 
       {
         parsed.credits.length > 0 && (
-          <section class="credits-grid" aria-label="Project credits">
-            {parsed.credits.map((item) => (
-              <div class="credit-item">
-                <p class="credit-label">{item.label}</p>
-                <p class="credit-values">{item.values.join(" · ")}</p>
-              </div>
-            ))}
-          </section>
+          <aside class="project-credits" aria-label="Project credits">
+            <section class="credits-grid">
+              {parsed.credits.map((item) => (
+                <div class="credit-item">
+                  <p class="credit-label">{item.label}</p>
+                  <p class="credit-values">{item.values.join(" · ")}</p>
+                </div>
+              ))}
+            </section>
+          </aside>
         )
       }
-
-      <p>
-        <a href={originalUrl} target="_blank" rel="noreferrer">View original case study</a>
-      </p>
-    </div>
+    </section>
 
     {
       gallery.pairs.length > 0 && (
@@ -259,6 +262,7 @@ const pageTitle = `${title} | Matteo Curcio`;
               <div class="ba-before-wrap">
                 <img src={pair.before} alt={`${title} before`} loading="lazy" />
               </div>
+              <div class="ba-handle" aria-hidden="true"></div>
               <input
                 class="ba-range"
                 type="range"
@@ -285,19 +289,51 @@ const pageTitle = `${title} | Matteo Curcio`;
       )
     }
   </article>
-</BaseLayout>
-
 <script is:inline>
   const sliders = document.querySelectorAll(".ba-slider");
   sliders.forEach((slider) => {
     const range = slider.querySelector(".ba-range");
     if (!range) return;
 
-    const setPos = () => {
-      slider.style.setProperty("--ba-pos", `${range.value}%`);
+    const setPos = (value) => {
+      const safe = Math.max(0, Math.min(100, value));
+      slider.style.setProperty("--ba-pos", `${safe}%`);
+      range.value = String(Math.round(safe));
     };
 
-    range.addEventListener("input", setPos);
-    setPos();
+    const setFromClientX = (clientX) => {
+      const rect = slider.getBoundingClientRect();
+      if (rect.width === 0) return;
+      const value = ((clientX - rect.left) / rect.width) * 100;
+      setPos(value);
+    };
+
+    range.addEventListener("input", () => setPos(Number(range.value)));
+
+    let dragging = false;
+
+    slider.addEventListener("pointerdown", (event) => {
+      dragging = true;
+      setFromClientX(event.clientX);
+      if (slider.setPointerCapture) {
+        slider.setPointerCapture(event.pointerId);
+      }
+    });
+
+    slider.addEventListener("pointermove", (event) => {
+      if (!dragging) return;
+      setFromClientX(event.clientX);
+    });
+
+    const stop = () => {
+      dragging = false;
+    };
+
+    slider.addEventListener("pointerup", stop);
+    slider.addEventListener("pointercancel", stop);
+    slider.addEventListener("pointerleave", stop);
+
+    setPos(Number(range.value));
   });
 </script>
+</BaseLayout>
