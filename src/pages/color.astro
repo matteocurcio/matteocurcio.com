@@ -1,0 +1,17 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ServicePage from "../components/ServicePage.astro";
+---
+
+<BaseLayout title="Color | Matteo Curcio" path="/color">
+  <ServicePage
+    title="Color Grading"
+    intro="Film emulation, commercial polish, and sequence-level balancing for multi-format delivery."
+    list={[
+      "DaVinci Resolve workflows",
+      "Look development and shot matching",
+      "HDR and SDR trims",
+      "Deliverables for broadcast and web"
+    ]}
+  />
+</BaseLayout>

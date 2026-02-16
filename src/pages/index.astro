@@ -1,0 +1,60 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import { getCollection } from "astro:content";
+
+const projects = (await getCollection("projects"))
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 6);
+---
+
+<BaseLayout
+  title="Matteo Curcio | Post, Motion & Training"
+  description="Fast portfolio showcasing post-production work, motion systems, and training."
+  path="/"
+>
+  <section class="hero">
+    <div class="hero-copy">
+      <p class="kicker">Melbourne, Australia</p>
+      <h1>Post-production craft, with modern workflow (including AI-assisted pipelines).</h1>
+      <p>
+        I work across color, editorial, and motion. The emphasis is on taste plus systems: clean versions, dependable
+        handoffs, and repeatable results.
+      </p>
+      <div class="pill-row">
+        <span class="pill">Finishing</span>
+        <span class="pill">Editorial</span>
+        <span class="pill">Motion Systems</span>
+        <span class="pill">Training</span>
+      </div>
+    </div>
+    <aside class="metrics">
+      <div class="metric"><strong>Static-first</strong> No heavy plugin runtime.</div>
+      <div class="metric"><strong>SEO ready</strong> Metadata and semantic pages.</div>
+      <div class="metric"><strong>Easy updates</strong> New projects via Markdown files.</div>
+    </aside>
+  </section>
+
+  <section class="section">
+    <h2>Featured Work</h2>
+    <div class="projects-grid">
+      {projects.map((project) => (
+        <ProjectCard
+          slug={project.slug}
+          title={project.data.title}
+          client={project.data.client}
+          year={project.data.year}
+          service={project.data.service}
+          excerpt={project.data.excerpt}
+          cover={project.data.cover}
+          coverAlt={project.data.coverAlt}
+        />
+      ))}
+    </div>
+  </section>
+
+  <section class="cta">
+    <p>Need a fast turnaround or long-form post workflow? Let’s scope your project.</p>
+    <a href="/contact">Start A Project</a>
+  </section>
+</BaseLayout>

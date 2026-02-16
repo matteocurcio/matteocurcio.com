@@ -1,0 +1,24 @@
+---
+interface Props {
+  slug: string;
+  title: string;
+  date: string;
+  excerpt: string;
+  cover?: string;
+  coverAlt?: string;
+}
+
+const { slug, title, date, excerpt, cover, coverAlt = "" } = Astro.props;
+---
+
+<article class="post-card">
+  <a href={`/blog/${slug}/`}>
+    {cover ? <img class="thumb" src={cover} alt={coverAlt} loading="lazy" /> : <div class="thumb" />}
+    <div class="body">
+      <h3>{title}</h3>
+      <p class="post-meta">{date}</p>
+      {excerpt ? <p>{excerpt}</p> : null}
+    </div>
+  </a>
+</article>
+

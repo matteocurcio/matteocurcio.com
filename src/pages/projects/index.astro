@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
+import { getCollection } from "astro:content";
+
+const all = (await getCollection("projects")).sort((a, b) => a.data.order - b.data.order);
+const services = ["all", "color", "editing", "motion"];
+---
+
+<BaseLayout title="Projects | Matteo Curcio" path="/projects">
+  <p class="kicker">Portfolio</p>
+  <h1>Selected Projects</h1>
+  <p>Filter-free in static HTML for speed. Grouping helps scanning by discipline.</p>
+
+  <div class="filters" aria-label="Project categories">
+    {services.map((service, idx) => (
+      <span class={`filter ${idx === 0 ? "active" : ""}`}>{service}</span>
+    ))}
+  </div>
+
+  <div class="projects-grid">
+    {all.map((project) => (
+      <ProjectCard
+        slug={project.slug}
+        title={project.data.title}
+        client={project.data.client}
+        year={project.data.year}
+        service={project.data.service}
+        excerpt={project.data.excerpt}
+        cover={project.data.cover}
+        coverAlt={project.data.coverAlt}
+      />
+    ))}
+  </div>
+</BaseLayout>
