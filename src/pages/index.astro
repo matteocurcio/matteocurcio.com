@@ -9,49 +9,49 @@ const featured = (await getCollection("projects"))
 ---
 
 <BaseLayout
-  title="Matteo Curcio | Post-production that ships clean, fast, and secure"
-  description="Finishing, editorial, motion, tutoring, and practical workflow resilience for producers and studios."
+  title="Matteo Curcio | Finishing and post-production workflows that remove uncertainty"
+  description="Colour, edit, motion, and the operational discipline behind them. Creative finishing supported by structured workflows that protect schedules, approvals, and delivery standards."
   path="/"
 >
   <section>
     <p class="kicker">Melbourne</p>
-    <h1>Post-production that ships clean, fast, and secure.</h1>
+    <h1>Finishing and post-production workflows that remove uncertainty.</h1>
     <p class="post-meta">
-      Matteo Curcio helps producers and studios finish premium work with dependable workflows, calm revisions, and
-      delivery-ready masters.
+      Colour, edit, motion, and the operational discipline behind them. Creative finishing supported by structured
+      workflows that protect schedules, approvals, and delivery standards.
     </p>
   </section>
 
   <section class="section lane-grid">
     <article class="lane">
-      <h3>For Producers & Agencies</h3>
-      <p>Hire finishing, editorial, and motion support with clear approvals and predictable delivery.</p>
-      <a class="button-link" href="/contact?intent=project">Start a Project</a>
+      <h3>For Producers</h3>
+      <p>Decisive finishing with predictable approvals and delivery-ready masters.</p>
+      <a class="button-link" href="/about?intent=project#contact">Start a Project</a>
     </article>
 
     <article class="lane">
-      <h3>For Studio Teams</h3>
-      <p>Fix pipeline friction, versioning drift, and handoff risk without slowing creatives down.</p>
-      <a class="button-link" href="/for-studios">Fix the Pipeline</a>
+      <h3>For Studios</h3>
+      <p>Pipeline stability without creative compromise.</p>
+      <a class="button-link" href="/about?intent=studio#contact">Request Workflow Review</a>
     </article>
 
     <article class="lane">
       <h3>For Students</h3>
-      <p>Learn Resolve and post workflow with real footage and practical professional constraints.</p>
-      <a class="button-link" href="/tutoring">Learn Resolve</a>
+      <p>Professional thinking, not hobbyist shortcuts.</p>
+      <a class="button-link" href="/tutoring">Book 1:1 Resolve Session</a>
     </article>
   </section>
 
   <section class="section credibility-strip">
-    <span>Finishing & Look</span>
-    <span>Editorial & Versioning</span>
-    <span>Motion Systems</span>
-    <span>Workflow Design</span>
-    <span>Content Resilience</span>
+    <span>Finishing</span>
+    <span>Editorial</span>
+    <span>Motion</span>
+    <span>Workflow Discipline</span>
+    <span>Delivery Certainty</span>
   </section>
 
   <section class="section">
-    <h2>Selected Work</h2>
+    <h2>Selected Works</h2>
     <div class="projects-grid">
       {featured.map((project) => (
         <ProjectCard
