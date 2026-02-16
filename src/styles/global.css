@@ -721,3 +721,114 @@ h1 {
     min-height: 56vw;
   }
 }
+
+.project-embed iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  min-height: 0;
+  border: 0;
+  display: block;
+  background: #000;
+}
+
+.credits-grid {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.credit-item {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0.7rem 0.8rem;
+  background: var(--surface);
+}
+
+.credit-label,
+.credit-values {
+  margin: 0;
+}
+
+.credit-label {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.credit-values {
+  margin-top: 0.25rem;
+  color: #2b2723;
+  font-size: 0.95rem;
+}
+
+.before-after-grid {
+  margin-top: 1.2rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.ba-slider {
+  --ba-pos: 50%;
+  position: relative;
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  background: #121212;
+}
+
+.ba-slider img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ba-before-wrap {
+  position: absolute;
+  inset: 0;
+  width: var(--ba-pos);
+  overflow: hidden;
+  border-right: 2px solid rgb(255 255 255 / 85%);
+}
+
+.ba-range {
+  position: absolute;
+  inset: auto 0 0 0;
+  width: 100%;
+  z-index: 3;
+  margin: 0;
+  background: transparent;
+}
+
+.ba-tag {
+  position: absolute;
+  top: 0.5rem;
+  z-index: 2;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  background: rgb(0 0 0 / 62%);
+  color: #fff;
+  border-radius: 999px;
+  padding: 0.2rem 0.5rem;
+}
+
+.ba-tag-before {
+  left: 0.5rem;
+}
+
+.ba-tag-after {
+  right: 0.5rem;
+}
+
+@media (max-width: 900px) {
+  .credits-grid,
+  .before-after-grid,
+  .project-gallery {
+    grid-template-columns: 1fr;
+  }
+}

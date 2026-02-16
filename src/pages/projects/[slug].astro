@@ -9,6 +9,29 @@ const WP_WORK_BASE = "https://matteocurcio.com/work";
 type WpContentMap = Record<string, { paragraphs?: string[]; embedUrl?: string; images?: string[] }>;
 const wpContent = wpProjectContent as WpContentMap;
 
+const CREDIT_LABELS = new Set([
+  "production",
+  "producers",
+  "producer",
+  "director",
+  "dop",
+  "camera",
+  "hairs",
+  "hair",
+  "makeup",
+  "editors",
+  "editor",
+  "colorist",
+  "colourist",
+  "agency",
+  "client",
+  "campaign",
+  "cinematographer",
+  "writer",
+  "line producer",
+  "executive producer"
+]);
+
 function cleanExcerpt(input?: string) {
   if (!input) return "";
   if (input.includes("(function") || input.includes("$(document")) return "";
@@ -25,6 +48,100 @@ function cleanExcerpt(input?: string) {
 function isEmbedUrl(url?: string) {
   if (!url) return false;
   return /youtube\.com|youtu\.be|vimeo\.com/i.test(url);
+}
+
+function normalizeCreditLabel(input: string) {
+  return input.toLowerCase().replace(/[.:]/g, "").trim();
+}
+
+function splitDescriptionAndCredits(paragraphs: string[]) {
+  const intro: string[] = [];
+  const credits = new Map<string, string[]>();
+  const creditOrder: string[] = [];
+
+  for (const paragraph of paragraphs) {
+    const lines = paragraph
+      .split("\n")
+      .map((line) => line.trim())
+      .filter(Boolean);
+
+    if (lines.length < 2) {
+      intro.push(paragraph);
+      continue;
+    }
+
+    const labelHits = lines.filter((line) => CREDIT_LABELS.has(normalizeCreditLabel(line))).length;
+    if (labelHits < 2) {
+      intro.push(paragraph);
+      continue;
+    }
+
+    let currentLabel = "";
+    for (const line of lines) {
+      const normalized = normalizeCreditLabel(line);
+      if (CREDIT_LABELS.has(normalized)) {
+        currentLabel = line;
+        if (!credits.has(currentLabel)) {
+          credits.set(currentLabel, []);
+          creditOrder.push(currentLabel);
+        }
+        continue;
+      }
+
+      if (currentLabel) {
+        credits.get(currentLabel)?.push(line);
+      }
+    }
+  }
+
+  const creditList = creditOrder.map((label) => ({
+    label,
+    values: Array.from(new Set((credits.get(label) || []).filter(Boolean)))
+  }));
+
+  return {
+    intro: intro.filter(Boolean),
+    credits: creditList.filter((item) => item.values.length > 0)
+  };
+}
+
+function buildBeforeAfterPairs(images: string[]) {
+  const flats = new Map<string, string>();
+  const grades = new Map<string, string>();
+  const extras: string[] = [];
+
+  const keyFor = (src: string) => src.replace(/flat|grade/gi, "").replace(/[-_]+/g, "-").toLowerCase();
+
+  for (const src of images) {
+    if (/flat/i.test(src)) {
+      flats.set(keyFor(src), src);
+      continue;
+    }
+
+    if (/grade/i.test(src)) {
+      grades.set(keyFor(src), src);
+      continue;
+    }
+
+    extras.push(src);
+  }
+
+  const pairs: Array<{ before: string; after: string }> = [];
+  for (const [key, before] of flats.entries()) {
+    const after = grades.get(key);
+    if (after) {
+      pairs.push({ before, after });
+      grades.delete(key);
+    } else {
+      extras.push(before);
+    }
+  }
+
+  for (const [, leftoverAfter] of grades.entries()) {
+    extras.push(leftoverAfter);
+  }
+
+  return { pairs, extras };
 }
 
 export async function getStaticPaths() {
@@ -63,7 +180,9 @@ const descriptionParagraphs =
       ? [excerpt]
       : [];
 
-const galleryImages = (migrated.images || []).filter((src) => src && src !== cover).slice(0, 12);
+const parsed = splitDescriptionAndCredits(descriptionParagraphs);
+const galleryImages = (migrated.images || []).filter((src) => src && src !== cover).slice(0, 16);
+const gallery = buildBeforeAfterPairs(galleryImages);
 
 const pageTitle = `${title} | Matteo Curcio`;
 ---
@@ -104,23 +223,62 @@ const pageTitle = `${title} | Matteo Curcio`;
     }
 
     <div class="project-content">
-      {descriptionParagraphs.length > 0 ? (
-        descriptionParagraphs.map((paragraph) => <p>{paragraph}</p>)
+      {parsed.intro.length > 0 ? (
+        parsed.intro.map((paragraph) => <p>{paragraph}</p>)
       ) : (
         <p>
           Case study snapshot migrated for parity. Full production notes, credits, and legacy formatting are available
           on the original project page.
         </p>
       )}
+
+      {
+        parsed.credits.length > 0 && (
+          <section class="credits-grid" aria-label="Project credits">
+            {parsed.credits.map((item) => (
+              <div class="credit-item">
+                <p class="credit-label">{item.label}</p>
+                <p class="credit-values">{item.values.join(" · ")}</p>
+              </div>
+            ))}
+          </section>
+        )
+      }
+
       <p>
         <a href={originalUrl} target="_blank" rel="noreferrer">View original case study</a>
       </p>
     </div>
 
     {
-      galleryImages.length > 0 && (
+      gallery.pairs.length > 0 && (
+        <section class="before-after-grid" aria-label="Before and after grade comparisons">
+          {gallery.pairs.map((pair, idx) => (
+            <figure class="ba-slider" style="--ba-pos:50%">
+              <img src={pair.after} alt={`${title} after`} loading="lazy" />
+              <div class="ba-before-wrap">
+                <img src={pair.before} alt={`${title} before`} loading="lazy" />
+              </div>
+              <input
+                class="ba-range"
+                type="range"
+                min="0"
+                max="100"
+                value="50"
+                aria-label={`Before and after comparison ${idx + 1}`}
+              />
+              <span class="ba-tag ba-tag-before">Before</span>
+              <span class="ba-tag ba-tag-after">After</span>
+            </figure>
+          ))}
+        </section>
+      )
+    }
+
+    {
+      gallery.extras.length > 0 && (
         <section class="project-gallery" aria-label="Project stills">
-          {galleryImages.map((src) => (
+          {gallery.extras.map((src) => (
             <img src={src} alt={title} loading="lazy" />
           ))}
         </section>
@@ -128,3 +286,18 @@ const pageTitle = `${title} | Matteo Curcio`;
     }
   </article>
 </BaseLayout>
+
+<script is:inline>
+  const sliders = document.querySelectorAll(".ba-slider");
+  sliders.forEach((slider) => {
+    const range = slider.querySelector(".ba-range");
+    if (!range) return;
+
+    const setPos = () => {
+      slider.style.setProperty("--ba-pos", `${range.value}%`);
+    };
+
+    range.addEventListener("input", setPos);
+    setPos();
+  });
+</script>
