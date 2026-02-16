@@ -13,6 +13,7 @@ const projects = defineCollection({
     featured: z.boolean().default(false),
     tags: z.array(z.string()).default([]),
     videoUrl: z.string().url().optional(),
+    previewVideo: z.string().optional(),
     order: z.number().default(100),
 
     // Migration helpers (safe to keep for redirects/content parity checks)

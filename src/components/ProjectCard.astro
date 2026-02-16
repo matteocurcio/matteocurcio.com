@@ -5,21 +5,57 @@ interface Props {
   client: string;
   year: number;
   service: string;
-  excerpt: string;
   cover: string;
   coverAlt: string;
+  previewVideo?: string;
+  videoUrl?: string;
 }
 
-const { slug, title, client, year, service, excerpt, cover, coverAlt } = Astro.props;
+const { slug, title, client, year, service, cover, coverAlt, previewVideo, videoUrl } = Astro.props;
+const hoverVideo = previewVideo || (videoUrl && /\.mp4(\?|#|$)/i.test(videoUrl) ? videoUrl : undefined);
 ---
 
-<article class="card">
-  <a href={`/projects/${slug}/`}>
-    <img class="card-thumb" src={cover} alt={coverAlt} loading="lazy" />
-    <div class="card-body">
-      <h3>{title}</h3>
-      <p class="meta">{client} · {year} · {service}</p>
-      <p>{excerpt}</p>
+<article class="project-card">
+  <a class="project-link" href={`/projects/${slug}/`} aria-label={`${title} - ${client}`}>
+    <div class="project-media" data-hover-preview={hoverVideo ? "true" : undefined}>
+      <img class="project-thumb" src={cover} alt={coverAlt} loading="lazy" />
+      {hoverVideo ? (
+        <video
+          class="project-preview"
+          src={hoverVideo}
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          aria-hidden="true"
+        />
+      ) : null}
+      <div class="project-overlay">
+        <p class="project-title">{title}</p>
+        <p class="project-meta">{client} · {year} · {service}</p>
+      </div>
     </div>
   </a>
 </article>
+
+<script is:inline>
+  if (!window.__projectPreviewBound) {
+    window.__projectPreviewBound = true;
+    const cards = document.querySelectorAll("[data-hover-preview='true']");
+    cards.forEach((card) => {
+      const video = card.querySelector("video");
+      if (!video) return;
+      const play = () => {
+        video.play().catch(() => {});
+      };
+      const stop = () => {
+        video.pause();
+        video.currentTime = 0;
+      };
+      card.addEventListener("mouseenter", play);
+      card.addEventListener("mouseleave", stop);
+      card.addEventListener("focusin", play);
+      card.addEventListener("focusout", stop);
+    });
+  }
+</script>
