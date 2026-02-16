@@ -6,7 +6,7 @@ import { LEGACY_WORKS } from "../data/legacyPortfolio";
 <BaseLayout title="Works | Matteo Curcio" description="Selected works." path="/works">
   <section class="works-grid" aria-label="Selected works">
     {LEGACY_WORKS.map((item) => (
-      <a class="works-tile" href={`/projects/${item.slug}/`} aria-label={item.title}>
+      <a class="works-tile" href={`https://matteocurcio.com/work/${item.slug}`} aria-label={item.title}>
         <div class="works-media" data-hover-preview={item.video ? "true" : undefined}>
           <img src={item.image} alt={item.title} loading="lazy" />
           {item.video ? (
