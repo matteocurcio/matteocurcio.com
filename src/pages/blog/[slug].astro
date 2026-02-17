@@ -14,15 +14,11 @@ const { Content } = await render(post);
 ---
 
 <BaseLayout title={`${post.data.title} | Matteo Curcio`} path={`/blog/${post.slug}/`}>
-  <article class="prose">
+  <article class="prose blog-post">
     <p class="kicker">Blog</p>
     <h1>{post.data.title}</h1>
     <p class="post-meta">{post.data.date}</p>
-    {post.data.cover ? <img class="card" src={post.data.cover} alt={post.data.coverAlt ?? ""} /> : null}
     <Content />
-    {post.data.originalUrl ? (
-      <p class="post-meta">Originally published on: <a href={post.data.originalUrl}>matteocurcio.com</a></p>
-    ) : null}
   </article>
 </BaseLayout>
 

@@ -13,7 +13,9 @@ const { slug, title, date, excerpt, cover, coverAlt = "" } = Astro.props;
 
 <article class="post-card">
   <a href={`/blog/${slug}/`}>
-    {cover ? <img class="thumb" src={cover} alt={coverAlt} loading="lazy" /> : <div class="thumb" />}
+    <div class="thumb-frame">
+      {cover ? <img class="thumb" src={cover} alt={coverAlt} loading="lazy" /> : <div class="thumb" />}
+    </div>
     <div class="body">
       <h3>{title}</h3>
       <p class="post-meta">{date}</p>

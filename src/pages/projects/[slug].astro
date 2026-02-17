@@ -21,10 +21,12 @@ const REEL_LAYOUT_OVERRIDES: Record<
     showTools?: boolean;
     showKeywords?: boolean;
     keywordsLabel?: string;
+    clientsLabel?: string;
     panelOrder?: Array<"clients" | "tools" | "keywords">;
   }
 > = {
   ar: { hideGallery: true },
+  immersive: { clientsLabel: "DEPLOYMENTS" },
   mapping: {
     hideGallery: true,
     showClients: false,
@@ -307,10 +309,12 @@ function buildBeforeAfterPairs(images: string[], fallbackImage?: string) {
     for (let i = 0; i + 1 < images.length; i += 2) {
       pairs.push({ before: images[i], after: images[i + 1] });
     }
+    return { pairs, extras: [] as string[] };
   }
 
   if (pairs.length === 0 && fallbackImage) {
     pairs.push({ before: fallbackImage, after: fallbackImage });
+    return { pairs, extras: [] as string[] };
   }
 
   // Convert any remaining stills into compare frames to keep work pages consistent.
@@ -495,9 +499,9 @@ function splitMagazineParagraphs(text: string) {
   const sentenceWordCounts = sentences.map((sentence) => sentence.split(/\s+/).filter(Boolean).length);
   const totalWords = sentenceWordCounts.reduce((sum, count) => sum + count, 0);
 
-  if (totalWords < 56 || sentences.length < 4) return [normalized];
+  if (totalWords < 42 || sentences.length < 3) return [normalized];
 
-  const minParagraphWords = 24;
+  const minParagraphWords = 18;
   let bestBreak = -1;
   let runningWords = 0;
   let bestScore = Number.POSITIVE_INFINITY;
@@ -647,6 +651,55 @@ function extractReelTaxonomy(
     clients: uniqueStrings(clients).slice(0, 20)
   };
 }
+
+function inferReelClientsLabel(values: string[]) {
+  const cleaned = uniqueStrings(values).map((value) => value.trim()).filter(Boolean);
+  if (cleaned.length === 0) return "Clients";
+
+  const lowered = cleaned.map((value) => value.toLowerCase());
+  const specialtyHints = [
+    "skin",
+    "hair",
+    "teeth",
+    "complexion",
+    "lighting",
+    "smoothing",
+    "blemish",
+    "removal",
+    "correction",
+    "enhancement",
+    "retouch",
+    "detailing",
+    "isolation",
+    "matching",
+    "finishing"
+  ];
+  const taskHints = [
+    "editing",
+    "grading",
+    "compositing",
+    "animation",
+    "delivery",
+    "version",
+    "workflow",
+    "management",
+    "post",
+    "mix"
+  ];
+
+  const hasSpecialty = (value: string) => specialtyHints.some((hint) => value.includes(hint));
+  const hasTask = (value: string) => taskHints.some((hint) => value.includes(hint));
+
+  const specialtyRatio = lowered.filter(hasSpecialty).length / cleaned.length;
+  const taskRatio = lowered.filter(hasTask).length / cleaned.length;
+
+  const nameLike = cleaned.filter((value) => /^[A-Z][A-Za-z'._-]+(?:\s+[A-Z][A-Za-z'._-]+){1,3}$/.test(value) && !/\d/.test(value)).length / cleaned.length;
+
+  if (specialtyRatio >= 0.3) return "Specialties";
+  if (taskRatio >= 0.3) return "Tasks";
+  if (nameLike >= 0.65) return "Featuring";
+  return "Clients";
+}
 export async function getStaticPaths() {
   const projects = await getCollection("projects");
   const slugs = new Set<string>(projects.map((project) => project.slug));
@@ -714,6 +767,8 @@ const creditsForDisplay = (() => {
   ordered[soundIndex] = temp;
   return ordered;
 })();
+const workCreditsColumnLeft = !isReelPage ? creditsForDisplay.filter((_, index) => index % 2 === 0) : [];
+const workCreditsColumnRight = !isReelPage ? creditsForDisplay.filter((_, index) => index % 2 === 1) : [];
 const galleryImages = (migrated.images || []).filter((src) => src && src !== cover).slice(0, 16);
 const reelOverride = isReelPage ? REEL_LAYOUT_OVERRIDES[slug] || {} : {};
 const reelUsesCompare = isReelPage && Boolean(reelOverride.sliderGallery);
@@ -755,9 +810,12 @@ const reelShowClients = isReelPage ? reelOverride.showClients !== false : false;
 const reelShowTools = isReelPage ? reelOverride.showTools !== false : false;
 const reelShowKeywords = false;
 const reelKeywordsLabel = isReelPage ? reelOverride.keywordsLabel || "Keywords" : "Keywords";
+const reelClientsLabel = isReelPage
+  ? reelOverride.clientsLabel || inferReelClientsLabel(reelClients)
+  : "Clients";
 const reelPanelOrder = (isReelPage ? reelOverride.panelOrder : undefined) || ["clients", "tools", "keywords"];
 const reelPanelMap: Record<"clients" | "tools" | "keywords", { label: string; values: string[]; enabled: boolean }> = {
-  clients: { label: "Clients", values: reelClients, enabled: reelShowClients },
+  clients: { label: reelClientsLabel, values: reelClients, enabled: reelShowClients },
   tools: { label: "Tools", values: reelTools, enabled: reelShowTools },
   keywords: { label: reelKeywordsLabel, values: reelKeywords, enabled: reelShowKeywords }
 };
@@ -768,6 +826,10 @@ const reelPanels = isReelPage
   : [];
 const reelCenterPanel = reelPanels[0];
 const reelRightPanels = reelPanels.slice(1);
+const reelSidePanels = [
+  ...(reelCenterPanel ? [reelCenterPanel] : []),
+  ...reelRightPanels
+];
 const reelDescriptionSeed = isReelPage
   ? stripReelDuplicateLines(parsed.intro, [reelKeywords, reelTools, reelClients], reelWorkItems)
   : [] as string[];
@@ -833,25 +895,10 @@ const pageTitle = `${title} | Matteo Curcio`;
           </div>
 
           {
-            reelCenterPanel && (
-              <aside class="project-credits reel-center-box" aria-label="Reel center panel">
-                <div class="credit-item">
-                  <p class="credit-label">{reelCenterPanel.label}</p>
-                  <div class="credit-values-lines">
-                    {reelCenterPanel.values.map((value) => (
-                      <p class="credit-value-line">{value}</p>
-                    ))}
-                  </div>
-                </div>
-              </aside>
-            )
-          }
-
-          {
-            reelRightPanels.length > 0 && (
-              <aside class="project-credits reel-meta-boxes" aria-label="Reel metadata">
+            reelSidePanels.length > 0 && (
+              <aside class="project-credits reel-side-stack" aria-label="Reel metadata">
                 <section class="reel-meta-grid">
-                  {reelRightPanels.map((panel) => (
+                  {reelSidePanels.map((panel) => (
                     <div class="credit-item">
                       <p class="credit-label">{panel.label}</p>
                       <div class="credit-values-lines">
@@ -867,7 +914,7 @@ const pageTitle = `${title} | Matteo Curcio`;
           }
         </section>
       ) : (
-        <section class={`project-details ${creditsForDisplay.length === 0 ? "single" : ""}`}>
+        <section class={`project-details work-details ${creditsForDisplay.length === 0 ? "single" : ""}`}>
           <div class="project-description">
             {!isReelPage && technicalWorkParagraphs.length > 0 ? (
               technicalWorkParagraphs.map((paragraph) => <p>{paragraph}</p>)
@@ -882,10 +929,27 @@ const pageTitle = `${title} | Matteo Curcio`;
           </div>
 
           {
-            creditsForDisplay.length > 0 && (
-              <aside class="project-credits" aria-label="Project credits">
+            workCreditsColumnLeft.length > 0 && (
+              <aside class="project-credits work-credits-col" aria-label="Project credits column 1">
                 <section class="credits-grid">
-                  {creditsForDisplay.map((item) => (
+                  {workCreditsColumnLeft.map((item) => (
+                    <div class="credit-item">
+                      <p class="credit-label">{item.label}</p>
+                      <div class="credit-values-lines">
+                        {item.values.map((value) => <p class="credit-value-line">{value}</p>)}
+                      </div>
+                    </div>
+                  ))}
+                </section>
+              </aside>
+            )
+          }
+
+          {
+            workCreditsColumnRight.length > 0 && (
+              <aside class="project-credits work-credits-col" aria-label="Project credits column 2">
+                <section class="credits-grid">
+                  {workCreditsColumnRight.map((item) => (
                     <div class="credit-item">
                       <p class="credit-label">{item.label}</p>
                       <div class="credit-values-lines">
@@ -1028,7 +1092,7 @@ const pageTitle = `${title} | Matteo Curcio`;
 
       const ratio = Math.min(1.3, creditsHeight / descriptionHeight);
       const fontSize = Math.min(1.18, Math.max(1.02, Math.pow(ratio, 0.42)));
-      const lineHeight = Math.min(2.15, Math.max(1.75, 1.65 * ratio));
+      const lineHeight = 1.58;
 
       description.style.setProperty("--desc-font-size", `${fontSize}rem`);
       description.style.setProperty("--desc-line-height", String(lineHeight));
