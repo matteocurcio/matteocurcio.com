@@ -21,10 +21,12 @@ const REEL_LAYOUT_OVERRIDES: Record<
     showTools?: boolean;
     showKeywords?: boolean;
     keywordsLabel?: string;
+    clientsLabel?: string;
     panelOrder?: Array<"clients" | "tools" | "keywords">;
   }
 > = {
   ar: { hideGallery: true },
+  immersive: { clientsLabel: "DEPLOYMENTS" },
   mapping: {
     hideGallery: true,
     showClients: false,
@@ -648,11 +650,7 @@ function extractReelTaxonomy(
   };
 }
 export async function getStaticPaths() {
-  const projects = await getCollection("projects");
-  const slugs = new Set<string>(projects.map((project) => project.slug));
-  Object.keys(LEGACY_BY_SLUG).forEach((slug) => slugs.add(slug));
-
-  return Array.from(slugs).map((slug) => ({ params: { slug } }));
+  return LEGACY_REELS.map((item) => ({ params: { slug: item.slug } }));
 }
 
 const slug = Astro.params.slug ?? "";
@@ -662,7 +660,7 @@ const legacy = getLegacyItem(slug);
 const migrated = wpContent[slug] || {};
 
 const title = legacy?.title || project?.data.title || slug;
-const service = LEGACY_REEL_SLUGS.has(slug) ? "REELS" : "COLOUR";
+const service = "REELS";
 const client = project?.data.client || "Selected Work";
 const year = project?.data.year;
 const cover = legacy?.image || project?.data.cover;
@@ -685,7 +683,7 @@ const descriptionParagraphs =
       : [];
 
 const parsed = splitDescriptionAndCredits(descriptionParagraphs);
-const isReelPage = LEGACY_REEL_SLUGS.has(slug);
+const isReelPage = true;
 const reelWorkItems = isReelPage
   ? (() => {
       const fromCredits = buildReelWorkItems(parsed.credits);
@@ -693,27 +691,12 @@ const reelWorkItems = isReelPage
       return buildReelWorkItemsFromParagraphs(descriptionParagraphs);
     })()
   : [];
-const creditsForDisplayBase = isReelPage
+const creditsForDisplay = isReelPage
   ? parsed.credits.filter((item) => {
       const normalized = normalizeCreditLabel(item.label);
       return normalized !== "client" && normalized !== "project" && normalized !== "campaign";
     })
   : parsed.credits;
-
-const creditsForDisplay = (() => {
-  if (slug !== "drive") return creditsForDisplayBase;
-
-  const ordered = [...creditsForDisplayBase];
-  const dopIndex = ordered.findIndex((item) => normalizeCreditLabel(item.label) === "dop");
-  const soundIndex = ordered.findIndex((item) => normalizeCreditLabel(item.label) === "sound");
-
-  if (dopIndex < 0 || soundIndex < 0) return ordered;
-
-  const temp = ordered[dopIndex];
-  ordered[dopIndex] = ordered[soundIndex];
-  ordered[soundIndex] = temp;
-  return ordered;
-})();
 const galleryImages = (migrated.images || []).filter((src) => src && src !== cover).slice(0, 16);
 const reelOverride = isReelPage ? REEL_LAYOUT_OVERRIDES[slug] || {} : {};
 const reelUsesCompare = isReelPage && Boolean(reelOverride.sliderGallery);
@@ -752,12 +735,12 @@ const reelKeywords = reelTaxonomy.keywords.length > 0 ? reelTaxonomy.keywords : 
 const reelTools = reelTaxonomy.tools.length > 0 ? reelTaxonomy.tools : ["N/A"];
 const reelClients = reelTaxonomy.clients.length > 0 ? reelTaxonomy.clients : reelWorkItems.map((item) => item.client);
 const reelShowClients = isReelPage ? reelOverride.showClients !== false : false;
-const reelShowTools = isReelPage ? reelOverride.showTools !== false : false;
+const reelShowTools = false;
 const reelShowKeywords = false;
 const reelKeywordsLabel = isReelPage ? reelOverride.keywordsLabel || "Keywords" : "Keywords";
 const reelPanelOrder = (isReelPage ? reelOverride.panelOrder : undefined) || ["clients", "tools", "keywords"];
 const reelPanelMap: Record<"clients" | "tools" | "keywords", { label: string; values: string[]; enabled: boolean }> = {
-  clients: { label: "Clients", values: reelClients, enabled: reelShowClients },
+  clients: { label: (isReelPage && reelOverride.clientsLabel) ? reelOverride.clientsLabel : "Clients", values: reelClients, enabled: reelShowClients },
   tools: { label: "Tools", values: reelTools, enabled: reelShowTools },
   keywords: { label: reelKeywordsLabel, values: reelKeywords, enabled: reelShowKeywords }
 };
@@ -768,6 +751,8 @@ const reelPanels = isReelPage
   : [];
 const reelCenterPanel = reelPanels[0];
 const reelRightPanels = reelPanels.slice(1);
+const reelHasMultipleCompareFrames = isReelPage ? gallery.pairs.length > 1 : false;
+const reelHasMultipleStillFrames = isReelPage ? gallery.extras.length > 1 : false;
 const reelDescriptionSeed = isReelPage
   ? stripReelDuplicateLines(parsed.intro, [reelKeywords, reelTools, reelClients], reelWorkItems)
   : [] as string[];
@@ -789,7 +774,7 @@ const metaText = isReelPage && client === "Selected Work"
 const pageTitle = `${title} | Matteo Curcio`;
 ---
 
-<BaseLayout title={pageTitle} path={isReelPage ? `/reels/${slug}/` : `/projects/${slug}/`} navSection={isReelPage ? "reels" : "works"}>
+<BaseLayout title={pageTitle} path={`/reels/${slug}/`} navSection="reels">
   <article class="project-layout">
     <header>
       <p class="kicker">{service}</p>
@@ -902,7 +887,7 @@ const pageTitle = `${title} | Matteo Curcio`;
     }
 
     {
-      ((!isReelPage || reelUsesCompare) && gallery.pairs.length > 0) && (
+      ((!isReelPage && gallery.pairs.length > 0) || (isReelPage && reelUsesCompare && reelHasMultipleCompareFrames)) && (
         <section class="before-after-grid" aria-label="Before and after grade comparisons">
           {gallery.pairs.map((pair, idx) => (
             <figure class="ba-slider" style="--ba-pos:50%">
@@ -926,7 +911,7 @@ const pageTitle = `${title} | Matteo Curcio`;
     }
 
     {
-      !disableGallery && gallery.extras.length > 0 && (
+      !disableGallery && (isReelPage ? reelHasMultipleStillFrames : gallery.extras.length > 0) && (
         isReelPage ? (
           <>
             <section class="project-gallery reel-gallery" aria-label="Project stills">

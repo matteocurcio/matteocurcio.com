@@ -6,12 +6,14 @@ interface Props {
   title: string;
   description?: string;
   path?: string;
+  navSection?: "works" | "reels" | "about" | "services" | "tutoring" | "blog";
 }
 
 const {
   title,
   description = "Portfolio of Matteo Curcio. Finishing, motion, editorial, tutoring, and studio workflow consulting.",
-  path = "/"
+  path = "/",
+  navSection
 } = Astro.props;
 
 const canonical = new URL(path, Astro.site);
@@ -65,8 +67,8 @@ const schema = {
         <a class="brand" href="/">MATTEO CURCIO</a>
         <nav class="nav-links" aria-label="Main">
           <a href="/about" aria-current={path === "/about" ? "page" : undefined}>About</a>
-          <a href="/works" aria-current={path === "/works" || path === "/work" || path.startsWith("/projects") ? "page" : undefined}>Works</a>
-          <a href="/reels" aria-current={path === "/reels" ? "page" : undefined}>Reels</a>
+          <a href="/works" aria-current={(navSection ? navSection === "works" : path === "/works" || path === "/work" || path.startsWith("/projects")) ? "page" : undefined}>Works</a>
+          <a href="/reels" aria-current={(navSection ? navSection === "reels" : path === "/reels") ? "page" : undefined}>Reels</a>
           <a href="/services" aria-current={path === "/services" ? "page" : undefined}>Services</a>
           <a href="/tutoring" aria-current={path === "/tutoring" ? "page" : undefined}>TUTORING</a>
           <a href="/blog" aria-current={path.startsWith("/blog") ? "page" : undefined}>Blog</a>

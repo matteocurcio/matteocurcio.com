@@ -6,16 +6,9 @@ import { LEGACY_REELS } from "../data/legacyPortfolio";
 <BaseLayout title="Reels | Matteo Curcio" path="/reels">
   <section class="reels-grid" aria-label="Reel categories">
     {LEGACY_REELS.map((item) => (
-      <a class="reel-tile" href={`/projects/${item.slug}/`} aria-label={item.title}>
-        <div class="reel-media" data-hover-preview={item.video ? "true" : undefined}>
+      <a class="reel-tile" href={`/reels/${item.slug}/`} aria-label={item.title}>
+        <div class="reel-media">
           <img src={item.image} alt={item.title} loading="lazy" />
-          {item.video ? (
-            <video class="reel-preview" src={item.video} muted loop playsinline preload="none" aria-hidden="true" />
-          ) : null}
-        </div>
-        <div class="reel-overlay">
-          <p class="reel-brand"><span class="reel-dot" aria-hidden="true"></span>matteocurcio</p>
-          <p class="reel-title">{item.title}</p>
         </div>
       </a>
     ))}
