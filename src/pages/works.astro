@@ -4,6 +4,10 @@ import { LEGACY_WORKS } from "../data/legacyPortfolio";
 ---
 
 <BaseLayout title="Works | Matteo Curcio" description="Selected works." path="/works">
+  <section class="works-category-bar" aria-label="Work categories">
+    <a class="works-category-link is-active" href="/works?category=post-production">POST-PRODUCTION</a>
+  </section>
+
   <section class="works-grid" aria-label="Selected works">
     {LEGACY_WORKS.map((item) => (
       <a class="works-tile" href={`/projects/${item.slug}/`} aria-label={item.title}>

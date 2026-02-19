@@ -15,7 +15,6 @@ const { Content } = await render(post);
 
 <BaseLayout title={`${post.data.title} | Matteo Curcio`} path={`/blog/${post.slug}/`}>
   <article class="prose blog-post">
-    <p class="kicker">Blog</p>
     <h1>{post.data.title}</h1>
     <p class="post-meta">{post.data.date}</p>
     <Content />

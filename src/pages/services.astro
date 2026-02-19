@@ -1,65 +1,177 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const services = [
+  {
+    number: "01",
+    name: "Creative Finishing & Post-Production",
+    tag: "post",
+    description:
+      "Colour grading, editorial, motion graphics, and delivery for commercial, branded, and short-form content. I work across the full pipeline in DaVinci Resolve and the Adobe suite - from initial cut through to delivery masters, platform exports, and versioning. Remote and Melbourne-based. Comfortable picking up a project mid-stream.",
+    audience: "Producers, directors, and agencies who need finishing they can rely on.",
+    ctaLabel: "Start a project",
+    ctaUrl: "/about?intent=project#contact"
+  },
+  {
+    number: "02",
+    name: "Immersive & Large-Format Content",
+    tag: "immersive",
+    description:
+      "Projection mapping, immersive video, augmented reality, and in-store media. I have delivered this kind of work at exhibition scale - for Expo 2020 and major government clients in the UAE - and understand both the creative demands and the operational complexity of getting it right in a real space. This is not template work.",
+    audience: "Brands, agencies, and event producers with an environment to fill.",
+    ctaLabel: "Talk through your project",
+    ctaUrl: "/about?intent=immersive#contact"
+  },
+  {
+    number: "03",
+    name: "Presentation Design & Data Visualisation",
+    tag: "strategy",
+    description:
+      "Strategic presentations and visual communication for executive audiences, pitches, large-scale events, and broadcast contexts. The work I have done here has had to hold up in rooms where distraction is instant and credibility is immediate. I design for that pressure, not against it.",
+    audience:
+      "Organisations, government bodies, and senior teams who need to communicate clearly at scale.",
+    ctaLabel: "Get in touch",
+    ctaUrl: "/about?intent=presentation#contact"
+  },
+  {
+    number: "04",
+    name: "Workflow & Infrastructure Consulting",
+    tag: "consulting",
+    description:
+      "For studios, production companies, and creative organisations running into the same problems repeatedly - broken handoffs, version confusion, delivery failures, access and backup gaps. I audit what you have, identify what is actually costing you, and help you fix it. My background spans creative production and digital infrastructure, which means I can see problems that sit in the space between them.",
+    audience:
+      "Operations managers, heads of production, and studio owners who know something is broken.",
+    ctaLabel: "Request a review",
+    ctaUrl: "/about?intent=studio#contact"
+  },
+  {
+    number: "05",
+    name: "Coaching & Training",
+    tag: "teaching",
+    description:
+      "Private sessions on DaVinci Resolve and the Adobe Creative Suite - Premiere, After Effects, Photoshop, Lightroom, Illustrator, InDesign. Also AI-assisted creative workflows. For working professionals closing a specific gap, not beginners. I teach at RMIT and privately. Online or Melbourne.",
+    audience:
+      "Editors, photographers, DOPs, designers, and producers who want to move faster without cutting corners.",
+    ctaLabel: "Book a session",
+    ctaUrl: "/tutoring"
+  }
+];
 ---
 
 <BaseLayout
-  title="Services | Matteo Curcio"
-  description="Outcome-led finishing, editorial, motion, and studio workflow services."
+  title="Services — Matteo Curcio"
+  description="Post-production finishing, immersive content, presentation design, workflow consulting, and coaching. Melbourne-based, remote-friendly."
   path="/services"
 >
-  <p class="kicker">Services</p>
-  <h1>Outcome-led services that protect schedules and delivery certainty.</h1>
+  <section class="services-head">
+    <h1>What I do.</h1>
+    <p>
+      Five areas. Each one has a clear scope, a specific audience, and a direct line to get in touch.
+    </p>
+  </section>
 
-  <div class="section lane-grid">
-    <article class="lane">
-      <h3>Finishing & Look</h3>
-      <p>Protect visual consistency and approval confidence at final stage.</p>
-    </article>
+  <section class="services-index" aria-label="Service areas">
+    {services.map((service) => {
+      const triggerId = `service-trigger-${service.number}`;
+      const panelId = `service-panel-${service.number}`;
 
-    <article class="lane">
-      <h3>Editorial & Versioning</h3>
-      <p>Reduce revision confusion with structured version control and clear cut paths.</p>
-    </article>
+      return (
+        <article class="service-row" data-service-row>
+          <button
+            class="service-trigger"
+            id={triggerId}
+            type="button"
+            aria-expanded="false"
+            aria-controls={panelId}
+            data-service-trigger
+          >
+            <span class="service-number">{service.number}</span>
+            <span class="service-name">{service.name}</span>
+            <span class="service-tag">{service.tag}</span>
+          </button>
 
-    <article class="lane">
-      <h3>Motion Systems</h3>
-      <p>Build reusable motion language that scales without quality drift.</p>
-    </article>
+          <div class="service-panel" id={panelId} role="region" aria-labelledby={triggerId} data-service-panel>
+            <div class="service-panel-inner">
+              <p class="service-description">{service.description}</p>
+              <p class="service-audience"><em>For {service.audience}</em></p>
+              <p class="service-cta-wrap">
+                <a class="service-cta" href={service.ctaUrl}>
+                  {service.ctaLabel} <span aria-hidden="true">→</span>
+                </a>
+              </p>
+            </div>
+          </div>
+        </article>
+      );
+    })}
+  </section>
 
-    <article class="lane">
-      <h3>Pipeline Design for Resolve Teams</h3>
-      <p>Standardize media, naming, handoffs, and project architecture for stable output.</p>
-    </article>
-
-    <article class="lane">
-      <h3>Content Security & Resilience for Post</h3>
-      <p>Operational hygiene for access, backups, and recovery in creative workflows.</p>
-    </article>
-  </div>
-
-  <section class="section" id="for-studios">
-    <h2>For Studios</h2>
-    <div class="two-col">
-      <article class="panel">
-        <h3>Studio Workflow Review</h3>
-        <ul>
-          <li>Current-state map: ingest -> edit -> grade -> version -> delivery</li>
-          <li>Template and naming standard recommendations</li>
-          <li>Versioning discipline checklist</li>
-        </ul>
-        <p><a href="/about?intent=studio#contact">Request Workflow Review</a></p>
-      </article>
-
-      <article class="panel">
-        <h3>Content Security & Resilience Review</h3>
-        <p class="post-meta">Security as operational hygiene for post.</p>
-        <ul>
-          <li>Access control and collaboration hygiene improvements</li>
-          <li>Backup and recovery basics for post workloads</li>
-          <li>Practical remediation plan that does not slow creatives down</li>
-        </ul>
-        <p><a href="/about?intent=studio#contact">Request Workflow Review</a></p>
-      </article>
-    </div>
+  <section class="services-note" aria-label="Additional note">
+    <p>
+      Photography and music are part of my background and still occasionally part of project work, but not
+      primary services I actively pitch. If something you need sits outside these five areas, ask anyway.
+    </p>
+    <p>
+      <a href="mailto:hello@matteocurcio.com">hello@matteocurcio.com</a>
+    </p>
   </section>
 </BaseLayout>
+
+<script is:inline>
+  const serviceRows = Array.from(document.querySelectorAll("[data-service-row]"));
+  const serviceTriggers = Array.from(document.querySelectorAll("[data-service-trigger]"));
+
+  const closeRow = (row) => {
+    const trigger = row.querySelector("[data-service-trigger]");
+    const panel = row.querySelector("[data-service-panel]");
+    if (!trigger || !panel) return;
+
+    trigger.setAttribute("aria-expanded", "false");
+    row.classList.remove("is-open");
+    panel.style.maxHeight = "0px";
+  };
+
+  const openRow = (row) => {
+    const trigger = row.querySelector("[data-service-trigger]");
+    const panel = row.querySelector("[data-service-panel]");
+    const inner = panel?.querySelector(".service-panel-inner");
+    if (!trigger || !panel || !inner) return;
+
+    trigger.setAttribute("aria-expanded", "true");
+    row.classList.add("is-open");
+    panel.style.maxHeight = `${inner.scrollHeight}px`;
+  };
+
+  const updateAccordionState = () => {
+    const hasOpen = serviceRows.some((row) => row.classList.contains("is-open"));
+    const container = document.querySelector(".services-index");
+    if (container) {
+      container.classList.toggle("has-open", hasOpen);
+    }
+  };
+
+  serviceTriggers.forEach((trigger) => {
+    trigger.addEventListener("click", () => {
+      const row = trigger.closest("[data-service-row]");
+      if (!row) return;
+
+      const isExpanded = trigger.getAttribute("aria-expanded") === "true";
+
+      serviceRows.forEach((otherRow) => closeRow(otherRow));
+      if (!isExpanded) {
+        openRow(row);
+      }
+      updateAccordionState();
+    });
+  });
+
+  window.addEventListener("resize", () => {
+    serviceRows.forEach((row) => {
+      if (!row.classList.contains("is-open")) return;
+      const panel = row.querySelector("[data-service-panel]");
+      const inner = panel?.querySelector(".service-panel-inner");
+      if (!panel || !inner) return;
+      panel.style.maxHeight = `${inner.scrollHeight}px`;
+    });
+  });
+</script>

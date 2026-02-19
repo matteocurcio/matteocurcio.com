@@ -1,39 +1,234 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const tutoringAreas = [
+  {
+    number: "01",
+    name: "DaVinci Resolve",
+    tag: "resolve",
+    description:
+      "The most complete post-production tool available - and one of the most complex. Resolve does editing, colour grading, audio mixing, visual effects, and motion graphics inside a single application, each in its own dedicated page with its own logic. Most people learn one corner of it and stay there. Sessions cover whatever you actually need: the Cut and Edit pages, the Colour page and node-based grading, Fusion compositing, Fairlight audio, delivery and export. We work on your footage, your project, your questions. I have been grading professionally in Resolve for years and teaching it formally at RMIT.",
+    audience:
+      "Editors, colorists, DOPs, directors, and content creators who want to work in Resolve properly - not just survive in it.",
+    ctaLabel: "Book a Resolve session",
+    ctaUrl: "/about?intent=tutoring-resolve#contact"
+  },
+  {
+    number: "02",
+    name: "Adobe Premiere Pro",
+    tag: "premiere",
+    description:
+      "Premiere is the industry standard for a reason, and it integrates tightly with the rest of the Adobe ecosystem. It is also a platform that rewards knowing where things actually live - project panel organisation, sequence settings, multi-camera workflows, Dynamic Link to After Effects, export presets. Sessions focus on building good habits early, fixing bad ones that have calcified over time, and closing the gap between what you can do and what you know the tool can do.",
+    audience:
+      "Editors at any level who want to work faster, waste less time troubleshooting, and stop rediscovering the same things repeatedly.",
+    ctaLabel: "Book a Premiere session",
+    ctaUrl: "/about?intent=tutoring-premiere#contact"
+  },
+  {
+    number: "03",
+    name: "After Effects",
+    tag: "motion",
+    description:
+      "After Effects has a learning curve that never quite flattens out. The composition model, pre-comps, expressions, keyframe interpolation, render settings - each layer adds complexity. Sessions can cover motion graphics fundamentals, animation principles as they apply to the tool, expression basics, or specific effects and techniques you are trying to replicate or understand. I also teach how After Effects and Premiere work together, which is where most people lose time without knowing why.",
+    audience:
+      "Editors moving into motion, motion designers filling technical gaps, and anyone who has been faking their way through expressions.",
+    ctaLabel: "Book an After Effects session",
+    ctaUrl: "/about?intent=tutoring-ae#contact"
+  },
+  {
+    number: "04",
+    name: "Photoshop & Lightroom",
+    tag: "image",
+    description:
+      "Two tools with almost total overlap in what people use them for and almost no overlap in how they work. Lightroom is non-destructive, catalogue-based, and built for throughput. Photoshop is layered, pixel-level, and built for precision. Sessions clarify which tool belongs where, and go deep on whichever one you need: retouching, masking, compositing, colour management, export pipelines, or catalogue organisation and batch workflows.",
+    audience:
+      "Photographers, retouchers, designers, and content creators who want to stop guessing which tool to use and why.",
+    ctaLabel: "Book a session",
+    ctaUrl: "/about?intent=tutoring-photo#contact"
+  },
+  {
+    number: "05",
+    name: "Adobe Suite as a System",
+    tag: "workflow",
+    description:
+      "Illustrator, InDesign, Photoshop, Premiere, After Effects, Lightroom - each is a large platform. Together they form an ecosystem that most people use at about 30% capacity because nobody ever explained how the pieces connect. This session type is less about any single tool and more about building a coherent, efficient workflow across the suite: file organisation, asset management, shared libraries, output pipelines, and knowing which tool handles which job without switching back and forth and losing time.",
+    audience:
+      "Designers, creative directors, and production teams who live inside Adobe all day and suspect there is a smarter way to organise it all.",
+    ctaLabel: "Book a workflow session",
+    ctaUrl: "/about?intent=tutoring-suite#contact"
+  },
+  {
+    number: "06",
+    name: "Adobe Express",
+    tag: "express",
+    description:
+      "Adobe Express is the fastest route from an idea to something that looks considered - social content, presentations, short videos, branded assets - without the overhead of the full Creative Suite. It is also the tool most people underestimate, using it for quick resizes when it is capable of significantly more. Sessions cover the full scope: templates and brand kits, animation and video, integration with Photoshop and Illustrator assets, and building a repeatable content workflow that does not require a designer on call every time something needs to go out.",
+    audience:
+      "Marketing teams, content creators, educators, and small business owners who need to produce consistent, professional-looking content quickly and without a steep learning curve.",
+    ctaLabel: "Book an Express session",
+    ctaUrl: "/about?intent=tutoring-express#contact"
+  }
+];
+
+const testimonials = [
+  {
+    quote:
+      "Matteo's pace was just right for me. He was clear in his instructions, logical in his flow of teaching, and happy to answer my questions.",
+    name: "Gwendolyn",
+    context: "DaVinci Resolve · Melbourne"
+  },
+  {
+    quote:
+      "Matteo knows all the technical aspects of DaVinci Resolve very well, answered all my detailed questions, and communicated the concepts in an easily digestible manner. Happy to recommend him to others.",
+    name: "Tim",
+    context: "DaVinci Resolve · online"
+  },
+  {
+    quote:
+      "We covered the basics of multicam editing and he picked up the concepts quickly. Matteo tailored the session completely to the project I was working on.",
+    name: "Diego",
+    context: "DaVinci Resolve · music video project"
+  }
+];
 ---
 
 <BaseLayout
-  title="TUTORING | Matteo Curcio"
-  description="Outcome-based Resolve tutoring grounded in real production conditions."
+  title="Tutoring — Matteo Curcio"
+  description="Private sessions on DaVinci Resolve and the Adobe Creative Suite. Melbourne-based and online. For working professionals, not beginners."
   path="/tutoring"
 >
-  <p class="kicker">TUTORING</p>
-  <h1>Outcome-based tutoring grounded in real production conditions.</h1>
+  <section class="services-head">
+    <h1>You've watched the tutorials. Something still isn't clicking.</h1>
+    <p>
+      Private sessions on DaVinci Resolve and the Adobe Creative Suite - built around your project, your workflow,
+      and your specific gaps. Not a curriculum. Not a course. A conversation with someone who uses these tools on
+      real jobs.
+    </p>
+  </section>
 
-  <div class="two-col section">
-    <div class="prose">
-      <p>
-        This is professional training for real workflows, not tool demos. We work with your footage and constraints.
-      </p>
+  <section class="services-index tutoring-index" aria-label="Tutoring areas">
+    {tutoringAreas.map((area) => {
+      const triggerId = `tutoring-trigger-${area.number}`;
+      const panelId = `tutoring-panel-${area.number}`;
 
-      <h2>Training Structure</h2>
-      <ul>
-        <li>Real footage analysis</li>
-        <li>Log and colour matching workflows</li>
-        <li>Structured node design</li>
-        <li>Delivery specification practice</li>
-        <li>Simulated client review processes</li>
-      </ul>
+      return (
+        <article class="service-row" data-service-row>
+          <button
+            class="service-trigger"
+            id={triggerId}
+            type="button"
+            aria-expanded="false"
+            aria-controls={panelId}
+            data-service-trigger
+          >
+            <span class="service-number">{area.number}</span>
+            <span class="service-name">{area.name}</span>
+            <span class="service-tag">{area.tag}</span>
+          </button>
+
+          <div class="service-panel" id={panelId} role="region" aria-labelledby={triggerId} data-service-panel>
+            <div class="service-panel-inner">
+              <p class="service-description">{area.description}</p>
+              <p class="service-audience"><em>For {area.audience}</em></p>
+              <p class="service-cta-wrap">
+                <a class="service-cta" href={area.ctaUrl}>
+                  {area.ctaLabel} <span aria-hidden="true">→</span>
+                </a>
+              </p>
+            </div>
+          </div>
+        </article>
+      );
+    })}
+  </section>
+
+  <section class="tutoring-testimonials" aria-label="What students say">
+    <h2>What students say</h2>
+    <div class="tutoring-testimonial-grid">
+      {testimonials.map((item) => (
+        <article class="tutoring-quote">
+          <blockquote>{item.quote}</blockquote>
+          <p class="tutoring-quote-meta">
+            <span>{item.name}</span>
+            <span>{item.context}</span>
+          </p>
+        </article>
+      ))}
     </div>
+    <p class="tutoring-testimonial-note">
+      These are drawn from verified Superprof reviews. Add more as they accumulate on the site. Keep the format
+      consistent - no stars, no job titles, just the quote, a first name, and a short context line. Real and
+      understated beats polished and generic every time.
+    </p>
+  </section>
 
-    <aside class="panel">
-      <h3>Who It Is For</h3>
-      <ul>
-        <li>Beginners who need production-level thinking</li>
-        <li>Working editors improving Resolve discipline</li>
-        <li>Filmmakers managing mixed formats and review cycles</li>
-      </ul>
-      <p><a class="button-link" href="/about?intent=tutoring#contact">Book 1:1 Resolve Session</a></p>
-    </aside>
-  </div>
+  <section class="services-note" aria-label="Tutoring details">
+    <p>
+      Sessions are available online or in Melbourne. I teach at RMIT and privately. If you are not sure which
+      session type fits what you need, send a short message describing where you are and what is not working. We
+      will figure it out from there.
+    </p>
+    <p>
+      <a href="/about#contact">Get in touch</a>
+    </p>
+  </section>
 </BaseLayout>
+
+<script is:inline>
+  const serviceRows = Array.from(document.querySelectorAll("[data-service-row]"));
+  const serviceTriggers = Array.from(document.querySelectorAll("[data-service-trigger]"));
+
+  const closeRow = (row) => {
+    const trigger = row.querySelector("[data-service-trigger]");
+    const panel = row.querySelector("[data-service-panel]");
+    if (!trigger || !panel) return;
+
+    trigger.setAttribute("aria-expanded", "false");
+    row.classList.remove("is-open");
+    panel.style.maxHeight = "0px";
+  };
+
+  const openRow = (row) => {
+    const trigger = row.querySelector("[data-service-trigger]");
+    const panel = row.querySelector("[data-service-panel]");
+    const inner = panel?.querySelector(".service-panel-inner");
+    if (!trigger || !panel || !inner) return;
+
+    trigger.setAttribute("aria-expanded", "true");
+    row.classList.add("is-open");
+    panel.style.maxHeight = `${inner.scrollHeight}px`;
+  };
+
+  const updateAccordionState = () => {
+    const hasOpen = serviceRows.some((row) => row.classList.contains("is-open"));
+    const container = document.querySelector(".tutoring-index");
+    if (container) {
+      container.classList.toggle("has-open", hasOpen);
+    }
+  };
+
+  serviceTriggers.forEach((trigger) => {
+    trigger.addEventListener("click", () => {
+      const row = trigger.closest("[data-service-row]");
+      if (!row) return;
+
+      const isExpanded = trigger.getAttribute("aria-expanded") === "true";
+
+      serviceRows.forEach((otherRow) => closeRow(otherRow));
+      if (!isExpanded) {
+        openRow(row);
+      }
+      updateAccordionState();
+    });
+  });
+
+  window.addEventListener("resize", () => {
+    serviceRows.forEach((row) => {
+      if (!row.classList.contains("is-open")) return;
+      const panel = row.querySelector("[data-service-panel]");
+      const inner = panel?.querySelector(".service-panel-inner");
+      if (!panel || !inner) return;
+      panel.style.maxHeight = `${inner.scrollHeight}px`;
+    });
+  });
+</script>

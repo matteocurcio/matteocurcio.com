@@ -1,151 +1,31 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { CONTACT_MAILTO, SITE_CONFIG } from "../config/site";
 ---
 
 <BaseLayout
   title="About | Matteo Curcio"
-  description="Finishing and post-production workflows that remove uncertainty."
+  description="I have always worked where technology meets creative output. That edge keeps moving, and I move with it."
   path="/about"
 >
-  <section>
-    <p class="kicker">About</p>
-    <h1>Finishing and post-production workflows that remove uncertainty.</h1>
-    <p class="post-meta">
-      Colour, edit, motion, and the operational discipline behind them. Creative finishing supported by structured
-      workflows that protect schedules, approvals, and delivery standards.
-    </p>
-    <div class="pill-row">
-      <a class="button-link" href="/about?intent=project#contact">Start a Project</a>
-      <a class="button-link" href="/tutoring">Book 1:1 Resolve Session</a>
-      <a class="button-link" href="/about?intent=studio#contact">Request Workflow Review</a>
-    </div>
-  </section>
+  <article class="prose">
+    <h1>I have always worked where technology meets creative output. That edge keeps moving, and I move with it.</h1>
 
-  <section class="section lane-grid">
-    <article class="lane">
-      <h3>Producers</h3>
-      <p>Risk reduction under deadline.</p>
-      <ul>
-        <li>Clean conform from day one</li>
-        <li>Structured revision cycles</li>
-        <li>Platform-compliant masters</li>
-        <li>Clear communication throughout post</li>
-      </ul>
-    </article>
-    <article class="lane">
-      <h3>Studios</h3>
-      <p>Operational clarity and disciplined post-production standards.</p>
-      <ul>
-        <li>Media management frameworks</li>
-        <li>Template project architecture</li>
-        <li>Naming conventions and version control systems</li>
-        <li>Secure asset handling and handoff procedures</li>
-        <li>Measured AI integration for throughput gains</li>
-      </ul>
-    </article>
-    <article class="lane">
-      <h3>Students</h3>
-      <p>Outcome-based tutoring grounded in real production conditions.</p>
-      <ul>
-        <li>Real footage analysis</li>
-        <li>Log and colour matching workflows</li>
-        <li>Structured node design</li>
-        <li>Delivery specification practice</li>
-        <li>Simulated client review processes</li>
-      </ul>
-    </article>
-  </section>
+    <p>I am Matteo, a Melbourne-based creative technologist with over twenty years of experience across post-production, content strategy, live media, and digital infrastructure. My work sits at the intersection of creative judgment and operational reliability: understanding not only how to make something compelling, but how to build a process that survives real deadlines, real constraints, and real people using it.</p>
 
-  <section class="section">
-    <h2>Differentiators</h2>
-    <ul>
-      <li>Two decades across production and systems design</li>
-      <li>Operational fluency under deadline pressure</li>
-      <li>Structured versioning and delivery discipline</li>
-      <li>AI used selectively and measurably, never decoratively</li>
-      <li>Creative judgment combined with infrastructure thinking</li>
-    </ul>
-  </section>
+    <p>Over the years I have graded commercials for major Australian and international brands, designed large-scale presentations and data visualisations for government clients in the UAE, produced immersive video installations and projection mapping, contributed music to film and television, and coached hundreds of creatives through the tools and workflows they rely on daily. The common thread is not the medium. It is the way I approach problems: technically grounded, with a clear view of what the output actually needs to achieve.</p>
 
-  <section class="section" id="contact">
-    <h2>Contact</h2>
-    <p id="intent-message" class="post-meta">General enquiry form.</p>
+    <p>My foundation is atypical for a creative career. I studied computer science, audio engineering, jazz music, and documentary filmmaking in Milan. That combination shaped how I think. It trained me to hear structure as much as expression, to see systems behind aesthetics, and to question why a process fails rather than patching it repeatedly. It also gave me an instinct for workflows: where they accumulate hidden costs, where they fracture under scale, and how to design them to be both flexible and dependable.</p>
 
-    <form class="contact-form" action={CONTACT_MAILTO} method="post" enctype="text/plain">
-      <input type="hidden" name="intent" id="intent-field" value="general" />
+    <p>That instinct has followed me across three continents. In Florence I graded television advertising with a view of Brunelleschi's dome. In Dubai I delivered content at scale for Expo 2020 and major government organisations - immersive video, augmented reality, and complex data visualisation designed to communicate at the level of an international exposition. In Melbourne my work has focused on finishing, motion, coaching, and increasingly, the infrastructure that underpins modern creative production.</p>
 
-      <label>
-        Name
-        <input type="text" name="name" required />
-      </label>
+    <p>I am now moving formally into cybersecurity - a direction I hold an ISC2 certification in, and am continuing to build. This is not a departure from creative work, but a continuation of the same thinking. The boundary between a production pipeline and a digital infrastructure problem is thinner than most people assume. The questions are identical: what breaks first, where is the exposure, how do you reduce fragility, and what does a clean, reliable output actually require.</p>
 
-      <label>
-        Email
-        <input type="email" name="email" required />
-      </label>
+    <p>Artificial intelligence is reshaping what skilled work looks like in creative production, and the pace of that change is worth taking seriously. The tools arriving now are not incremental. Some of what has taken years to develop as craft is being compressed, automated, or made redundant - and that process is not finished. What remains valuable is judgment: the ability to reason clearly about a system, recognise when an output is wrong even if it looks right, and communicate across technical and creative teams in ways that machines still cannot replicate. I watch this space carefully, work with these tools directly, and adjust accordingly.</p>
 
-      <label>
-        Timeline
-        <select name="timeline" required>
-          <option value="this-week">This week</option>
-          <option value="2-weeks">Within 2 weeks</option>
-          <option value="1-month">Within 1 month</option>
-          <option value="flexible">Flexible</option>
-        </select>
-      </label>
+    <p>If you are a producer or director who needs a reliable creative technologist, I understand what a project requires at each stage of post.</p>
 
-      <label>
-        Budget Range
-        <select name="budget_range" required>
-          <option value="under-2k">Under 2k</option>
-          <option value="2k-5k">2k - 5k</option>
-          <option value="5k-10k">5k - 10k</option>
-          <option value="10k-plus">10k+</option>
-        </select>
-      </label>
+    <p>If you are a studio or organisation building or auditing digital workflows, I bring both creative literacy and the technical depth to make changes that actually hold.</p>
 
-      <label>
-        Footage & Format
-        <input type="text" name="footage_format" placeholder="Camera, resolution, delivery spec" />
-      </label>
-
-      <label>
-        Review Method
-        <select name="review_method">
-          <option value="frameio">Frame.io</option>
-          <option value="vimeo">Vimeo</option>
-          <option value="in-person">In-person</option>
-          <option value="other">Other</option>
-        </select>
-      </label>
-
-      <label>
-        Message
-        <textarea name="message" rows="6" required></textarea>
-      </label>
-
-      <button type="submit">Send</button>
-    </form>
-
-    <p class="section">Email: <a href={CONTACT_MAILTO}>{SITE_CONFIG.contactEmail}</a></p>
-  </section>
-
-  <script>
-    const params = new URLSearchParams(window.location.search);
-    const intent = (params.get("intent") || "general").toLowerCase();
-    const msg = document.getElementById("intent-message");
-    const intentField = document.getElementById("intent-field");
-
-    const map = {
-      project: "Project enquiry: share goals, schedule, and delivery expectations.",
-      studio: "Studio enquiry: describe workflow bottlenecks and current handoff model.",
-      tutoring: "Tutoring enquiry: include current level, clips, and learning goals.",
-      general: "General enquiry form."
-    };
-
-    const safeIntent = map[intent] ? intent : "general";
-    if (msg) msg.textContent = map[safeIntent];
-    if (intentField) intentField.value = safeIntent;
-  </script>
+    <p>If you are a creative who wants to work faster and think more clearly - I teach that, without the condescension.</p>
+  </article>
 </BaseLayout>
