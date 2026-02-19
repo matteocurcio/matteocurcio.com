@@ -220,12 +220,85 @@ h1 {
   letter-spacing: 0.08em;
 }
 
+
 .site-footer {
-  border-top: 1px solid var(--line);
+  border-top: 0;
   padding: 1.2rem 0 2rem;
   color: var(--muted);
   font-size: 0.9rem;
 }
+
+.site-footer-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.site-footer-left,
+.site-footer-right {
+  margin: 0;
+  font-size: 0.84rem;
+}
+
+.site-footer-left {
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+.site-footer-right {
+  text-align: right;
+  font-size: 0.72rem;
+  color: #6a625b;
+  line-height: 1.45;
+  max-width: 44ch;
+  justify-self: end;
+}
+
+.site-footer-social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+}
+
+.site-footer-social a {
+  width: 1.15rem;
+  height: 1.15rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.site-footer-social a img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: grayscale(1) saturate(0);
+  opacity: 0.55;
+  transition: filter 180ms ease-out, opacity 180ms ease-out, transform 180ms ease-out;
+}
+
+.site-footer-social a:hover img,
+.site-footer-social a:focus-visible img {
+  filter: grayscale(0) saturate(1);
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 760px) {
+  .site-footer-grid {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 0.6rem;
+  }
+
+  .site-footer-right,
+  .site-footer-left {
+    text-align: center;
+  }
+}
+
 
 .project-layout {
   display: grid;
@@ -549,6 +622,8 @@ h1 {
   overflow: hidden;
   background: #111;
   aspect-ratio: 16 / 9;
+  border: 1px solid var(--line);
+  border-radius: 10px;
 }
 
 .works-media img,
@@ -1494,10 +1569,15 @@ body.is-lightbox-open {
 
 .works-category-link {
   display: inline-block;
+  margin-right: 1rem;
+  padding: 0;
+  border: 0;
+  background: none;
   font-size: 0.82rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: #5f5750;
+  cursor: pointer;
 }
 
 .works-category-link.is-active {
@@ -1505,7 +1585,7 @@ body.is-lightbox-open {
 }
 
 .services-head {
-  padding-top: clamp(1.2rem, 4.2vw, 3rem);
+  padding-top: 0;
 }
 
 .services-head p {
@@ -1517,7 +1597,7 @@ body.is-lightbox-open {
 }
 
 .services-index {
-  margin-top: clamp(1.6rem, 3.5vw, 2.6rem);
+  margin-top: 2.2rem;
   border-top: 1px solid var(--line);
 }
 
@@ -1591,10 +1671,10 @@ body.is-lightbox-open {
 
 .service-description {
   margin: 0;
-  max-width: 60ch;
-  font-size: 1.05rem;
-  line-height: 1.66;
-  color: #2f2b27;
+  max-width: 62ch;
+  font-size: clamp(1rem, 1.1vw, 1.12rem);
+  line-height: 1.62;
+  color: #4c453f;
 }
 
 .service-audience {
@@ -1689,10 +1769,30 @@ body.is-lightbox-open {
   }
 }
 
-.tutoring-testimonials {
-  margin-top: clamp(2rem, 5vw, 3.8rem);
-  padding-top: 1.1rem;
+
+.tutoring-availability {
+  margin-top: 1.45rem;
+  padding: 0.95rem 0;
   border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.tutoring-availability p {
+  margin: 0;
+  max-width: 86ch;
+  color: #5f5851;
+  font-size: 0.96rem;
+  line-height: 1.62;
+}
+
+.tutoring-availability p + p {
+  margin-top: 0.55rem;
+}
+
+.tutoring-testimonials {
+  margin-top: 1.15rem;
+  padding-top: 0;
+  border-top: 0;
 }
 
 .tutoring-testimonials h2 {
@@ -1710,8 +1810,10 @@ body.is-lightbox-open {
 }
 
 .tutoring-quote {
-  padding: 0.75rem 0;
-  border-top: 1px solid var(--line);
+  padding: 0.95rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fffdf9;
 }
 
 .tutoring-quote blockquote {
@@ -1736,17 +1838,125 @@ body.is-lightbox-open {
   color: #3f3934;
 }
 
-.tutoring-testimonial-note {
-  margin: 1rem 0 0;
-  max-width: 85ch;
-  color: #6a625b;
-  font-size: 0.9rem;
-  line-height: 1.62;
-}
 
 @media (max-width: 900px) {
   .tutoring-testimonial-grid {
     grid-template-columns: 1fr;
     gap: 0.75rem;
   }
+}
+
+.tutoring-index .tutoring-service-icon {
+  opacity: 1;
+  font-size: 0;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+}
+
+.tutoring-app-icon {
+  width: clamp(2.35rem, 3.9vw, 3.1rem);
+  height: clamp(2.35rem, 3.9vw, 3.1rem);
+  object-fit: contain;
+  filter: grayscale(1) saturate(0);
+  opacity: 0.52;
+  transition: filter 180ms ease-out, opacity 180ms ease-out, transform 180ms ease-out;
+}
+
+.tutoring-index .service-row:hover .tutoring-app-icon,
+.tutoring-index .service-row.is-open .tutoring-app-icon,
+.tutoring-index .service-trigger:focus-visible .tutoring-app-icon {
+  filter: grayscale(0) saturate(1);
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+
+
+.tutoring-index .service-trigger {
+  grid-template-columns: 8% 72% 20%;
+  gap: 0.08rem;
+}
+
+.tutoring-index .service-name {
+  font-size: clamp(1.42rem, 3.05vw, 2.55rem);
+}
+
+.tutoring-index .service-tag {
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: #655d56;
+  opacity: 0.78;
+  max-width: 17ch;
+  text-align: right;
+  justify-self: end;
+  padding-right: 0.2rem;
+  line-height: 1.25;
+}
+
+
+
+@media (max-width: 900px) {
+  .tutoring-index .service-trigger {
+    grid-template-columns: 1fr;
+    gap: 0.28rem;
+  }
+
+  .tutoring-index .service-tag {
+    text-align: left;
+    max-width: none;
+    font-size: 0.72rem;
+  }
+
+  .tutoring-app-icon {
+    width: 1.85rem;
+    height: 1.85rem;
+  }
+}
+
+
+.service-skill-icon {
+  opacity: 1;
+  font-size: 0;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+}
+
+.service-app-icon {
+  width: clamp(2.05rem, 3.5vw, 2.8rem);
+  height: clamp(2.05rem, 3.5vw, 2.8rem);
+  object-fit: contain;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  padding: 0.25rem;
+  filter: grayscale(1) saturate(0);
+  opacity: 0.55;
+  transition: filter 180ms ease-out, opacity 180ms ease-out, transform 180ms ease-out;
+}
+
+.services-index .service-row:hover .service-app-icon,
+.services-index .service-row.is-open .service-app-icon,
+.services-index .service-trigger:focus-visible .service-app-icon {
+  filter: grayscale(0) saturate(1);
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 900px) {
+  .service-app-icon {
+    width: 1.55rem;
+    height: 1.55rem;
+  }
+}
+
+.service-row.is-open .service-number.service-skill-icon {
+  opacity: 1;
+}
+
+.tutoring-index .service-row:first-child .tutoring-app-icon {
+  width: clamp(2.75rem, 4.45vw, 3.45rem);
+  height: clamp(2.75rem, 4.45vw, 3.45rem);
 }

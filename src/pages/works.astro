@@ -1,16 +1,45 @@
 ---
+import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { LEGACY_WORKS } from "../data/legacyPortfolio";
+import { LEGACY_WORKS, WORK_CATEGORIES, type WorkCategory } from "../data/legacyPortfolio";
+import wpProjectContent from "../data/wpProjectContent.json";
+
+type WpContentMap = Record<string, { images?: string[] }>;
+const wpContent = wpProjectContent as WpContentMap;
+
+const projects = await getCollection("projects");
+const projectMap = new Map(projects.map((project) => [project.slug, project]));
+
+const works = LEGACY_WORKS.map((item) => {
+  const project = projectMap.get(item.slug);
+  const fallbackImage = wpContent[item.slug]?.images?.[0] || project?.data.cover || "";
+  return {
+    ...item,
+    image: item.image || fallbackImage,
+    href: `/projects/${item.slug}/`
+  };
+}).filter((item) => Boolean(item.image));
+
+const filterOrder: Array<"ALL" | WorkCategory> = ["ALL", ...WORK_CATEGORIES];
 ---
 
 <BaseLayout title="Works | Matteo Curcio" description="Selected works." path="/works">
   <section class="works-category-bar" aria-label="Work categories">
-    <a class="works-category-link is-active" href="/works?category=post-production">POST-PRODUCTION</a>
+    {filterOrder.map((category) => (
+      <button
+        type="button"
+        class={`works-category-link ${category === "ALL" ? "is-active" : ""}`}
+        data-work-filter={category}
+        aria-pressed={category === "ALL" ? "true" : "false"}
+      >
+        {category}
+      </button>
+    ))}
   </section>
 
-  <section class="works-grid" aria-label="Selected works">
-    {LEGACY_WORKS.map((item) => (
-      <a class="works-tile" href={`/projects/${item.slug}/`} aria-label={item.title}>
+  <section class="works-grid" aria-label="Selected works" data-work-grid>
+    {works.map((item) => (
+      <a class="works-tile" href={item.href} aria-label={item.title} data-work-category={item.category}>
         <div class="works-media" data-hover-preview={item.video ? "true" : undefined}>
           <img src={item.image} alt={item.title} loading="lazy" />
           {item.video ? (
@@ -21,3 +50,31 @@ import { LEGACY_WORKS } from "../data/legacyPortfolio";
     ))}
   </section>
 </BaseLayout>
+
+<script is:inline>
+  const filterButtons = Array.from(document.querySelectorAll("[data-work-filter]"));
+  const tiles = Array.from(document.querySelectorAll("[data-work-category]"));
+
+  const applyFilter = (category) => {
+    filterButtons.forEach((button) => {
+      const isActive = button.getAttribute("data-work-filter") === category;
+      button.classList.toggle("is-active", isActive);
+      button.setAttribute("aria-pressed", isActive ? "true" : "false");
+    });
+
+    tiles.forEach((tile) => {
+      const tileCategory = tile.getAttribute("data-work-category");
+      const visible = category === "ALL" || tileCategory === category;
+      tile.toggleAttribute("hidden", !visible);
+    });
+  };
+
+  filterButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const category = button.getAttribute("data-work-filter") || "ALL";
+      applyFilter(category);
+    });
+  });
+
+  applyFilter("ALL");
+</script>

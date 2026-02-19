@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { LEGACY_BY_SLUG, LEGACY_REELS, getLegacyItem } from "../../data/legacyPortfolio";
+import { LEGACY_BY_SLUG, LEGACY_REELS, NON_COMPARE_WORK_SLUGS, getLegacyItem } from "../../data/legacyPortfolio";
 import { WORK_TECHNICAL_CAPTIONS, fallbackTechnicalCaption } from "../../data/workTechnicalCaptions";
 import { REEL_CAPTIONS } from "../../data/reelCaptions";
 import wpProjectContent from "../../data/wpProjectContent.json";
@@ -715,7 +715,8 @@ const legacy = getLegacyItem(slug);
 const migrated = wpContent[slug] || {};
 
 const title = legacy?.title || project?.data.title || slug;
-const service = LEGACY_REEL_SLUGS.has(slug) ? "REELS" : "COLOUR";
+const isNonCompareWork = NON_COMPARE_WORK_SLUGS.has(slug);
+const service = LEGACY_REEL_SLUGS.has(slug) ? "REELS" : isNonCompareWork ? "MOTION/PHOTO" : "POST-PRODUCTION";
 const client = project?.data.client || "Selected Work";
 const year = project?.data.year;
 const cover = legacy?.image || project?.data.cover;
@@ -773,8 +774,9 @@ const galleryImages = (migrated.images || []).filter((src) => src && src !== cov
 const reelOverride = isReelPage ? REEL_LAYOUT_OVERRIDES[slug] || {} : {};
 const reelUsesCompare = isReelPage && Boolean(reelOverride.sliderGallery);
 const reelHideGallery = isReelPage && Boolean(reelOverride.hideGallery);
-const disableBeforeAfter = slug === "spring-party";
+const disableBeforeAfter = slug === "spring-party" || isNonCompareWork;
 const disableGallery = slug === "spring-party" || reelHideGallery;
+const useLightboxGallery = isReelPage || isNonCompareWork;
 const gallery = isReelPage
   ? reelUsesCompare
     ? {
@@ -790,7 +792,7 @@ const gallery = isReelPage
         pairs: [] as Array<{ before: string; after: string }>,
         extras: galleryImages.length > 0 ? galleryImages : cover ? [cover] : []
       }
-    : buildBeforeAfterPairs(galleryImages, service === "COLOUR" ? cover : undefined);
+    : buildBeforeAfterPairs(galleryImages, service === "POST-PRODUCTION" ? cover : undefined);
 
 const technicalWorkDescription = !isReelPage
   ? WORK_TECHNICAL_CAPTIONS[slug] || fallbackTechnicalCaption(title, client)
@@ -990,7 +992,7 @@ const pageTitle = `${title} | Matteo Curcio`;
 
     {
       !disableGallery && gallery.extras.length > 0 && (
-        isReelPage ? (
+        useLightboxGallery ? (
           <>
             <section class="project-gallery reel-gallery" aria-label="Project stills">
               {gallery.extras.map((src, idx) => (
