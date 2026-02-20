@@ -150,9 +150,51 @@ function cleanExcerpt(input?: string) {
     .trim();
 }
 
-function isEmbedUrl(url?: string) {
-  if (!url) return false;
-  return /youtube\.com|youtu\.be|vimeo\.com/i.test(url);
+function toEmbedUrl(url?: string) {
+  if (!url) return undefined;
+  const input = url.trim();
+  if (!input) return undefined;
+
+  const fromYouTubeId = (id?: string | null) =>
+    id ? `https://www.youtube-nocookie.com/embed/${id}` : undefined;
+
+  try {
+    const parsed = new URL(input);
+    const host = parsed.hostname.toLowerCase();
+    const pathParts = parsed.pathname.split("/").filter(Boolean);
+
+    if (host.includes("youtu.be")) {
+      return fromYouTubeId(pathParts[0]);
+    }
+
+    if (host.includes("youtube.com") || host.includes("youtube-nocookie.com")) {
+      if (pathParts[0] === "watch") {
+        return fromYouTubeId(parsed.searchParams.get("v"));
+      }
+      if (pathParts[0] === "embed") {
+        return fromYouTubeId(pathParts[1]);
+      }
+      if (pathParts[0] === "shorts") {
+        return fromYouTubeId(pathParts[1]);
+      }
+    }
+
+    if (host.includes("player.vimeo.com") && pathParts[0] === "video") {
+      return pathParts[1] ? `https://player.vimeo.com/video/${pathParts[1]}` : undefined;
+    }
+
+    if (host.includes("vimeo.com")) {
+      const numericId = pathParts.find((part) => /^\d+$/.test(part));
+      return numericId ? `https://player.vimeo.com/video/${numericId}` : undefined;
+    }
+  } catch {
+    const youtubeId = input.match(/(?:youtube\.com\/embed\/|youtu\.be\/)([A-Za-z0-9_-]{6,})/i)?.[1];
+    if (youtubeId) return fromYouTubeId(youtubeId);
+    const vimeoId = input.match(/vimeo\.com\/(?:video\/)?(\d+)/i)?.[1];
+    if (vimeoId) return `https://player.vimeo.com/video/${vimeoId}`;
+  }
+
+  return undefined;
 }
 
 function normalizeCreditLabel(input: string) {
@@ -724,7 +766,10 @@ const previewVideo =
 const originalUrl = project?.data.originalUrl || `${WP_WORK_BASE}/${slug}`;
 const excerpt = cleanExcerpt(project?.data.excerpt);
 
-const embeddedUrl = isEmbedUrl(migrated.embedUrl) ? migrated.embedUrl : undefined;
+const embeddedUrl =
+  toEmbedUrl(migrated.embedUrl) ||
+  toEmbedUrl(project?.data.videoUrl) ||
+  toEmbedUrl(legacy?.video);
 const videoUrl = embeddedUrl ? undefined : previewVideo;
 
 const descriptionParagraphs =
