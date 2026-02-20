@@ -4,7 +4,7 @@ service: "color"
 client: "Online editing, finishing, color grading, mograph, audio mix/sweetening/mastering and original music for TV, Cinema, Web, Immersive and AR."
 year: 2021
 excerpt: "Showreel 2021 My latest über reel showcasing colour grading, VFX, Mograph, Presentology, AR, Immersive and Original Music TV, cinema, online, and events. Specialties&nbsp; Colour Grading Visual Effect"
-cover: "https://matteocurcio.com/wp/wp-content/uploads/reel-showreel-2024.webp"
+cover: "/migrated/wp-content/uploads/borouge_day2_1000.jpg"
 coverAlt: "Showreel"
 featured: false
 tags: []

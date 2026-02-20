@@ -4,7 +4,7 @@ service: "motion"
 client: "Ecco Safety"
 year: 2023
 excerpt: "ECCO's premium range of automotive aftermarket Amber safety lighting products cater for work vehicles that operate in the harshest environments which include construction, mining and transport industr"
-cover: "https://matteocurcio.com/wp-content/uploads/borouge_day2_1000.jpg"
+cover: "/migrated/wp-content/uploads/borouge_day2_1000.jpg"
 coverAlt: "Heavy Duty Beacon"
 featured: false
 tags: []

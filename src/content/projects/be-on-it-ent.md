@@ -4,7 +4,7 @@ service: "motion"
 client: "News Corp"
 year: 2023
 excerpt: "News.com&nbsp;latest TVC explores why they are the one-stop shop for being on it for relationship advice. Client News Corp Campaign Be On It 2023 \"Entertainment\" Agency Roller Production Visual Domain"
-cover: "https://matteocurcio.com/wp-content/uploads/borouge_day2_1000.jpg"
+cover: "/migrated/wp-content/uploads/borouge_day2_1000.jpg"
 coverAlt: "Be On It"
 featured: false
 tags: []

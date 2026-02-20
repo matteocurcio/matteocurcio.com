@@ -4,7 +4,7 @@ service: "motion"
 client: "Color Grading"
 year: 2023
 excerpt: "Color Grading for Advertising Color grading enhance advertising by shaping emotions, establishing brand identity, and enhancing storytelling across TV, web, and cinema.&nbsp; Its power lies in creatin"
-cover: "https://matteocurcio.com/wp/wp-content/uploads/reel-advertising-1.webp"
+cover: "/migrated/wp-content/uploads/borouge_day2_1000.jpg"
 coverAlt: "Advertising"
 featured: false
 tags: []

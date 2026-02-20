@@ -4,7 +4,7 @@ service: "motion"
 client: "2XU"
 year: 2023
 excerpt: "2XU Compression Tights are very versatile which will provide benefits for warm-up, during active use, recovery, injury management, travelling and medical needs.&nbsp; Client&nbsp; 2XU Project &nbsp; C"
-cover: "https://matteocurcio.com/wp-content/uploads/borouge_day2_1000.jpg"
+cover: "/migrated/wp-content/uploads/borouge_day2_1000.jpg"
 coverAlt: "Compression"
 featured: false
 tags: []

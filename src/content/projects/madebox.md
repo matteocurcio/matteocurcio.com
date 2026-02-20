@@ -4,7 +4,7 @@ service: "motion"
 client: "MYOB"
 year: 2023
 excerpt: "Born from a desire to help small producers flourish after fires, droughts and a global pandemic, Madebox offers a picture-perfect platform for consumers to support local through gift boxing. Client MY"
-cover: "https://matteocurcio.com/wp-content/uploads/borouge_day2_1000.jpg"
+cover: "/migrated/wp-content/uploads/borouge_day2_1000.jpg"
 coverAlt: "Madebox"
 featured: false
 tags: []

@@ -4,7 +4,7 @@ service: "motion"
 client: "Kikkoman"
 year: 2023
 excerpt: "Kikkoman Makoto&nbsp;range is gluten free, with options for vegetarian, vegan and plant-based diets. Perfect for creating Japanese or asian dishes right at home. Client&nbsp; Kikkoman Project &nbsp; M"
-cover: "https://matteocurcio.com/wp-content/uploads/borouge_day2_1000.jpg"
+cover: "/migrated/wp-content/uploads/borouge_day2_1000.jpg"
 coverAlt: "Makoto Selection"
 featured: false
 tags: []

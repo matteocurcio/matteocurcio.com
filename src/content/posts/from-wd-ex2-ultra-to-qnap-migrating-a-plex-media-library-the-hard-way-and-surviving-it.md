@@ -2,7 +2,7 @@
 title: "WD EX2 Ultra to QNAP: Plex Migration"
 date: "2026-01-10"
 excerpt: "A field report from a failed “quick” NAS migration that became a reliability exercise in automation, recovery strategy, and not trusting optimistic transfer assumptions."
-cover: "https://matteocurcio.com/wp-content/uploads/4477FA15-10DB-4934-AF3C-D0AD0F7B9684.png"
+cover: "/migrated/wp-content/uploads/4477FA15-10DB-4934-AF3C-D0AD0F7B9684.png"
 coverAlt: "From WD EX2 Ultra to QNAP: migrating a PLEX media library the hard way (and surviving it)"
 tags: []
 draft: false
@@ -17,7 +17,7 @@ originalUrl: "https://matteocurcio.com/from-wd-ex2-ultra-to-qnap-migrating-a-ple
 
 
 
-<figure class="wp-block-image size-full is-style-default"><img width="1536" height="1024" src="https://matteocurcio.com/wp-content/uploads/4477FA15-10DB-4934-AF3C-D0AD0F7B9684.png" alt="" srcset="https://matteocurcio.com/wp-content/uploads/4477FA15-10DB-4934-AF3C-D0AD0F7B9684.png 1536w, https://matteocurcio.com/wp-content/uploads/4477FA15-10DB-4934-AF3C-D0AD0F7B9684-768x512.png 768w" sizes="auto, (max-width: 1536px) 100vw, 1536px" /></figure>
+<figure class="wp-block-image size-full is-style-default"><img width="1536" height="1024" src="/migrated/wp-content/uploads/4477FA15-10DB-4934-AF3C-D0AD0F7B9684.png" alt="" srcset="/migrated/wp-content/uploads/4477FA15-10DB-4934-AF3C-D0AD0F7B9684.png 1536w, /migrated/wp-content/uploads/borouge_day2_1000.jpg 768w" sizes="auto, (max-width: 1536px) 100vw, 1536px" /></figure>
 
 
 

@@ -4,7 +4,7 @@ service: "motion"
 client: "Beard and Blade"
 year: 2023
 excerpt: "Beard &amp; Blade is Australia’s home of men’s grooming products for shaving, beard &amp; moustache care, hair styling and skin care.&nbsp; Client Beard and Blade Campaign Refreshed Production Visual "
-cover: "https://matteocurcio.com/wp-content/uploads/borouge_day2_1000.jpg"
+cover: "/migrated/wp-content/uploads/borouge_day2_1000.jpg"
 coverAlt: "Refreshed"
 featured: false
 tags: []

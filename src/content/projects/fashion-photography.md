@@ -4,7 +4,7 @@ service: "motion"
 client: "Fashion"
 year: 2023
 excerpt: "(function ($) { $(document).ready(function () { // define container var $container = $(\".active-content\").find(\"#masonry-content_d1b6294ec\"); // make jquery object out of items var $items = $(\".active"
-cover: "https://matteocurcio.com/wp-content/uploads/borouge_day2_1000.jpg"
+cover: "/migrated/wp-content/uploads/borouge_day2_1000.jpg"
 coverAlt: "Ana Juarez Workshop"
 featured: false
 tags: []

@@ -4,7 +4,7 @@ service: "motion"
 client: "MotorOne Group"
 year: 2023
 excerpt: "Protektiv HYDRO surface coating is&nbsp;manufactured with Silicon Carbide (SiC) and Silicon Dioxide (Si02). Combined, this provides the additional 'hardness and gloss' forming a ceramic clear coat fin"
-cover: "https://matteocurcio.com/wp-content/uploads/borouge_day2_1000.jpg"
+cover: "/migrated/wp-content/uploads/borouge_day2_1000.jpg"
 coverAlt: "Protektiv Hydro"
 featured: false
 tags: []

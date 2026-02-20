@@ -4,7 +4,7 @@ service: "motion"
 client: "Cinemastone"
 year: 2023
 excerpt: "A respected Doctor studying a very rare speech disorder is surprised by a series of patients in a week. Production Cinemastone Director &amp; Writer Jordan Stone Executive Producer Jon Roskill Line Pr"
-cover: "https://matteocurcio.com/wp-content/uploads/borouge_day2_1000.jpg"
+cover: "/migrated/wp-content/uploads/borouge_day2_1000.jpg"
 coverAlt: "Rasta Man Vibration"
 featured: false
 tags: []

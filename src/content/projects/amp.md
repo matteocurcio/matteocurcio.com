@@ -4,7 +4,7 @@ service: "motion"
 client: "AMP"
 year: 2023
 excerpt: "Quay Quarter Tower is designed as a world-first vertical village that redefines the future of work. Offering some of Sydney’s best views, this transformative statement on Sydney’s skyline is profoundl"
-cover: "https://matteocurcio.com/wp-content/uploads/borouge_day2_1000.jpg"
+cover: "/migrated/wp-content/uploads/borouge_day2_1000.jpg"
 coverAlt: "Quay Quarter"
 featured: false
 tags: []

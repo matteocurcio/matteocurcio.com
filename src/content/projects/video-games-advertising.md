@@ -4,7 +4,7 @@ service: "motion"
 client: "Online Editing"
 year: 2023
 excerpt: "Video Games Advertising As an online editor and motion graphic designer in the AAA video game industry, my work is an intricate dance between creativity and precision. Tasked with localizing and editi"
-cover: "https://matteocurcio.com/wp/wp-content/uploads/reel-video-games.webp"
+cover: "/migrated/wp-content/uploads/borouge_day2_1000.jpg"
 coverAlt: "Video Games Advertising"
 featured: false
 tags: []

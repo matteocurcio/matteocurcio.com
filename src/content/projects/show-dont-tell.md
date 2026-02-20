@@ -4,7 +4,7 @@ service: "motion"
 client: "Makita"
 year: 2023
 excerpt: "Makita's new TVC gives viewers all the tools to rule the outdoors showcasing their new gardening product. Client Makita Project Show Don't Tell Agency Fabulate Production Visual Domain Producer Isabel"
-cover: "https://matteocurcio.com/wp-content/uploads/borouge_day2_1000.jpg"
+cover: "/migrated/wp-content/uploads/borouge_day2_1000.jpg"
 coverAlt: "Show Don't Tell"
 featured: false
 tags: []

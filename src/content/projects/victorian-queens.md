@@ -4,7 +4,7 @@ service: "motion"
 client: "Garden of Voices"
 year: 2023
 excerpt: "Victorian Queens takes a deep dive into the weird, wonderful, and utterly unique landscape of Melbourne's drag community. Watch it now on ABC iView Production Garden of Voices Directors Andy Cox Josep"
-cover: "https://matteocurcio.com/wp-content/uploads/borouge_day2_1000.jpg"
+cover: "/migrated/wp-content/uploads/borouge_day2_1000.jpg"
 coverAlt: "Victorian Queens"
 featured: false
 tags: []

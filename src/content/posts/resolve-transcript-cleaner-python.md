@@ -2,7 +2,7 @@
 title: "Resolve Transcript to Readable Dialogue"
 date: "2025-08-19"
 excerpt: "How I turned Resolve transcript exports into readable interview dialogue with a small Python utility that removes friction from editorial and publishing workflows."
-cover: "https://matteocurcio.com/wp-content/uploads/Screenshot-2025-08-19-at-2.29.01-pm.png"
+cover: "/migrated/wp-content/uploads/Screenshot-2025-08-19-at-2.29.01-pm.png"
 coverAlt: "From Resolve Studio 20 AI Transcript to Readable Dialogue with Python"
 tags: []
 draft: false
@@ -13,7 +13,7 @@ originalUrl: "https://matteocurcio.com/resolve-transcript-cleaner-python"
 
 
 
-<figure class="wp-block-image size-full"><img width="1314" height="1180" src="https://matteocurcio.com/wp-content/uploads/Screenshot-2025-08-19-at-2.29.01-pm.png" alt="" srcset="https://matteocurcio.com/wp-content/uploads/Screenshot-2025-08-19-at-2.29.01-pm.png 1314w, https://matteocurcio.com/wp-content/uploads/Screenshot-2025-08-19-at-2.29.01-pm-768x690.png 768w" sizes="auto, (max-width: 1314px) 100vw, 1314px" /></figure>
+<figure class="wp-block-image size-full"><img width="1314" height="1180" src="/migrated/wp-content/uploads/Screenshot-2025-08-19-at-2.29.01-pm.png" alt="" srcset="/migrated/wp-content/uploads/Screenshot-2025-08-19-at-2.29.01-pm.png 1314w, /migrated/wp-content/uploads/borouge_day2_1000.jpg 768w" sizes="auto, (max-width: 1314px) 100vw, 1314px" /></figure>
 
 
 

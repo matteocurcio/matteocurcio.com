@@ -4,7 +4,7 @@ service: "motion"
 client: "Renault MENA"
 year: 2021
 excerpt: "(function($) { $(document).ready(function () { // videos function flickityVideos(isChange, _this) { // first stop all videos if(true === isChange) { _this.find(\"video\").each(function() { $(this)[0].pa"
-cover: "https://matteocurcio.com/wp/wp-content/uploads/thumbnail_renault_zoe_reveal.webp"
+cover: "/migrated/wp-content/uploads/borouge_day2_1000.jpg"
 coverAlt: "Renault Zoe Reveal"
 featured: false
 tags: []

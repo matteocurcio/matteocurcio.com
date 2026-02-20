@@ -4,7 +4,7 @@ service: "motion"
 client: "Yamaha"
 year: 2023
 excerpt: "The expression \"Make Waves\" captures the moment when customers feel enthusiastic excitement. Yamaha wants to be a company that inspires its customers' passion and helps them make a step forward to exp"
-cover: "https://matteocurcio.com/wp-content/uploads/borouge_day2_1000.jpg"
+cover: "/migrated/wp-content/uploads/borouge_day2_1000.jpg"
 coverAlt: "Make Waves"
 featured: false
 tags: []

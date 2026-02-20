@@ -4,7 +4,7 @@ service: "motion"
 client: "Content Production"
 year: 2021
 excerpt: "Augmented Reality In 2016, I began collaborating with the Italian motion design studio Alkanoids , creators of ARIA —an AR platform designed for augmented reality applications in art, communication, a"
-cover: "https://matteocurcio.com/wp/wp-content/uploads/reel-augmented-reality-1.webp"
+cover: "/migrated/wp-content/uploads/borouge_day2_1000.jpg"
 coverAlt: "Matteo Curcio | Augmented Reality"
 featured: false
 tags: []

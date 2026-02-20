@@ -4,7 +4,7 @@ service: "motion"
 client: "Rumbalara"
 year: 2023
 excerpt: "Rumbalara means Rainbow in indigenous language and is the name granted to the magnificent Rumbalara Reserve, which is connected to our site. It is from this name that our story takes shape. From the m"
-cover: "https://matteocurcio.com/wp-content/uploads/borouge_day2_1000.jpg"
+cover: "/migrated/wp-content/uploads/borouge_day2_1000.jpg"
 coverAlt: "Over the Rainbow"
 featured: false
 tags: []

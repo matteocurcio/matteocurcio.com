@@ -2,7 +2,7 @@
 title: "Post Haste for Mac: Project Structure"
 date: "2025-08-12"
 excerpt: "A practical breakdown of how I use Post Haste to standardise project setups, reduce preventable mistakes, and keep creative work scalable across teams."
-cover: "https://matteocurcio.com/wp-content/uploads/Templates.png"
+cover: "/migrated/wp-content/uploads/Templates.png"
 coverAlt: "Post Haste for Mac: A Must-Have Tool for Organizing Creative Projects"
 tags: []
 draft: false
@@ -25,7 +25,7 @@ originalUrl: "https://matteocurcio.com/post-haste-for-mac-a-must-have-tool-for-o
 
 
 
-<figure class="wp-block-image size-full is-resized"><img width="500" height="200" src="https://matteocurcio.com/wp-content/uploads/Templates.png" alt="" style="width:404px;height:auto"/></figure>
+<figure class="wp-block-image size-full is-resized"><img width="500" height="200" src="/migrated/wp-content/uploads/Templates.png" alt="" style="width:404px;height:auto"/></figure>
 
 
 

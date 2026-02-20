@@ -4,7 +4,7 @@ service: "motion"
 client: "GMC"
 year: 2021
 excerpt: "(function($) { $(document).ready(function () { // videos function flickityVideos(isChange, _this) { // first stop all videos if(true === isChange) { _this.find(\"video\").each(function() { $(this)[0].pa"
-cover: "https://matteocurcio.com/wp/wp-content/uploads/thumbnail_GMC.webp"
+cover: "/migrated/wp-content/uploads/borouge_day2_1000.jpg"
 coverAlt: "Dubai Motor Show"
 featured: false
 tags: []

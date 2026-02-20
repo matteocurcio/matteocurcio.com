@@ -4,7 +4,7 @@ service: "motion"
 client: "Kalimat Foundation"
 year: 2021
 excerpt: "Mrajeeb Al Fhood A groundbreaking 360° stereoscopic video reportage captured the essence of Mrajeeb Al Fhood, a refugee camp situated amidst the arid plains, approximately 20 kilometers east of Zarqa,"
-cover: "https://matteocurcio.com/wp/wp-content/uploads/thumbnail_kalimat_foundation.webp"
+cover: "/migrated/wp-content/uploads/borouge_day2_1000.jpg"
 coverAlt: "Mrajeeb Al Fhood"
 featured: false
 tags: []

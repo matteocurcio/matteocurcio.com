@@ -4,7 +4,7 @@ service: "motion"
 client: "MUSIC"
 year: 2023
 excerpt: "(function ($) { $(document).ready(function () { // define container var $container = $(\".active-content\").find(\"#masonry-content_11508f58b\"); // make jquery object out of items var $items = $(\".active"
-cover: "https://matteocurcio.com/wp-content/uploads/borouge_day2_1000.jpg"
+cover: "/migrated/wp-content/uploads/borouge_day2_1000.jpg"
 coverAlt: "Merrie Melodies"
 featured: false
 tags: []

@@ -4,7 +4,7 @@ service: "motion"
 client: "EXPO 2020 Dubai"
 year: 2021
 excerpt: "(function($) { $(document).ready(function () { // videos function flickityVideos(isChange, _this) { // first stop all videos if(true === isChange) { _this.find(\"video\").each(function() { $(this)[0].pa"
-cover: "https://matteocurcio.com/wp/wp-content/uploads/thumbnail_EXPO2020_ipm2019.webp"
+cover: "/migrated/wp-content/uploads/borouge_day2_1000.jpg"
 coverAlt: "International Participants Meeting 2019"
 featured: false
 tags: []

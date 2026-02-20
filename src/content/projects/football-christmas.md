@@ -4,7 +4,7 @@ service: "motion"
 client: "Football Australia"
 year: 2023
 excerpt: "Football Australia encourages players to sign up for MiniRoos and other Football programs through this national TVC campaign. Client Football Australia Campaign Play Football \"Football Christmas\" Prod"
-cover: "https://matteocurcio.com/wp-content/uploads/borouge_day2_1000.jpg"
+cover: "/migrated/wp-content/uploads/borouge_day2_1000.jpg"
 coverAlt: "Football Christmas"
 featured: false
 tags: []

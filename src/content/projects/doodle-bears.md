@@ -4,7 +4,7 @@ service: "motion"
 client: "Just Play"
 year: 2023
 excerpt: "Let your child’s artistic skills run free with this washable doodle bear. Once your child is done doodling, parents can toss the bear in the washing machine and the bear will come out clean and doodle"
-cover: "https://matteocurcio.com/wp-content/uploads/borouge_day2_1000.jpg"
+cover: "/migrated/wp-content/uploads/borouge_day2_1000.jpg"
 coverAlt: "Doodle Bears"
 featured: false
 tags: []

@@ -4,7 +4,7 @@ service: "motion"
 client: "Exhibition"
 year: 2023
 excerpt: "(function ($) { $(document).ready(function () { // define container var $container = $(\".active-content\").find(\"#masonry-content_e954b420d\"); // make jquery object out of items var $items = $(\".active"
-cover: "https://matteocurcio.com/wp/wp-content/uploads/untitled-97-of-120.webp"
+cover: "/migrated/wp-content/uploads/borouge_day2_1000.jpg"
 coverAlt: "Patterns"
 featured: false
 tags: []
