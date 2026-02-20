@@ -1,0 +1,1094 @@
+{
+  "manifest": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/research/missing-assets-manifest.csv",
+  "backupDirs": [
+    "/Volumes/MAT2/Site Backup 20240715"
+  ],
+  "total": 473,
+  "copied": 471,
+  "unresolved": 2,
+  "ambiguous": 0,
+  "autoResolvedAmbiguous": 82,
+  "unresolvedItems": [
+    {
+      "status": "missing",
+      "siteReference": "/migrated/wp-content/uploads/4477FA15-10DB-4934-AF3C-D0AD0F7B9684-768x512.png",
+      "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/4477FA15-10DB-4934-AF3C-D0AD0F7B9684-768x512.png",
+      "filename": "4477FA15-10DB-4934-AF3C-D0AD0F7B9684-768x512.png"
+    },
+    {
+      "status": "missing",
+      "siteReference": "/migrated/wp-content/uploads/Screenshot-2025-08-19-at-2.29.01-pm-768x690.png",
+      "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/Screenshot-2025-08-19-at-2.29.01-pm-768x690.png",
+      "filename": "Screenshot-2025-08-19-at-2.29.01-pm-768x690.png"
+    }
+  ],
+  "ambiguousItems": [],
+  "autoResolvedAmbiguousItems": [
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/01.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/01.webp",
+        "filename": "01.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/01.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/01.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/01.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/02.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/02.webp",
+        "filename": "02.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/02.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/02.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/02.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/03.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/03.webp",
+        "filename": "03.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/03.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/03.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/03.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/038d5935357903.56f38f858d80a.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/038d5935357903.56f38f858d80a.webp",
+        "filename": "038d5935357903.56f38f858d80a.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/038d5935357903.56f38f858d80a.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/038d5935357903.56f38f858d80a.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/038d5935357903.56f38f858d80a.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/04.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/04.webp",
+        "filename": "04.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/04.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/04.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/04.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/05.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/05.webp",
+        "filename": "05.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/05.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/05.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/05.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/06.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/06.webp",
+        "filename": "06.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/06.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/06.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/06.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/07.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/07.webp",
+        "filename": "07.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/07.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/07.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/07.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/08.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/08.webp",
+        "filename": "08.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/08.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/08.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/08.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/09.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/09.webp",
+        "filename": "09.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/09.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/09.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/09.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/0d06e035357903.56f38f8582cb5.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/0d06e035357903.56f38f8582cb5.webp",
+        "filename": "0d06e035357903.56f38f8582cb5.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/0d06e035357903.56f38f8582cb5.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/0d06e035357903.56f38f8582cb5.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/0d06e035357903.56f38f8582cb5.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/10.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/10.webp",
+        "filename": "10.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/10.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/10.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/10.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/11.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/11.webp",
+        "filename": "11.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/11.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/11.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/11.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/1cba3835357903.56f38f8586f06.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/1cba3835357903.56f38f8586f06.webp",
+        "filename": "1cba3835357903.56f38f8586f06.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/1cba3835357903.56f38f8586f06.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/1cba3835357903.56f38f8586f06.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/1cba3835357903.56f38f8586f06.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/25cafe35357903.56f38f85834f6.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/25cafe35357903.56f38f85834f6.webp",
+        "filename": "25cafe35357903.56f38f85834f6.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/25cafe35357903.56f38f85834f6.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/25cafe35357903.56f38f85834f6.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/25cafe35357903.56f38f85834f6.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/44a6b935357903.56f38f858d157.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/44a6b935357903.56f38f858d157.webp",
+        "filename": "44a6b935357903.56f38f858d157.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/44a6b935357903.56f38f858d157.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/44a6b935357903.56f38f858d157.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/44a6b935357903.56f38f858d157.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/4c53f235357903.56f38f85875ee.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/4c53f235357903.56f38f85875ee.webp",
+        "filename": "4c53f235357903.56f38f85875ee.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/4c53f235357903.56f38f85875ee.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/4c53f235357903.56f38f85875ee.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/4c53f235357903.56f38f85875ee.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/54849935357903.56f38f858be98.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/54849935357903.56f38f858be98.webp",
+        "filename": "54849935357903.56f38f858be98.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/54849935357903.56f38f858be98.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/54849935357903.56f38f858be98.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/54849935357903.56f38f858be98.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/6f083635357903.56f38f8583c87.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/6f083635357903.56f38f8583c87.webp",
+        "filename": "6f083635357903.56f38f8583c87.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/6f083635357903.56f38f8583c87.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/6f083635357903.56f38f8583c87.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/6f083635357903.56f38f8583c87.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/84710f35357903.56f38f85859aa.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/84710f35357903.56f38f85859aa.webp",
+        "filename": "84710f35357903.56f38f85859aa.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/84710f35357903.56f38f85859aa.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/84710f35357903.56f38f85859aa.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/84710f35357903.56f38f85859aa.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/8e78aa35357903.56f38f8591dc2.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/8e78aa35357903.56f38f8591dc2.webp",
+        "filename": "8e78aa35357903.56f38f8591dc2.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/8e78aa35357903.56f38f8591dc2.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/8e78aa35357903.56f38f8591dc2.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/8e78aa35357903.56f38f8591dc2.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/96b94435357903.56f38f858c503.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/96b94435357903.56f38f858c503.webp",
+        "filename": "96b94435357903.56f38f858c503.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/96b94435357903.56f38f858c503.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/96b94435357903.56f38f858c503.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/96b94435357903.56f38f858c503.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/99381235357903.56f38f8582661.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/99381235357903.56f38f8582661.webp",
+        "filename": "99381235357903.56f38f8582661.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/99381235357903.56f38f8582661.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/99381235357903.56f38f8582661.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/99381235357903.56f38f8582661.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/Abri-5.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/Abri-5.webp",
+        "filename": "Abri-5.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/Abri-5.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/Abri-5.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/Abri-5.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/Ana-Juarez-Workshop-4.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/Ana-Juarez-Workshop-4.webp",
+        "filename": "Ana-Juarez-Workshop-4.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/Ana-Juarez-Workshop-4.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/Ana-Juarez-Workshop-4.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/Ana-Juarez-Workshop-4.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/Big-Hass-3.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/Big-Hass-3.webp",
+        "filename": "Big-Hass-3.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/Big-Hass-3.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/Big-Hass-3.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/Big-Hass-3.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/Big-Hass-5-1.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/Big-Hass-5-1.webp",
+        "filename": "Big-Hass-5-1.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/Big-Hass-5-1.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/Big-Hass-5-1.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/Big-Hass-5-1.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/Big-Hass-Karien-4.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/Big-Hass-Karien-4.webp",
+        "filename": "Big-Hass-Karien-4.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/Big-Hass-Karien-4.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/Big-Hass-Karien-4.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/Big-Hass-Karien-4.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/Big-Hass-Karien-8.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/Big-Hass-Karien-8.webp",
+        "filename": "Big-Hass-Karien-8.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/Big-Hass-Karien-8.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/Big-Hass-Karien-8.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/Big-Hass-Karien-8.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/Dina-Saadi-10.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/Dina-Saadi-10.webp",
+        "filename": "Dina-Saadi-10.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/Dina-Saadi-10.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/Dina-Saadi-10.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/Dina-Saadi-10.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/Dina-Saadi-3-car.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/Dina-Saadi-3-car.webp",
+        "filename": "Dina-Saadi-3-car.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/Dina-Saadi-3-car.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/Dina-Saadi-3-car.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/Dina-Saadi-3-car.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/Dina-Saadi-3.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/Dina-Saadi-3.webp",
+        "filename": "Dina-Saadi-3.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/Dina-Saadi-3.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/Dina-Saadi-3.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/Dina-Saadi-3.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/Dina-Saadi-4.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/Dina-Saadi-4.webp",
+        "filename": "Dina-Saadi-4.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/Dina-Saadi-4.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/Dina-Saadi-4.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/Dina-Saadi-4.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/Dina-Saadi-7.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/Dina-Saadi-7.webp",
+        "filename": "Dina-Saadi-7.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/Dina-Saadi-7.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/Dina-Saadi-7.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/Dina-Saadi-7.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/Dina-Saadi-Karien-2.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/Dina-Saadi-Karien-2.webp",
+        "filename": "Dina-Saadi-Karien-2.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/Dina-Saadi-Karien-2.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/Dina-Saadi-Karien-2.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/Dina-Saadi-Karien-2.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/Dina-Saadi-wide.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/Dina-Saadi-wide.webp",
+        "filename": "Dina-Saadi-wide.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/Dina-Saadi-wide.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/Dina-Saadi-wide.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/Dina-Saadi-wide.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/Dubai-Zabeel-Park-029.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/Dubai-Zabeel-Park-029.webp",
+        "filename": "Dubai-Zabeel-Park-029.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/Dubai-Zabeel-Park-029.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/Dubai-Zabeel-Park-029.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/Dubai-Zabeel-Park-029.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/Dubai-Zabeel-Park-033.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/Dubai-Zabeel-Park-033.webp",
+        "filename": "Dubai-Zabeel-Park-033.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/Dubai-Zabeel-Park-033.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/Dubai-Zabeel-Park-033.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/Dubai-Zabeel-Park-033.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/Dubai-Zabeel-Park-035.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/Dubai-Zabeel-Park-035.webp",
+        "filename": "Dubai-Zabeel-Park-035.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/Dubai-Zabeel-Park-035.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/Dubai-Zabeel-Park-035.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/Dubai-Zabeel-Park-035.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/Dubai-Zabeel-Park-037.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/Dubai-Zabeel-Park-037.webp",
+        "filename": "Dubai-Zabeel-Park-037.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/Dubai-Zabeel-Park-037.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/Dubai-Zabeel-Park-037.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/Dubai-Zabeel-Park-037.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/Dubai-Zabeel-Park-039.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/Dubai-Zabeel-Park-039.webp",
+        "filename": "Dubai-Zabeel-Park-039.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/Dubai-Zabeel-Park-039.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/Dubai-Zabeel-Park-039.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/Dubai-Zabeel-Park-039.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/Dubai-Zabeel-Park-049.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/Dubai-Zabeel-Park-049.webp",
+        "filename": "Dubai-Zabeel-Park-049.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/Dubai-Zabeel-Park-049.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/Dubai-Zabeel-Park-049.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/Dubai-Zabeel-Park-049.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/Habri-13.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/Habri-13.webp",
+        "filename": "Habri-13.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/Habri-13.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/Habri-13.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/Habri-13.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/Habri-5.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/Habri-5.webp",
+        "filename": "Habri-5.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/Habri-5.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/Habri-5.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/Habri-5.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/Habri-7.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/Habri-7.webp",
+        "filename": "Habri-7.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/Habri-7.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/Habri-7.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/Habri-7.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/La-Brande-Bellezza-01.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/La-Brande-Bellezza-01.webp",
+        "filename": "La-Brande-Bellezza-01.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/La-Brande-Bellezza-01.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/La-Brande-Bellezza-01.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/La-Brande-Bellezza-01.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/La-Brande-Bellezza-03.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/La-Brande-Bellezza-03.webp",
+        "filename": "La-Brande-Bellezza-03.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/La-Brande-Bellezza-03.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/La-Brande-Bellezza-03.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/La-Brande-Bellezza-03.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/La-Brande-Bellezza-04.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/La-Brande-Bellezza-04.webp",
+        "filename": "La-Brande-Bellezza-04.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/La-Brande-Bellezza-04.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/La-Brande-Bellezza-04.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/La-Brande-Bellezza-04.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/La-Brande-Bellezza-05.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/La-Brande-Bellezza-05.webp",
+        "filename": "La-Brande-Bellezza-05.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/La-Brande-Bellezza-05.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/La-Brande-Bellezza-05.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/La-Brande-Bellezza-05.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/La-Brande-Bellezza-07.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/La-Brande-Bellezza-07.webp",
+        "filename": "La-Brande-Bellezza-07.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/La-Brande-Bellezza-07.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/La-Brande-Bellezza-07.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/La-Brande-Bellezza-07.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/La-Brande-Bellezza-08.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/La-Brande-Bellezza-08.webp",
+        "filename": "La-Brande-Bellezza-08.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/La-Brande-Bellezza-08.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/La-Brande-Bellezza-08.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/La-Brande-Bellezza-08.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/La-Brande-Bellezza-09.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/La-Brande-Bellezza-09.webp",
+        "filename": "La-Brande-Bellezza-09.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/La-Brande-Bellezza-09.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/La-Brande-Bellezza-09.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/La-Brande-Bellezza-09.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/La-Brande-Bellezza-17.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/La-Brande-Bellezza-17.webp",
+        "filename": "La-Brande-Bellezza-17.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/La-Brande-Bellezza-17.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/La-Brande-Bellezza-17.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/La-Brande-Bellezza-17.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/La-Brande-Bellezza-22.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/La-Brande-Bellezza-22.webp",
+        "filename": "La-Brande-Bellezza-22.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/La-Brande-Bellezza-22.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/La-Brande-Bellezza-22.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/La-Brande-Bellezza-22.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/La-Brande-Bellezza-28.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/La-Brande-Bellezza-28.webp",
+        "filename": "La-Brande-Bellezza-28.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/La-Brande-Bellezza-28.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/La-Brande-Bellezza-28.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/La-Brande-Bellezza-28.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/UAE-Parkour-Team-10.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/UAE-Parkour-Team-10.webp",
+        "filename": "UAE-Parkour-Team-10.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/UAE-Parkour-Team-10.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/UAE-Parkour-Team-10.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/UAE-Parkour-Team-10.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/UAE-Parkour-Team-11.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/UAE-Parkour-Team-11.webp",
+        "filename": "UAE-Parkour-Team-11.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/UAE-Parkour-Team-11.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/UAE-Parkour-Team-11.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/UAE-Parkour-Team-11.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/UAE-Parkour-Team-3.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/UAE-Parkour-Team-3.webp",
+        "filename": "UAE-Parkour-Team-3.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/UAE-Parkour-Team-3.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/UAE-Parkour-Team-3.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/UAE-Parkour-Team-3.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/UAE-Parkour-Team-30.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/UAE-Parkour-Team-30.webp",
+        "filename": "UAE-Parkour-Team-30.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/UAE-Parkour-Team-30.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/UAE-Parkour-Team-30.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/UAE-Parkour-Team-30.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/UAE-Parkour-Team-54.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/UAE-Parkour-Team-54.webp",
+        "filename": "UAE-Parkour-Team-54.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/UAE-Parkour-Team-54.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/UAE-Parkour-Team-54.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/UAE-Parkour-Team-54.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/UAE-Year-of-Reading-002.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/UAE-Year-of-Reading-002.webp",
+        "filename": "UAE-Year-of-Reading-002.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/UAE-Year-of-Reading-002.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/UAE-Year-of-Reading-002.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/UAE-Year-of-Reading-002.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/Untaggable-1.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/Untaggable-1.webp",
+        "filename": "Untaggable-1.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/Untaggable-1.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/Untaggable-1.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/Untaggable-1.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/Untaggable-12.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/Untaggable-12.webp",
+        "filename": "Untaggable-12.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/Untaggable-12.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/Untaggable-12.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/Untaggable-12.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/cd65ca35357903.56f38f8586866.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/cd65ca35357903.56f38f8586866.webp",
+        "filename": "cd65ca35357903.56f38f8586866.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/cd65ca35357903.56f38f8586866.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/cd65ca35357903.56f38f8586866.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/cd65ca35357903.56f38f8586866.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/untitled-105-of-145.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/untitled-105-of-145.webp",
+        "filename": "untitled-105-of-145.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/untitled-105-of-145.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/untitled-105-of-145.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/untitled-105-of-145.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/untitled-109-of-120.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/untitled-109-of-120.webp",
+        "filename": "untitled-109-of-120.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/untitled-109-of-120.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/untitled-109-of-120.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/untitled-109-of-120.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/untitled-110-of-145.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/untitled-110-of-145.webp",
+        "filename": "untitled-110-of-145.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/untitled-110-of-145.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/untitled-110-of-145.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/untitled-110-of-145.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/untitled-116-of-120.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/untitled-116-of-120.webp",
+        "filename": "untitled-116-of-120.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/untitled-116-of-120.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/untitled-116-of-120.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/untitled-116-of-120.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/untitled-119-of-120.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/untitled-119-of-120.webp",
+        "filename": "untitled-119-of-120.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/untitled-119-of-120.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/untitled-119-of-120.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/untitled-119-of-120.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/untitled-74-of-120-1.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/untitled-74-of-120-1.webp",
+        "filename": "untitled-74-of-120-1.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/untitled-74-of-120-1.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/untitled-74-of-120-1.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/untitled-74-of-120-1.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/untitled-75-of-145.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/untitled-75-of-145.webp",
+        "filename": "untitled-75-of-145.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/untitled-75-of-145.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/untitled-75-of-145.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/untitled-75-of-145.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/untitled-76-of-120.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/untitled-76-of-120.webp",
+        "filename": "untitled-76-of-120.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/untitled-76-of-120.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/untitled-76-of-120.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/untitled-76-of-120.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/untitled-76-of-145.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/untitled-76-of-145.webp",
+        "filename": "untitled-76-of-145.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/untitled-76-of-145.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/untitled-76-of-145.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/untitled-76-of-145.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/untitled-78-of-145.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/untitled-78-of-145.webp",
+        "filename": "untitled-78-of-145.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/untitled-78-of-145.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/untitled-78-of-145.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/untitled-78-of-145.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/untitled-79-of-95.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/untitled-79-of-95.webp",
+        "filename": "untitled-79-of-95.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/untitled-79-of-95.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/untitled-79-of-95.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/untitled-79-of-95.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/untitled-82-of-120.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/untitled-82-of-120.webp",
+        "filename": "untitled-82-of-120.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/untitled-82-of-120.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/untitled-82-of-120.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/untitled-82-of-120.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/untitled-82-of-145.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/untitled-82-of-145.webp",
+        "filename": "untitled-82-of-145.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/untitled-82-of-145.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/untitled-82-of-145.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/untitled-82-of-145.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/untitled-88-of-120.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/untitled-88-of-120.webp",
+        "filename": "untitled-88-of-120.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/untitled-88-of-120.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/untitled-88-of-120.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/untitled-88-of-120.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/untitled-89-of-145.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/untitled-89-of-145.webp",
+        "filename": "untitled-89-of-145.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/untitled-89-of-145.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/untitled-89-of-145.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/untitled-89-of-145.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/untitled-91-of-95-1.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/untitled-91-of-95-1.webp",
+        "filename": "untitled-91-of-95-1.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/untitled-91-of-95-1.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/untitled-91-of-95-1.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/untitled-91-of-95-1.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/untitled-97-of-120.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/untitled-97-of-120.webp",
+        "filename": "untitled-97-of-120.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/untitled-97-of-120.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/untitled-97-of-120.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/untitled-97-of-120.webp"
+      ]
+    },
+    {
+      "row": {
+        "status": "missing",
+        "siteReference": "/migrated/wp-content/uploads/untitled-97-of-145.webp",
+        "destinationAbsolute": "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/public/migrated/wp-content/uploads/untitled-97-of-145.webp",
+        "filename": "untitled-97-of-145.webp"
+      },
+      "chosen": "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/untitled-97-of-145.webp",
+      "candidates": [
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/backup/untitled-97-of-145.webp",
+        "/Volumes/MAT2/Site Backup 20240715/wp/wp-content/uploads/untitled-97-of-145.webp"
+      ]
+    }
+  ]
+}
