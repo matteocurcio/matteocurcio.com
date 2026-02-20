@@ -1,51 +1,244 @@
 ---
-title: "Capture & Craft: Workshop Notes"
+title: "Capture & Craft Workshop: Camera to Post"
 date: "2024-04-20"
-excerpt: "A hands-on workshop about joining capture discipline and post intent so footage stays coherent, revisions stay calm, and final delivery stays predictable."
-cover: "https://matteocurcio.com/wp-content/uploads/471160288_18453342556071934_8362558999807680283_n.jpg"
-coverAlt: "Capture & Craft Workshop"
+excerpt: "A condensed reflection on camera-to-post colour pipelines, from scene and sensor mechanics to transforms, skin tones, and delivery stability."
+cover: "/images/blog/workshop_slides/capture-craft-007.jpeg"
+coverAlt: "Capture & Craft workshop slide"
 tags:
   - "Workshop"
-  - "Cinematography"
   - "Color"
+  - "Pipeline"
   - "Post Production"
 draft: false
 originalUrl: "https://matteocurcio.com/capture-craft-workshop"
 ---
 
-The **Capture & Craft Workshop** was designed around a simple idea: technical confidence matters, but visual intention matters more.
+## Reflections from a Workshop with Hootan Haghshenas, CSI
 
-Most people can learn where the buttons are. Fewer can explain _why_ a frame works, what makes a shot hold attention, or how to protect that intention all the way through post.
+Recently, Hootan and I ran a workshop titled "From Camera to Post: A Deep Dive into Cinema Cameras and Colour Grading Pipelines."
 
-This session focused on building that bridge between capture and finishing.
+It was a dense session. Technical. Structural. Occasionally philosophical.
 
-<figure class="wp-block-image size-full"><img width="1200" height="900" src="https://matteocurcio.com/wp-content/uploads/471160288_18453342556071934_8362558999807680283_n.jpg" alt="Capture & Craft Workshop" srcset="https://matteocurcio.com/wp-content/uploads/471160288_18453342556071934_8362558999807680283_n.jpg 1200w, https://matteocurcio.com/wp-content/uploads/471160288_18453342556071934_8362558999807680283_n-768x576.jpg 768w" sizes="auto, (max-width: 1200px) 100vw, 1200px" /></figure>
+What follows is not the full presentation. It is a condensed reflection on why we structured it the way we did and why I believe understanding the colour pipeline is one of the most empowering shifts a filmmaker or colourist can make.
 
-## What We Worked On
+---
 
-We broke the process into three connected layers:
+## Why We Started with the Pipeline, Not the Look
 
-- **Capture discipline**: exposure intent, skin and highlight protection, mixed-light awareness, and practical choices that reduce repair work later.
-- **Craft decisions**: framing hierarchy, movement motivation, and visual rhythm so every shot contributes to narrative clarity.
-- **Post-readiness**: shot consistency, color separation, and delivery thinking from day one, not at the end of the schedule.
+![Slide 07 - Pipeline diagram](/images/blog/workshop_slides/capture-craft-007.jpeg)
 
-## Why This Format Works
 
-Workshops often split production and post into separate conversations. That creates avoidable friction: footage that is technically usable but creatively fragile, or stylistic ideas that collapse under delivery constraints.
+When people attend a colour workshop, they often expect LUTs, contrast tricks, cinematic grades.
 
-Here, the point was to treat the workflow as one system.
+Instead, we started with a diagram.
 
-If the image is captured with finishing in mind, revisions stay calmer, approvals become faster, and final output is more consistent across platforms.
+Scene -> Sensor -> Encoding -> Camera File -> Processing -> Display.
 
-## Key Takeaways For Participants
+I have learned over the years that most grading frustrations are not aesthetic problems. They are structural ones. If you do not understand where your image sits in that chain, you are effectively grading blind.
 
-- Better decisions at capture stage reduce emergency fixes in grading.
-- Visual intent should be documented early, not guessed in post.
-- Consistency is not a “nice to have”; it is what protects schedule and quality.
-- Taste and technical discipline are not separate skills. They are the same job, viewed from different stages.
+Hootan and I wanted to dismantle that ambiguity.
 
-## Next Iteration
+---
 
-Future editions will include tighter live exercises: short scene capture, rapid conform, and guided finishing passes so participants can see exactly how upstream choices change downstream outcomes.
+## The Scene: Where Colour Actually Begins
 
-That is the core of Capture & Craft: clearer seeing, cleaner execution, and fewer surprises between first shot and final master.
+![Slide 10 - Scene foundations](/images/blog/workshop_slides/capture-craft-010.jpeg)
+
+
+We opened with a painting.
+
+Not a camera chart. Not a waveform. A painting.
+
+Because before codecs and gamuts, there is light interacting with matter. Colour does not exist inside objects. It exists in the interpretation of reflected wavelengths by the human visual system.
+
+![Slide 12 - Human visual adaptation](/images/blog/workshop_slides/capture-craft-012.jpeg)
+
+
+The human eye adapts across roughly 10-14 stops at any given moment. But what fascinates me is not the number. It is the nonlinearity.
+
+Double the light does not look twice as bright.
+
+We compress highlights naturally. We adapt locally. We mentally reconstruct dynamic range by shifting attention between foreground and background.
+
+Cameras do none of this.
+
+The tension between physical light and perceptual light is the entire reason colour science exists.
+
+---
+
+## The Sensor: Brutally Honest
+
+![Slide 16 - Sensor mechanics](/images/blog/workshop_slides/capture-craft-016.jpeg)
+
+
+Hootan took the room through sensor mechanics.
+
+Sensors are linear devices. They respond proportionally to light intensity.
+
+Mathematically elegant. Creatively unforgiving.
+
+![Slide 17 - Linear response](/images/blog/workshop_slides/capture-craft-017.jpeg)
+
+
+If you double the photons, you double the signal.
+
+There is no perceptual compression built in. No aesthetic smoothing. Just physics.
+
+We discussed shot noise, dark noise, and signal-to-noise ratio.
+
+![Slide 20 - Saturation and clipping](/images/blog/workshop_slides/capture-craft-020.jpeg)
+
+
+And then saturation.
+
+Clipped highlights are not a stylistic choice. They are an irreversible loss of information. Once the bucket overflows, the data is gone.
+
+That moment usually shifts the room's posture, because it reframes exposure not as taste, but as engineering.
+
+---
+
+## Why Log Looks "Flat"
+
+![Slide 24 - Log encoding](/images/blog/workshop_slides/capture-craft-024.jpeg)
+
+
+I often hear: "Why does log look so washed out?"
+
+Because it is doing something intelligent.
+
+We used the 1024 candles analogy. Linear encoding wastes precision in highlights. Log redistributes tonal information more efficiently across stops.
+
+Log is not aesthetic. It is structural compression.
+
+Once people understand that, they stop trying to "fix" log prematurely. They begin respecting it as a container.
+
+---
+
+## Gamma, Gamut, and the Illusion of RGB
+
+![Slide 30 - Color space context](/images/blog/workshop_slides/capture-craft-030.jpeg)
+
+
+One of the most persistent misconceptions in post-production is that RGB values are absolute.
+
+They are not.
+
+The same numerical coordinates mean entirely different colours depending on the colour space.
+
+White point matters. Gamut matters. Transfer functions matter.
+
+This is where I often see even experienced creatives pause, because it means colour is contextual. There is no universal red. Only red within a defined space.
+
+And if that space is misinterpreted, the entire image shifts.
+
+---
+
+## Scene-Referred vs Display-Referred: The Turning Point
+
+![Slide 37 - Scene vs display referred](/images/blog/workshop_slides/capture-craft-037.jpeg)
+
+
+This was, for me, the most important section of the workshop.
+
+Display-referred workflows are comfortable, immediate, and visually pleasing out of the gate.
+
+Scene-referred workflows are more demanding. They require trust in transforms.
+
+But scene-referred workflows preserve intent. They allow you to re-target delivery without rebuilding the grade. They maintain fidelity to captured light.
+
+I have increasingly moved toward structured colour management for this reason. It creates stability. And stability liberates creativity.
+
+---
+
+## LUTs Are Not Magic
+
+![Slide 43 - LUTs vs transforms](/images/blog/workshop_slides/capture-craft-043.jpeg)
+
+
+We spent time clarifying LUTs versus colour space transforms.
+
+A LUT is a lookup table. It approximates.
+
+A CST is a mathematical conversion.
+
+This distinction matters.
+
+I have seen countless images collapse under stacked LUTs applied without understanding the domain in which they operate.
+
+The issue is not LUTs themselves. It is misplaced trust in shortcuts.
+
+---
+
+## Colour Management as Creative Infrastructure
+
+![Slide 48 - Managed workflows](/images/blog/workshop_slides/capture-craft-048.jpeg)
+
+
+We compared RED IPP2, ARRI Reveal, Resolve Colour Managed, and ACES.
+
+Different systems. Same principle: define your transforms explicitly.
+
+When the pipeline is defined:
+
+- Skin tones behave predictably.
+- Highlight rolloff is consistent.
+- Multi-format delivery becomes controlled rather than reactive.
+
+Colour management does not remove artistry. It removes instability.
+
+---
+
+## Skin Tones: Where Taste Meets Physics
+
+![Slide 67 - Skin tone control](/images/blog/workshop_slides/capture-craft-067.jpeg)
+
+
+Skin tone is where colour science becomes human.
+
+Different ethnicities vary in luminance and saturation, but hue alignment sits along a consistent vector.
+
+The goal is not homogenisation. It is coherence.
+
+Evening skin tone is about refinement, not correction. I often remind myself to step back before pushing further. Over-grading erodes authenticity.
+
+---
+
+## Output: The Final Translation
+
+![Slide 75 - Output transforms](/images/blog/workshop_slides/capture-craft-075.jpeg)
+
+
+The Output Device Transform translates scene values into display constraints.
+
+Rec.709. P3. HDR.
+
+HDR is not simply brighter SDR. It changes how dynamic range is perceived and mapped.
+
+Displays are not neutral endpoints. They interpret electrical signals according to their transfer functions.
+
+If the upstream pipeline is unstable, the display reveals it immediately.
+
+---
+
+## Why This Matters to Me
+
+I have worked across projects where colour drifted between departments, where LUTs were stacked without context, and where highlight rolloff changed unpredictably from one delivery to another.
+
+Almost always, the issue was structural.
+
+This workshop was not about teaching a look.
+
+It was about giving people a mental model.
+
+When you understand the pipeline:
+
+- Log stops feeling wrong.
+- LUTs stop feeling magical.
+- Exposure becomes intentional.
+- Grading becomes layered, not reactive.
+
+And most importantly, creative decisions become deliberate.
+
+That is why Hootan and I framed the session the way we did.
+
+Because colour is not an effect. It is a translation of light through systems. If you respect those systems, the image rewards you.

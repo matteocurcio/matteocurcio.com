@@ -1,18 +1,30 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const aboutPhoto = "https://matteocurcio.com/wp-content/uploads/borouge_day2_1000.jpg";
+const aboutAnimated = "/media/about.mp4";
+const aboutAnimatedFallback = "https://matteocurcio.com/wp/wp-content/uploads/matteocurcio_square.jpg";
 ---
 
 <BaseLayout
   title="About | Matteo Curcio"
-  description="I have always worked where technology meets creative output. That edge keeps moving, and I move with it."
+  description="I have been working at the intersection of technology and creativity. That edge keeps moving, and I move with it."
   path="/about"
 >
-  <article class="prose">
-    <h1>I have always worked where technology meets creative output. That edge keeps moving, and I move with it.</h1>
+  <article class="prose about-single-column">
+    <h1>I have been working at the intersection of technology and creativity. That edge keeps moving, and I move with it.</h1>
 
-    <p>I am Matteo, a Melbourne-based creative technologist with over twenty years of experience across post-production, content strategy, live media, and digital infrastructure. My work sits at the intersection of creative judgment and operational reliability: understanding not only how to make something compelling, but how to build a process that survives real deadlines, real constraints, and real people using it.</p>
+    <p>I am a Melbourne-based creative technologist with over twenty years of experience across post-production, content strategy, live media, and digital infrastructure.</p>
+
+    <p>I focus on both the result and the system that creates it. If the process is fragile, the output eventually shows it. I value elegance - in the code, in the edit, in the structure of a workflow, in the way decisions connect without friction. Clear thinking. Clean execution. Nothing decorative without purpose.</p>
+
+    <p>And most importantly, everything I do, I do because I care about it ❤️. When I'm genuinely engaged in the work, that engagement carries through to the audience.</p>
 
     <p>Over the years I have graded commercials for major Australian and international brands, designed large-scale presentations and data visualisations for government clients in the UAE, produced immersive video installations and projection mapping, contributed music to film and television, and coached hundreds of creatives through the tools and workflows they rely on daily. The common thread is not the medium. It is the way I approach problems: technically grounded, with a clear view of what the output actually needs to achieve.</p>
+
+    <figure class="about-inline-media about-photo-frame">
+      <img src={aboutPhoto} alt="Matteo Curcio operating a camera rig in Abu Dhabi" loading="eager" />
+    </figure>
 
     <p>My foundation is atypical for a creative career. I studied computer science, audio engineering, jazz music, and documentary filmmaking in Milan. That combination shaped how I think. It trained me to hear structure as much as expression, to see systems behind aesthetics, and to question why a process fails rather than patching it repeatedly. It also gave me an instinct for workflows: where they accumulate hidden costs, where they fracture under scale, and how to design them to be both flexible and dependable.</p>
 
@@ -20,7 +32,14 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
     <p>I am now moving formally into cybersecurity - a direction I hold an ISC2 certification in, and am continuing to build. This is not a departure from creative work, but a continuation of the same thinking. The boundary between a production pipeline and a digital infrastructure problem is thinner than most people assume. The questions are identical: what breaks first, where is the exposure, how do you reduce fragility, and what does a clean, reliable output actually require.</p>
 
-    <p>Artificial intelligence is reshaping what skilled work looks like in creative production, and the pace of that change is worth taking seriously. The tools arriving now are not incremental. Some of what has taken years to develop as craft is being compressed, automated, or made redundant - and that process is not finished. What remains valuable is judgment: the ability to reason clearly about a system, recognise when an output is wrong even if it looks right, and communicate across technical and creative teams in ways that machines still cannot replicate. I watch this space carefully, work with these tools directly, and adjust accordingly.</p>
+    <p>And then there's the elephant in the room: Artificial Intelligence is reshaping what skilled work looks like in creative production, and the pace of that change is worth taking seriously. The tools arriving now are not incremental. Some of what has taken years to develop as craft is being compressed, automated, or made redundant - and that process is not finished. What remains valuable is judgment: the ability to reason clearly about a system, recognise when an output is wrong even if it looks right, and communicate across technical and creative teams in ways that machines still cannot replicate. I watch this space carefully, work with these tools directly, and adjust accordingly.</p>
+
+    <figure class="about-inline-media about-animated-frame">
+      <video autoplay loop muted playsinline preload="metadata" poster={aboutAnimatedFallback} aria-label="Animated behind-the-scenes clip from Matteo Curcio's About page">
+        <source src={aboutAnimated} type="video/mp4" />
+      </video>
+    </figure>
+
 
     <p>If you are a producer or director who needs a reliable creative technologist, I understand what a project requires at each stage of post.</p>
 

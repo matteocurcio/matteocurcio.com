@@ -4,6 +4,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import { LEGACY_BY_SLUG, LEGACY_REELS, NON_COMPARE_WORK_SLUGS, getLegacyItem } from "../../data/legacyPortfolio";
 import { WORK_TECHNICAL_CAPTIONS, fallbackTechnicalCaption } from "../../data/workTechnicalCaptions";
 import { REEL_CAPTIONS } from "../../data/reelCaptions";
+import { NON_COMPARE_CAPTIONS, NON_COMPARE_CREDITS, NON_COMPARE_THUMBNAILS } from "../../data/nonCompareProjectOverrides";
 import wpProjectContent from "../../data/wpProjectContent.json";
 
 const WP_WORK_BASE = "https://matteocurcio.com/work";
@@ -27,6 +28,7 @@ const REEL_LAYOUT_OVERRIDES: Record<
 > = {
   ar: { hideGallery: true },
   immersive: { clientsLabel: "DEPLOYMENTS" },
+  music: { clientsLabel: "LABELS" },
   mapping: {
     hideGallery: true,
     showClients: false,
@@ -719,7 +721,7 @@ const isNonCompareWork = NON_COMPARE_WORK_SLUGS.has(slug);
 const service = LEGACY_REEL_SLUGS.has(slug) ? "REELS" : isNonCompareWork ? "MOTION/PHOTO" : "POST-PRODUCTION";
 const client = project?.data.client || "Selected Work";
 const year = project?.data.year;
-const cover = legacy?.image || project?.data.cover;
+const cover = NON_COMPARE_THUMBNAILS[slug] || legacy?.image || project?.data.cover;
 const coverAlt = project?.data.coverAlt || title;
 const previewVideo =
   legacy?.video ||
@@ -752,7 +754,9 @@ const creditsForDisplayBase = isReelPage
       const normalized = normalizeCreditLabel(item.label);
       return normalized !== "client" && normalized !== "project" && normalized !== "campaign";
     })
-  : parsed.credits;
+  : isNonCompareWork && NON_COMPARE_CREDITS[slug]
+    ? NON_COMPARE_CREDITS[slug]
+    : parsed.credits;
 
 const creditsForDisplay = (() => {
   if (slug !== "drive") return creditsForDisplayBase;
@@ -775,7 +779,7 @@ const reelOverride = isReelPage ? REEL_LAYOUT_OVERRIDES[slug] || {} : {};
 const reelUsesCompare = isReelPage && Boolean(reelOverride.sliderGallery);
 const reelHideGallery = isReelPage && Boolean(reelOverride.hideGallery);
 const disableBeforeAfter = slug === "spring-party" || isNonCompareWork;
-const disableGallery = slug === "spring-party" || reelHideGallery;
+const disableGallery = slug === "spring-party" || reelHideGallery || isNonCompareWork;
 const useLightboxGallery = isReelPage || isNonCompareWork;
 const gallery = isReelPage
   ? reelUsesCompare
@@ -794,11 +798,18 @@ const gallery = isReelPage
       }
     : buildBeforeAfterPairs(galleryImages, service === "POST-PRODUCTION" ? cover : undefined);
 
+const nonCompareNarrative = isNonCompareWork ? NON_COMPARE_CAPTIONS[slug] || [] : [];
 const technicalWorkDescription = !isReelPage
-  ? WORK_TECHNICAL_CAPTIONS[slug] || fallbackTechnicalCaption(title, client)
+  ? isNonCompareWork
+    ? undefined
+    : WORK_TECHNICAL_CAPTIONS[slug] || fallbackTechnicalCaption(title, client)
   : undefined;
 const technicalWorkParagraphs = technicalWorkDescription
   ? splitMagazineParagraphs(technicalWorkDescription)
+  : [];
+
+const nonCompareHeroSlides = isNonCompareWork
+  ? Array.from(new Set([...(cover ? [cover] : []), ...(migrated.images || [])])).filter(Boolean).slice(0, 18)
   : [];
 
 const reelTaxonomy = isReelPage
@@ -807,7 +818,10 @@ const reelTaxonomy = isReelPage
 
 const reelKeywords = reelTaxonomy.keywords.length > 0 ? reelTaxonomy.keywords : reelWorkItems.map((item) => item.title);
 const reelTools = reelTaxonomy.tools.length > 0 ? reelTaxonomy.tools : ["N/A"];
-const reelClients = reelTaxonomy.clients.length > 0 ? reelTaxonomy.clients : reelWorkItems.map((item) => item.client);
+const reelClientsBase = reelTaxonomy.clients.length > 0 ? reelTaxonomy.clients : reelWorkItems.map((item) => item.client);
+const reelClients = isReelPage && slug === "music"
+  ? uniqueStrings([...reelClientsBase, "Fall From Grace Records", "Sony Music"])
+  : reelClientsBase;
 const reelShowClients = isReelPage ? reelOverride.showClients !== false : false;
 const reelShowTools = isReelPage ? reelOverride.showTools !== false : false;
 const reelShowKeywords = false;
@@ -861,7 +875,19 @@ const pageTitle = `${title} | Matteo Curcio`;
     </header>
 
     {
-      embeddedUrl ? (
+      isNonCompareWork && nonCompareHeroSlides.length > 1 ? (
+        <section class="cover project-hero-carousel" data-hero-carousel>
+          <div class="hero-carousel-track">
+            {nonCompareHeroSlides.map((src, idx) => (
+              <figure class="hero-slide" data-hero-slide data-initial={idx === 0 ? "true" : undefined}>
+                <img src={src} alt={title} loading={idx === 0 ? "eager" : "lazy"} />
+              </figure>
+            ))}
+          </div>
+          <button type="button" class="hero-carousel-nav hero-prev" data-hero-prev aria-label="Previous slide">←</button>
+          <button type="button" class="hero-carousel-nav hero-next" data-hero-next aria-label="Next slide">→</button>
+        </section>
+      ) : embeddedUrl ? (
         <div class="cover project-embed">
           <iframe
             src={embeddedUrl}
@@ -917,7 +943,9 @@ const pageTitle = `${title} | Matteo Curcio`;
       ) : (
         <section class={`project-details work-details ${creditsForDisplay.length === 0 ? "single" : ""}`}>
           <div class="project-description">
-            {!isReelPage && technicalWorkParagraphs.length > 0 ? (
+            {!isReelPage && nonCompareNarrative.length > 0 ? (
+              nonCompareNarrative.map((paragraph) => <p>{paragraph}</p>)
+            ) : !isReelPage && technicalWorkParagraphs.length > 0 ? (
               technicalWorkParagraphs.map((paragraph) => <p>{paragraph}</p>)
             ) : parsed.intro.length > 0 ? (
               parsed.intro.map((paragraph) => <p>{paragraph}</p>)
@@ -994,7 +1022,7 @@ const pageTitle = `${title} | Matteo Curcio`;
       !disableGallery && gallery.extras.length > 0 && (
         useLightboxGallery ? (
           <>
-            <section class="project-gallery reel-gallery" aria-label="Project stills">
+            <section class={`project-gallery reel-gallery ${slug === "music" ? "is-square-gallery" : ""}`} aria-label="Project stills">
               {gallery.extras.map((src, idx) => (
                 <button class="reel-lightbox-trigger" type="button" data-lightbox-trigger data-lightbox-index={idx} aria-label="Open frame">
                   <img src={src} alt={title} loading="lazy" />
@@ -1022,6 +1050,35 @@ const pageTitle = `${title} | Matteo Curcio`;
     }
   </article>
 <script is:inline>
+  const heroCarousel = document.querySelector("[data-hero-carousel]");
+  if (heroCarousel) {
+    const slides = Array.from(heroCarousel.querySelectorAll("[data-hero-slide]"));
+    const prev = heroCarousel.querySelector("[data-hero-prev]");
+    const next = heroCarousel.querySelector("[data-hero-next]");
+    let active = Math.max(0, slides.findIndex((slide) => slide.getAttribute("data-initial") === "true"));
+
+    const renderHero = () => {
+      slides.forEach((slide, idx) => {
+        slide.classList.toggle("is-active", idx === active);
+      });
+    };
+
+    const stepHero = (delta) => {
+      if (slides.length <= 1) return;
+      active = (active + delta + slides.length) % slides.length;
+      renderHero();
+    };
+
+    prev?.addEventListener("click", () => stepHero(-1));
+    next?.addEventListener("click", () => stepHero(1));
+
+    if (slides.length > 1) {
+      setInterval(() => stepHero(1), 4200);
+    }
+
+    renderHero();
+  }
+
   const sliders = document.querySelectorAll(".ba-slider");
   sliders.forEach((slider) => {
     const range = slider.querySelector(".ba-range");

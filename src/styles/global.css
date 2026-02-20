@@ -20,7 +20,13 @@ body {
   padding: 0;
 }
 
+html {
+  background: var(--bg);
+}
+
+
 body {
+  min-height: 100vh;
   font-family: "Manrope", "Avenir Next", "Segoe UI", sans-serif;
   color: var(--text);
   background:
@@ -70,11 +76,74 @@ img {
 
 .nav-links {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 0.9rem;
   font-size: 0.92rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
+}
+
+.nav-toggle {
+  display: none;
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.24rem;
+  cursor: pointer;
+}
+
+.nav-toggle span {
+  width: 1rem;
+  height: 2px;
+  background: #3d3731;
+  border-radius: 999px;
+  display: block;
+}
+
+.nav-toggle:focus-visible {
+  outline: 2px solid #8a7f74;
+  outline-offset: 2px;
+}
+
+@media (max-width: 980px) {
+  .nav {
+    position: relative;
+  }
+
+  .nav-toggle {
+    display: inline-flex;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: calc(100% + 1px);
+    left: 0;
+    right: 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    padding: 0.75rem 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.1rem;
+    z-index: 20;
+  }
+
+  .nav-links a {
+    width: 100%;
+    padding: 0.42rem 0;
+    font-size: 0.86rem;
+    letter-spacing: 0.07em;
+  }
+
+  .site-header.is-nav-open .nav-links {
+    display: flex;
+  }
 }
 
 .nav-links a[aria-current="page"] {
@@ -83,6 +152,10 @@ img {
 
 main {
   padding: 2.2rem 0 4rem;
+}
+
+body[data-path="/works"] main {
+  background: var(--bg);
 }
 
 .hero {
@@ -222,7 +295,7 @@ h1 {
 
 
 .site-footer {
-  border-top: 0;
+  border-top: 1px solid var(--line);
   padding: 1.2rem 0 2rem;
   color: var(--muted);
   font-size: 0.9rem;
@@ -617,6 +690,23 @@ h1 {
   display: block;
 }
 
+.works-tile {
+  transition: opacity 180ms ease;
+}
+
+.works-tile.is-entering {
+  opacity: 0.82;
+}
+
+.works-tile.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.works-tile[hidden] {
+  display: none !important;
+}
+
 .works-media {
   position: relative;
   overflow: hidden;
@@ -649,21 +739,31 @@ h1 {
 
 .reels-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1rem;
 }
 
 .reel-tile {
-  position: relative;
   display: block;
-  overflow: hidden;
-  aspect-ratio: 16 / 9;
-  background: #111;
+  transition: opacity 180ms ease;
+}
+
+.reel-tile.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.reel-tile[hidden] {
+  display: none !important;
 }
 
 .reel-media {
-  position: absolute;
-  inset: 0;
+  position: relative;
+  overflow: hidden;
+  background: #111;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--line);
+  border-radius: 10px;
 }
 
 .reel-media img,
@@ -688,7 +788,6 @@ h1 {
   inset: 0;
   background: rgb(0 0 0 / 54%);
 }
-
 .reel-overlay {
   position: absolute;
   z-index: 2;
@@ -1247,6 +1346,11 @@ h1 {
   border-radius: 8px;
 }
 
+.project-gallery.reel-gallery.is-square-gallery img {
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
 @media (max-width: 1080px) {
   .project-details.reel-details {
     grid-template-columns: 1fr;
@@ -1586,10 +1690,18 @@ body.is-lightbox-open {
 
 .services-head {
   padding-top: 0;
+  display: grid;
+  justify-items: start;
+}
+
+.services-head h1 {
+  margin: 0;
+  padding-left: 0;
 }
 
 .services-head p {
-  margin: 0.9rem 0 0;
+  margin: 0.9rem 0 0 0;
+  padding-left: 0;
   max-width: 62ch;
   color: #4c453f;
   font-size: clamp(1rem, 1.1vw, 1.12rem);
@@ -1599,6 +1711,15 @@ body.is-lightbox-open {
 .services-index {
   margin-top: 2.2rem;
   border-top: 1px solid var(--line);
+}
+
+.services-index .service-trigger {
+  grid-template-columns: 8% 72% 20%;
+  gap: 0;
+}
+
+.services-index .service-name {
+  font-size: clamp(1.42rem, 3.05vw, 2.55rem);
 }
 
 .service-row {
@@ -1666,7 +1787,7 @@ body.is-lightbox-open {
 
 .service-panel-inner {
   padding: 0 0 1.1rem;
-  margin-left: calc(10% + 1rem);
+  margin-left: calc(8% + 0.6rem);
 }
 
 .service-description {
@@ -1875,7 +1996,7 @@ body.is-lightbox-open {
 
 .tutoring-index .service-trigger {
   grid-template-columns: 8% 72% 20%;
-  gap: 0.08rem;
+  gap: 0;
 }
 
 .tutoring-index .service-name {
@@ -1925,8 +2046,8 @@ body.is-lightbox-open {
 }
 
 .service-app-icon {
-  width: clamp(2.05rem, 3.5vw, 2.8rem);
-  height: clamp(2.05rem, 3.5vw, 2.8rem);
+  width: clamp(2.35rem, 3.9vw, 3.1rem);
+  height: clamp(2.35rem, 3.9vw, 3.1rem);
   object-fit: contain;
   border: 1px solid var(--line);
   border-radius: 10px;
@@ -1947,8 +2068,8 @@ body.is-lightbox-open {
 
 @media (max-width: 900px) {
   .service-app-icon {
-    width: 1.55rem;
-    height: 1.55rem;
+    width: 1.85rem;
+    height: 1.85rem;
   }
 }
 
@@ -1956,7 +2077,305 @@ body.is-lightbox-open {
   opacity: 1;
 }
 
-.tutoring-index .service-row:first-child .tutoring-app-icon {
-  width: clamp(2.75rem, 4.45vw, 3.45rem);
-  height: clamp(2.75rem, 4.45vw, 3.45rem);
+.project-hero-carousel {
+  position: relative;
+  background: #111;
+}
+
+.hero-carousel-track {
+  position: relative;
+}
+
+.hero-slide {
+  display: none;
+  margin: 0;
+}
+
+.hero-slide.is-active {
+  display: block;
+}
+
+.hero-slide img {
+  width: 100%;
+  height: auto;
+  max-height: min(78vh, 920px);
+  object-fit: contain;
+}
+
+.hero-carousel-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.35);
+  color: #fff;
+  cursor: pointer;
+}
+
+.hero-prev {
+  left: 0.65rem;
+}
+
+.hero-next {
+  right: 0.65rem;
+}
+
+/* Header brand lockup (wheel + wordmark) */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 15px;
+  font-family: "Manrope", "Avenir Next", "Segoe UI", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  line-height: 1;
+}
+
+.brand::before {
+  content: none;
+  display: none;
+}
+
+.brand-wheel {
+  width: 2rem;
+  height: 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+.brand-wheel-icon {
+  width: 100%;
+  height: 100%;
+  display: block;
+  animation: brand-wheel-spin 5s linear infinite;
+  transform-origin: 50% 50%;
+}
+
+.brand-wordmark {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.26rem;
+  font-size: 1.3rem;
+  color: #4a4a4a;
+}
+
+.brand-first {
+  font-weight: 400;
+}
+
+.brand-last {
+  font-weight: 700;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-wheel-icon {
+    animation: none;
+  }
+}
+
+@media (max-width: 780px) {
+  .brand-wordmark {
+    font-size: 1.1rem;
+  }
+
+  .brand-wheel {
+    width: 1.76rem;
+    height: 1.76rem;
+  }
+}
+
+/* About page media blocks (single-column flow) */
+.about-single-column {
+  max-width: 78ch;
+}
+
+.about-inline-media {
+  margin: 1rem 0 1.15rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #dbd4c8;
+}
+
+.about-photo-frame {
+  aspect-ratio: 3 / 2;
+}
+
+.about-animated-frame {
+  aspect-ratio: auto;
+}
+
+.about-inline-media img,
+.about-inline-media video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.about-animated-frame video {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.tutoring-app-icon.is-resolve {
+  width: clamp(2.55rem, 4.15vw, 3.35rem);
+  height: clamp(2.55rem, 4.15vw, 3.35rem);
+}
+
+.site-footer-left a {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.services-availability {
+  margin-top: 1.45rem;
+}
+
+.services-enquiry {
+  margin-top: 1.1rem;
+}
+
+.services-form {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fffdf9;
+  padding: 1rem;
+}
+
+.services-form label {
+  display: grid;
+  gap: 0.38rem;
+  font-size: 0.86rem;
+  letter-spacing: 0.02em;
+  color: #5c554f;
+}
+
+.services-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem 1rem;
+  margin-bottom: 0.8rem;
+}
+
+.services-form input,
+.services-form select,
+.services-form textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  color: #2f2b27;
+  font: inherit;
+  padding: 0.62rem 0.72rem;
+}
+
+.services-form textarea {
+  resize: vertical;
+  min-height: 8rem;
+}
+
+.services-form input:focus-visible,
+.services-form select:focus-visible,
+.services-form textarea:focus-visible,
+.services-submit:focus-visible {
+  outline: 2px solid #6a625b;
+  outline-offset: 1px;
+}
+
+.hp-field {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.services-form-actions {
+  margin-top: 0.9rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.7rem 1rem;
+}
+
+.services-submit {
+  border: 1px solid var(--line);
+  background: #f6f1ea;
+  color: #2f2b27;
+  font: inherit;
+  font-size: 0.92rem;
+  border-radius: 999px;
+  padding: 0.5rem 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.services-submit:hover {
+  background: #efe8de;
+}
+
+.services-form-note {
+  margin: 0;
+  font-size: 0.86rem;
+  color: #5c554f;
+}
+
+.services-testimonials {
+  margin-top: 1.1rem;
+}
+
+@media (max-width: 900px) {
+  .services-form-grid {
+    grid-template-columns: 1fr;
+    gap: 0.68rem;
+    margin-bottom: 0.68rem;
+  }
+}
+
+.site-footer-right-wrap {
+  justify-self: end;
+  display: inline-flex;
+  align-items: stretch;
+  gap: 0.55rem;
+}
+
+.site-footer-right-wrap .site-footer-right {
+  margin: 0;
+  text-align: right;
+}
+
+.aboriginal-flag {
+  width: auto;
+  height: 2.05em;
+  aspect-ratio: 14 / 9;
+  border-radius: 2px;
+  flex: 0 0 auto;
+  align-self: center;
+}
+
+@media (max-width: 760px) {
+  .site-footer-right-wrap {
+    justify-self: center;
+    align-items: center;
+  }
+
+  .site-footer-right-wrap .site-footer-right {
+    text-align: center;
+  }
+
+  .aboriginal-flag {
+    height: 1.7em;
+  }
 }

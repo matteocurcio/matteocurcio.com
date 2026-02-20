@@ -27,6 +27,7 @@ const REEL_LAYOUT_OVERRIDES: Record<
 > = {
   ar: { hideGallery: true },
   immersive: { clientsLabel: "DEPLOYMENTS" },
+  music: { clientsLabel: "LABELS" },
   mapping: {
     hideGallery: true,
     showClients: false,
@@ -786,7 +787,10 @@ const reelTaxonomy = isReelPage
 
 const reelKeywords = reelTaxonomy.keywords.length > 0 ? reelTaxonomy.keywords : reelWorkItems.map((item) => item.title);
 const reelTools = reelTaxonomy.tools.length > 0 ? reelTaxonomy.tools : ["N/A"];
-const reelClients = reelTaxonomy.clients.length > 0 ? reelTaxonomy.clients : reelWorkItems.map((item) => item.client);
+const reelClientsBase = reelTaxonomy.clients.length > 0 ? reelTaxonomy.clients : reelWorkItems.map((item) => item.client);
+const reelClients = isReelPage && slug === "music"
+  ? uniqueStrings([...reelClientsBase, "Fall From Grace Records", "Sony Music"])
+  : reelClientsBase;
 const reelShowClients = isReelPage ? reelOverride.showClients !== false : false;
 const reelShowTools = false;
 const reelShowKeywords = false;
@@ -975,7 +979,7 @@ const pageTitle = `${title} | Matteo Curcio`;
       !disableGallery && (isReelPage ? reelHasMultipleStillFrames : gallery.extras.length > 0) && (
         isReelPage ? (
           <>
-            <section class="project-gallery reel-gallery" aria-label="Project stills">
+            <section class={`project-gallery reel-gallery ${slug === "music" ? "is-square-gallery" : ""}`} aria-label="Project stills">
               {gallery.extras.map((src, idx) => (
                 <button class="reel-lightbox-trigger" type="button" data-lightbox-trigger data-lightbox-index={idx} aria-label="Open frame">
                   <img src={src} alt={title} loading="lazy" />

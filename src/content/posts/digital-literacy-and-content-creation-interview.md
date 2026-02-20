@@ -1,7 +1,7 @@
 ---
 title: "Digital Literacy & Content Creation"
 date: "2025-09-19"
-excerpt: "An interview on digital literacy as practical creative confidence: using tools with intent, communicating clearly, and building portfolio-ready work under real constraints."
+excerpt: "An interview for RMIT on digital literacy as practical creative confidence: using tools with intent, communicating clearly, and building portfolio-ready work under real constraints."
 cover: "https://www.rmit.edu.au/content/dam/rmit/au/en/library/adobe/matteo-adobe-coach.jpg"
 coverAlt: "Digital literacy and content creation (interview)"
 tags: []

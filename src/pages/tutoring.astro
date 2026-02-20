@@ -4,69 +4,81 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 const tutoringAreas = [
   {
     number: "01",
+    icon: "/icons/apps/resolve-studio.png",
+    iconAlt: "DaVinci Resolve",
     name: "DaVinci Resolve",
-    tag: "resolve",
+    tag: "Edit, grade, deliver fast",
     description:
-      "The most complete post-production tool available - and one of the most complex. Resolve does editing, colour grading, audio mixing, visual effects, and motion graphics inside a single application, each in its own dedicated page with its own logic. Most people learn one corner of it and stay there. Sessions cover whatever you actually need: the Cut and Edit pages, the Colour page and node-based grading, Fusion compositing, Fairlight audio, delivery and export. We work on your footage, your project, your questions. I have been grading professionally in Resolve for years and teaching it formally at RMIT.",
+      "The most complete post-production tool available - and one of the most complex. Resolve does editing, colour grading, audio mixing, visual effects, and motion graphics inside a single application, each in its own dedicated page with its own logic. Most people learn one corner of it and stay there. Sessions cover whatever you actually need: the Cut and Edit pages, the Colour page and node-based grading, Fusion compositing, Fairlight audio, delivery and export. We work on your footage, your project, your questions. I have been grading professionally in Resolve for years and have tutored tens of students and working professionals.",
     audience:
       "Editors, colorists, DOPs, directors, and content creators who want to work in Resolve properly - not just survive in it.",
     ctaLabel: "Book a Resolve session",
-    ctaUrl: "/about?intent=tutoring-resolve#contact"
+    ctaUrl: "https://www.superprof.com.au/certified-davinci-resolve-editor-and-colorist-offering-one-one-training-for-editors-videomakers-influencers-directors-dop-and.html"
   },
   {
     number: "02",
+    icon: "/icons/apps/premiere.svg",
+    iconAlt: "Adobe Premiere Pro",
     name: "Adobe Premiere Pro",
-    tag: "premiere",
+    tag: "Timeline flow and exports",
     description:
       "Premiere is the industry standard for a reason, and it integrates tightly with the rest of the Adobe ecosystem. It is also a platform that rewards knowing where things actually live - project panel organisation, sequence settings, multi-camera workflows, Dynamic Link to After Effects, export presets. Sessions focus on building good habits early, fixing bad ones that have calcified over time, and closing the gap between what you can do and what you know the tool can do.",
     audience:
       "Editors at any level who want to work faster, waste less time troubleshooting, and stop rediscovering the same things repeatedly.",
     ctaLabel: "Book a Premiere session",
-    ctaUrl: "/about?intent=tutoring-premiere#contact"
+    ctaUrl: "https://www.superprof.com.au/certified-davinci-resolve-editor-and-colorist-offering-one-one-training-for-editors-videomakers-influencers-directors-dop-and.html"
   },
   {
     number: "03",
+    icon: "/icons/apps/after-effects.svg",
+    iconAlt: "Adobe After Effects",
     name: "After Effects",
-    tag: "motion",
+    tag: "Animation and compositing basics",
     description:
       "After Effects has a learning curve that never quite flattens out. The composition model, pre-comps, expressions, keyframe interpolation, render settings - each layer adds complexity. Sessions can cover motion graphics fundamentals, animation principles as they apply to the tool, expression basics, or specific effects and techniques you are trying to replicate or understand. I also teach how After Effects and Premiere work together, which is where most people lose time without knowing why.",
     audience:
       "Editors moving into motion, motion designers filling technical gaps, and anyone who has been faking their way through expressions.",
     ctaLabel: "Book an After Effects session",
-    ctaUrl: "/about?intent=tutoring-ae#contact"
+    ctaUrl: "https://www.superprof.com.au/certified-davinci-resolve-editor-and-colorist-offering-one-one-training-for-editors-videomakers-influencers-directors-dop-and.html"
   },
   {
     number: "04",
+    icon: "/icons/apps/photoshop-lightroom.svg",
+    iconAlt: "Adobe Photoshop and Lightroom",
     name: "Photoshop & Lightroom",
-    tag: "image",
+    tag: "Retouching and batch workflows",
     description:
       "Two tools with almost total overlap in what people use them for and almost no overlap in how they work. Lightroom is non-destructive, catalogue-based, and built for throughput. Photoshop is layered, pixel-level, and built for precision. Sessions clarify which tool belongs where, and go deep on whichever one you need: retouching, masking, compositing, colour management, export pipelines, or catalogue organisation and batch workflows.",
     audience:
       "Photographers, retouchers, designers, and content creators who want to stop guessing which tool to use and why.",
     ctaLabel: "Book a session",
-    ctaUrl: "/about?intent=tutoring-photo#contact"
+    ctaUrl: "https://www.superprof.com.au/certified-davinci-resolve-editor-and-colorist-offering-one-one-training-for-editors-videomakers-influencers-directors-dop-and.html"
   },
   {
     number: "05",
+    icon: "/icons/apps/adobe-suite.svg",
+    iconAlt: "Adobe Creative Cloud",
     name: "Adobe Suite as a System",
-    tag: "workflow",
+    tag: "Connected suite-wide production",
     description:
       "Illustrator, InDesign, Photoshop, Premiere, After Effects, Lightroom - each is a large platform. Together they form an ecosystem that most people use at about 30% capacity because nobody ever explained how the pieces connect. This session type is less about any single tool and more about building a coherent, efficient workflow across the suite: file organisation, asset management, shared libraries, output pipelines, and knowing which tool handles which job without switching back and forth and losing time.",
     audience:
       "Designers, creative directors, and production teams who live inside Adobe all day and suspect there is a smarter way to organise it all.",
     ctaLabel: "Book a workflow session",
-    ctaUrl: "/about?intent=tutoring-suite#contact"
+    ctaUrl: "https://www.superprof.com.au/certified-davinci-resolve-editor-and-colorist-offering-one-one-training-for-editors-videomakers-influencers-directors-dop-and.html"
   },
   {
     number: "06",
+    icon: "/icons/apps/adobe-express-official.png",
+    iconAlt: "Adobe Express",
     name: "Adobe Express",
-    tag: "express",
+    tag: "Fast branded content systems",
     description:
       "Adobe Express is the fastest route from an idea to something that looks considered - social content, presentations, short videos, branded assets - without the overhead of the full Creative Suite. It is also the tool most people underestimate, using it for quick resizes when it is capable of significantly more. Sessions cover the full scope: templates and brand kits, animation and video, integration with Photoshop and Illustrator assets, and building a repeatable content workflow that does not require a designer on call every time something needs to go out.",
     audience:
       "Marketing teams, content creators, educators, and small business owners who need to produce consistent, professional-looking content quickly and without a steep learning curve.",
     ctaLabel: "Book an Express session",
-    ctaUrl: "/about?intent=tutoring-express#contact"
+    ctaUrl: "https://www.superprof.com.au/certified-davinci-resolve-editor-and-colorist-offering-one-one-training-for-editors-videomakers-influencers-directors-dop-and.html"
   }
 ];
 
@@ -88,6 +100,12 @@ const testimonials = [
       "We covered the basics of multicam editing and he picked up the concepts quickly. Matteo tailored the session completely to the project I was working on.",
     name: "Diego",
     context: "DaVinci Resolve · music video project"
+  },
+  {
+    quote:
+      "Fantastic session. Matteo is very knowledgeable, very clear, and quick to diagnose exactly what was slowing me down in my workflow.",
+    name: "Brian",
+    context: "DaVinci Resolve · online"
   }
 ];
 ---
@@ -98,7 +116,7 @@ const testimonials = [
   path="/tutoring"
 >
   <section class="services-head">
-    <h1>You've watched the tutorials. Something still isn't clicking.</h1>
+    <h1>You've watched the tutorials.<br />Something still isn't clicking.</h1>
     <p>
       Private sessions on DaVinci Resolve and the Adobe Creative Suite - built around your project, your workflow,
       and your specific gaps. Not a curriculum. Not a course. A conversation with someone who uses these tools on
@@ -121,7 +139,9 @@ const testimonials = [
             aria-controls={panelId}
             data-service-trigger
           >
-            <span class="service-number">{area.number}</span>
+            <span class="service-number tutoring-service-icon" aria-hidden="true">
+              <img class={`tutoring-app-icon ${area.number === "01" ? "is-resolve" : ""}`} src={area.icon} alt="" loading="lazy" />
+            </span>
             <span class="service-name">{area.name}</span>
             <span class="service-tag">{area.tag}</span>
           </button>
@@ -142,8 +162,25 @@ const testimonials = [
     })}
   </section>
 
-  <section class="tutoring-testimonials" aria-label="What students say">
-    <h2>What students say</h2>
+  <section class="tutoring-availability" aria-label="Tutoring availability">
+    <p>
+      Sessions are available online or face to face in Fitzroy, Melbourne. If you are not sure which session type
+      fits what you need, send a short message describing where you are and what is not working. We will figure it
+      out from there.
+    </p>
+    <p>
+      <a
+        class="service-cta"
+        href="https://www.superprof.com.au/certified-davinci-resolve-editor-and-colorist-offering-one-one-training-for-editors-videomakers-influencers-directors-dop-and.html"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Book on Superprof <span aria-hidden="true">→</span>
+      </a>
+    </p>
+  </section>
+
+  <section class="tutoring-testimonials" aria-label="Student reviews">
     <div class="tutoring-testimonial-grid">
       {testimonials.map((item) => (
         <article class="tutoring-quote">
@@ -155,23 +192,8 @@ const testimonials = [
         </article>
       ))}
     </div>
-    <p class="tutoring-testimonial-note">
-      These are drawn from verified Superprof reviews. Add more as they accumulate on the site. Keep the format
-      consistent - no stars, no job titles, just the quote, a first name, and a short context line. Real and
-      understated beats polished and generic every time.
-    </p>
   </section>
 
-  <section class="services-note" aria-label="Tutoring details">
-    <p>
-      Sessions are available online or in Melbourne. I teach at RMIT and privately. If you are not sure which
-      session type fits what you need, send a short message describing where you are and what is not working. We
-      will figure it out from there.
-    </p>
-    <p>
-      <a href="/about#contact">Get in touch</a>
-    </p>
-  </section>
 </BaseLayout>
 
 <script is:inline>

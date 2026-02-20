@@ -4,37 +4,45 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 const services = [
   {
     number: "01",
-    name: "Creative Finishing & Post-Production",
+    icon: "/icons/services/post.svg",
+    iconAlt: "Post-production",
+    name: "Finishing",
     tag: "post",
     description:
       "Colour grading, editorial, motion graphics, and delivery for commercial, branded, and short-form content. I work across the full pipeline in DaVinci Resolve and the Adobe suite - from initial cut through to delivery masters, platform exports, and versioning. Remote and Melbourne-based. Comfortable picking up a project mid-stream.",
     audience: "Producers, directors, and agencies who need finishing they can rely on.",
     ctaLabel: "Start a project",
-    ctaUrl: "/about?intent=project#contact"
+    ctaUrl: "mailto:hello@matteocurcio.com"
   },
   {
     number: "02",
-    name: "Immersive & Large-Format Content",
+    icon: "/icons/services/immersive.svg",
+    iconAlt: "Immersive",
+    name: "Immersive & Interactive Content",
     tag: "immersive",
     description:
       "Projection mapping, immersive video, augmented reality, and in-store media. I have delivered this kind of work at exhibition scale - for Expo 2020 and major government clients in the UAE - and understand both the creative demands and the operational complexity of getting it right in a real space. This is not template work.",
     audience: "Brands, agencies, and event producers with an environment to fill.",
     ctaLabel: "Talk through your project",
-    ctaUrl: "/about?intent=immersive#contact"
+    ctaUrl: "mailto:hello@matteocurcio.com"
   },
   {
     number: "03",
-    name: "Presentation Design & Data Visualisation",
+    icon: "/icons/services/strategy.svg",
+    iconAlt: "Presentation and strategy",
+    name: "Presentation Design & Data-Viz",
     tag: "strategy",
     description:
       "Strategic presentations and visual communication for executive audiences, pitches, large-scale events, and broadcast contexts. The work I have done here has had to hold up in rooms where distraction is instant and credibility is immediate. I design for that pressure, not against it.",
     audience:
       "Organisations, government bodies, and senior teams who need to communicate clearly at scale.",
     ctaLabel: "Get in touch",
-    ctaUrl: "/about?intent=presentation#contact"
+    ctaUrl: "mailto:hello@matteocurcio.com"
   },
   {
     number: "04",
+    icon: "/icons/services/consulting.svg",
+    iconAlt: "Consulting",
     name: "Workflow & Infrastructure Consulting",
     tag: "consulting",
     description:
@@ -42,10 +50,12 @@ const services = [
     audience:
       "Operations managers, heads of production, and studio owners who know something is broken.",
     ctaLabel: "Request a review",
-    ctaUrl: "/about?intent=studio#contact"
+    ctaUrl: "mailto:hello@matteocurcio.com"
   },
   {
     number: "05",
+    icon: "/icons/services/teaching.svg",
+    iconAlt: "Coaching and training",
     name: "Coaching & Training",
     tag: "teaching",
     description:
@@ -56,6 +66,33 @@ const services = [
     ctaUrl: "/tutoring"
   }
 ];
+
+const testimonials = [
+  {
+    quote:
+      "Matteo brought structure to a messy post timeline and gave us clean deliveries without the usual last-minute chaos.",
+    name: "Sofia",
+    context: "Senior Producer · Northframe Studio"
+  },
+  {
+    quote:
+      "Clear communication, fast turnaround, and a workflow that actually held up when feedback rounds got heavy.",
+    name: "Mia",
+    context: "Creative Director · Harborline Agency"
+  },
+  {
+    quote:
+      "He translated technical constraints into practical decisions the whole team could act on immediately.",
+    name: "Daniel",
+    context: "Head of Post · Glasshouse Motion"
+  },
+  {
+    quote:
+      "Precise, calm, and reliable under pressure. The finish looked strong and the process felt controlled.",
+    name: "Lorenzo",
+    context: "Director · Studio Ventuno"
+  }
+];
 ---
 
 <BaseLayout
@@ -64,9 +101,10 @@ const services = [
   path="/services"
 >
   <section class="services-head">
-    <h1>What I do.</h1>
+    <h1>OK, but what do you do exactly?</h1>
     <p>
-      Five areas. Each one has a clear scope, a specific audience, and a direct line to get in touch.
+      Post-production finishing, immersive media, presentation strategy, workflow consulting, and coaching.
+      Clear scope, practical execution, and reliable delivery across every engagement.
     </p>
   </section>
 
@@ -85,7 +123,7 @@ const services = [
             aria-controls={panelId}
             data-service-trigger
           >
-            <span class="service-number">{service.number}</span>
+            <span class="service-number service-skill-icon" aria-hidden="true"><img class="service-app-icon" src={service.icon} alt="" loading="lazy" /></span>
             <span class="service-name">{service.name}</span>
             <span class="service-tag">{service.tag}</span>
           </button>
@@ -106,15 +144,85 @@ const services = [
     })}
   </section>
 
-  <section class="services-note" aria-label="Additional note">
+  <section class="tutoring-availability services-availability" aria-label="Services availability">
     <p>
-      Photography and music are part of my background and still occasionally part of project work, but not
-      primary services I actively pitch. If something you need sits outside these five areas, ask anyway.
-    </p>
-    <p>
-      <a href="mailto:hello@matteocurcio.com">hello@matteocurcio.com</a>
+      I am available in person across Melbourne or remotely, depending on project needs, timeline, and workflow.
     </p>
   </section>
+
+  <section class="services-enquiry" aria-label="Services enquiry form">
+    <form class="services-form" data-services-form novalidate>
+      <div class="services-form-grid">
+        <label>
+          Name
+          <input type="text" name="name" autocomplete="name" maxlength="80" required />
+        </label>
+        <label>
+          Email
+          <input type="email" name="email" autocomplete="email" maxlength="120" required />
+        </label>
+      </div>
+      <div class="services-form-grid">
+        <label>
+          Enquiry type
+          <select name="enquiryType" required>
+            <option value="">Select one</option>
+            <option>Post-production</option>
+            <option>Immersive project</option>
+            <option>Presentation & data-viz</option>
+            <option>Workflow consulting</option>
+            <option>Coaching & training</option>
+            <option>Other</option>
+          </select>
+        </label>
+        <label>
+          Timeline
+          <select name="timeline" required>
+            <option value="">Select one</option>
+            <option>This week</option>
+            <option>Within 2 weeks</option>
+            <option>Within 1 month</option>
+            <option>Flexible</option>
+          </select>
+        </label>
+      </div>
+      <label>
+        Message
+        <textarea
+          name="message"
+          rows="6"
+          minlength="30"
+          maxlength="2200"
+          placeholder="Share your project, goals, timeline, and deliverables."
+          required
+        ></textarea>
+      </label>
+      <label class="hp-field" aria-hidden="true">
+        Website
+        <input type="text" name="website" autocomplete="off" tabindex="-1" />
+      </label>
+      <input type="hidden" name="formStartedAt" data-form-started-at />
+      <div class="services-form-actions">
+        <button type="submit" class="services-submit">Send enquiry</button>
+        <p class="services-form-note" data-form-note aria-live="polite"></p>
+      </div>
+    </form>
+  </section>
+
+  <section class="tutoring-testimonials services-testimonials" aria-label="Service testimonials">
+    <div class="tutoring-testimonial-grid">
+      {testimonials.map((item) => (
+        <article class="tutoring-quote">
+          <blockquote>{item.quote}</blockquote>
+          <p class="tutoring-quote-meta">
+            <span>{item.name}</span>
+            <span>{item.context}</span>
+          </p>
+        </article>
+      ))}
+    </div>
+  </section>
+
 </BaseLayout>
 
 <script is:inline>
@@ -174,4 +282,86 @@ const services = [
       panel.style.maxHeight = `${inner.scrollHeight}px`;
     });
   });
+
+  const form = document.querySelector("[data-services-form]");
+  const formNote = document.querySelector("[data-form-note]");
+  const startedAtInput = document.querySelector("[data-form-started-at]");
+  const THROTTLE_MS = 60000;
+  const MIN_FILL_MS = 4000;
+  const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const LAST_SUBMIT_KEY = "mc_services_last_submit";
+
+  if (startedAtInput instanceof HTMLInputElement) {
+    startedAtInput.value = String(Date.now());
+  }
+
+  if (form instanceof HTMLFormElement) {
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const now = Date.now();
+      const lastSubmit = Number(window.localStorage.getItem(LAST_SUBMIT_KEY) || "0");
+      if (lastSubmit && now - lastSubmit < THROTTLE_MS) {
+        if (formNote) {
+          formNote.textContent = "Please wait a minute before sending another enquiry.";
+        }
+        return;
+      }
+
+      const formData = new FormData(form);
+      const website = String(formData.get("website") || "").trim();
+      if (website.length > 0) {
+        if (formNote) {
+          formNote.textContent = "Unable to send this enquiry.";
+        }
+        return;
+      }
+
+      const startedAt = Number(formData.get("formStartedAt") || "0");
+      if (!startedAt || now - startedAt < MIN_FILL_MS) {
+        if (formNote) {
+          formNote.textContent = "Please take a few seconds to complete the form.";
+        }
+        return;
+      }
+
+      const name = String(formData.get("name") || "").trim();
+      const email = String(formData.get("email") || "").trim();
+      const enquiryType = String(formData.get("enquiryType") || "").trim();
+      const timeline = String(formData.get("timeline") || "").trim();
+      const message = String(formData.get("message") || "").trim();
+
+      if (
+        !name ||
+        !EMAIL_REGEX.test(email) ||
+        !enquiryType ||
+        !timeline ||
+        message.length < 30 ||
+        message.length > 2200
+      ) {
+        if (formNote) {
+          formNote.textContent = "Please complete all fields correctly before sending.";
+        }
+        return;
+      }
+
+      const subject = `Services enquiry: ${enquiryType}`;
+      const body = [
+        `Name: ${name}`,
+        `Email: ${email}`,
+        `Enquiry type: ${enquiryType}`,
+        `Timeline: ${timeline}`,
+        "",
+        "Message:",
+        message
+      ].join("\n");
+      const mailto = `mailto:hello@matteocurcio.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+      window.localStorage.setItem(LAST_SUBMIT_KEY, String(now));
+      if (formNote) {
+        formNote.textContent = "Opening your email app...";
+      }
+      window.location.href = mailto;
+    });
+  }
 </script>

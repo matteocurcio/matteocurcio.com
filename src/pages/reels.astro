@@ -1,12 +1,65 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { LEGACY_REELS } from "../data/legacyPortfolio";
+
+type ReelFilterKey = "all" | "colour" | "motion" | "immersive" | "video" | "music";
+
+const REEL_CATEGORY_BY_SLUG: Partial<Record<string, Exclude<ReelFilterKey, "all">>> = {
+  finishing: "colour",
+  "beauty-retouch": "colour",
+  advertising: "colour",
+  sport: "colour",
+  realestate: "colour",
+  fashion: "colour",
+  food: "colour",
+  "video-games-advertising": "colour",
+  presentology: "motion",
+  dataviz: "motion",
+  "in-store": "motion",
+  immersive: "immersive",
+  mapping: "immersive",
+  ar: "immersive",
+  corporate: "video",
+  "online-editing": "video",
+  sync: "music",
+  royaltyfree: "music",
+  music: "music"
+};
+
+const filterOrder: Array<{ key: ReelFilterKey; label: string }> = [
+  { key: "all", label: "ALL" },
+  { key: "colour", label: "COLOUR" },
+  { key: "motion", label: "MOTION" },
+  { key: "immersive", label: "IMMERSIVE" },
+  { key: "video", label: "VIDEO" },
+  { key: "music", label: "MUSIC" }
+];
+
+const reels = LEGACY_REELS
+  .map((item) => ({
+    ...item,
+    categoryKey: REEL_CATEGORY_BY_SLUG[item.slug]
+  }))
+  .filter((item): item is typeof item & { categoryKey: Exclude<ReelFilterKey, "all"> } => Boolean(item.categoryKey));
 ---
 
 <BaseLayout title="Reels | Matteo Curcio" path="/reels">
-  <section class="reels-grid" aria-label="Reel categories">
-    {LEGACY_REELS.map((item) => (
-      <a class="reel-tile" href={`/reels/${item.slug}/`} aria-label={item.title}>
+  <section class="works-category-bar" aria-label="Reel categories">
+    {filterOrder.map((filter) => (
+      <button
+        type="button"
+        class={`works-category-link ${filter.key === "all" ? "is-active" : ""}`}
+        data-reel-filter-key={filter.key}
+        aria-pressed={filter.key === "all" ? "true" : "false"}
+      >
+        {filter.label}
+      </button>
+    ))}
+  </section>
+
+  <section class="reels-grid" aria-label="Reel categories" data-reel-grid>
+    {reels.map((item) => (
+      <a class="reel-tile" href={`/reels/${item.slug}/`} aria-label={item.title} data-reel-category-key={item.categoryKey}>
         <div class="reel-media">
           <img src={item.image} alt={item.title} loading="lazy" />
         </div>
@@ -14,3 +67,62 @@ import { LEGACY_REELS } from "../data/legacyPortfolio";
     ))}
   </section>
 </BaseLayout>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    const filterButtons = Array.from(document.querySelectorAll("[data-reel-filter-key]"));
+    const grid = document.querySelector("[data-reel-grid]");
+    if (!grid) return;
+
+    const tiles = Array.from(grid.querySelectorAll("[data-reel-category-key]"));
+
+    const applyFilter = (key) => {
+      filterButtons.forEach((button) => {
+        const isActive = button.getAttribute("data-reel-filter-key") === key;
+        button.classList.toggle("is-active", isActive);
+        button.setAttribute("aria-pressed", isActive ? "true" : "false");
+      });
+
+      const visibleTiles = [];
+      const hiddenTiles = [];
+
+      tiles.forEach((tile) => {
+        const tileCategory = tile.getAttribute("data-reel-category-key");
+        const visible = key === "all" || tileCategory === key;
+        if (visible) {
+          visibleTiles.push(tile);
+        } else {
+          hiddenTiles.push(tile);
+        }
+      });
+
+      visibleTiles.forEach((tile) => {
+        tile.hidden = false;
+        tile.classList.remove("is-hidden");
+        grid.appendChild(tile);
+      });
+
+      hiddenTiles.forEach((tile) => {
+        grid.appendChild(tile);
+        tile.classList.add("is-hidden");
+        tile.hidden = true;
+      });
+
+      visibleTiles.forEach((tile) => {
+        tile.animate(
+          [{ opacity: 0 }, { opacity: 1 }],
+          { duration: 280, easing: "ease-out" }
+        );
+      });
+    };
+
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const key = button.getAttribute("data-reel-filter-key") || "all";
+        applyFilter(key);
+      });
+    });
+
+    applyFilter("all");
+  });
+</script>
