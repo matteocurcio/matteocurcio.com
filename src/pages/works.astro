@@ -20,7 +20,6 @@ const CATEGORY_KEY_BY_LABEL: Record<WorkCategory, "colour" | "motion" | "immersi
 
 const GENERIC_THUMBNAIL = "/migrated/wp-content/uploads/borouge_day2_1000.jpg";
 
-
 const WORK_THUMB_OVERRIDES: Record<string, string> = {
   "expo-2020-iptm18": "/migrated/wp-content/uploads/Seamless-Participant-Journey-03-scaled.jpg",
   "expo-2020-iptm19": "/migrated/wp-content/uploads/EXPO2020-IPM19-4-Venues-Overview.020.jpeg",
@@ -36,8 +35,38 @@ const WORK_THUMB_OVERRIDES: Record<string, string> = {
   "patterns": "/migrated/wp-content/uploads/untitled-135-of-145.webp"
 };
 
+const WORK_VIDEO_OVERRIDES: Record<string, string> = {
+  "moveactive": "/migrated/wp-content/uploads/MoveActive-April-Campaign-preview.mov",
+  "yamaha": "/migrated/wp-content/uploads/Yamaha-Make-Waves-preview.mov",
+  "victorian-queens": "/migrated/wp-content/uploads/Victorian-Queens-preview.mov",
+  "tradie": "/migrated/wp-content/uploads/Makita-Tradie.mov",
+  "madebox": "/migrated/wp-content/uploads/MYOB-Community-Madebox.mov",
+  "national-hero": "/migrated/wp-content/uploads/Football-Australia-Play-Football-National-Hero.mov",
+  "refreshed": "/migrated/wp-content/uploads/Beard-and-Blade-PREVIEW.mov",
+  "kikkoman": "/migrated/wp-content/uploads/Kikkoman-Soy-Sauce-1.mov",
+  "motorone": "/migrated/wp-content/uploads/MotorOne-Hydro-Preview.mov",
+  "denton-pillows": "/migrated/wp-content/uploads/Denton-Pillows-A-Good-Night-Sleep-preview.mov",
+  "cowra": "/migrated/wp-content/uploads/Cowra-Tourism-Corporation-Get-Chris-to-Cowra.mov",
+  "rumbalara": "/migrated/wp-content/uploads/Rumbalara-Over-the-Rainbow-Thumbnail.mov",
+  "irwin-fran": "/migrated/wp-content/uploads/Irwin-and-Fran.mov",
+  "football-christmas": "/migrated/wp-content/uploads/Football-Australia-Play-Football-Football-Christmas.mov",
+  "show-dont-tell": "/migrated/wp-content/uploads/Makita-Show-Dont-Tell-preview.mov",
+  "ginfusion": "/migrated/wp-content/uploads/Original-Spirit-Ginfusion.mov",
+  "find-your-place": "/migrated/wp-content/uploads/43285-Football-Australia-Play-Football-Find-your-Place.mov",
+  "drive": "/migrated/wp-content/uploads/Vudoo-Conversion.mov",
+  "jetstar-airport-services": "/migrated/wp-content/uploads/Jetstar-Airways-Recruitment-Video-Airport-Services.mov",
+  "ecco-safety": "/migrated/wp-content/uploads/Ecco-Safety-Heavy-Duty-Beacon.mov",
+  "rasta-man-vibration": "/migrated/wp-content/uploads/Cinemastone-Rasta-Man-Vibration.mov",
+  "amp": "/migrated/wp-content/uploads/AMP-Quay-Quarter-Sydney.mov",
+  "kakadu-complex": "/migrated/wp-content/uploads/Natures-Goodness-Kakadu-Complex.mov"
+};
+
 function isGenericThumb(src?: string) {
   return !src || src === GENERIC_THUMBNAIL;
+}
+
+function isVideoSrc(src?: string) {
+  return Boolean(src && /\.(mp4|mov|webm)(\?|$)/i.test(src));
 }
 
 const works = LEGACY_WORKS.map((item) => {
@@ -46,6 +75,7 @@ const works = LEGACY_WORKS.map((item) => {
   const bestWpImage = wpImages.find((src) => !isGenericThumb(src));
   const nonCompareThumb = NON_COMPARE_THUMBNAILS[item.slug];
   const overrideThumb = WORK_THUMB_OVERRIDES[item.slug];
+  const overrideVideo = WORK_VIDEO_OVERRIDES[item.slug];
 
   const resolvedImage = [
     !isGenericThumb(nonCompareThumb) ? nonCompareThumb : undefined,
@@ -58,10 +88,16 @@ const works = LEGACY_WORKS.map((item) => {
     wpImages[0]
   ].find(Boolean) as string | undefined;
 
+  const resolvedVideo = [
+    overrideVideo,
+    isVideoSrc(item.video) ? item.video : undefined
+  ].find(Boolean) as string | undefined;
+
   return {
     ...item,
     categoryKey: CATEGORY_KEY_BY_LABEL[item.category],
     image: resolvedImage || "",
+    video: resolvedVideo,
     href: `/projects/${item.slug}/`
   };
 }).filter((item) => Boolean(item.image));
