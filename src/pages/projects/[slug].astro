@@ -324,72 +324,69 @@ function splitDescriptionAndCredits(paragraphs: string[]) {
 }
 
 function buildBeforeAfterPairs(images: string[], fallbackImage?: string) {
-  const befores = new Map<string, string>();
-  const afters = new Map<string, string>();
-  const extras: string[] = [];
+  const extractFrameIndex = (src: string) => {
+    const file = src.split("/").pop() || src;
+    const normalized = file.toLowerCase();
 
-  const keyFor = (src: string) =>
-    src
-      .replace(/flat|before|raw|log|grade|after|final|look/gi, "")
-      .replace(/[-_]+/g, "-")
-      .toLowerCase();
+    const tagged = normalized.match(/(?:flat|before|raw|log|grade|after|final|look)[-_\s]*0*(\d{1,4})/i);
+    if (tagged?.[1]) return Number.parseInt(tagged[1], 10);
 
-  for (const src of images) {
-    if (/flat|before|raw|log/i.test(src)) {
-      befores.set(keyFor(src), src);
-      continue;
-    }
+    const trailing = normalized.match(/(?:[_\-.])0*(\d{1,4})(?:[_\-.]\d+)?\.[a-z0-9]+$/i);
+    if (trailing?.[1]) return Number.parseInt(trailing[1], 10);
 
-    if (/grade|after|final|look/i.test(src)) {
-      afters.set(keyFor(src), src);
-      continue;
-    }
+    return Number.POSITIVE_INFINITY;
+  };
 
-    extras.push(src);
-  }
+  const compareByIndex = (a: string, b: string) => {
+    const delta = extractFrameIndex(a) - extractFrameIndex(b);
+    if (delta !== 0) return delta;
+    return a.localeCompare(b);
+  };
 
+  const befores = images.filter((src) => /flat|before|raw|log/i.test(src)).sort(compareByIndex);
+  const afters = images.filter((src) => /grade|after|final|look/i.test(src)).sort(compareByIndex);
+  const afterPool = [...afters];
+  const extras: string[] = images.filter((src) => !/flat|before|raw|log|grade|after|final|look/i.test(src));
   const pairs: Array<{ before: string; after: string }> = [];
 
-  for (const [key, before] of befores.entries()) {
-    const after = afters.get(key);
+  befores.forEach((before) => {
+    if (afterPool.length === 0) {
+      extras.push(before);
+      return;
+    }
+
+    const beforeIndex = extractFrameIndex(before);
+    let matchIndex = afterPool.findIndex((after) => extractFrameIndex(after) === beforeIndex);
+
+    if (matchIndex < 0) {
+      let nearest = 0;
+      let bestDistance = Number.POSITIVE_INFINITY;
+      afterPool.forEach((after, idx) => {
+        const distance = Math.abs(extractFrameIndex(after) - beforeIndex);
+        if (distance < bestDistance) {
+          bestDistance = distance;
+          nearest = idx;
+        }
+      });
+      matchIndex = nearest;
+    }
+
+    const [after] = afterPool.splice(matchIndex, 1);
     if (after) {
       pairs.push({ before, after });
-      afters.delete(key);
-    } else {
-      extras.push(before);
     }
-  }
+  });
 
-  for (const [, leftoverAfter] of afters.entries()) {
-    extras.push(leftoverAfter);
-  }
-
-  if (pairs.length === 0 && images.length >= 2) {
-    for (let i = 0; i + 1 < images.length; i += 2) {
-      pairs.push({ before: images[i], after: images[i + 1] });
-    }
-    return { pairs, extras: [] as string[] };
-  }
+  extras.push(...afterPool);
 
   if (pairs.length === 0 && fallbackImage) {
     pairs.push({ before: fallbackImage, after: fallbackImage });
     return { pairs, extras: [] as string[] };
   }
 
-  // Convert any remaining stills into compare frames to keep work pages consistent.
-  if (extras.length > 1) {
-    const leftover = extras.splice(0, extras.length);
-    for (let i = 0; i + 1 < leftover.length; i += 2) {
-      pairs.push({ before: leftover[i], after: leftover[i + 1] });
-    }
-    if (leftover.length % 2 === 1) {
-      const last = leftover[leftover.length - 1];
-      pairs.push({ before: last, after: last });
-    }
-  }
-
   return { pairs, extras };
 }
+
 
 function isReelRoleLabel(value: string) {
   const normalized = normalizeCreditLabel(value);
@@ -842,7 +839,7 @@ const reelHideGallery = isReelPage && Boolean(reelOverride.hideGallery);
 const disableBeforeAfter = slug === "spring-party" || isNonCompareWork;
 const disableGallery = slug === "spring-party" || reelHideGallery || isNonCompareWork;
 const useLightboxGallery = isReelPage || isNonCompareWork;
-const gallery = isReelPage
+const baseGallery = isReelPage
   ? reelUsesCompare
     ? {
         pairs: buildBeforeAfterPairs(galleryImages, undefined).pairs,
@@ -858,6 +855,13 @@ const gallery = isReelPage
         extras: galleryImages.length > 0 ? galleryImages : cover ? [cover] : []
       }
     : buildBeforeAfterPairs(galleryImages, service === "POST-PRODUCTION" ? cover : undefined);
+
+const gallery = !isReelPage && service === "POST-PRODUCTION"
+  ? {
+      pairs: baseGallery.pairs,
+      extras: [] as string[]
+    }
+  : baseGallery;
 
 const nonCompareNarrative = isNonCompareWork ? NON_COMPARE_CAPTIONS[slug] || [] : [];
 const technicalWorkDescription = !isReelPage
