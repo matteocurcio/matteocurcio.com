@@ -18,13 +18,50 @@ const CATEGORY_KEY_BY_LABEL: Record<WorkCategory, "colour" | "motion" | "immersi
   "PHOTO": "photo"
 };
 
+const GENERIC_THUMBNAIL = "/migrated/wp-content/uploads/borouge_day2_1000.jpg";
+
+
+const WORK_THUMB_OVERRIDES: Record<string, string> = {
+  "expo-2020-iptm18": "/migrated/wp-content/uploads/Seamless-Participant-Journey-03-scaled.jpg",
+  "expo-2020-iptm19": "/migrated/wp-content/uploads/EXPO2020-IPM19-4-Venues-Overview.020.jpeg",
+  "expo-2020-global-media-briefing": "/migrated/wp-content/uploads/03-Expo-Site-overview.044-scaled.jpeg",
+  "dubai-business-events": "/migrated/wp-content/uploads/DTCM-BEP2020-20200319.002.jpg",
+  "dubai-master-business-presentation": "/migrated/wp-content/uploads/DTCM-MBP2019-chapter-1-20191029.023.jpg",
+  "gitex-vr": "/migrated/wp-content/uploads/IMG_5887.jpg",
+  "renault-zoe": "/migrated/wp-content/uploads/Renault-Keynote-20171028.018.jpeg",
+  "welcome-to-sharjah": "/migrated/wp-content/uploads/IMG_1671.jpg",
+  "mrajeeb-al-fhood": "/migrated/wp-content/uploads/untitled-1-of-103.jpg",
+  "dms17-cadillac": "/migrated/wp-content/uploads/DMS17_cadillac_1.jpeg",
+  "dms17-gmc": "/migrated/wp-content/uploads/20171111-GMC.009.jpeg",
+  "patterns": "/migrated/wp-content/uploads/untitled-135-of-145.webp"
+};
+
+function isGenericThumb(src?: string) {
+  return !src || src === GENERIC_THUMBNAIL;
+}
+
 const works = LEGACY_WORKS.map((item) => {
   const project = projectMap.get(item.slug);
-  const fallbackImage = NON_COMPARE_THUMBNAILS[item.slug] || wpContent[item.slug]?.images?.[0] || project?.data.cover || "";
+  const wpImages = wpContent[item.slug]?.images || [];
+  const bestWpImage = wpImages.find((src) => !isGenericThumb(src));
+  const nonCompareThumb = NON_COMPARE_THUMBNAILS[item.slug];
+  const overrideThumb = WORK_THUMB_OVERRIDES[item.slug];
+
+  const resolvedImage = [
+    !isGenericThumb(nonCompareThumb) ? nonCompareThumb : undefined,
+    overrideThumb,
+    !isGenericThumb(item.image) ? item.image : undefined,
+    bestWpImage,
+    !isGenericThumb(project?.data.cover) ? project?.data.cover : undefined,
+    item.image,
+    project?.data.cover,
+    wpImages[0]
+  ].find(Boolean) as string | undefined;
+
   return {
     ...item,
     categoryKey: CATEGORY_KEY_BY_LABEL[item.category],
-    image: item.image || fallbackImage,
+    image: resolvedImage || "",
     href: `/projects/${item.slug}/`
   };
 }).filter((item) => Boolean(item.image));
