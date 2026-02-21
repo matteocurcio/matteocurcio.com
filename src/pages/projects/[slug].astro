@@ -8,6 +8,21 @@ import { NON_COMPARE_CAPTIONS, NON_COMPARE_CREDITS, NON_COMPARE_THUMBNAILS } fro
 import wpProjectContent from "../../data/wpProjectContent.json";
 
 const WP_WORK_BASE = "https://matteocurcio.com/work";
+const PLACEHOLDER_IMAGE = "/migrated/wp-content/uploads/borouge_day2_1000.jpg";
+
+function isPlaceholderImage(src?: string) {
+  return Boolean(src && src.includes("borouge_day2_1000.jpg"));
+}
+
+const HERO_SLIDE_OVERRIDES: Record<string, string[]> = {
+  "welcome-to-sharjah": [
+    "/migrated/wp-content/uploads/thumbnail_welcome_to_sharjah.webp",
+    "/migrated/wp-content/uploads/IMG_1671.jpg",
+    "/migrated/wp-content/uploads/IMG_1671-1.jpg"
+  ]
+};
+
+const FORCE_EMBED_HERO_SLUGS = new Set(["muenchen-eisbach-surfer"]);
 
 type WpContentMap = Record<string, { paragraphs?: string[]; embedUrl?: string; images?: string[] }>;
 const wpContent = wpProjectContent as WpContentMap;
@@ -819,7 +834,8 @@ const creditsForDisplay = (() => {
 })();
 const workCreditsColumnLeft = !isReelPage ? creditsForDisplay.filter((_, index) => index % 2 === 0) : [];
 const workCreditsColumnRight = !isReelPage ? creditsForDisplay.filter((_, index) => index % 2 === 1) : [];
-const galleryImages = (migrated.images || []).filter((src) => src && src !== cover).slice(0, 16);
+const migratedImages = (migrated.images || []).filter((src) => src && !isPlaceholderImage(src));
+const galleryImages = migratedImages.filter((src) => src !== cover).slice(0, 16);
 const reelOverride = isReelPage ? REEL_LAYOUT_OVERRIDES[slug] || {} : {};
 const reelUsesCompare = isReelPage && Boolean(reelOverride.sliderGallery);
 const reelHideGallery = isReelPage && Boolean(reelOverride.hideGallery);
@@ -853,9 +869,18 @@ const technicalWorkParagraphs = technicalWorkDescription
   ? splitMagazineParagraphs(technicalWorkDescription)
   : [];
 
+const heroOverrideSlides = HERO_SLIDE_OVERRIDES[slug] || [];
 const nonCompareHeroSlides = isNonCompareWork
-  ? Array.from(new Set([...(cover ? [cover] : []), ...(migrated.images || [])])).filter(Boolean).slice(0, 18)
+  ? Array.from(new Set([...(cover && !isPlaceholderImage(cover) ? [cover] : []), ...heroOverrideSlides, ...migratedImages]))
+      .filter((src) => src && !isPlaceholderImage(src))
+      .slice(0, 18)
   : [];
+const showNonCompareCarousel =
+  isNonCompareWork &&
+  nonCompareHeroSlides.length > 1 &&
+  !FORCE_EMBED_HERO_SLUGS.has(slug) &&
+  !embeddedUrl &&
+  !videoUrl;
 
 const reelTaxonomy = isReelPage
   ? extractReelTaxonomy(descriptionParagraphs, reelWorkItems)
@@ -920,7 +945,7 @@ const pageTitle = `${title} | Matteo Curcio`;
     </header>
 
     {
-      isNonCompareWork && nonCompareHeroSlides.length > 1 ? (
+      showNonCompareCarousel ? (
         <section class="cover project-hero-carousel" data-hero-carousel>
           <div class="hero-carousel-track">
             {nonCompareHeroSlides.map((src, idx) => (
