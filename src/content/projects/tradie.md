@@ -4,7 +4,7 @@ service: "motion"
 client: "Makita"
 year: 2023
 excerpt: "Makita, the renowned power tool manufacturer, has asked Fabulate and Visual Domain to produce a new adthat showcases the life of a tradie. The TVC is a tribute to the hardworking tradies who use Makit"
-cover: "/migrated/wp-content/uploads/borouge_day2_1000.jpg"
+cover: "/assets/services/common/thumbnail_placeholder.jpg"
 coverAlt: "Tradie"
 featured: false
 tags: []

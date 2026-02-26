@@ -162,38 +162,13 @@ const testimonials = [
           <input type="email" name="email" autocomplete="email" maxlength="120" required />
         </label>
       </div>
-      <div class="services-form-grid">
-        <label>
-          Enquiry type
-          <select name="enquiryType" required>
-            <option value="">Select one</option>
-            <option>Post-production</option>
-            <option>Immersive project</option>
-            <option>Presentation & data-viz</option>
-            <option>Workflow consulting</option>
-            <option>Coaching & training</option>
-            <option>Other</option>
-          </select>
-        </label>
-        <label>
-          Timeline
-          <select name="timeline" required>
-            <option value="">Select one</option>
-            <option>This week</option>
-            <option>Within 2 weeks</option>
-            <option>Within 1 month</option>
-            <option>Flexible</option>
-          </select>
-        </label>
-      </div>
       <label>
         Message
         <textarea
           name="message"
           rows="6"
-          minlength="30"
           maxlength="2200"
-          placeholder="Share your project, goals, timeline, and deliverables."
+          placeholder="Share what you need."
           required
         ></textarea>
       </label>
@@ -327,30 +302,19 @@ const testimonials = [
 
       const name = String(formData.get("name") || "").trim();
       const email = String(formData.get("email") || "").trim();
-      const enquiryType = String(formData.get("enquiryType") || "").trim();
-      const timeline = String(formData.get("timeline") || "").trim();
       const message = String(formData.get("message") || "").trim();
 
-      if (
-        !name ||
-        !EMAIL_REGEX.test(email) ||
-        !enquiryType ||
-        !timeline ||
-        message.length < 30 ||
-        message.length > 2200
-      ) {
+      if (!name || !EMAIL_REGEX.test(email) || message.length === 0 || message.length > 2200) {
         if (formNote) {
           formNote.textContent = "Please complete all fields correctly before sending.";
         }
         return;
       }
 
-      const subject = `Services enquiry: ${enquiryType}`;
+      const subject = "Services enquiry";
       const body = [
         `Name: ${name}`,
         `Email: ${email}`,
-        `Enquiry type: ${enquiryType}`,
-        `Timeline: ${timeline}`,
         "",
         "Message:",
         message

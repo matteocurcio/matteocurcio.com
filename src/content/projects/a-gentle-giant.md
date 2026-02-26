@@ -4,7 +4,7 @@ service: "motion"
 client: "Gigabyte"
 year: 2023
 excerpt: "Join Rowan Crothers as he teams up with Gigabyte Aorus to promote inclusivity and break down barriers in the gaming community. Discover the incredible journey of this Paralympic gold medalist and how "
-cover: "/migrated/wp-content/uploads/borouge_day2_1000.jpg"
+cover: "/assets/projects/gigabyte-a-gentle-giant/thumbnail_a_gentle_giant.webp"
 coverAlt: "A Gentle Giant"
 featured: false
 tags: []

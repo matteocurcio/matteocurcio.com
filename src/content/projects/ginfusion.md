@@ -4,7 +4,7 @@ service: "motion"
 client: "Original Spirit"
 year: 2023
 excerpt: "Award winning Gins &amp; Ginfusions proudly crafted on Victoria's Mornington Peninsula. Made with only 100% all-natural premium ingredients, Ginfusion deliver a smooth, and satisfying taste sensation."
-cover: "/migrated/wp-content/uploads/borouge_day2_1000.jpg"
+cover: "/assets/services/common/thumbnail_placeholder.jpg"
 coverAlt: "GinFusion"
 featured: false
 tags: []

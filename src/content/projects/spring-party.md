@@ -4,7 +4,7 @@ service: "motion"
 client: "Politix"
 year: 2023
 excerpt: "Politix creates an in-video shopping experience in their latest spring interactive video campaign. Client Politix Project Spring Party Production Visual Domain Producer Isabelle Beaupre Director Dave "
-cover: "/migrated/wp-content/uploads/borouge_day2_1000.jpg"
+cover: "/assets/services/common/thumbnail_placeholder.jpg"
 coverAlt: "Spring Party"
 featured: false
 tags: []

@@ -4,7 +4,7 @@ service: "motion"
 client: "Sharjah Book Authority"
 year: 2021
 excerpt: "Welcome to Sharjah Dubai agency Paris Tokyo brought the Sharjah Book Authority's presence at the Paris Book Fair to life through an innovative and captivating exhibition. They ingeniously utilized a 3"
-cover: "/migrated/wp-content/uploads/borouge_day2_1000.jpg"
+cover: "/assets/services/common/thumbnail_placeholder.jpg"
 coverAlt: "Welcome to Sharjah"
 featured: false
 tags: []

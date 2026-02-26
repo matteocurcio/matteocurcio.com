@@ -4,8 +4,9 @@ service: "motion"
 client: "Cowra Tourism"
 year: 2023
 excerpt: "This Christmas we continue our mission to Get Chris to Cowra, the charming, quintessential Aussie town in Central West NSW that's got it all! Client Cowra Tourism Campaign Get Chris to Cowra Project A"
-cover: "/migrated/wp-content/uploads/borouge_day2_1000.jpg"
+cover: "/assets/projects/cowra-tourism-get-chris-to-cowra/thumbnail_cowra.webp"
 coverAlt: "Get Chris to Cowra"
+videoUrl: "https://youtu.be/bpHxGsbt7oc"
 featured: false
 tags: []
 order: 100

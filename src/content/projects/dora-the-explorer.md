@@ -4,7 +4,7 @@ service: "motion"
 client: "Fisher Price"
 year: 2023
 excerpt: "Children love to hear bedtime stories before they go to sleep. Bedtime Adventure Dora tells your child short bilingual stories about her adventures with Boots. Dora doll plays sweet lullaby music with"
-cover: "/migrated/wp-content/uploads/borouge_day2_1000.jpg"
+cover: "/assets/projects/fisher-price-dora-the-explorer/thumbnail_dora_the_explorer.webp"
 coverAlt: "Dora the Explorer"
 featured: false
 tags: []

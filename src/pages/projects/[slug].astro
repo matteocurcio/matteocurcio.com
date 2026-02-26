@@ -8,7 +8,7 @@ import { NON_COMPARE_CAPTIONS, NON_COMPARE_CREDITS, NON_COMPARE_THUMBNAILS } fro
 import wpProjectContent from "../../data/wpProjectContent.json";
 
 const WP_WORK_BASE = "https://matteocurcio.com/work";
-const PLACEHOLDER_IMAGE = "/migrated/wp-content/uploads/borouge_day2_1000.jpg";
+const PLACEHOLDER_IMAGE = "/assets/services/common/thumbnail_placeholder.jpg";
 
 function isPlaceholderImage(src?: string) {
   return Boolean(src && src.includes("borouge_day2_1000.jpg"));
@@ -16,9 +16,9 @@ function isPlaceholderImage(src?: string) {
 
 const HERO_SLIDE_OVERRIDES: Record<string, string[]> = {
   "welcome-to-sharjah": [
-    "/migrated/wp-content/uploads/thumbnail_welcome_to_sharjah.webp",
-    "/migrated/wp-content/uploads/IMG_1671.jpg",
-    "/migrated/wp-content/uploads/IMG_1671-1.jpg"
+    "/assets/projects/sharjah-book-authority-welcome-to-sharjah/thumbnail_welcome_to_sharjah.webp",
+    "/assets/projects/sharjah-book-authority-welcome-to-sharjah/slide_01_welcome_to_sharjah.jpg",
+    "/assets/projects/sharjah-book-authority-welcome-to-sharjah/slide_02_welcome_to_sharjah.jpg"
   ]
 };
 
@@ -328,7 +328,7 @@ function buildBeforeAfterPairs(images: string[], fallbackImage?: string) {
     const file = src.split("/").pop() || src;
     const normalized = file.toLowerCase();
 
-    const tagged = normalized.match(/(?:flat|before|raw|log|grade|after|final|look)[-_\s]*0*(\d{1,4})/i);
+    const tagged = normalized.match(/(?:flat|before|raw|log|pre|grade|after|final|look|post)[-_\s]*0*(\d{1,4})/i);
     if (tagged?.[1]) return Number.parseInt(tagged[1], 10);
 
     const trailing = normalized.match(/(?:[_\-.])0*(\d{1,4})(?:[_\-.]\d+)?\.[a-z0-9]+$/i);
@@ -343,10 +343,13 @@ function buildBeforeAfterPairs(images: string[], fallbackImage?: string) {
     return a.localeCompare(b);
   };
 
-  const befores = images.filter((src) => /flat|before|raw|log/i.test(src)).sort(compareByIndex);
-  const afters = images.filter((src) => /grade|after|final|look/i.test(src)).sort(compareByIndex);
+  const isBeforeImage = (src: string) => /flat|before|raw|log|(?:^|[._-])pre(?:[._-]|$)/i.test(src);
+  const isAfterImage = (src: string) => /grade|after|final|look|(?:^|[._-])post(?:[._-]|$)/i.test(src);
+
+  const befores = images.filter((src) => isBeforeImage(src)).sort(compareByIndex);
+  const afters = images.filter((src) => isAfterImage(src)).sort(compareByIndex);
   const afterPool = [...afters];
-  const extras: string[] = images.filter((src) => !/flat|before|raw|log|grade|after|final|look/i.test(src));
+  const extras: string[] = images.filter((src) => !isBeforeImage(src) && !isAfterImage(src));
   const pairs: Array<{ before: string; after: string }> = [];
 
   befores.forEach((before) => {
@@ -409,7 +412,7 @@ function isReelRoleLabel(value: string) {
 function buildReelWorkItemsFromParagraphs(paragraphs: string[]) {
   const likelySkillTerms = [
     "keynote",
-    "powerpoint",
+    "after effects",
     "final cut",
     "premiere",
     "davinci",
@@ -806,14 +809,12 @@ const reelWorkItems = isReelPage
       return buildReelWorkItemsFromParagraphs(descriptionParagraphs);
     })()
   : [];
+const hiddenTopLabels = new Set(["client", "project", "campaign"]);
 const creditsForDisplayBase = isReelPage
-  ? parsed.credits.filter((item) => {
-      const normalized = normalizeCreditLabel(item.label);
-      return normalized !== "client" && normalized !== "project" && normalized !== "campaign";
-    })
+  ? parsed.credits.filter((item) => !hiddenTopLabels.has(normalizeCreditLabel(item.label)))
   : isNonCompareWork && NON_COMPARE_CREDITS[slug]
-    ? NON_COMPARE_CREDITS[slug]
-    : parsed.credits;
+    ? NON_COMPARE_CREDITS[slug].filter((item) => !hiddenTopLabels.has(normalizeCreditLabel(item.label)))
+    : parsed.credits.filter((item) => !hiddenTopLabels.has(normalizeCreditLabel(item.label)));
 
 const creditsForDisplay = (() => {
   if (slug !== "drive") return creditsForDisplayBase;
@@ -934,17 +935,41 @@ const reelNarrativeParagraphs = isReelPage
   ? (REEL_CAPTIONS[slug] || reelDescriptionParagraphs).flatMap((paragraph) => splitMagazineParagraphs(paragraph))
   : [];
 
-const metaText = isReelPage && client === "Selected Work"
-  ? year ? String(year) : ""
-  : `${client}${year ? ` · ${year}` : ""}`;
+const showClientProjectTitle = !isReelPage && client && client !== "Selected Work";
+const showReelTitleBox = isReelPage;
+const displayTitle = showClientProjectTitle
+  ? `${client} "${title}"`
+  : title;
 
-const pageTitle = `${title} | Matteo Curcio`;
+const metaText = "";
+
+const pageTitle = `${displayTitle} | Matteo Curcio`;
 ---
 
 <BaseLayout title={pageTitle} path={isReelPage ? `/reels/${slug}/` : `/projects/${slug}/`} navSection={isReelPage ? "reels" : "works"}>
   <article class="project-layout">
-    <header>
-      <h1>{title}</h1>
+    <header class="project-header">
+      {showClientProjectTitle ? (
+        <div class="project-title-panels" aria-label="Project title">
+          <div class="credit-item title-credit-item">
+            <p class="credit-label">CLIENT</p>
+            <p class="credit-value-line title-credit-value">{client}</p>
+          </div>
+          <div class="credit-item title-credit-item">
+            <p class="credit-label">PROJECT</p>
+            <p class="credit-value-line title-credit-value">{title}</p>
+          </div>
+        </div>
+      ) : showReelTitleBox ? (
+        <div class="project-title-panels project-title-panels-single" aria-label="Showreel title">
+          <div class="credit-item title-credit-item">
+            <p class="credit-label">SHOWREEL</p>
+            <p class="credit-value-line title-credit-value">{title}</p>
+          </div>
+        </div>
+      ) : (
+        <h1>{displayTitle}</h1>
+      )}
       {metaText && <p class="meta">{metaText}</p>}
     </header>
 

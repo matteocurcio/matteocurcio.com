@@ -1,10 +1,10 @@
 ---
 title: "Kakadu Complex"
 service: "motion"
-client: "Nature's Goodness"
+client: "Nature's Way"
 year: 2023
 excerpt: "Kakadu Complex® is a rich blend of 25 world-renowned, whole food ingredients including Kakadu plum, acai, goji, quandong, pomegranate, rainforest lime, Illawarra plum, wild rosella, blueberry, cherry,"
-cover: "/migrated/wp-content/uploads/borouge_day2_1000.jpg"
+cover: "/assets/services/common/thumbnail_placeholder.jpg"
 coverAlt: "Kakadu Complex"
 featured: false
 tags: []

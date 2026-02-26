@@ -378,6 +378,49 @@ h1 {
   gap: 1rem;
 }
 
+.project-header {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.project-title-panels {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+.project-title-panels-single {
+  grid-template-columns: 1fr;
+}
+
+.title-credit-item {
+  padding: 0.7rem 0.8rem;
+  background: var(--surface);
+}
+
+.title-credit-item .credit-label {
+  margin: 0;
+}
+
+.title-credit-value {
+  margin-top: 0.2rem;
+  font-family: inherit;
+  font-size: clamp(1.35rem, 2.7vw, 2.2rem);
+  font-weight: 500;
+  line-height: 1.15;
+  color: var(--text);
+}
+
+@media (max-width: 760px) {
+  .project-title-panels {
+    grid-template-columns: 1fr;
+  }
+
+  .title-credit-value {
+    font-size: clamp(1.25rem, 5.2vw, 1.8rem);
+  }
+}
+
 .project-layout .cover {
   border-radius: var(--radius);
   overflow: hidden;
@@ -2377,5 +2420,18 @@ body.is-lightbox-open {
 
   .aboriginal-flag {
     height: 1.7em;
+  }
+}
+
+/* Keep top title boxes larger than standard credit rows */
+.project-title-panels .title-credit-item .title-credit-value {
+  font-size: clamp(1.35rem, 2.7vw, 2.2rem);
+  font-weight: 500;
+  line-height: 1.15;
+}
+
+@media (max-width: 760px) {
+  .project-title-panels .title-credit-item .title-credit-value {
+    font-size: clamp(1.25rem, 5.2vw, 1.8rem);
   }
 }

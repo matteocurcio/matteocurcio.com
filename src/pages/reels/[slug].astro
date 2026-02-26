@@ -492,6 +492,34 @@ function uniqueStrings(values: string[]) {
   return out;
 }
 
+const REEL_PLACEHOLDER_IMAGES = new Set([
+  "/assets/services/common/thumbnail_placeholder.jpg",
+  "/assets/services/common/thumbnail.webp"
+]);
+
+function isThumbnailLikeImage(src: string) {
+  const normalized = src.toLowerCase();
+  return (
+    normalized.includes("/thumbnail") ||
+    normalized.includes("-thumbnail") ||
+    normalized.includes("_thumbnail") ||
+    normalized.includes("thumb-firstframe")
+  );
+}
+
+function sanitizeReelGalleryImages(images: string[], cover?: string) {
+  const seen = new Set<string>();
+  return images.filter((src) => {
+    if (!src) return false;
+    if (src === cover) return false;
+    if (REEL_PLACEHOLDER_IMAGES.has(src)) return false;
+    if (isThumbnailLikeImage(src)) return false;
+    if (seen.has(src)) return false;
+    seen.add(src);
+    return true;
+  });
+}
+
 function stripReelDuplicateLines(
   paragraphs: string[],
   taxonomyLists: string[][],
@@ -796,7 +824,7 @@ const creditsForDisplay = isReelPage
   : parsed.credits;
 const workCreditsColumnLeft = !isReelPage ? creditsForDisplay.filter((_, index) => index % 2 === 0) : [];
 const workCreditsColumnRight = !isReelPage ? creditsForDisplay.filter((_, index) => index % 2 === 1) : [];
-const galleryImages = (migrated.images || []).filter((src) => src && src !== cover).slice(0, 16);
+const galleryImages = sanitizeReelGalleryImages(migrated.images || [], cover).slice(0, 16);
 const reelOverride = isReelPage ? REEL_LAYOUT_OVERRIDES[slug] || {} : {};
 const reelUsesCompare = isReelPage && Boolean(reelOverride.sliderGallery);
 const reelHideGallery = isReelPage && Boolean(reelOverride.hideGallery);
@@ -876,17 +904,20 @@ const reelNarrativeParagraphs = isReelPage
   ? (REEL_CAPTIONS[slug] || reelDescriptionParagraphs).flatMap((paragraph) => splitMagazineParagraphs(paragraph))
   : [];
 
-const metaText = isReelPage && client === "Selected Work"
-  ? year ? String(year) : ""
-  : `${client}${year ? ` · ${year}` : ""}`;
+const metaText = "";
 
 const pageTitle = `${title} | Matteo Curcio`;
 ---
 
 <BaseLayout title={pageTitle} path={`/reels/${slug}/`} navSection="reels">
   <article class="project-layout">
-    <header>
-      <h1>{title}</h1>
+    <header class="project-header">
+      <div class="project-title-panels project-title-panels-single" aria-label="Showreel title">
+        <div class="credit-item title-credit-item">
+          <p class="credit-label">SHOWREEL</p>
+          <p class="credit-value-line title-credit-value">{title}</p>
+        </div>
+      </div>
       {metaText && <p class="meta">{metaText}</p>}
     </header>
 
