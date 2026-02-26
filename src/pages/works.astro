@@ -18,51 +18,51 @@ const CATEGORY_KEY_BY_LABEL: Record<WorkCategory, "colour" | "motion" | "immersi
   "PHOTO": "photo"
 };
 
-const GENERIC_THUMBNAIL = "/migrated/wp-content/uploads/borouge_day2_1000.jpg";
+const GENERIC_THUMBNAIL = "/assets/services/common/thumbnail_placeholder.jpg";
 
 const WORK_THUMB_OVERRIDES: Record<string, string> = {
-  "expo-2020-iptm18": "/migrated/wp-content/uploads/Seamless-Participant-Journey-03-scaled.jpg",
-  "expo-2020-iptm19": "/migrated/wp-content/uploads/EXPO2020-IPM19-4-Venues-Overview.020.jpeg",
-  "expo-2020-global-media-briefing": "/migrated/wp-content/uploads/03-Expo-Site-overview.044-scaled.jpeg",
-  "dubai-business-events": "/migrated/wp-content/uploads/DTCM-BEP2020-20200319.002.jpg",
-  "dubai-master-business-presentation": "/migrated/wp-content/uploads/DTCM-MBP2019-chapter-1-20191029.023.jpg",
-  "gitex-vr": "/migrated/wp-content/uploads/thumbnail_gitex_VR-1.webp",
-  "renault-zoe": "/migrated/wp-content/uploads/thumbnail_renault_zoe_reveal.webp",
-  "welcome-to-sharjah": "/migrated/wp-content/uploads/thumbnail_welcome_to_sharjah.webp",
-  "mrajeeb-al-fhood": "/migrated/wp-content/uploads/untitled-1-of-103.jpg",
-  "dms17-cadillac": "/migrated/wp-content/uploads/thumbnail_DMS_Cadillac.webp",
-  "dms17-gmc": "/migrated/wp-content/uploads/thumbnail_GMC.webp",
-  "patterns": "/migrated/wp-content/uploads/untitled-135-of-145.webp",
-  "madebox": "/migrated/wp-content/uploads/MYOB-Community-Madebox-FLAT-754.jpg",
-  "rumbalara": "/migrated/wp-content/uploads/Rumbalara-Over-the-Rainbow-FLAT00.jpg",
-  "ginfusion": "/migrated/wp-content/uploads/Original-Spirit-Ginfusion-FLAT-00.jpg"
+  "expo-2020-iptm18": "/assets/projects/expo-2020-dubai-international-participants-meeting-2018/thumbnail_expo_2020_iptm18.jpg",
+  "expo-2020-iptm19": "/assets/projects/expo-2020-dubai-international-participants-meeting-2019/thumbnail_expo_2020_iptm19.jpeg",
+  "expo-2020-global-media-briefing": "/assets/projects/expo-2020-dubai-global-media-briefing/thumbnail_expo_2020_global_media_briefing.jpeg",
+  "dubai-business-events": "/assets/projects/dubai-tourism-business-events-presentation/thumbnail_dubai_business_events.jpg",
+  "dubai-master-business-presentation": "/assets/projects/dubai-tourism-master-business-presentation/thumbnail_dubai_master_business_presentation.jpg",
+  "gitex-vr": "/assets/projects/gitex-dubai-gitex-vr/thumbnail_gitex_vr.webp",
+  "renault-zoe": "/assets/projects/renault-mena-renault-zoe-reveal/thumbnail_renault_zoe.webp",
+  "welcome-to-sharjah": "/assets/projects/sharjah-book-authority-welcome-to-sharjah/thumbnail_welcome_to_sharjah.webp",
+  "mrajeeb-al-fhood": "/assets/projects/kalimat-foundation-mrajeeb-al-fhood/thumbnail_mrajeeb_al_fhood.jpg",
+  "dms17-cadillac": "/assets/projects/cadillac-dubai-motor-show/thumbnail_dms17_cadillac.webp",
+  "dms17-gmc": "/assets/projects/dubai-motor-show-gmc/thumbnail_dubai_motor_show_gmc.webp",
+  "patterns": "/assets/projects/exhibition-patterns/thumbnail_patterns.webp",
+  "madebox": "/assets/projects/myob-madebox/thumbnail_madebox.jpg",
+  "rumbalara": "/assets/projects/rumbalara-over-the-rainbow/thumbnail_rumbalara.jpg",
+  "ginfusion": "/assets/projects/original-spirit-ginfusion/thumbnail_ginfusion.jpg"
 };
 
 const WORK_VIDEO_OVERRIDES: Record<string, string> = {
-  "moveactive": "/migrated/wp-content/uploads/MoveActive-April-Campaign-preview.mov",
-  "yamaha": "/migrated/wp-content/uploads/Yamaha-Make-Waves-preview.mov",
-  "victorian-queens": "/migrated/wp-content/uploads/Victorian-Queens-preview.mov",
-  "tradie": "/migrated/wp-content/uploads/Makita-Tradie.mov",
-  "madebox": "/migrated/wp-content/uploads/MYOB-Community-Madebox.mov",
-  "national-hero": "/migrated/wp-content/uploads/Football-Australia-Play-Football-National-Hero.mov",
-  "refreshed": "/migrated/wp-content/uploads/Beard-and-Blade-PREVIEW.mov",
-  "kikkoman": "/migrated/wp-content/uploads/Kikkoman-Soy-Sauce-1.mov",
-  "motorone": "/migrated/wp-content/uploads/MotorOne-Hydro-Preview.mov",
-  "denton-pillows": "/migrated/wp-content/uploads/Denton-Pillows-A-Good-Night-Sleep-preview.mov",
-  "cowra": "/migrated/wp-content/uploads/Cowra-Tourism-Corporation-Get-Chris-to-Cowra.mov",
-  "rumbalara": "/migrated/wp-content/uploads/Rumbalara-Over-the-Rainbow-Thumbnail.mov",
-  "irwin-fran": "/migrated/wp-content/uploads/Irwin-and-Fran.mov",
-  "football-christmas": "/migrated/wp-content/uploads/Football-Australia-Play-Football-Football-Christmas.mov",
-  "show-dont-tell": "/migrated/wp-content/uploads/Makita-Show-Dont-Tell-preview.mov",
-  "ginfusion": "/migrated/wp-content/uploads/Original-Spirit-Ginfusion.mov",
-  "find-your-place": "/migrated/wp-content/uploads/43285-Football-Australia-Play-Football-Find-your-Place.mov",
-  "drive": "/migrated/wp-content/uploads/Vudoo-Conversion.mov",
-  "jetstar-airport-services": "/migrated/wp-content/uploads/Jetstar-Airways-Recruitment-Video-Airport-Services.mov",
-  "ecco-safety": "/migrated/wp-content/uploads/Ecco-Safety-Heavy-Duty-Beacon.mov",
-  "rasta-man-vibration": "/migrated/wp-content/uploads/Cinemastone-Rasta-Man-Vibration.mov",
-  "amp": "/migrated/wp-content/uploads/AMP-Quay-Quarter-Sydney.mov",
-  "kakadu-complex": "/migrated/wp-content/uploads/Natures-Goodness-Kakadu-Complex.mov",
-  "2xu": "/migrated/wp-content/uploads/2XU-Compression-preview.mp4"
+  "moveactive": "/assets/projects/moveactive-april-campaign/thumbnail_moveactive.mov",
+  "yamaha": "/assets/projects/yamaha-make-waves/thumbnail_yamaha.mov",
+  "victorian-queens": "/assets/projects/garden-of-voices-victorian-queens/thumbnail_victorian_queens.mov",
+  "tradie": "/assets/projects/makita-tradie/thumbnail_tradie.mov",
+  "madebox": "/assets/projects/myob-madebox/thumbnail_madebox.mov",
+  "national-hero": "/assets/projects/football-australia-national-hero/thumbnail_national_hero.mov",
+  "refreshed": "/assets/projects/beard-and-blade-refreshed/thumbnail_refreshed.mov",
+  "kikkoman": "/assets/projects/kikkoman-makoto-selection/thumbnail_kikkoman.mov",
+  "motorone": "/assets/projects/motorone-group-protektiv-hydro/thumbnail_motorone.mov",
+  "denton-pillows": "/assets/projects/denton-pillows-a-great-night-sleep/thumbnail_denton_pillows.mov",
+  "cowra": "/assets/projects/cowra-tourism-get-chris-to-cowra/thumbnail_cowra.mov",
+  "rumbalara": "/assets/projects/rumbalara-over-the-rainbow/thumbnail_rumbalara.mov",
+  "irwin-fran": "/assets/projects/cinemastone-irwin-fran/thumbnail_irwin_fran.mov",
+  "football-christmas": "/assets/projects/football-australia-football-christmas/thumbnail_football_christmas.mov",
+  "show-dont-tell": "/assets/projects/makita-show-don-t-tell/thumbnail_show_dont_tell.mov",
+  "ginfusion": "/assets/projects/original-spirit-ginfusion/thumbnail_ginfusion.mov",
+  "find-your-place": "/assets/projects/football-australia-find-your-place/thumbnail_find_your_place.mov",
+  "drive": "/assets/projects/vudoo-drive/thumbnail_drive.mov",
+  "jetstar-airport-services": "/assets/projects/jetstar-airport-services/thumbnail_jetstar_airport_services.mov",
+  "ecco-safety": "/assets/projects/ecco-safety-heavy-duty-beacon/thumbnail_ecco_safety.mov",
+  "rasta-man-vibration": "/assets/projects/cinemastone-rasta-man-vibration/thumbnail_rasta_man_vibration.mov",
+  "amp": "/assets/projects/amp-quay-quarter/thumbnail_amp.mov",
+  "kakadu-complex": "/assets/projects/nature-s-goodness-kakadu-complex/thumbnail_kakadu_complex.mov",
+  "2xu": "/assets/projects/2xu-compression/thumbnail_2xu.mp4"
 };
 
 function isGenericThumb(src?: string) {
