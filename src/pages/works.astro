@@ -19,6 +19,7 @@ const CATEGORY_KEY_BY_LABEL: Record<WorkCategory, "colour" | "motion" | "immersi
 };
 
 const GENERIC_THUMBNAIL = "/assets/services/common/thumbnail_placeholder.jpg";
+const LEGACY_GENERIC_THUMBNAIL = "/migrated/wp-content/uploads/borouge_day2_1000.jpg";
 
 const WORK_THUMB_OVERRIDES: Record<string, string> = {
   "expo-2020-iptm18": "/assets/projects/expo-2020-dubai-international-participants-meeting-2018/thumbnail_expo_2020_iptm18.jpg",
@@ -66,7 +67,7 @@ const WORK_VIDEO_OVERRIDES: Record<string, string> = {
 };
 
 function isGenericThumb(src?: string) {
-  return !src || src === GENERIC_THUMBNAIL;
+  return !src || src === GENERIC_THUMBNAIL || src === LEGACY_GENERIC_THUMBNAIL || src.startsWith("/migrated/");
 }
 
 function isVideoSrc(src?: string) {
