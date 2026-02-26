@@ -9,13 +9,11 @@ coverAlt: "Compression"
 featured: false
 tags: []
 order: 100
-originalUrl: "https://matteocurcio.com/work/2xu"
 wpId: 27860
 wpCategoryIds:
   - "301"
 ---
 
-Original: https://matteocurcio.com/work/2xu
 
 Notes:
 - Auto-migrated from Semplice frontend API.

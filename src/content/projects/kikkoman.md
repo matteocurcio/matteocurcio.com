@@ -9,13 +9,11 @@ coverAlt: "Makoto Selection"
 featured: false
 tags: []
 order: 100
-originalUrl: "https://matteocurcio.com/work/kikkoman"
 wpId: 27905
 wpCategoryIds:
   - "301"
 ---
 
-Original: https://matteocurcio.com/work/kikkoman
 
 Notes:
 - Auto-migrated from Semplice frontend API.

@@ -9,13 +9,11 @@ coverAlt: "Spring Party"
 featured: false
 tags: []
 order: 100
-originalUrl: "https://matteocurcio.com/work/spring-party"
 wpId: 28193
 wpCategoryIds:
   - "304"
 ---
 
-Original: https://matteocurcio.com/work/spring-party
 
 Notes:
 - Auto-migrated from Semplice frontend API.

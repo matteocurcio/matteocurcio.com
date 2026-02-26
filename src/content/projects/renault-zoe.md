@@ -9,13 +9,11 @@ coverAlt: "Renault Zoe Reveal"
 featured: false
 tags: []
 order: 100
-originalUrl: "https://matteocurcio.com/work/renault-zoe"
 wpId: 27755
 wpCategoryIds:
   - "267"
 ---
 
-Original: https://matteocurcio.com/work/renault-zoe
 
 Notes:
 - Auto-migrated from Semplice frontend API.

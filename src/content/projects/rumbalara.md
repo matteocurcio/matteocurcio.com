@@ -9,13 +9,11 @@ coverAlt: "Over the Rainbow"
 featured: false
 tags: []
 order: 100
-originalUrl: "https://matteocurcio.com/work/rumbalara"
 wpId: 28352
 wpCategoryIds:
   - "304"
 ---
 
-Original: https://matteocurcio.com/work/rumbalara
 
 Notes:
 - Auto-migrated from Semplice frontend API.

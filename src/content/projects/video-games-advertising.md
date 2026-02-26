@@ -9,13 +9,11 @@ coverAlt: "Video Games Advertising"
 featured: false
 tags: []
 order: 100
-originalUrl: "https://matteocurcio.com/work/video-games-advertising"
 wpId: 28640
 wpCategoryIds:
   - "347"
 ---
 
-Original: https://matteocurcio.com/work/video-games-advertising
 
 Notes:
 - Auto-migrated from Semplice frontend API.

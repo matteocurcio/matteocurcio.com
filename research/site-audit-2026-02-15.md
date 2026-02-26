@@ -34,4 +34,3 @@
 
 ## Notes for migration
 - The project library is significantly larger than the initial scaffold (56 live work entries).
-- If you want high-fidelity migration, the next step is to map each `/work/*` URL to a markdown entry and import title/description/cover image into the new Astro content collection.

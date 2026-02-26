@@ -9,13 +9,11 @@ coverAlt: "Master Business Presentation"
 featured: false
 tags: []
 order: 100
-originalUrl: "https://matteocurcio.com/work/dubai-master-business-presentation"
 wpId: 27590
 wpCategoryIds:
   - "267"
 ---
 
-Original: https://matteocurcio.com/work/dubai-master-business-presentation
 
 Notes:
 - Auto-migrated from Semplice frontend API.

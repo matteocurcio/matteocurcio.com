@@ -9,13 +9,11 @@ coverAlt: "Madebox"
 featured: false
 tags: []
 order: 100
-originalUrl: "https://matteocurcio.com/work/madebox"
 wpId: 28057
 wpCategoryIds:
   - "304"
 ---
 
-Original: https://matteocurcio.com/work/madebox
 
 Notes:
 - Auto-migrated from Semplice frontend API.

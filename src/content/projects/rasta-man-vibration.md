@@ -9,13 +9,11 @@ coverAlt: "Rasta Man Vibration"
 featured: false
 tags: []
 order: 100
-originalUrl: "https://matteocurcio.com/work/rasta-man-vibration"
 wpId: 28167
 wpCategoryIds:
   - "302"
 ---
 
-Original: https://matteocurcio.com/work/rasta-man-vibration
 
 Notes:
 - Auto-migrated from Semplice frontend API.

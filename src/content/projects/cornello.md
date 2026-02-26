@@ -9,13 +9,11 @@ coverAlt: "Cornello dei Tasso"
 featured: false
 tags: []
 order: 100
-originalUrl: "https://matteocurcio.com/work/cornello"
 wpId: 28958
 wpCategoryIds:
   - "351"
 ---
 
-Original: https://matteocurcio.com/work/cornello
 
 Notes:
 - Auto-migrated from Semplice frontend API.

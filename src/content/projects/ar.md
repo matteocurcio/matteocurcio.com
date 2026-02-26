@@ -9,14 +9,12 @@ coverAlt: "Matteo Curcio | Augmented Reality"
 featured: false
 tags: []
 order: 100
-originalUrl: "https://matteocurcio.com/work/ar"
 wpId: 27331
 wpCategoryIds:
   - "347"
   - "274"
 ---
 
-Original: https://matteocurcio.com/work/ar
 
 Notes:
 - Auto-migrated from Semplice frontend API.

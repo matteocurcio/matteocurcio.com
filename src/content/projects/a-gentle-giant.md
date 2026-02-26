@@ -9,13 +9,11 @@ coverAlt: "A Gentle Giant"
 featured: false
 tags: []
 order: 100
-originalUrl: "https://matteocurcio.com/work/a-gentle-giant"
 wpId: 28254
 wpCategoryIds:
   - "304"
 ---
 
-Original: https://matteocurcio.com/work/a-gentle-giant
 
 Notes:
 - Auto-migrated from Semplice frontend API.

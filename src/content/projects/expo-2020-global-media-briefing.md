@@ -9,13 +9,11 @@ coverAlt: "Global Media Briefing"
 featured: false
 tags: []
 order: 100
-originalUrl: "https://matteocurcio.com/work/expo-2020-global-media-briefing"
 wpId: 27427
 wpCategoryIds:
   - "267"
 ---
 
-Original: https://matteocurcio.com/work/expo-2020-global-media-briefing
 
 Notes:
 - Auto-migrated from Semplice frontend API.

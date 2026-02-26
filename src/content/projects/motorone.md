@@ -9,13 +9,11 @@ coverAlt: "Protektiv Hydro"
 featured: false
 tags: []
 order: 100
-originalUrl: "https://matteocurcio.com/work/motorone"
 wpId: 27985
 wpCategoryIds:
   - "301"
 ---
 
-Original: https://matteocurcio.com/work/motorone
 
 Notes:
 - Auto-migrated from Semplice frontend API.

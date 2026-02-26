@@ -9,13 +9,11 @@ coverAlt: "Refreshed"
 featured: false
 tags: []
 order: 100
-originalUrl: "https://matteocurcio.com/work/refreshed"
 wpId: 28305
 wpCategoryIds:
   - "304"
 ---
 
-Original: https://matteocurcio.com/work/refreshed
 
 Notes:
 - Auto-migrated from Semplice frontend API.

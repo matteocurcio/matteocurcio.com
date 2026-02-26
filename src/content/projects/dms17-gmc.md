@@ -9,13 +9,11 @@ coverAlt: "Dubai Motor Show"
 featured: false
 tags: []
 order: 100
-originalUrl: "https://matteocurcio.com/work/dms17-gmc"
 wpId: 27775
 wpCategoryIds:
   - "267"
 ---
 
-Original: https://matteocurcio.com/work/dms17-gmc
 
 Notes:
 - Auto-migrated from Semplice frontend API.

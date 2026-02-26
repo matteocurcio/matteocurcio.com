@@ -9,13 +9,11 @@ coverAlt: "Football Christmas"
 featured: false
 tags: []
 order: 100
-originalUrl: "https://matteocurcio.com/work/football-christmas"
 wpId: 28106
 wpCategoryIds:
   - "301"
 ---
 
-Original: https://matteocurcio.com/work/football-christmas
 
 Notes:
 - Auto-migrated from Semplice frontend API.

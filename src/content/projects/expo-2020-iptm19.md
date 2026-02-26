@@ -9,13 +9,11 @@ coverAlt: "International Participants Meeting 2019"
 featured: false
 tags: []
 order: 100
-originalUrl: "https://matteocurcio.com/work/expo-2020-iptm19"
 wpId: 27428
 wpCategoryIds:
   - "267"
 ---
 
-Original: https://matteocurcio.com/work/expo-2020-iptm19
 
 Notes:
 - Auto-migrated from Semplice frontend API.

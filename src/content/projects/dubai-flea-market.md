@@ -9,13 +9,11 @@ coverAlt: "Dubai Flea Market"
 featured: false
 tags: []
 order: 100
-originalUrl: "https://matteocurcio.com/work/dubai-flea-market"
 wpId: 28817
 wpCategoryIds:
   - "351"
 ---
 
-Original: https://matteocurcio.com/work/dubai-flea-market
 
 Notes:
 - Auto-migrated from Semplice frontend API.

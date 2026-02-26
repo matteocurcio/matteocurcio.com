@@ -9,13 +9,11 @@ coverAlt: "National Hero"
 featured: false
 tags: []
 order: 100
-originalUrl: "https://matteocurcio.com/work/national-hero"
 wpId: 27897
 wpCategoryIds:
   - "301"
 ---
 
-Original: https://matteocurcio.com/work/national-hero
 
 Notes:
 - Auto-migrated from Semplice frontend API.

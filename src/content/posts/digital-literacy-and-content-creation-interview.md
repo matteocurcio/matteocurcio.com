@@ -6,7 +6,6 @@ cover: "https://www.rmit.edu.au/content/dam/rmit/au/en/library/adobe/matteo-adob
 coverAlt: "Digital literacy and content creation (interview)"
 tags: []
 draft: false
-originalUrl: "https://matteocurcio.com/digital-literacy-and-content-creation-interview"
 ---
 
 <h2 class="wp-block-heading">Building creative confidence through digital literacy</h2>

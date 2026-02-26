@@ -9,13 +9,11 @@ coverAlt: "Upcycling"
 featured: false
 tags: []
 order: 100
-originalUrl: "https://matteocurcio.com/work/ikea-temporary-store-duplicate"
 wpId: 28690
 wpCategoryIds:
   - "351"
 ---
 
-Original: https://matteocurcio.com/work/ikea-temporary-store-duplicate
 
 Notes:
 - Auto-migrated from Semplice frontend API.

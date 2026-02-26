@@ -9,13 +9,11 @@ coverAlt: "IKEA Temporary Store"
 featured: false
 tags: []
 order: 100
-originalUrl: "https://matteocurcio.com/work/ikea"
 wpId: 28683
 wpCategoryIds:
   - "351"
 ---
 
-Original: https://matteocurcio.com/work/ikea
 
 Notes:
 - Auto-migrated from Semplice frontend API.

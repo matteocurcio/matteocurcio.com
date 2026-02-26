@@ -9,13 +9,11 @@ coverAlt: "Dora the Explorer"
 featured: false
 tags: []
 order: 100
-originalUrl: "https://matteocurcio.com/work/dora-the-explorer"
 wpId: 28180
 wpCategoryIds:
   - "301"
 ---
 
-Original: https://matteocurcio.com/work/dora-the-explorer
 
 Notes:
 - Auto-migrated from Semplice frontend API.

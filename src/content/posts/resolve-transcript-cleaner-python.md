@@ -6,7 +6,6 @@ cover: "/assets/services/common/Screenshot-2025-08-19-at-2.29.01-pm.png"
 coverAlt: "From Resolve Studio 20 AI Transcript to Readable Dialogue with Python"
 tags: []
 draft: false
-originalUrl: "https://matteocurcio.com/resolve-transcript-cleaner-python"
 ---
 
 <p>When working on interviews or documentaries, DaVinci Resolve’s <strong>transcription tool</strong> is a lifesaver. It can automatically generate a text transcript of a timeline, complete with speaker detection. </p>

@@ -9,13 +9,11 @@ coverAlt: "Kakadu Complex"
 featured: false
 tags: []
 order: 100
-originalUrl: "https://matteocurcio.com/work/kakadu-complex"
 wpId: 28378
 wpCategoryIds:
   - "301"
 ---
 
-Original: https://matteocurcio.com/work/kakadu-complex
 
 Notes:
 - Auto-migrated from Semplice frontend API.

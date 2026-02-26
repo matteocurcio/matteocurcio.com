@@ -1,6 +1,30 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
+const ABOUT_HEADLINES = [
+  "The most interesting problems don't come with job titles. Neither does the work I do.",
+  "I've always worked at the intersection of things that don't have a name yet.",
+  "My work has never fit a single category. That's by design.",
+  "The most interesting problems don't come with job titles. Neither does the work I do.",
+  "Creative technologist is the closest thing I've found - and even that undersells it.",
+  "Twenty years of work that crosses every boundary except quality.",
+  "I build things that require knowing how everything connects.",
+  "Some people specialize. I've always followed the problem wherever it led.",
+  "The work spans creativity, technology, and strategy - because the best work always does.",
+  "I've spent two decades at the edge of what creative and technical actually mean.",
+  "Most of my best projects didn't have a brief. They had a problem.",
+  "I've never been entirely sure what to call what I do. It seems to work anyway.",
+  "Somewhere between creative and technical. Usually where the interesting parts are.",
+  "Not a specialist. Not a generalist. Something more practical than that.",
+  "I tend to work where the brief runs out.",
+  "The space between idea and execution is usually where you'll find me.",
+  "Comfortable in the grey area between art, systems, and deadlines.",
+  "I work on the parts projects argue about.",
+  "Bridging things that were meant to stay separate.",
+  "Helping ambitious ideas survive contact with reality.",
+  "Making creative work behave under pressure."
+];
+
 const aboutPhoto = "/assets/services/common/thumbnail_placeholder.jpg";
 const aboutAnimated = "/media/about.mp4";
 const aboutAnimatedFallback = "/assets/services/common/thumbnail_placeholder.jpg";
@@ -12,7 +36,7 @@ const aboutAnimatedFallback = "/assets/services/common/thumbnail_placeholder.jpg
   path="/about"
 >
   <article class="prose about-single-column">
-    <h1>I have never had a job title that quite fit. That has mostly been an advantage.</h1>
+    <h1 id="about-random-title">{ABOUT_HEADLINES[0]}</h1>
 
     <p>I am a Melbourne-based creative technologist with over twenty years of experience across post-production, content strategy, live media, and digital infrastructure.</p>
 
@@ -47,4 +71,15 @@ const aboutAnimatedFallback = "/assets/services/common/thumbnail_placeholder.jpg
 
     <p>If you are a creative who wants to work faster and think more clearly - I teach that, without the condescension.</p>
   </article>
+
+  <script is:inline define:vars={{ aboutHeadlines: ABOUT_HEADLINES }}>
+    const aboutTitle = document.getElementById("about-random-title");
+    if (aboutTitle && Array.isArray(aboutHeadlines) && aboutHeadlines.length > 0) {
+      const randomIndex = Math.floor(Math.random() * aboutHeadlines.length);
+      const randomHeadline = aboutHeadlines[randomIndex];
+      if (typeof randomHeadline === "string" && randomHeadline.trim().length > 0) {
+        aboutTitle.textContent = randomHeadline;
+      }
+    }
+  </script>
 </BaseLayout>

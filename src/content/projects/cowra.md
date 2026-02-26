@@ -10,13 +10,11 @@ videoUrl: "https://youtu.be/bpHxGsbt7oc"
 featured: false
 tags: []
 order: 100
-originalUrl: "https://matteocurcio.com/work/cowra"
 wpId: 28420
 wpCategoryIds:
   - "304"
 ---
 
-Original: https://matteocurcio.com/work/cowra
 
 Notes:
 - Auto-migrated from Semplice frontend API.

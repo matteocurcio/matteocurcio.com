@@ -9,13 +9,11 @@ coverAlt: "Merrie Melodies"
 featured: false
 tags: []
 order: 100
-originalUrl: "https://matteocurcio.com/work/merrie-melodies"
 wpId: 28947
 wpCategoryIds:
   - "351"
 ---
 
-Original: https://matteocurcio.com/work/merrie-melodies
 
 Notes:
 - Auto-migrated from Semplice frontend API.

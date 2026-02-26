@@ -9,13 +9,11 @@ coverAlt: "Find Your Place"
 featured: false
 tags: []
 order: 100
-originalUrl: "https://matteocurcio.com/work/find-your-place"
 wpId: 28085
 wpCategoryIds:
   - "301"
 ---
 
-Original: https://matteocurcio.com/work/find-your-place
 
 Notes:
 - Auto-migrated from Semplice frontend API.

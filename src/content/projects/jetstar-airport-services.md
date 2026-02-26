@@ -9,13 +9,11 @@ coverAlt: "Airport Services"
 featured: false
 tags: []
 order: 100
-originalUrl: "https://matteocurcio.com/work/jetstar-airport-services"
 wpId: 27903
 wpCategoryIds:
   - "304"
 ---
 
-Original: https://matteocurcio.com/work/jetstar-airport-services
 
 Notes:
 - Auto-migrated from Semplice frontend API.

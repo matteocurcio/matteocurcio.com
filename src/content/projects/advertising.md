@@ -9,13 +9,11 @@ coverAlt: "Advertising"
 featured: false
 tags: []
 order: 100
-originalUrl: "https://matteocurcio.com/work/advertising"
 wpId: 28461
 wpCategoryIds:
   - "334"
 ---
 
-Original: https://matteocurcio.com/work/advertising
 
 Notes:
 - Auto-migrated from Semplice frontend API.

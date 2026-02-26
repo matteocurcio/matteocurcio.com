@@ -9,14 +9,12 @@ coverAlt: "Be On It"
 featured: false
 tags: []
 order: 100
-originalUrl: "https://matteocurcio.com/work/be-on-it-ent"
 wpId: 28196
 wpCategoryIds:
   - "304"
   - "301"
 ---
 
-Original: https://matteocurcio.com/work/be-on-it-ent
 
 Notes:
 - Auto-migrated from Semplice frontend API.

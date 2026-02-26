@@ -9,13 +9,11 @@ coverAlt: "GinFusion"
 featured: false
 tags: []
 order: 100
-originalUrl: "https://matteocurcio.com/work/ginfusion"
 wpId: 28116
 wpCategoryIds:
   - "301"
 ---
 
-Original: https://matteocurcio.com/work/ginfusion
 
 Notes:
 - Auto-migrated from Semplice frontend API.

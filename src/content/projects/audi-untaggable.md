@@ -9,13 +9,11 @@ coverAlt: "Audi #Untaggable"
 featured: false
 tags: []
 order: 100
-originalUrl: "https://matteocurcio.com/work/audi-untaggable"
 wpId: 28846
 wpCategoryIds:
   - "351"
 ---
 
-Original: https://matteocurcio.com/work/audi-untaggable
 
 Notes:
 - Auto-migrated from Semplice frontend API.

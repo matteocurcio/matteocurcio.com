@@ -9,13 +9,11 @@ coverAlt: "Ultramarine"
 featured: false
 tags: []
 order: 100
-originalUrl: "https://matteocurcio.com/work/ultramarine"
 wpId: 28265
 wpCategoryIds:
   - "333"
 ---
 
-Original: https://matteocurcio.com/work/ultramarine
 
 Notes:
 - Auto-migrated from Semplice frontend API.

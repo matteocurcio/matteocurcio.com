@@ -9,13 +9,11 @@ coverAlt: "Mrajeeb Al Fhood"
 featured: false
 tags: []
 order: 100
-originalUrl: "https://matteocurcio.com/work/mrajeeb-al-fhood"
 wpId: 27675
 wpCategoryIds:
   - "278"
 ---
 
-Original: https://matteocurcio.com/work/mrajeeb-al-fhood
 
 Notes:
 - Auto-migrated from Semplice frontend API.

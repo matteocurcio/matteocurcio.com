@@ -6,7 +6,7 @@
 ## Destination rule
 Copy each recovered file to the exact path under:
 
-`public/migrated/wp-content/uploads/`
+`public/assets/`
 
 and keep the exact filename from the manifest.
 

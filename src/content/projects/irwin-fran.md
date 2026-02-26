@@ -9,13 +9,11 @@ coverAlt: "Irwin & Fran"
 featured: false
 tags: []
 order: 100
-originalUrl: "https://matteocurcio.com/work/irwin-fran"
 wpId: 28164
 wpCategoryIds:
   - "302"
 ---
 
-Original: https://matteocurcio.com/work/irwin-fran
 
 Notes:
 - Auto-migrated from Semplice frontend API.

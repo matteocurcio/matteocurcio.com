@@ -10,7 +10,6 @@ tags:
   - "Pipeline"
   - "Post Production"
 draft: false
-originalUrl: "https://matteocurcio.com/capture-craft-workshop"
 ---
 
 ## Reflections from a Workshop with Hootan Haghshenas, CSI

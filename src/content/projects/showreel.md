@@ -9,13 +9,11 @@ coverAlt: "Showreel"
 featured: false
 tags: []
 order: 100
-originalUrl: "https://matteocurcio.com/work/showreel"
 wpId: 27434
 wpCategoryIds:
   - "274"
 ---
 
-Original: https://matteocurcio.com/work/showreel
 
 Notes:
 - Auto-migrated from Semplice frontend API.

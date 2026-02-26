@@ -9,13 +9,11 @@ coverAlt: "Doodle Bears"
 featured: false
 tags: []
 order: 100
-originalUrl: "https://matteocurcio.com/work/doodle-bears"
 wpId: 28237
 wpCategoryIds:
   - "301"
 ---
 
-Original: https://matteocurcio.com/work/doodle-bears
 
 Notes:
 - Auto-migrated from Semplice frontend API.

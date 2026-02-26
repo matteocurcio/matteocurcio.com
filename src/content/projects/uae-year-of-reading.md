@@ -9,13 +9,11 @@ coverAlt: "UAE Year of Reading"
 featured: false
 tags: []
 order: 100
-originalUrl: "https://matteocurcio.com/work/uae-year-of-reading"
 wpId: 28672
 wpCategoryIds:
   - "351"
 ---
 
-Original: https://matteocurcio.com/work/uae-year-of-reading
 
 Notes:
 - Auto-migrated from Semplice frontend API.

@@ -9,13 +9,11 @@ coverAlt: "Business Events Presentation"
 featured: false
 tags: []
 order: 100
-originalUrl: "https://matteocurcio.com/work/dubai-business-events"
 wpId: 27508
 wpCategoryIds:
   - "267"
 ---
 
-Original: https://matteocurcio.com/work/dubai-business-events
 
 Notes:
 - Auto-migrated from Semplice frontend API.

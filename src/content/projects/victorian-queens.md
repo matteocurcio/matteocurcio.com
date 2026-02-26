@@ -9,13 +9,11 @@ coverAlt: "Victorian Queens"
 featured: false
 tags: []
 order: 100
-originalUrl: "https://matteocurcio.com/work/victorian-queens"
 wpId: 27861
 wpCategoryIds:
   - "302"
 ---
 
-Original: https://matteocurcio.com/work/victorian-queens
 
 Notes:
 - Auto-migrated from Semplice frontend API.

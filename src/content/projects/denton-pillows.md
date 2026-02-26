@@ -10,13 +10,11 @@ videoUrl: "https://youtu.be/pLsdj9TqRXk"
 featured: false
 tags: []
 order: 100
-originalUrl: "https://matteocurcio.com/work/denton-pillows"
 wpId: 27961
 wpCategoryIds:
   - "301"
 ---
 
-Original: https://matteocurcio.com/work/denton-pillows
 
 Notes:
 - Auto-migrated from Semplice frontend API.

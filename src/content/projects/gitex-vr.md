@@ -9,13 +9,11 @@ coverAlt: "Gitex VR"
 featured: false
 tags: []
 order: 100
-originalUrl: "https://matteocurcio.com/work/gitex-vr"
 wpId: 27642
 wpCategoryIds:
   - "278"
 ---
 
-Original: https://matteocurcio.com/work/gitex-vr
 
 Notes:
 - Auto-migrated from Semplice frontend API.

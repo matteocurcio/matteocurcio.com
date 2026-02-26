@@ -9,13 +9,11 @@ coverAlt: "Drive"
 featured: false
 tags: []
 order: 100
-originalUrl: "https://matteocurcio.com/work/drive"
 wpId: 28387
 wpCategoryIds:
   - "304"
 ---
 
-Original: https://matteocurcio.com/work/drive
 
 Notes:
 - Auto-migrated from Semplice frontend API.

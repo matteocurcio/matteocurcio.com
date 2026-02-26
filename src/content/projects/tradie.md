@@ -9,13 +9,11 @@ coverAlt: "Tradie"
 featured: false
 tags: []
 order: 100
-originalUrl: "https://matteocurcio.com/work/tradie"
 wpId: 28141
 wpCategoryIds:
   - "301"
 ---
 
-Original: https://matteocurcio.com/work/tradie
 
 Notes:
 - Auto-migrated from Semplice frontend API.

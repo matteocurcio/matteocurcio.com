@@ -6,7 +6,6 @@ cover: "/assets/services/common/Templates.png"
 coverAlt: "Post Haste for Mac: A Must-Have Tool for Organizing Creative Projects"
 tags: []
 draft: false
-originalUrl: "https://matteocurcio.com/post-haste-for-mac-a-must-have-tool-for-organizing-creative-projects"
 ---
 
 <p>If you work in video production, motion graphics, photography, or any creative field where projects multiply quickly, you know how chaotic things can get without a system. That’s where <strong>Post Haste</strong>, a free app by <a href="https://www.digitalrebellion.com/posthaste/" target="_blank" rel="noreferrer noopener">Digital Rebellion</a>, comes in. It’s a simple but powerful tool designed to standardize your project structure and keep your workflow consistent.</p>

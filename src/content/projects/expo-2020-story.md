@@ -9,13 +9,11 @@ coverAlt: "EXPO 2020 Story"
 featured: false
 tags: []
 order: 100
-originalUrl: "https://matteocurcio.com/work/expo-2020-story"
 wpId: 27374
 wpCategoryIds:
   - "267"
 ---
 
-Original: https://matteocurcio.com/work/expo-2020-story
 
 Notes:
 - Auto-migrated from Semplice frontend API.
