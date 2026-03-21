@@ -41,8 +41,10 @@ Persistent handoff for the Astro site so the working state does not depend on Co
 
 - Use `./tools/checkpoint-wip.sh "short message"` to create a dated checkpoint branch, commit all current repo changes, and push the checkpoint to GitHub.
 - Use `./sync-to-github.sh "message"` only when you intentionally want to commit and push the current branch as-is.
+- Use `./tools/sync-docs-to-homelab.sh` to mirror the markdown documentation to `~/Library/Mobile Documents/com~apple~CloudDocs/HomeLab/Website/matteocurcio.com`.
 
 ## Notes
 
 - The durable source of truth is the git repo plus GitHub remote, not the Codex app sidebar/history.
+- Documentation also has a second copy in `HomeLab/Website/matteocurcio.com`.
 - Keep secrets out of git. Local env files under `tools/**/.env` are ignored.

@@ -39,6 +39,18 @@ git branch -r | rg 'origin/codex/checkpoint'
 git checkout -b resume-work --track origin/codex/checkpoint-YYYYMMDD-HHMMSS
 ```
 
+## Documentation mirror
+
+Project documentation is also mirrored outside the repo in HomeLab.
+
+```bash
+./tools/sync-docs-to-homelab.sh
+```
+
+That copies the repo markdown docs to:
+
+`~/Library/Mobile Documents/com~apple~CloudDocs/HomeLab/Website/matteocurcio.com`
+
 ## Content updates
 
 Projects are content files in:
