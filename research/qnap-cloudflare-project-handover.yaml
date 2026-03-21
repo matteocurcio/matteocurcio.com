@@ -1,0 +1,181 @@
+project:
+  name: matteocurcio client file access
+  generated_at_local: "2026-03-06T10:55:00+11:00"
+  generated_by: codex
+  objective:
+    - Publish QNAP web login externally via Cloudflare Tunnel
+    - Keep website deployment and file access architecture separate
+    - Isolate each client/user into own folder/share
+
+current_status:
+  cloudflare_tunnel: healthy
+  qnap_origin_http_8080: reachable
+  files_subdomain: working
+  user1_isolation: applied
+
+cloudflare:
+  account_zone:
+    domain: matteocurcio.com
+  pages:
+    production_domain: matteocurcio.com
+    preview_domain: matteocurcio.pages.dev
+  tunnel:
+    name: files.matteocurcio.com
+    tunnel_id: 2b11de3a-b4b6-4b8a-8de4-0cf6afef87c6
+    state: healthy
+    replicas: 1
+    route_type: Published application
+    public_hostname: files.matteocurcio.com
+    origin_service_url: http://10.0.60.10:8080
+    ingress_fallback: http_status:404
+    important:
+      - Do not use https://10.0.60.10:8080 (TLS handshake error)
+      - Do not use https://10.0.60.10:443 without noTLSVerify or proper SAN cert (x509 SAN mismatch)
+  troubleshooting_history:
+    - version_2: https://10.0.60.10:8080 -> failed (tls first record does not look like handshake)
+    - version_3: https://10.0.60.10:443 -> failed (certificate lacks IP SAN for 10.0.60.10)
+    - version_4: https://10.0.60.10:8080 -> failed (same handshake issue)
+    - version_5: http://10.0.60.10:8080 -> working
+
+qnap:
+  host:
+    lan_ip: 10.0.60.10
+    os: QNAP Linux (5.10.60-qnap)
+  web_origin:
+    protocol: http
+    port: 8080
+    validated_by:
+      - curl http://127.0.0.1:8080 -> HTTP 200
+      - curl http://10.0.60.10:8080 -> HTTP 200
+
+  cloudflared_install:
+    binary_path: /share/CACHEDEV1_DATA/.cloudflared/cloudflared
+    token_path: /share/CACHEDEV1_DATA/.cloudflared/tunnel.token
+    log_path: /share/CACHEDEV1_DATA/.cloudflared/tunnel.log
+    watchdog_script: /share/CACHEDEV1_DATA/.cloudflared/ensure-cloudflared.sh
+    watchdog_script_content:
+      - "#!/bin/sh"
+      - "BASE=/share/CACHEDEV1_DATA/.cloudflared"
+      - "BIN=\"$BASE/cloudflared\""
+      - "TOKEN_FILE=\"$BASE/tunnel.token\""
+      - "LOG=\"$BASE/tunnel.log\""
+      - "[ -x \"$BIN\" ] || exit 1"
+      - "[ -s \"$TOKEN_FILE\" ] || exit 2"
+      - "if ps | grep -F \"$BIN tunnel --no-autoupdate run --token\" | grep -v grep >/dev/null 2>&1; then exit 0; fi"
+      - "TOKEN=$(cat \"$TOKEN_FILE\")"
+      - "\"$BIN\" tunnel --no-autoupdate run --token \"$TOKEN\" >> \"$LOG\" 2>&1 &"
+      - "exit 0"
+    cron:
+      entry: "*/5 * * * * /share/CACHEDEV1_DATA/.cloudflared/ensure-cloudflared.sh >/dev/null 2>&1"
+      file: /etc/config/crontab
+    running_process_pattern: "/share/CACHEDEV1_DATA/.cloudflared/cloudflared tunnel --no-autoupdate run --token"
+
+  shared_folders_and_access:
+    remote_share:
+      smb_section: remote
+      path: /share/CACHEDEV1_DATA/remote
+      browsable: "no"
+      valid_users:
+        - root
+        - administrators
+        - admin
+      write_list:
+        - administrators
+        - admin
+      invalid_users:
+        - guest
+        - user1
+
+    user1_share:
+      smb_section: user1
+      path: /share/CACHEDEV1_DATA/remote/user1
+      browsable: "yes"
+      public: "no"
+      valid_users:
+        - root
+        - administrators
+        - admin
+        - user1
+      write_list:
+        - administrators
+        - admin
+        - user1
+      filesystem_owner: "user1:everyone"
+      filesystem_mode: "700"
+
+  user_isolation_automation:
+    script_path: /share/CACHEDEV1_DATA/remote/provision_isolated_user.sh
+    usage: "/share/CACHEDEV1_DATA/remote/provision_isolated_user.sh <username>"
+    script_behavior:
+      - Requires existing QTS user
+      - Creates /share/CACHEDEV1_DATA/remote/<username>
+      - Sets owner to <username>:everyone and chmod 700
+      - Creates SMB share [<username>] mapped to that folder
+      - Allows access only to root/admin/administrators/<username>
+      - Denies that user on other shares: Web, Public, STUDIO, WORKS, BACKUP, PLEX, pbs-replica, remote
+      - Restarts SMB service
+
+opnsense:
+  required_for_tunnel_mode:
+    - No inbound NAT/port-forward to QNAP required
+    - Allow outbound from QNAP to internet on tcp/443
+    - Allow outbound from QNAP to internet on tcp/udp 7844 (QUIC tunnel transport)
+  notes:
+    - Tunnel showed healthy edge registrations, indicating outbound path is functioning
+
+website_repo_changes_related_to_portal:
+  repo_root: /Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com
+  changed:
+    - simplified /src/pages/client.astro to handoff page linking to files.matteocurcio.com
+    - removed old Cloudflare Functions upload/auth backend under functions/api/client/
+    - removed scripts/hash-client-password.mjs
+    - documented setup in research/client-portal-setup.md
+
+security_notes:
+  - Tokens and passwords should be rotated after setup/handover
+  - Keep QNAP admin remote exposure minimized (prefer Access policy before login page)
+  - Use one account per client, never shared credentials
+  - Keep per-user folder perms at 700 and separate SMB share per user
+
+recommended_next_steps:
+  - Add Cloudflare Access policy on files.matteocurcio.com (allowlisted emails only)
+  - Disable remote admin login where possible; enforce 2FA for admins
+  - For each new client:
+      - create QTS user
+      - run provision_isolated_user.sh <username>
+      - test login and upload in private window
+  - Add backup/retention policy for /share/CACHEDEV1_DATA/remote
+
+admin_backend:
+  location: /Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com/tools/qnap-admin
+  purpose: "Password-protected panel to create/delete users, reset passwords, and provision isolated QNAP access."
+  runtime: nodejs
+  start_command: "npm start"
+  dev_command: "npm run dev"
+  listen_port_default: 8787
+  required_env:
+    - ADMIN_USERNAME
+    - ADMIN_PASSWORD_HASH
+    - SESSION_SECRET
+    - QNAP_HOST
+    - QNAP_PORT
+    - QNAP_USERNAME
+    - QNAP_PASSWORD
+  files:
+    - package.json
+    - server.mjs
+    - hash-password.mjs
+    - .env.example
+    - README.md
+  api_actions:
+    - POST /api/users/create      # add user + run /share/CACHEDEV1_DATA/remote/provision_isolated_user.sh
+    - POST /api/users/password    # reset password via chpasswd
+    - POST /api/users/delete      # delete SMB share, remote folder, and user account
+    - POST /api/users/provision   # rerun isolation provisioning
+    - GET  /api/users/list        # list local users (uid>=1000, excluding admin)
+  qnap_commands_used:
+    - "adduser -D -h /share/homes/<user> -s /bin/sh -G everyone -p <pass> <user>"
+    - "echo '<user>:<pass>' | chpasswd"
+    - "/sbin/delshare <user>"
+    - "deluser <user>"
+    - "/share/CACHEDEV1_DATA/remote/provision_isolated_user.sh <user>"

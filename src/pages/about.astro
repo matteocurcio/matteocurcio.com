@@ -25,6 +25,32 @@ const ABOUT_HEADLINES = [
   "Making creative work behave under pressure."
 ];
 
+const ABOUT_INTRO_PARAGRAPHS = [
+  "I am a Melbourne-based creative technologist with over twenty years of experience across post-production, content strategy, live media, and digital infrastructure.",
+  "I'm a Melbourne-based creative technologist. That's the shortest label that covers twenty years across post-production, content strategy, live media, and digital infrastructure, even if it still feels slightly inaccurate.",
+  "For lack of a better term, I'm a creative technologist based in Melbourne. The work has moved through post-production, strategy, live media, and digital systems for more than two decades.",
+  "I work across post-production, content strategy, live media, and digital infrastructure. Creative technologist is the closest shorthand, though the work rarely stays that tidy.",
+  "I've spent over twenty years moving between post-production suites, strategy rooms, live environments, and infrastructure diagrams across Europe, the Middle East, and Australia. Melbourne is home. Creative technologist is the compromise title.",
+  "Based in Melbourne now, I've built a career that refuses to sit in one department. Post-production, strategy, live media, digital infrastructure. Two decades of crossing the aisle.",
+  "I help ideas survive the journey from concept to delivery. That has meant twenty years across post-production, content strategy, live media, and the systems that quietly hold it all together.",
+  "Some careers ladder upward. Mine has tended to move sideways, across post-production, strategy, live media, and digital infrastructure - from Europe to Dubai to Melbourne.",
+  "My work lives where creative ambition meets technical constraint. For the past twenty years, that has meant post-production, content strategy, live media, and digital infrastructure across three continents.",
+  "I build and refine the machinery behind creative work. Over two decades across Europe, Dubai, and now Melbourne, that has spanned post-production, strategy, live environments, and digital systems.",
+  "If a project needs both taste and infrastructure, I'm usually involved. I'm a Melbourne-based creative technologist working across post-production, strategy, live media, and digital platforms for over twenty years.",
+  "I've never stayed in one lane for long. For more than twenty years, the work has crossed post-production, content strategy, live media, and digital infrastructure, based in Melbourne, operating wherever needed.",
+  "I work at the intersection of creative output and the systems that support it. Across Europe, Dubai, and now Melbourne, that has meant post-production, strategy, live media, and digital infrastructure, often in the same project.",
+  "I help producers deliver ambitious work without losing sleep. Based in Melbourne now, I've spent over twenty years across post-production, content strategy, live media, and the infrastructure that keeps delivery predictable.",
+  "If there's a deadline, a budget, and something technically delicate involved, I'm usually useful. I'm a Melbourne-based creative technologist working across post-production, strategy, live environments, and digital systems for two decades.",
+  "My job is to make complex creative projects feel straightforward. For more than twenty years across Europe, Dubai, and now Melbourne, that has meant moving between post-production, content strategy, live media, and delivery infrastructure.",
+  "I work with studios to make creative ambition operationally reliable. Based in Melbourne, my experience spans over twenty years across post-production pipelines, collaboration systems, live media, and digital infrastructure.",
+  "Clean conform, disciplined media management, predictable versioning. That has been the thread through twenty years of work across Europe, Dubai, and Melbourne spanning post-production, strategy, live environments, and technical systems.",
+  "I build and refine the workflows that creative teams rely on. Over two decades across Europe, Dubai, and Melbourne, that has covered post-production, content strategy, live media, and secure digital infrastructure.",
+  "I teach the parts the tutorials usually skip. I'm a Melbourne-based creative technologist with over twenty years across post-production, strategy, live media, and the systems behind professional delivery.",
+  "My work spans the tools, the workflow, and the thinking behind them. For more than twenty years across three continents, that has meant post-production, content strategy, live environments, and digital infrastructure.",
+  "I work across post-production and the systems that support it, and I teach from real constraints, not ideal ones. Melbourne-based today, with two decades across Europe, the Middle East, and Australia.",
+  "I work where creative standards meet operational reality. Based in Melbourne, with over twenty years across Europe, Dubai, and Australia in post-production, strategy, live media, and digital infrastructure."
+];
+
 const aboutPhoto = "/assets/services/common/thumbnail_placeholder.jpg";
 const aboutAnimated = "/media/about.mp4";
 const aboutAnimatedFallback = "/assets/services/common/thumbnail_placeholder.jpg";
@@ -38,7 +64,7 @@ const aboutAnimatedFallback = "/assets/services/common/thumbnail_placeholder.jpg
   <article class="prose about-single-column">
     <h1 id="about-random-title">{ABOUT_HEADLINES[0]}</h1>
 
-    <p>I am a Melbourne-based creative technologist with over twenty years of experience across post-production, content strategy, live media, and digital infrastructure.</p>
+    <p id="about-random-intro">{ABOUT_INTRO_PARAGRAPHS[0]}</p>
 
     <p>I focus on both the result and the system that creates it. If the process is fragile, the output eventually shows it. I value elegance - in the code, in the edit, in the structure of a workflow, in the way decisions connect without friction. Clear thinking. Clean execution. Nothing decorative without purpose.</p>
 
@@ -72,13 +98,22 @@ const aboutAnimatedFallback = "/assets/services/common/thumbnail_placeholder.jpg
     <p>If you are a creative who wants to work faster and think more clearly - I teach that, without the condescension.</p>
   </article>
 
-  <script is:inline define:vars={{ aboutHeadlines: ABOUT_HEADLINES }}>
+  <script is:inline define:vars={{ aboutHeadlines: ABOUT_HEADLINES, aboutIntros: ABOUT_INTRO_PARAGRAPHS }}>
     const aboutTitle = document.getElementById("about-random-title");
     if (aboutTitle && Array.isArray(aboutHeadlines) && aboutHeadlines.length > 0) {
       const randomIndex = Math.floor(Math.random() * aboutHeadlines.length);
       const randomHeadline = aboutHeadlines[randomIndex];
       if (typeof randomHeadline === "string" && randomHeadline.trim().length > 0) {
         aboutTitle.textContent = randomHeadline;
+      }
+    }
+
+    const aboutIntro = document.getElementById("about-random-intro");
+    if (aboutIntro && Array.isArray(aboutIntros) && aboutIntros.length > 0) {
+      const randomIndex = Math.floor(Math.random() * aboutIntros.length);
+      const randomIntro = aboutIntros[randomIndex];
+      if (typeof randomIntro === "string" && randomIntro.trim().length > 0) {
+        aboutIntro.textContent = randomIntro;
       }
     }
   </script>

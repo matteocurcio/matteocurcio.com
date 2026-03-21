@@ -2,11 +2,9 @@ node_modules
 dist
 .astro
 .DS_Store
-
-# Local research artifacts (may include session/crawl output)
-research/wp/
-research/*.html
-research/*.txt
+tools/**/node_modules
+tools/**/.env
+*.log
 
 # Local research artifacts (may include session/crawl output)
 research/wp/

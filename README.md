@@ -15,6 +15,30 @@ npm run dev
 npm run build
 ```
 
+## Persistent checkpoints
+
+Codex app updates should not matter if the repo state is committed and pushed.
+
+Create a remote checkpoint branch at any time with:
+
+```bash
+./tools/checkpoint-wip.sh "short message"
+```
+
+That script will:
+
+1. Create a dated `codex/checkpoint-*` branch
+2. Commit the current repo state
+3. Push the checkpoint to GitHub
+
+To resume later:
+
+```bash
+git fetch origin --prune
+git branch -r | rg 'origin/codex/checkpoint'
+git checkout -b resume-work --track origin/codex/checkpoint-YYYYMMDD-HHMMSS
+```
+
 ## Content updates
 
 Projects are content files in:

@@ -7,13 +7,15 @@ interface Props {
   description?: string;
   path?: string;
   navSection?: "works" | "reels" | "about" | "services" | "tutoring" | "blog";
+  noIndex?: boolean;
 }
 
 const {
   title,
   description = "Portfolio of Matteo Curcio. Finishing, motion, editorial, tutoring, and studio workflow consulting.",
   path = "/",
-  navSection
+  navSection,
+  noIndex = false
 } = Astro.props;
 
 const canonical = new URL(path, Astro.site);
@@ -39,6 +41,7 @@ const socialLinks = [
   { label: "LinkedIn", href: SITE_CONFIG.social.linkedin, icon: "/icons/social/linkedin.svg" },
   { label: "GitHub", href: SITE_CONFIG.social.github, icon: "/icons/social/github.svg" },
   { label: "Instagram", href: SITE_CONFIG.social.instagram, icon: "/icons/social/instagram.svg" },
+  { label: "Substack", href: SITE_CONFIG.social.substack, icon: "/icons/social/substack.svg" },
   { label: "Pinterest", href: SITE_CONFIG.social.pinterest, icon: "/icons/social/pinterest.svg" },
   { label: "YouTube", href: SITE_CONFIG.social.youtube, icon: "/icons/social/youtube.svg" }
 ];
@@ -51,7 +54,10 @@ const socialLinks = [
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {noIndex && <meta name="robots" content="noindex, nofollow" />}
     <link rel="canonical" href={canonical.href} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.svg" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />

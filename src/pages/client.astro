@@ -1,0 +1,70 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const portalUrl = "https://files.matteocurcio.com";
+---
+
+<BaseLayout
+  title="Client Portal | Matteo Curcio"
+  description="Secure client file transfer portal."
+  path="/client"
+  noIndex={true}
+>
+  <section class="client-portal">
+    <h1>Client File Portal</h1>
+    <p>
+      Upload and download files through the secure transfer portal.
+      You will sign in with your own credentials and only see your own folder.
+    </p>
+
+    <div class="portal-box">
+      <a class="portal-cta" href={portalUrl} target="_blank" rel="noopener noreferrer">
+        Open Secure File Portal
+      </a>
+      <p class="portal-note">
+        If you do not have access yet, email
+        <a href="mailto:hello@matteocurcio.com">hello@matteocurcio.com</a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .client-portal {
+    max-width: 780px;
+    margin: 0 auto;
+    display: grid;
+    gap: 1rem;
+  }
+
+  .client-portal p {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .portal-box {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    padding: 1.2rem;
+    display: grid;
+    gap: 0.7rem;
+  }
+
+  .portal-cta {
+    display: inline-flex;
+    justify-self: start;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 0.52rem 0.95rem;
+    font-size: 0.84rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    background: #fff;
+  }
+
+  .portal-note {
+    font-size: 0.9rem;
+  }
+</style>

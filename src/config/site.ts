@@ -7,6 +7,7 @@ export const SITE_CONFIG = {
     linkedin: "https://www.linkedin.com/in/matteocurcio/",
     github: "https://github.com/matteocurcio",
     instagram: "https://www.instagram.com/matteo.color",
+    substack: "https://matteocurcio.substack.com/",
     pinterest: "https://www.pinterest.com/matteocurcio/",
     youtube: "https://www.youtube.com/@matteocurcio"
   }
