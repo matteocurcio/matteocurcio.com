@@ -1,7 +1,7 @@
 ---
-title: "Downscaling Without Damaging the Image: Eamon Wyss from 4K to 1080p"
+title: "When 4K Has to Become 1080p Without Falling Apart"
 date: "2026-03-31"
-excerpt: "A practical breakdown of how I downscaled Eamon Wyss's Eagle Eye from 4K to 1080p while preserving delicate detail, gradients, and texture with a controlled ffmpeg workflow."
+excerpt: "A practical breakdown of how to downscale intricate 4K imagery to 1080p while preserving fine detail, gradients, and texture with a controlled ffmpeg workflow."
 cover: "/images/blog/downscaling-eamon-wyss/eagle-eye-cover.jpg"
 coverAlt: "Eamon Wyss Eagle Eye aerial still with violet water and pale shoreline textures"
 tags:
@@ -38,13 +38,13 @@ The project contains exactly the kind of detail that punishes generic resizing:
 - broad colour fields where minor contamination becomes noticeable
 - texture that depends on local separation rather than obvious sharpness
 
-This is where the usual shortcut of "export from the NLE and trust the defaults" becomes less convincing.
+This is where the usual shortcut of "export straight from Resolve and trust the defaults" becomes less convincing.
 
-To be clear, [DaVinci Resolve](/tutoring) is a production-safe tool and often sufficient. I use it happily. But sufficient is not the same thing as optimal for every specific resampling problem. If the delivery requirement is sensitive enough, external resampling with `ffmpeg` gives me a level of control that I prefer.
+To be clear, this project was graded in [DaVinci Resolve Studio](/tutoring), which is absolutely production-safe and often sufficient for delivery. I use it happily. But sufficient is not the same thing as optimal for every specific resampling problem. If the delivery requirement is sensitive enough, external resampling with `ffmpeg` gives me a level of control that I prefer.
 
-## Why I did not treat the NLE export as the final answer
+## Why I did not treat the Resolve export as the final answer
 
-Most NLE export paths are designed to be practical, stable, and fast. That is the right priority most of the time. But they are still abstractions. The scaling algorithm is often one decision inside a much larger export pipeline, and the application is balancing many concerns at once: decode, transforms, render cache behaviour, output codec, colour management, and delivery presets.
+Resolve Studio's export path is designed to be practical, stable, and fast. That is the right priority most of the time. But it is still an abstraction. The scaling algorithm is one decision inside a much larger export pipeline, and the application is balancing many concerns at once: decode, transforms, render cache behaviour, output codec, colour management, and delivery presets.
 
 For intricate artwork, I want to isolate the scaling step and make the intent explicit.
 
@@ -62,7 +62,12 @@ If I need a robust 1080p master for further review, archive, or downstream deriv
 My approach was straightforward. I started from the 4K source master and created a dedicated 1080p ProRes 422 HQ QuickTime export with `ffmpeg`, using `zscale` for the resize and `spline36` as the resampling filter.
 
 ```bash
-ffmpeg -i input.mov -vf "zscale=width=1920:height=1080:filter=spline36:matrix=bt709:transfer=bt709:primaries=bt709" -c:v prores_ks -profile:v 3 -pix_fmt yuv422p10le -color_primaries bt709 -color_trc bt709 -colorspace bt709 -c:a copy output_1080p_proresHQ.mov
+ffmpeg -i input.mov \
+  -vf "zscale=width=1920:height=1080:filter=spline36:matrix=bt709:transfer=bt709:primaries=bt709" \
+  -c:v prores_ks -profile:v 3 -pix_fmt yuv422p10le \
+  -color_primaries bt709 -color_trc bt709 -colorspace bt709 \
+  -c:a copy \
+  output_1080p_proresHQ.mov
 ```
 
 That command is not exotic. It is just explicit, which is the point.
@@ -111,7 +116,7 @@ ProRes 422 HQ was the right profile choice here because I wanted a robust interm
 
 ## Colour management and explicit Rec.709 tagging
 
-Colour problems do not always announce themselves dramatically. Sometimes they arrive as a file that looks slightly wrong in one player, slightly different in another, and "mostly fine" in the NLE that created it. That is exactly the kind of ambiguity I try to avoid.
+Colour problems do not always announce themselves dramatically. Sometimes they arrive as a file that looks slightly wrong in one player, slightly different in another, and "mostly fine" in the application that created it. That is exactly the kind of ambiguity I try to avoid.
 
 Because this output was intended as a 1080p Rec.709 master, I explicitly tagged the file with `bt709` primaries, transfer, and colourspace metadata. That does not replace proper colour management upstream, but it does reduce the chances of a downstream application making bad assumptions.
 
@@ -125,7 +130,7 @@ When artwork is this sensitive, I would rather trust a controlled resampling ste
 
 That is often the real test in post-production. Not whether a change is dramatic, but whether it avoids unnecessary damage.
 
-Resolve remains a strong option and, in many cases, entirely adequate. But for this specific 4K to 1080p downscale, `ffmpeg` with `zscale` and `spline36` gave me the kind of explicit control I wanted over resampling, colour metadata, and the final mezzanine file.
+Resolve Studio remained the grading environment for the project. But for this specific 4K to 1080p downscale, `ffmpeg` with `zscale` and `spline36` gave me the kind of explicit control I wanted over resampling, colour metadata, and the final mezzanine file.
 
 ## Conclusion
 
