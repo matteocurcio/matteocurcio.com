@@ -1,18 +1,213 @@
 ---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { CONTACT_MAILTO } from "../config/site";
+import PostCard from "../components/PostCard.astro";
+
+const latestPosts = (await getCollection("posts"))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.date.localeCompare(a.data.date))
+  .slice(0, 2);
+
+const featuredWorks = [
+  {
+    href: "/projects/a-gentle-giant/",
+    title: "A Gentle Giant",
+    client: "Gigabyte",
+    year: "2023",
+    discipline: "Motion",
+    image: "/assets/projects/gigabyte-a-gentle-giant/thumbnail_a_gentle_giant.webp",
+    video: "/assets/projects/gigabyte-a-gentle-giant/thumbnail_a_gentle_giant.mp4"
+  },
+  {
+    href: "/projects/amp/",
+    title: "Quay Quarter",
+    client: "AMP",
+    year: "2023",
+    discipline: "Motion",
+    image: "/assets/projects/amp-quay-quarter/thumbnail_amp.webp",
+    video: "/assets/projects/amp-quay-quarter/video_amp.mov"
+  },
+  {
+    href: "/projects/be-on-it-ent/",
+    title: "Be On It",
+    client: "News Corp",
+    year: "2023",
+    discipline: "Finishing",
+    image: "/assets/projects/news-corp-be-on-it/thumbnail_be_on_it_ent.webp",
+    video: "/assets/projects/news-corp-be-on-it/thumbnail_be_on_it_ent.mp4"
+  }
+];
+
+const serviceLanes = [
+  {
+    title: "Finishing",
+    body: "Colour, editorial, motion graphics, and delivery for commercial and branded work that needs to hold together under pressure.",
+    href: "/services"
+  },
+  {
+    title: "Workflow",
+    body: "Creative infrastructure, delivery systems, and process design for studios that are tired of avoidable chaos.",
+    href: "/services"
+  },
+  {
+    title: "Coaching",
+    body: "Resolve, Adobe, and production workflows taught from real constraints, not tutorial theatre.",
+    href: "/tutoring"
+  }
+];
+
+const proofPoints = [
+  "20+ years across Europe, the Middle East, and Australia",
+  "DaVinci Resolve Studio, Adobe, immersive media, and delivery systems",
+  "Commercial, documentary, live media, presentation design, and technical consulting"
+];
 ---
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Redirecting...</title>
-    <meta http-equiv="refresh" content="0; url=/about" />
-    <script>
-      window.location.replace('/about');
-    </script>
-    <style>
-      html, body { margin: 0; padding: 0; background: #f6f2ea; }
-    </style>
-  </head>
-  <body></body>
-</html>
+
+<BaseLayout
+  title="Matteo Curcio | Post-production, motion, and systems"
+  description="Post-production, motion, and workflow design for projects that need both creative judgment and technical control."
+  path="/"
+>
+  <section class="home-hero" aria-label="Homepage hero">
+    <video
+      class="home-hero-video"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="metadata"
+      poster="/assets/projects/gigabyte-a-gentle-giant/thumbnail_a_gentle_giant.webp"
+    >
+      <source src="/assets/projects/gigabyte-a-gentle-giant/video_a_gentle_giant.mp4" type="video/mp4" />
+    </video>
+    <div class="home-hero-overlay"></div>
+    <div class="home-hero-inner shell">
+      <p class="home-kicker">Matteo Curcio · Melbourne / Remote</p>
+      <h1>Creative work that survives contact with reality.</h1>
+      <p class="home-hero-copy">
+        Post-production, motion, and workflow thinking for projects that need taste, structure, and delivery discipline in the same place.
+      </p>
+      <div class="home-hero-actions">
+        <a class="home-button home-button-primary" href="/works">View Projects</a>
+        <a class="home-button" href="/about">About</a>
+      </div>
+      <p class="home-hero-note">Temporary hero clip for now. Easy to replace later with a tighter montage.</p>
+    </div>
+    <a class="home-scroll-cue" href="#selected-work" aria-label="Scroll to selected work">
+      <span>Scroll</span>
+    </a>
+  </section>
+
+  <section class="home-proof-strip section" aria-label="Professional context">
+    <div class="credibility-strip">
+      {proofPoints.map((item) => (
+        <span>{item}</span>
+      ))}
+    </div>
+  </section>
+
+  <section class="home-section section" id="selected-work">
+    <div class="home-section-head">
+      <p class="kicker">Selected Work</p>
+      <h2>Motion-first, but not motion-only.</h2>
+      <p>
+        The work moves across finishing, motion, immersive formats, editorial structure, and the systems underneath all of it.
+      </p>
+    </div>
+
+    <div class="home-feature-grid">
+      {featuredWorks.map((item) => (
+        <a class="home-feature-card" href={item.href}>
+          <div class="home-feature-media" data-hover-preview="true">
+            <img src={item.image} alt={item.title} loading="lazy" />
+            <video
+              class="home-feature-preview"
+              src={item.video}
+              muted
+              loop
+              playsinline
+              preload="metadata"
+              aria-hidden="true"
+            />
+            <div class="home-feature-overlay">
+              <p class="home-feature-title">{item.title}</p>
+              <p class="home-feature-meta">{item.client} · {item.year} · {item.discipline}</p>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <div class="home-inline-link">
+      <a class="button-link" href="/works">Browse all projects</a>
+    </div>
+  </section>
+
+  <section class="home-section section">
+    <div class="home-editorial">
+      <div class="home-editorial-copy panel">
+        <p class="kicker">How I Work</p>
+        <h2>I care about the image, but I also care about the machinery behind it.</h2>
+        <p>
+          I work across colour, finishing, motion, editorial problem-solving, and delivery. Increasingly, I also work on the part most portfolios skip: the workflow decisions that determine whether a creative process stays coherent when deadlines tighten and file structures start fighting back.
+        </p>
+        <p>
+          That combination is the point. A good outcome is rarely just aesthetic. It is aesthetic plus operational. If the process is fragile, the output eventually shows it.
+        </p>
+      </div>
+
+      <div class="home-lane-stack">
+        {serviceLanes.map((lane) => (
+          <a class="home-lane" href={lane.href}>
+            <h3>{lane.title}</h3>
+            <p>{lane.body}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="home-section section">
+    <div class="home-section-head">
+      <p class="kicker">Writing</p>
+      <h2>Notes on post-production, tools, and process.</h2>
+      <p>
+        Technical when needed, skeptical of defaults, and written from the perspective of someone who actually has to deliver.
+      </p>
+    </div>
+
+    <div class="blog-grid">
+      {latestPosts.map((post) => (
+        <PostCard
+          slug={post.slug}
+          title={post.data.title}
+          date={post.data.date}
+          excerpt={post.data.excerpt}
+          cover={post.data.cover}
+          coverAlt={post.data.coverAlt}
+        />
+      ))}
+    </div>
+
+    <div class="home-inline-link">
+      <a class="button-link" href="/blog">Read the blog</a>
+    </div>
+  </section>
+
+  <section class="home-section section">
+    <div class="home-cta">
+      <div>
+        <p class="kicker">Start Here</p>
+        <h2>If the work is ambitious and the workflow is delicate, I can help.</h2>
+        <p>
+          Producers, agencies, studios, and working creatives usually come to me for one of two reasons: the image matters, or the process is starting to break. Often both.
+        </p>
+      </div>
+      <div class="home-cta-actions">
+        <a class="home-button home-button-primary" href={CONTACT_MAILTO}>Start a project</a>
+        <a class="home-button" href="/services">View services</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
