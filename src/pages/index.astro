@@ -57,11 +57,8 @@ const serviceLanes = [
   }
 ];
 
-const proofPoints = [
-  "20+ years across Europe, the Middle East, and Australia",
-  "DaVinci Resolve Studio, Adobe, immersive media, and delivery systems",
-  "Commercial, documentary, live media, presentation design, and technical consulting"
-];
+const professionalContext =
+  "Twenty years of commercial, documentary, and live work across Europe, the Middle East, and Australia — in DaVinci Resolve, Adobe, and the delivery systems that hold it all together.";
 ---
 
 <BaseLayout
@@ -69,9 +66,10 @@ const proofPoints = [
   description="Post-production, motion, and workflow design for projects that need both creative judgment and technical control."
   path="/"
 >
-  <section class="home-hero" aria-label="Homepage hero">
+  <section class="home-hero" aria-label="Homepage hero" data-home-hero>
     <video
       class="home-hero-video"
+      data-home-hero-video
       autoplay
       muted
       loop
@@ -82,29 +80,22 @@ const proofPoints = [
       <source src="/assets/projects/gigabyte-a-gentle-giant/video_a_gentle_giant.mp4" type="video/mp4" />
     </video>
     <div class="home-hero-overlay"></div>
+    <canvas class="home-hero-code-canvas" aria-hidden="true" data-home-hero-code-canvas></canvas>
     <div class="home-hero-inner shell">
-      <p class="home-kicker">Matteo Curcio · Melbourne / Remote</p>
-      <h1>Creative work that survives contact with reality.</h1>
+      <p class="home-kicker">Melbourne / Remote · For studios, producers & agencies</p>
+      <h1>The Ghost in the Machine.</h1>
       <p class="home-hero-copy">
-        Post-production, motion, and workflow thinking for projects that need taste, structure, and delivery discipline in the same place.
+        The aesthetic draws you in. The logic is why it stays. I work where both are true at once.
       </p>
       <div class="home-hero-actions">
-        <a class="home-button home-button-primary" href="/works">View Projects</a>
-        <a class="home-button" href="/about">About</a>
+        <a class="home-button" href="/works">View Projects</a>
+        <a class="home-button" href="/services">How I work</a>
       </div>
-      <p class="home-hero-note">Temporary hero clip for now. Easy to replace later with a tighter montage.</p>
     </div>
-    <a class="home-scroll-cue" href="#selected-work" aria-label="Scroll to selected work">
-      <span>Scroll</span>
-    </a>
   </section>
 
   <section class="home-proof-strip section" aria-label="Professional context">
-    <div class="credibility-strip">
-      {proofPoints.map((item) => (
-        <span>{item}</span>
-      ))}
-    </div>
+    <p class="home-context-line">{professionalContext}</p>
   </section>
 
   <section class="home-section section" id="selected-work">
@@ -211,3 +202,152 @@ const proofPoints = [
     </div>
   </section>
 </BaseLayout>
+
+<script is:inline>
+  const homeHero = document.querySelector("[data-home-hero]");
+  const heroVideo = document.querySelector("[data-home-hero-video]");
+  const heroCodeCanvas = document.querySelector("[data-home-hero-code-canvas]");
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (homeHero && heroVideo instanceof HTMLVideoElement && heroCodeCanvas instanceof HTMLCanvasElement && !prefersReducedMotion) {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const ctx = heroCodeCanvas.getContext("2d");
+    const sampleCanvas = document.createElement("canvas");
+    const sampleCtx = sampleCanvas.getContext("2d", { willReadFrequently: true });
+    const revealPoints = [];
+    const codeSource = [
+      "grade=node(balance_lift,gamma,gain) ",
+      "cst=input(logc3):output(bt709) ",
+      "python:def match_shot(frame):return preserve_texture(frame) ",
+      "vec3 colour=texture(scene,uv).rgb; ",
+      "halation=strength*softclip(highlights); ",
+      "resolve.timeline.render(deliver='prores'); ",
+      "gl_FragColor=vec4(contrast(sat(colour)),1.0); ",
+      "curve=filmic(shoulder,toe,microcontrast); ",
+      "matrix=bt709 transfer=bt709 primaries=bt709 ",
+      "grain=temporal_subtle(edge_safe=True) "
+    ].join("");
+
+    let fontSize = 15;
+    let charWidth = 9;
+    let lineHeight = 18;
+    let columns = 0;
+    let rows = 0;
+    let scrollRow = 0;
+    let lastScrollAt = performance.now();
+    let resizeFrame = 0;
+
+    const measureGrid = () => {
+      if (!ctx) return;
+      const rect = homeHero.getBoundingClientRect();
+      heroCodeCanvas.width = Math.max(1, Math.floor(rect.width * dpr));
+      heroCodeCanvas.height = Math.max(1, Math.floor(rect.height * dpr));
+      heroCodeCanvas.style.width = `${rect.width}px`;
+      heroCodeCanvas.style.height = `${rect.height}px`;
+
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      fontSize = Math.max(11, Math.min(16, rect.width / 108));
+      lineHeight = Math.round(fontSize * 1.28);
+      ctx.font = `500 ${fontSize}px "IBM Plex Mono", "SFMono-Regular", "SF Mono", "Menlo", monospace`;
+      charWidth = Math.max(7, Math.ceil(ctx.measureText("0").width));
+      columns = Math.ceil(rect.width / charWidth) + 2;
+      rows = Math.ceil(rect.height / lineHeight) + 2;
+      sampleCanvas.width = columns;
+      sampleCanvas.height = rows;
+    };
+
+    const addRevealPoint = (x, y, radius) => {
+      revealPoints.push({ x, y, radius, life: 1 });
+      if (revealPoints.length > 120) revealPoints.shift();
+    };
+
+    const pointerMove = (event) => {
+      const rect = homeHero.getBoundingClientRect();
+      addRevealPoint(event.clientX - rect.left, event.clientY - rect.top, 110);
+      homeHero.classList.add("is-interactive");
+    };
+
+    const pointerLeave = () => {
+      addRevealPoint(-9999, -9999, 0);
+      homeHero.classList.remove("is-interactive");
+    };
+
+    const revealStrengthAt = (x, y) => {
+      let strength = 0;
+      for (let i = 0; i < revealPoints.length; i += 1) {
+        const point = revealPoints[i];
+        if (point.radius <= 0 || point.life <= 0) continue;
+        const dx = x - point.x;
+        const dy = y - point.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        if (distance > point.radius) continue;
+        const local = (1 - distance / point.radius) * point.life;
+        if (local > strength) strength = local;
+      }
+      return strength;
+    };
+
+    const drawFrame = (now) => {
+      requestAnimationFrame(drawFrame);
+      if (!ctx || !sampleCtx) return;
+      if (heroVideo.readyState < 2 || columns === 0 || rows === 0) return;
+
+      if (now - lastScrollAt > 1000) {
+        scrollRow = (scrollRow + 1) % 10000;
+        lastScrollAt = now;
+      }
+
+      sampleCtx.clearRect(0, 0, sampleCanvas.width, sampleCanvas.height);
+      sampleCtx.drawImage(heroVideo, 0, 0, sampleCanvas.width, sampleCanvas.height);
+      const sampleData = sampleCtx.getImageData(0, 0, sampleCanvas.width, sampleCanvas.height).data;
+
+      ctx.clearRect(0, 0, heroCodeCanvas.width, heroCodeCanvas.height);
+      ctx.font = `500 ${fontSize}px "IBM Plex Mono", "SFMono-Regular", "SF Mono", "Menlo", monospace`;
+      ctx.textBaseline = "top";
+
+      for (let i = revealPoints.length - 1; i >= 0; i -= 1) {
+        revealPoints[i].life -= 0.00135;
+        revealPoints[i].radius += 0.035;
+        if (revealPoints[i].life <= 0) {
+          revealPoints.splice(i, 1);
+        }
+      }
+
+      for (let row = 0; row < rows; row += 1) {
+        const y = row * lineHeight;
+        const sourceRowOffset = ((row + scrollRow) * 37) % codeSource.length;
+
+        for (let col = 0; col < columns; col += 1) {
+          const x = col * charWidth;
+          const reveal = revealStrengthAt(x + charWidth * 0.5, y + lineHeight * 0.5);
+          if (reveal < 0.015) continue;
+
+          const sourceIndex = (sourceRowOffset + col) % codeSource.length;
+          const char = codeSource[sourceIndex];
+          const sampleIndex = ((row * sampleCanvas.width) + Math.min(col, sampleCanvas.width - 1)) * 4;
+          const r = sampleData[sampleIndex] || 240;
+          const g = sampleData[sampleIndex + 1] || 230;
+          const b = sampleData[sampleIndex + 2] || 220;
+          const luminance = (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
+          const alpha = Math.min(0.88, reveal * (0.55 + luminance * 0.8));
+
+          ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${alpha})`;
+          ctx.fillText(char, x, y);
+        }
+      }
+    };
+
+    const resize = () => {
+      cancelAnimationFrame(resizeFrame);
+      resizeFrame = requestAnimationFrame(measureGrid);
+    };
+
+    measureGrid();
+    requestAnimationFrame(drawFrame);
+
+    homeHero.addEventListener("pointermove", pointerMove);
+    homeHero.addEventListener("pointerleave", pointerLeave);
+    homeHero.addEventListener("pointerenter", () => homeHero.classList.add("is-interactive"));
+    window.addEventListener("resize", resize);
+  }
+</script>
