@@ -6,6 +6,7 @@ interface Props {
   title: string;
   description?: string;
   path?: string;
+  theme?: "default" | "dark";
   navSection?: "works" | "reels" | "about" | "services" | "tutoring" | "blog";
   noIndex?: boolean;
 }
@@ -14,6 +15,7 @@ const {
   title,
   description = "Portfolio of Matteo Curcio. Finishing, motion, editorial, tutoring, and studio workflow consulting.",
   path = "/",
+  theme = "default",
   navSection,
   noIndex = false
 } = Astro.props;
@@ -71,11 +73,21 @@ const socialLinks = [
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=Instrument+Sans:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
   </head>
-  <body data-path={path}>
+  <body data-path={path} data-theme={theme} data-theme-lock={theme !== "default" ? "true" : "false"}>
+    <script is:inline>
+      (() => {
+        const body = document.body;
+        if (!body || body.dataset.themeLock === "true") return;
+        const savedTheme = window.localStorage.getItem("mc-theme");
+        if (savedTheme === "dark" || savedTheme === "default") {
+          body.dataset.theme = savedTheme;
+        }
+      })();
+    </script>
     <header class="site-header">
       <div class="shell nav">
         <a class="brand" href="/" aria-label="Matteo Curcio home">
@@ -111,6 +123,20 @@ const socialLinks = [
           <a href="/services" aria-current={path === "/services" ? "page" : undefined}>Services</a>
           <a href="/tutoring" aria-current={path === "/tutoring" ? "page" : undefined}>TUTORING</a>
           <a href="/blog" aria-current={path.startsWith("/blog") ? "page" : undefined}>Blog</a>
+          <button
+            class="theme-toggle"
+            type="button"
+            aria-label="Switch to dark mode"
+            title="Toggle dark mode"
+            data-theme-toggle
+          >
+            <svg class="theme-toggle-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="8.4" fill="none" stroke="currentColor" stroke-width="1.5" />
+              <path d="M12 3.6a8.4 8.4 0 0 1 0 16.8c2.65-1.55 4.18-4.48 4.18-8.4S14.65 5.15 12 3.6Z" fill="currentColor" />
+              <circle cx="12" cy="7.9" r="1.25" fill="none" stroke="currentColor" stroke-width="1.1" />
+              <circle cx="12" cy="16.1" r="1.25" fill="currentColor" />
+            </svg>
+          </button>
         </nav>
       </div>
     </header>
@@ -143,12 +169,55 @@ const socialLinks = [
       const siteHeader = document.querySelector(".site-header");
       const navToggle = document.querySelector("[data-nav-toggle]");
       const navLinks = document.querySelector("[data-nav-links]");
+      const themeToggle = document.querySelector("[data-theme-toggle]");
+      let themeTransitionTimer;
 
       if (siteHeader && navToggle && navLinks) {
         const setMenuState = (isOpen) => {
           navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
           siteHeader.classList.toggle("is-nav-open", isOpen);
         };
+
+        const bodyThemeLocked = document.body.dataset.themeLock === "true";
+        const syncThemeToggle = () => {
+          if (!(themeToggle instanceof HTMLButtonElement)) return;
+          const isDark = document.body.dataset.theme === "dark";
+          themeToggle.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
+          themeToggle.setAttribute("title", isDark ? "Switch to light mode" : "Switch to dark mode");
+          themeToggle.setAttribute("aria-pressed", isDark ? "true" : "false");
+          themeToggle.disabled = bodyThemeLocked;
+        };
+
+        const applyTheme = (nextTheme) => {
+          document.body.dataset.theme = nextTheme;
+          if (!bodyThemeLocked) {
+            window.localStorage.setItem("mc-theme", nextTheme);
+          }
+          syncThemeToggle();
+        };
+
+        const runThemeTransition = (callback) => {
+          document.body.classList.add("is-theme-transitioning");
+          window.clearTimeout(themeTransitionTimer);
+          window.requestAnimationFrame(() => {
+            callback();
+            themeTransitionTimer = window.setTimeout(() => {
+              document.body.classList.remove("is-theme-transitioning");
+            }, 1000);
+          });
+        };
+
+        syncThemeToggle();
+
+        const homeHero = document.querySelector("[data-home-hero]");
+        const syncHomeHeaderState = () => {
+          if (!(homeHero instanceof HTMLElement)) return;
+          const heroBottom = homeHero.getBoundingClientRect().bottom;
+          const headerHeight = siteHeader.getBoundingClientRect().height;
+          siteHeader.classList.toggle("is-scrolled", heroBottom <= headerHeight + 12);
+        };
+
+        syncHomeHeaderState();
 
         navToggle.addEventListener("click", () => {
           const open = navToggle.getAttribute("aria-expanded") === "true";
@@ -171,10 +240,22 @@ const socialLinks = [
         });
 
         window.addEventListener("resize", () => {
+          syncHomeHeaderState();
           if (window.innerWidth > 980) {
             setMenuState(false);
           }
         });
+
+        if (homeHero instanceof HTMLElement) {
+          window.addEventListener("scroll", syncHomeHeaderState, { passive: true });
+        }
+
+        if (themeToggle instanceof HTMLButtonElement && !bodyThemeLocked) {
+          themeToggle.addEventListener("click", () => {
+            const nextTheme = document.body.dataset.theme === "dark" ? "default" : "dark";
+            runThemeTransition(() => applyTheme(nextTheme));
+          });
+        }
       }
 
       const cards = document.querySelectorAll("[data-hover-preview='true']");

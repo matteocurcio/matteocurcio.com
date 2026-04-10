@@ -9,6 +9,12 @@ interface Props {
 }
 
 const { slug, title, date, excerpt, cover, coverAlt = "" } = Astro.props;
+
+const formattedDate = new Intl.DateTimeFormat("en-US", {
+  month: "long",
+  day: "numeric",
+  year: "numeric"
+}).format(new Date(`${date}T00:00:00`));
 ---
 
 <article class="post-card">
@@ -18,9 +24,8 @@ const { slug, title, date, excerpt, cover, coverAlt = "" } = Astro.props;
     </div>
     <div class="body">
       <h3>{title}</h3>
-      <p class="post-meta">{date}</p>
+      <p class="post-meta">{formattedDate}</p>
       {excerpt ? <p>{excerpt}</p> : null}
     </div>
   </a>
 </article>
-

@@ -11,13 +11,17 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+const formattedDate = new Intl.DateTimeFormat("en-US", {
+  month: "long",
+  day: "numeric",
+  year: "numeric"
+}).format(new Date(`${post.data.date}T00:00:00`));
 ---
 
 <BaseLayout title={`${post.data.title} | Matteo Curcio`} path={`/blog/${post.slug}/`}>
   <article class="prose blog-post">
     <h1>{post.data.title}</h1>
-    <p class="post-meta">{post.data.date}</p>
+    <p class="post-meta">{formattedDate}</p>
     <Content />
   </article>
 </BaseLayout>
-
