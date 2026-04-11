@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import { CONTACT_MAILTO } from "../config/site";
+import { CONTACT_MAILTO, SITE_CONFIG } from "../config/site";
 import PostCard from "./PostCard.astro";
 
 const latestPosts = (await getCollection("posts"))
@@ -50,6 +50,11 @@ const serviceLanes = [
     href: "/services"
   },
   {
+    title: "Security",
+    body: "A systems-first move into cybersecurity, informed by infrastructure practice, workflow auditing, and the habit of finding weak links early.",
+    href: "/security"
+  },
+  {
     title: "Coaching",
     body: "Resolve, Adobe, and production workflows taught from real constraints, not tutorial theatre.",
     href: "/tutoring"
@@ -57,7 +62,15 @@ const serviceLanes = [
 ];
 
 const professionalContext =
-  "Twenty years of commercial, documentary, and live work across Europe, the Middle East, and Australia — in DaVinci Resolve, Adobe, and the delivery systems that hold it all together.";
+  "Twenty years across finishing, immersive media, music, workflow design, and increasingly security. The throughline is systems: how they behave, where they fail, and how to make them reliable under pressure.";
+
+const proofSignals = [
+  "ISC2 CC",
+  "RMIT Cyber Security",
+  "Grammy-nominated music collaboration",
+  "Expo 2020 / UAE",
+  "Melbourne / Remote"
+];
 ---
 
 <section class="home-hero" aria-label="Homepage hero" data-home-hero>
@@ -90,6 +103,9 @@ const professionalContext =
 
 <section class="home-proof-strip section" aria-label="Professional context">
   <p class="home-context-line">{professionalContext}</p>
+  <div class="credibility-strip">
+    {proofSignals.map((item) => <span>{item}</span>)}
+  </div>
 </section>
 
 <section class="home-section section" id="selected-work">
@@ -177,6 +193,7 @@ const professionalContext =
 
   <div class="home-inline-link">
     <a class="button-link" href="/blog">Read the blog</a>
+    <a class="button-link" href={SITE_CONFIG.social.substack} target="_blank" rel="noopener noreferrer">Visit Substack</a>
   </div>
 </section>
 

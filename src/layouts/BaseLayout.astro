@@ -13,7 +13,7 @@ interface Props {
 
 const {
   title,
-  description = "Portfolio of Matteo Curcio. Finishing, motion, editorial, tutoring, and studio workflow consulting.",
+  description = "Portfolio of Matteo Curcio. Finishing, motion, music, infrastructure, teaching, and security-minded systems work.",
   path = "/",
   theme = "default",
   navSection,
@@ -121,7 +121,7 @@ const socialLinks = [
           <a href="/works" aria-current={(navSection ? navSection === "works" : path === "/works" || path === "/work" || path.startsWith("/projects")) ? "page" : undefined}>Projects</a>
           <a href="/reels" aria-current={(navSection ? navSection === "reels" : path === "/reels") ? "page" : undefined}>Reels</a>
           <a href="/services" aria-current={path === "/services" ? "page" : undefined}>Services</a>
-          <a href="/tutoring" aria-current={path === "/tutoring" ? "page" : undefined}>TUTORING</a>
+          <a href="/tutoring" aria-current={path === "/tutoring" ? "page" : undefined}>Tutoring</a>
           <a href="/blog" aria-current={path.startsWith("/blog") ? "page" : undefined}>Blog</a>
           <button
             class="theme-toggle"

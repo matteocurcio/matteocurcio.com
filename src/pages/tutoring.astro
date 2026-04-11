@@ -9,7 +9,7 @@ const tutoringAreas = [
     name: "DaVinci Resolve",
     tag: "Edit, grade, deliver fast",
     description:
-      "The most complete post-production tool available - and one of the most complex. Resolve does editing, colour grading, audio mixing, visual effects, and motion graphics inside a single application, each in its own dedicated page with its own logic. Most people learn one corner of it and stay there. Sessions cover whatever you actually need: the Cut and Edit pages, the Colour page and node-based grading, Fusion compositing, Fairlight audio, delivery and export. We work on your footage, your project, your questions. I have been grading professionally in Resolve for years and have tutored tens of students and working professionals.",
+      "Resolve is powerful because it joins edit, grade, audio, VFX, and delivery in one place. Sessions focus on the part you actually need, using your footage, your timeline, and the gaps slowing you down.",
     audience:
       "Editors, colorists, DOPs, directors, and content creators who want to work in Resolve properly - not just survive in it.",
     ctaLabel: "Book a Resolve session",
@@ -22,7 +22,7 @@ const tutoringAreas = [
     name: "Adobe Premiere Pro",
     tag: "Timeline flow and exports",
     description:
-      "Premiere is the industry standard for a reason, and it integrates tightly with the rest of the Adobe ecosystem. It is also a platform that rewards knowing where things actually live - project panel organisation, sequence settings, multi-camera workflows, Dynamic Link to After Effects, export presets. Sessions focus on building good habits early, fixing bad ones that have calcified over time, and closing the gap between what you can do and what you know the tool can do.",
+      "Premiere sessions are about speed, organisation, and fewer avoidable mistakes. We work on sequence structure, multicam, Dynamic Link, exports, and the habits that keep projects moving cleanly.",
     audience:
       "Editors at any level who want to work faster, waste less time troubleshooting, and stop rediscovering the same things repeatedly.",
     ctaLabel: "Book a Premiere session",
@@ -35,7 +35,7 @@ const tutoringAreas = [
     name: "After Effects",
     tag: "Animation and compositing basics",
     description:
-      "After Effects has a learning curve that never quite flattens out. The composition model, pre-comps, expressions, keyframe interpolation, render settings - each layer adds complexity. Sessions can cover motion graphics fundamentals, animation principles as they apply to the tool, expression basics, or specific effects and techniques you are trying to replicate or understand. I also teach how After Effects and Premiere work together, which is where most people lose time without knowing why.",
+      "After Effects gets easier once the structure makes sense. Sessions cover motion basics, compositing, pre-comps, expressions, and the points where After Effects and Premiere usually start wasting your time.",
     audience:
       "Editors moving into motion, motion designers filling technical gaps, and anyone who has been faking their way through expressions.",
     ctaLabel: "Book an After Effects session",
@@ -48,7 +48,7 @@ const tutoringAreas = [
     name: "Photoshop & Lightroom",
     tag: "Retouching and batch workflows",
     description:
-      "Two tools with almost total overlap in what people use them for and almost no overlap in how they work. Lightroom is non-destructive, catalogue-based, and built for throughput. Photoshop is layered, pixel-level, and built for precision. Sessions clarify which tool belongs where, and go deep on whichever one you need: retouching, masking, compositing, colour management, export pipelines, or catalogue organisation and batch workflows.",
+      "These sessions clarify which job belongs in Lightroom and which belongs in Photoshop. We can focus on retouching, masking, colour management, catalogue structure, or faster batch workflows.",
     audience:
       "Photographers, retouchers, designers, and content creators who want to stop guessing which tool to use and why.",
     ctaLabel: "Book a session",
@@ -61,7 +61,7 @@ const tutoringAreas = [
     name: "Adobe Suite as a System",
     tag: "Connected suite-wide production",
     description:
-      "Illustrator, InDesign, Photoshop, Premiere, After Effects, Lightroom - each is a large platform. Together they form an ecosystem that most people use at about 30% capacity because nobody ever explained how the pieces connect. This session type is less about any single tool and more about building a coherent, efficient workflow across the suite: file organisation, asset management, shared libraries, output pipelines, and knowing which tool handles which job without switching back and forth and losing time.",
+      "This is for people using Adobe all day but feeling the workflow is messier than it should be. We look at file structure, asset flow, shared libraries, and which tool should handle which part of the job.",
     audience:
       "Designers, creative directors, and production teams who live inside Adobe all day and suspect there is a smarter way to organise it all.",
     ctaLabel: "Book a workflow session",
@@ -74,7 +74,7 @@ const tutoringAreas = [
     name: "Adobe Express",
     tag: "Fast branded content systems",
     description:
-      "Adobe Express is the fastest route from an idea to something that looks considered - social content, presentations, short videos, branded assets - without the overhead of the full Creative Suite. It is also the tool most people underestimate, using it for quick resizes when it is capable of significantly more. Sessions cover the full scope: templates and brand kits, animation and video, integration with Photoshop and Illustrator assets, and building a repeatable content workflow that does not require a designer on call every time something needs to go out.",
+      "Adobe Express is best when speed and consistency matter at the same time. Sessions cover brand kits, templates, simple motion, and repeatable content systems that do not need a full design team behind them.",
     audience:
       "Marketing teams, content creators, educators, and small business owners who need to produce consistent, professional-looking content quickly and without a steep learning curve.",
     ctaLabel: "Book an Express session",
@@ -124,60 +124,71 @@ const testimonials = [
     </p>
   </section>
 
-  <section class="services-index tutoring-index" aria-label="Tutoring areas">
-    {tutoringAreas.map((area) => {
-      const triggerId = `tutoring-trigger-${area.number}`;
-      const panelId = `tutoring-panel-${area.number}`;
-
-      return (
-        <article class="service-row" data-service-row>
-          <button
-            class="service-trigger"
-            id={triggerId}
-            type="button"
-            aria-expanded="false"
-            aria-controls={panelId}
-            data-service-trigger
-          >
-            <span class="service-number tutoring-service-icon" aria-hidden="true">
-              <img class={`tutoring-app-icon ${area.number === "01" ? "is-resolve" : ""}`} src={area.icon} alt="" loading="lazy" />
-            </span>
-            <span class="service-name">{area.name}</span>
-            <span class="service-tag">{area.tag}</span>
-          </button>
-
-          <div class="service-panel" id={panelId} role="region" aria-labelledby={triggerId} data-service-panel>
-            <div class="service-panel-inner">
-              <p class="service-description">{area.description}</p>
-              <p class="service-audience"><em>For {area.audience}</em></p>
-              <p class="service-cta-wrap">
-                <a class="service-cta" href={area.ctaUrl}>
-                  {area.ctaLabel} <span aria-hidden="true">→</span>
-                </a>
-              </p>
-            </div>
+  <section class="services-index services-card-grid tutoring-index" aria-label="Tutoring areas">
+    {tutoringAreas.map((area) => (
+      <article class="service-card">
+        <div class="service-card-head">
+          <span class="service-number tutoring-service-icon" aria-hidden="true">
+            <img class={`tutoring-app-icon ${area.number === "01" ? "is-resolve" : ""}`} src={area.icon} alt={area.iconAlt} loading="lazy" />
+          </span>
+          <div class="service-card-title-group">
+            <h2 class="service-name">{area.name}</h2>
+            <p class="service-tag">{area.tag}</p>
           </div>
-        </article>
-      );
-    })}
+        </div>
+
+        <div class="service-card-body">
+          <p class="service-description">{area.description}</p>
+          <p class="service-audience"><em>For {area.audience}</em></p>
+          <p class="service-cta-wrap">
+            <a class="button-link tutoring-card-button" href={area.ctaUrl} target="_blank" rel="noopener noreferrer">
+              {area.ctaLabel}
+            </a>
+          </p>
+        </div>
+      </article>
+    ))}
   </section>
 
   <section class="tutoring-availability" aria-label="Tutoring availability">
-    <p>
-      Sessions are available online or face to face in Fitzroy, Melbourne. If you are not sure which session type
-      fits what you need, send a short message describing where you are and what is not working. We will figure it
-      out from there.
-    </p>
-    <p>
-      <a
-        class="service-cta"
-        href="https://www.superprof.com.au/certified-davinci-resolve-editor-and-colorist-offering-one-one-training-for-editors-videomakers-influencers-directors-dop-and.html"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Book on Superprof <span aria-hidden="true">→</span>
-      </a>
-    </p>
+    <div class="tutoring-availability-grid">
+      <article class="tutoring-availability-card">
+        <div class="tutoring-availability-media tutoring-map-frame">
+          <iframe
+            title="Map for 204 Napier Street, Fitzroy VIC 3065"
+            src="https://www.google.com/maps?q=204+Napier+Street,+Fitzroy+VIC+3065&z=15&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+        <div class="tutoring-availability-body">
+          <h2>In person</h2>
+          <p>Face-to-face sessions are available in Fitzroy at 204 Napier Street.</p>
+        </div>
+      </article>
+
+      <article class="tutoring-availability-card">
+        <div class="tutoring-availability-media tutoring-remote-frame" aria-hidden="true">
+          <div class="tutoring-remote-window">
+            <div class="tutoring-remote-toolbar">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="tutoring-remote-screen">
+              <p>Remote session</p>
+              <div class="tutoring-remote-apps">
+                <span>Zoom</span>
+                <span>Teams</span>
+                <span>Meet</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tutoring-availability-body">
+          <h2>Remote</h2>
+          <p>Online sessions work well for screen-sharing, live troubleshooting, and focused workflow fixes.</p>
+        </div>
+      </article>
+    </div>
   </section>
 
   <section class="tutoring-testimonials" aria-label="Student reviews">
@@ -193,64 +204,4 @@ const testimonials = [
       ))}
     </div>
   </section>
-
 </BaseLayout>
-
-<script is:inline>
-  const serviceRows = Array.from(document.querySelectorAll("[data-service-row]"));
-  const serviceTriggers = Array.from(document.querySelectorAll("[data-service-trigger]"));
-
-  const closeRow = (row) => {
-    const trigger = row.querySelector("[data-service-trigger]");
-    const panel = row.querySelector("[data-service-panel]");
-    if (!trigger || !panel) return;
-
-    trigger.setAttribute("aria-expanded", "false");
-    row.classList.remove("is-open");
-    panel.style.maxHeight = "0px";
-  };
-
-  const openRow = (row) => {
-    const trigger = row.querySelector("[data-service-trigger]");
-    const panel = row.querySelector("[data-service-panel]");
-    const inner = panel?.querySelector(".service-panel-inner");
-    if (!trigger || !panel || !inner) return;
-
-    trigger.setAttribute("aria-expanded", "true");
-    row.classList.add("is-open");
-    panel.style.maxHeight = `${inner.scrollHeight}px`;
-  };
-
-  const updateAccordionState = () => {
-    const hasOpen = serviceRows.some((row) => row.classList.contains("is-open"));
-    const container = document.querySelector(".tutoring-index");
-    if (container) {
-      container.classList.toggle("has-open", hasOpen);
-    }
-  };
-
-  serviceTriggers.forEach((trigger) => {
-    trigger.addEventListener("click", () => {
-      const row = trigger.closest("[data-service-row]");
-      if (!row) return;
-
-      const isExpanded = trigger.getAttribute("aria-expanded") === "true";
-
-      serviceRows.forEach((otherRow) => closeRow(otherRow));
-      if (!isExpanded) {
-        openRow(row);
-      }
-      updateAccordionState();
-    });
-  });
-
-  window.addEventListener("resize", () => {
-    serviceRows.forEach((row) => {
-      if (!row.classList.contains("is-open")) return;
-      const panel = row.querySelector("[data-service-panel]");
-      const inner = panel?.querySelector(".service-panel-inner");
-      if (!panel || !inner) return;
-      panel.style.maxHeight = `${inner.scrollHeight}px`;
-    });
-  });
-</script>

@@ -7,9 +7,9 @@ const services = [
     icon: "/icons/services/post.svg",
     iconAlt: "Post-production",
     name: "Finishing",
-    tag: "post",
+    tag: "Colour, editorial polish, motion, delivery",
     description:
-      "Colour grading, editorial, motion graphics, and delivery for commercial, branded, and short-form content. I work across the full pipeline in DaVinci Resolve and the Adobe suite - from initial cut through to delivery masters, platform exports, and versioning. Remote and Melbourne-based. Comfortable picking up a project mid-stream.",
+      "Colour grading, editorial polish, motion graphics, and delivery for commercial and branded work. I can step in mid-stream, tighten the finish, and get masters out cleanly.",
     audience: "Producers, directors, and agencies who need finishing they can rely on.",
     ctaLabel: "Start a project",
     ctaUrl: "mailto:hello@matteocurcio.com"
@@ -18,10 +18,10 @@ const services = [
     number: "02",
     icon: "/icons/services/immersive.svg",
     iconAlt: "Immersive",
-    name: "Immersive & Interactive Content",
-    tag: "immersive",
+    name: "Immersive & Interactive",
+    tag: "Mapping, immersive installs, AR, environment-led media",
     description:
-      "Projection mapping, immersive video, augmented reality, and in-store media. I have delivered this kind of work at exhibition scale - for Expo 2020 and major government clients in the UAE - and understand both the creative demands and the operational complexity of getting it right in a real space. This is not template work.",
+      "Projection mapping, immersive video, augmented reality, and in-store media built for real spaces. I understand both the creative ambition and the operational complexity of getting it live properly.",
     audience: "Brands, agencies, and event producers with an environment to fill.",
     ctaLabel: "Talk through your project",
     ctaUrl: "mailto:hello@matteocurcio.com"
@@ -30,10 +30,10 @@ const services = [
     number: "03",
     icon: "/icons/services/strategy.svg",
     iconAlt: "Presentation and strategy",
-    name: "Presentation Design & Data-Viz",
-    tag: "strategy",
+    name: "Presentation & Data-Viz",
+    tag: "Executive decks, keynote visuals, data communication",
     description:
-      "Strategic presentations and visual communication for executive audiences, pitches, large-scale events, and broadcast contexts. The work I have done here has had to hold up in rooms where distraction is instant and credibility is immediate. I design for that pressure, not against it.",
+      "Strategic presentations and visual communication for executive audiences, pitches, events, and broadcast contexts. Designed to hold attention quickly and carry authority in the room.",
     audience:
       "Organisations, government bodies, and senior teams who need to communicate clearly at scale.",
     ctaLabel: "Get in touch",
@@ -41,14 +41,14 @@ const services = [
   },
   {
     number: "04",
-    icon: "/icons/services/consulting.svg",
-    iconAlt: "Consulting",
-    name: "Workflow & Infrastructure Consulting",
-    tag: "consulting",
+    icon: "/icons/services/workflow.svg",
+    iconAlt: "Workflow and infrastructure",
+    name: "Workflow, Infrastructure & Security Consulting",
+    tag: "Audit, storage, permissions, handoffs, backups",
     description:
-      "For studios, production companies, and creative organisations running into the same problems repeatedly - broken handoffs, version confusion, delivery failures, access and backup gaps. I audit what you have, identify what is actually costing you, and help you fix it. My background spans creative production and digital infrastructure, which means I can see problems that sit in the space between them.",
+      "For studios and production teams hitting the same failures over and over: broken handoffs, version confusion, brittle storage, unclear permissions, and weak backups. I audit what is fragile and make it more reliable.",
     audience:
-      "Operations managers, heads of production, and studio owners who know something is broken.",
+      "Operations managers, heads of production, studio owners, and teams who know something is fragile even if they have not named it properly yet.",
     ctaLabel: "Request a review",
     ctaUrl: "mailto:hello@matteocurcio.com"
   },
@@ -57,206 +57,139 @@ const services = [
     icon: "/icons/services/teaching.svg",
     iconAlt: "Coaching and training",
     name: "Coaching & Training",
-    tag: "teaching",
+    tag: "Resolve, Adobe, AI-assisted workflows",
     description:
-      "Private sessions on DaVinci Resolve and the Adobe Creative Suite - Premiere, After Effects, Photoshop, Lightroom, Illustrator, InDesign. Also AI-assisted creative workflows. For working professionals closing a specific gap, not beginners. I teach at RMIT and privately. Online or Melbourne.",
+      "Private sessions on Resolve, Adobe, and AI-assisted creative workflows for working professionals. Practical help for closing a real gap, not a generic course.",
     audience:
       "Editors, photographers, DOPs, designers, and producers who want to move faster without cutting corners.",
     ctaLabel: "Book a session",
     ctaUrl: "/tutoring"
-  }
-];
-
-const testimonials = [
-  {
-    quote:
-      "Matteo brought structure to a messy post timeline and gave us clean deliveries without the usual last-minute chaos.",
-    name: "Sofia",
-    context: "Senior Producer · Northframe Studio"
   },
   {
-    quote:
-      "Clear communication, fast turnaround, and a workflow that actually held up when feedback rounds got heavy.",
-    name: "Mia",
-    context: "Creative Director · Harborline Agency"
-  },
-  {
-    quote:
-      "He translated technical constraints into practical decisions the whole team could act on immediately.",
-    name: "Daniel",
-    context: "Head of Post · Glasshouse Motion"
-  },
-  {
-    quote:
-      "Precise, calm, and reliable under pressure. The finish looked strong and the process felt controlled.",
-    name: "Lorenzo",
-    context: "Director · Studio Ventuno"
+    number: "06",
+    icon: "/icons/services/cybersecurity.svg",
+    iconAlt: "Cybersecurity",
+    name: "Cybersecurity",
+    tag: "Systems, risk, infrastructure, and security thinking",
+    description:
+      "A dedicated entry point for the security side of the practice: infrastructure context, systems thinking, formal cybersecurity training, and the broader thread connecting technical reliability with risk awareness.",
+    audience:
+      "Recruiters, teams, and collaborators who want the security story directly rather than finding it in pieces across the rest of the site.",
+    ctaLabel: "Visit the Microsite",
+    ctaUrl: "/security"
   }
 ];
 ---
 
 <BaseLayout
   title="Services — Matteo Curcio"
-  description="Post-production finishing, immersive content, presentation design, workflow consulting, and coaching. Melbourne-based, remote-friendly."
+  description="Post-production finishing, immersive content, presentation design, workflow and infrastructure consulting, coaching, and security-minded systems support. Melbourne-based, remote-friendly."
   path="/services"
 >
   <section class="services-head">
     <h1>OK, but what do you do exactly?</h1>
     <p>
-      Post-production finishing, immersive media, presentation strategy, workflow consulting, and coaching.
+      Post-production finishing, immersive media, presentation strategy, workflow and infrastructure consulting, and coaching.
       Clear scope, practical execution, and reliable delivery across every engagement.
     </p>
   </section>
 
-  <section class="services-index" aria-label="Service areas">
-    {services.map((service) => {
-      const triggerId = `service-trigger-${service.number}`;
-      const panelId = `service-panel-${service.number}`;
-
-      return (
-        <article class="service-row" data-service-row>
-          <button
-            class="service-trigger"
-            id={triggerId}
-            type="button"
-            aria-expanded="false"
-            aria-controls={panelId}
-            data-service-trigger
-          >
-            <span class="service-number service-skill-icon" aria-hidden="true"><img class="service-app-icon" src={service.icon} alt="" loading="lazy" /></span>
-            <span class="service-name">{service.name}</span>
-            <span class="service-tag">{service.tag}</span>
-          </button>
-
-          <div class="service-panel" id={panelId} role="region" aria-labelledby={triggerId} data-service-panel>
-            <div class="service-panel-inner">
-              <p class="service-description">{service.description}</p>
-              <p class="service-audience"><em>For {service.audience}</em></p>
-              <p class="service-cta-wrap">
-                <a class="service-cta" href={service.ctaUrl}>
-                  {service.ctaLabel} <span aria-hidden="true">→</span>
-                </a>
-              </p>
-            </div>
+  <section class="services-index services-card-grid" aria-label="Service areas">
+    {services.map((service) => (
+      <article class="service-card">
+        <div class="service-card-head">
+          <span class="service-number services-grid-icon" aria-hidden="true">
+            <img class="service-app-icon" src={service.icon} alt={service.iconAlt} loading="lazy" />
+          </span>
+          <div class="service-card-title-group">
+            <h2 class="service-name">{service.name}</h2>
+            <p class="service-tag">{service.tag}</p>
           </div>
-        </article>
-      );
-    })}
-  </section>
+        </div>
 
-  <section class="tutoring-availability services-availability" aria-label="Services availability">
-    <p>
-      I am available in person across Melbourne or remotely, depending on project needs, timeline, and workflow.
-    </p>
+        <div class="service-card-body">
+          <p class="service-description">{service.description}</p>
+          <p class="service-audience"><em>For {service.audience}</em></p>
+          <p class="service-cta-wrap">
+            <a class="button-link services-card-button" href={service.ctaUrl}>
+              {service.ctaLabel}
+            </a>
+          </p>
+        </div>
+      </article>
+    ))}
   </section>
 
   <section class="services-enquiry" aria-label="Services enquiry form">
-    <form class="services-form" data-services-form novalidate>
-      <div class="services-form-grid">
+    <div class="services-enquiry-grid">
+      <form class="services-form" data-services-form novalidate>
+        <p class="services-form-intro">
+          I am available in person across Melbourne or remotely, depending on project needs, timeline, and workflow.
+        </p>
+        <div class="services-form-grid">
+          <label>
+            Name
+            <input type="text" name="name" autocomplete="name" maxlength="80" required />
+          </label>
+          <label>
+            Email
+            <input type="email" name="email" autocomplete="email" maxlength="120" required />
+          </label>
+        </div>
         <label>
-          Name
-          <input type="text" name="name" autocomplete="name" maxlength="80" required />
+          Message
+          <textarea
+            name="message"
+            rows="6"
+            maxlength="2200"
+            placeholder="Share what you need."
+            required
+          ></textarea>
         </label>
-        <label>
-          Email
-          <input type="email" name="email" autocomplete="email" maxlength="120" required />
+        <label class="hp-field" aria-hidden="true">
+          Website
+          <input type="text" name="website" autocomplete="off" tabindex="-1" />
         </label>
-      </div>
-      <label>
-        Message
-        <textarea
-          name="message"
-          rows="6"
-          maxlength="2200"
-          placeholder="Share what you need."
-          required
-        ></textarea>
-      </label>
-      <label class="hp-field" aria-hidden="true">
-        Website
-        <input type="text" name="website" autocomplete="off" tabindex="-1" />
-      </label>
-      <input type="hidden" name="formStartedAt" data-form-started-at />
-      <div class="services-form-actions">
-        <button type="submit" class="services-submit">Send enquiry</button>
-        <p class="services-form-note" data-form-note aria-live="polite"></p>
-      </div>
-    </form>
-  </section>
+        <input type="hidden" name="formStartedAt" data-form-started-at />
+        <div class="services-form-actions">
+          <button type="submit" class="services-submit">Send enquiry</button>
+          <p class="services-form-note" data-form-note aria-live="polite"></p>
+        </div>
+      </form>
 
-  <section class="tutoring-testimonials services-testimonials" aria-label="Service testimonials">
-    <div class="tutoring-testimonial-grid">
-      {testimonials.map((item) => (
-        <article class="tutoring-quote">
-          <blockquote>{item.quote}</blockquote>
-          <p class="tutoring-quote-meta">
-            <span>{item.name}</span>
-            <span>{item.context}</span>
+      <aside class="services-enquiry-panel" aria-label="How projects usually begin">
+        <div class="services-enquiry-panel-block">
+          <p class="services-enquiry-eyebrow">How projects usually start</p>
+          <h2>You do not need the whole brief solved yet.</h2>
+          <p>
+            A clear first email is enough. Scope, timeline, where the friction is, and what has to land well.
+            We can shape the rest from there.
           </p>
-        </article>
-      ))}
+        </div>
+
+        <div class="services-enquiry-panel-block services-enquiry-panel-split">
+          <div>
+            <p class="services-enquiry-minihead">Typical entry points</p>
+            <p class="services-enquiry-list">
+              A project needs finishing fast without losing taste. An installation or presentation has to become
+              technically reliable. A workflow is working, but only just.
+            </p>
+          </div>
+          <div>
+            <p class="services-enquiry-minihead">Working modes</p>
+            <p class="services-enquiry-list">
+              Melbourne-based in person when the room matters. Remote for reviews, consulting, and delivery
+              support. Short interventions or longer project involvement.
+            </p>
+          </div>
+        </div>
+      </aside>
     </div>
   </section>
-
+  
 </BaseLayout>
 
 <script is:inline>
-  const serviceRows = Array.from(document.querySelectorAll("[data-service-row]"));
-  const serviceTriggers = Array.from(document.querySelectorAll("[data-service-trigger]"));
-
-  const closeRow = (row) => {
-    const trigger = row.querySelector("[data-service-trigger]");
-    const panel = row.querySelector("[data-service-panel]");
-    if (!trigger || !panel) return;
-
-    trigger.setAttribute("aria-expanded", "false");
-    row.classList.remove("is-open");
-    panel.style.maxHeight = "0px";
-  };
-
-  const openRow = (row) => {
-    const trigger = row.querySelector("[data-service-trigger]");
-    const panel = row.querySelector("[data-service-panel]");
-    const inner = panel?.querySelector(".service-panel-inner");
-    if (!trigger || !panel || !inner) return;
-
-    trigger.setAttribute("aria-expanded", "true");
-    row.classList.add("is-open");
-    panel.style.maxHeight = `${inner.scrollHeight}px`;
-  };
-
-  const updateAccordionState = () => {
-    const hasOpen = serviceRows.some((row) => row.classList.contains("is-open"));
-    const container = document.querySelector(".services-index");
-    if (container) {
-      container.classList.toggle("has-open", hasOpen);
-    }
-  };
-
-  serviceTriggers.forEach((trigger) => {
-    trigger.addEventListener("click", () => {
-      const row = trigger.closest("[data-service-row]");
-      if (!row) return;
-
-      const isExpanded = trigger.getAttribute("aria-expanded") === "true";
-
-      serviceRows.forEach((otherRow) => closeRow(otherRow));
-      if (!isExpanded) {
-        openRow(row);
-      }
-      updateAccordionState();
-    });
-  });
-
-  window.addEventListener("resize", () => {
-    serviceRows.forEach((row) => {
-      if (!row.classList.contains("is-open")) return;
-      const panel = row.querySelector("[data-service-panel]");
-      const inner = panel?.querySelector(".service-panel-inner");
-      if (!panel || !inner) return;
-      panel.style.maxHeight = `${inner.scrollHeight}px`;
-    });
-  });
 
   const form = document.querySelector("[data-services-form]");
   const formNote = document.querySelector("[data-form-note]");

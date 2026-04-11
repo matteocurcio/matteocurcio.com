@@ -1,120 +1,142 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-const ABOUT_HEADLINES = [
-  "The most interesting problems don't come with job titles. Neither does the work I do.",
-  "I've always worked at the intersection of things that don't have a name yet.",
-  "My work has never fit a single category. That's by design.",
-  "The most interesting problems don't come with job titles. Neither does the work I do.",
-  "Creative technologist is the closest thing I've found - and even that undersells it.",
-  "Twenty years of work that crosses every boundary except quality.",
-  "I build things that require knowing how everything connects.",
-  "Some people specialize. I've always followed the problem wherever it led.",
-  "The work spans creativity, technology, and strategy - because the best work always does.",
-  "I've spent two decades at the edge of what creative and technical actually mean.",
-  "Most of my best projects didn't have a brief. They had a problem.",
-  "I've never been entirely sure what to call what I do. It seems to work anyway.",
-  "Somewhere between creative and technical. Usually where the interesting parts are.",
-  "Not a specialist. Not a generalist. Something more practical than that.",
-  "I tend to work where the brief runs out.",
-  "The space between idea and execution is usually where you'll find me.",
-  "Comfortable in the grey area between art, systems, and deadlines.",
-  "I work on the parts projects argue about.",
-  "Bridging things that were meant to stay separate.",
-  "Helping ambitious ideas survive contact with reality.",
-  "Making creative work behave under pressure."
-];
-
-const ABOUT_INTRO_PARAGRAPHS = [
-  "I am a Melbourne-based creative technologist with over twenty years of experience across post-production, content strategy, live media, and digital infrastructure.",
-  "I'm a Melbourne-based creative technologist. That's the shortest label that covers twenty years across post-production, content strategy, live media, and digital infrastructure, even if it still feels slightly inaccurate.",
-  "For lack of a better term, I'm a creative technologist based in Melbourne. The work has moved through post-production, strategy, live media, and digital systems for more than two decades.",
-  "I work across post-production, content strategy, live media, and digital infrastructure. Creative technologist is the closest shorthand, though the work rarely stays that tidy.",
-  "I've spent over twenty years moving between post-production suites, strategy rooms, live environments, and infrastructure diagrams across Europe, the Middle East, and Australia. Melbourne is home. Creative technologist is the compromise title.",
-  "Based in Melbourne now, I've built a career that refuses to sit in one department. Post-production, strategy, live media, digital infrastructure. Two decades of crossing the aisle.",
-  "I help ideas survive the journey from concept to delivery. That has meant twenty years across post-production, content strategy, live media, and the systems that quietly hold it all together.",
-  "Some careers ladder upward. Mine has tended to move sideways, across post-production, strategy, live media, and digital infrastructure - from Europe to Dubai to Melbourne.",
-  "My work lives where creative ambition meets technical constraint. For the past twenty years, that has meant post-production, content strategy, live media, and digital infrastructure across three continents.",
-  "I build and refine the machinery behind creative work. Over two decades across Europe, Dubai, and now Melbourne, that has spanned post-production, strategy, live environments, and digital systems.",
-  "If a project needs both taste and infrastructure, I'm usually involved. I'm a Melbourne-based creative technologist working across post-production, strategy, live media, and digital platforms for over twenty years.",
-  "I've never stayed in one lane for long. For more than twenty years, the work has crossed post-production, content strategy, live media, and digital infrastructure, based in Melbourne, operating wherever needed.",
-  "I work at the intersection of creative output and the systems that support it. Across Europe, Dubai, and now Melbourne, that has meant post-production, strategy, live media, and digital infrastructure, often in the same project.",
-  "I help producers deliver ambitious work without losing sleep. Based in Melbourne now, I've spent over twenty years across post-production, content strategy, live media, and the infrastructure that keeps delivery predictable.",
-  "If there's a deadline, a budget, and something technically delicate involved, I'm usually useful. I'm a Melbourne-based creative technologist working across post-production, strategy, live environments, and digital systems for two decades.",
-  "My job is to make complex creative projects feel straightforward. For more than twenty years across Europe, Dubai, and now Melbourne, that has meant moving between post-production, content strategy, live media, and delivery infrastructure.",
-  "I work with studios to make creative ambition operationally reliable. Based in Melbourne, my experience spans over twenty years across post-production pipelines, collaboration systems, live media, and digital infrastructure.",
-  "Clean conform, disciplined media management, predictable versioning. That has been the thread through twenty years of work across Europe, Dubai, and Melbourne spanning post-production, strategy, live environments, and technical systems.",
-  "I build and refine the workflows that creative teams rely on. Over two decades across Europe, Dubai, and Melbourne, that has covered post-production, content strategy, live media, and secure digital infrastructure.",
-  "I teach the parts the tutorials usually skip. I'm a Melbourne-based creative technologist with over twenty years across post-production, strategy, live media, and the systems behind professional delivery.",
-  "My work spans the tools, the workflow, and the thinking behind them. For more than twenty years across three continents, that has meant post-production, content strategy, live environments, and digital infrastructure.",
-  "I work across post-production and the systems that support it, and I teach from real constraints, not ideal ones. Melbourne-based today, with two decades across Europe, the Middle East, and Australia.",
-  "I work where creative standards meet operational reality. Based in Melbourne, with over twenty years across Europe, Dubai, and Australia in post-production, strategy, live media, and digital infrastructure."
-];
-
 const aboutPhoto = "/assets/services/common/thumbnail_placeholder.jpg";
 const aboutAnimated = "/media/about.mp4";
 const aboutAnimatedFallback = "/assets/services/common/thumbnail_placeholder.jpg";
+
+const pathways = [
+  {
+    href: "/services",
+    label: "Services",
+    note: "Finishing, workflow, coaching, and the infrastructure side of delivery."
+  },
+  {
+    href: "/security",
+    label: "Security",
+    note: "The focused page for recruiters, security teams, and infrastructure-minded work."
+  },
+  {
+    href: "/reels/music/",
+    label: "Music",
+    note: "A shorter way into the sound side of the practice."
+  },
+  {
+    href: "/blog",
+    label: "Writing",
+    note: "Field notes, workflow pieces, and technical writing from real projects."
+  }
+];
 ---
 
 <BaseLayout
   title="About | Matteo Curcio"
-  description="I have never had a job title that quite fit. That has mostly been an advantage."
+  description="Matteo Curcio is a Melbourne-based creative technologist working across finishing, infrastructure, music, teaching, and cybersecurity."
   path="/about"
 >
-  <article class="prose about-single-column">
-    <h1 id="about-random-title">{ABOUT_HEADLINES[0]}</h1>
+  <article class="prose about-page">
+    <header class="about-intro">
+      <h1>A life built across image, sound, systems, and cities.</h1>
+      <p class="about-lead">
+        I am a Melbourne-based creative technologist, colorist, and systems thinker. Over two decades, the work has
+        moved across post-production, immersive media, original music, coaching, infrastructure design, and now
+        cybersecurity. The medium changes. The logic does not.
+      </p>
+    </header>
 
-    <p id="about-random-intro">{ABOUT_INTRO_PARAGRAPHS[0]}</p>
+    <section class="about-story-block" aria-label="About opening">
+      <div class="about-story-copy">
+        <p class="about-opening-note">
+          I care about image, pace, sound, structure, and the unseen mechanics underneath all of them. If the process
+          is brittle, the work eventually shows it.
+        </p>
+      </div>
+    </section>
 
-    <p>I focus on both the result and the system that creates it. If the process is fragile, the output eventually shows it. I value elegance - in the code, in the edit, in the structure of a workflow, in the way decisions connect without friction. Clear thinking. Clean execution. Nothing decorative without purpose.</p>
+    <section class="about-story-block">
+      <div class="about-story-copy">
+        <p>
+          I focus on both the result and the system that creates it. If the process is fragile, the output eventually
+          shows it. That has been true in colour grading suites, on immersive installations, in music production, in
+          teaching, and in infrastructure work. I care about the finish, but I care just as much about the chain of
+          decisions that made the finish possible.
+        </p>
 
-    <p>And most importantly, everything I do, I do because I care about it ❤️.<br />When I'm genuinely engaged in the work, that engagement carries through to the audience.</p>
+        <p>
+          Over the years I have graded commercials for major Australian and international brands, designed large-scale
+          presentations and data visualisations for government clients in the UAE, produced immersive video
+          installations and projection mapping, contributed music to film and television, and coached hundreds of
+          creatives through the tools and workflows they rely on daily. The common thread is not the medium. It is the
+          way I approach problems: technically grounded, aesthetically aware, and clear about what the output actually
+          needs to do.
+        </p>
+      </div>
+    </section>
 
-    <p>Over the years I have graded commercials for major Australian and international brands, designed large-scale presentations and data visualisations for government clients in the UAE, produced immersive video installations and projection mapping, contributed music to film and television, and coached hundreds of creatives through the tools and workflows they rely on daily. The common thread is not the medium. It is the way I approach problems: technically grounded, with a clear view of what the output actually needs to achieve.</p>
+    <section class="about-story-block">
+      <div class="about-story-copy">
+        <figure class="about-inline-media about-photo-frame">
+          <img src={aboutPhoto} alt="Matteo Curcio operating a camera rig in Abu Dhabi" loading="eager" />
+        </figure>
+      </div>
+    </section>
 
-    <figure class="about-inline-media about-photo-frame">
-      <img src={aboutPhoto} alt="Matteo Curcio operating a camera rig in Abu Dhabi" loading="eager" />
-    </figure>
+    <section class="about-story-block">
+      <div class="about-story-copy">
+        <p>
+          My foundation is atypical for a creative career. I studied computer science, audio engineering, jazz music,
+          and documentary filmmaking in Milan. That combination shaped how I think. It trained me to hear structure as
+          much as expression, to see systems behind aesthetics, and to ask why a process fails rather than patching it
+          repeatedly.
+        </p>
 
-    <p>My foundation is atypical for a creative career. I studied computer science, audio engineering, jazz music, and documentary filmmaking in Milan. That combination shaped how I think. It trained me to hear structure as much as expression, to see systems behind aesthetics, and to question why a process fails rather than patching it repeatedly. It also gave me an instinct for workflows: where they accumulate hidden costs, where they fracture under scale, and how to design them to be both flexible and dependable.</p>
+        <p>
+          That instinct followed me across three continents. In Florence I graded television advertising with a view of
+          Brunelleschi&apos;s dome. In Dubai I delivered content at scale for Expo 2020 and major government
+          organisations, across immersive video, augmented reality, and high-stakes presentation systems. In Melbourne
+          the work has deepened into finishing, motion, teaching, and increasingly the infrastructure decisions that sit
+          underneath modern creative production.
+        </p>
+      </div>
+    </section>
 
-    <p>That instinct has followed me across three continents. In Florence I graded television advertising with a view of Brunelleschi's dome. In Dubai I delivered content at scale for Expo 2020 and major government organisations - immersive video, augmented reality, and complex data visualisation designed to communicate at the level of an international exposition. In Melbourne my work has focused on finishing, motion, coaching, and increasingly, the infrastructure that underpins modern creative production.</p>
+    <section class="about-story-block">
+      <div class="about-story-copy">
+        <figure class="about-inline-media about-animated-frame">
+          <video autoplay loop muted playsinline preload="metadata" poster={aboutAnimatedFallback} aria-label="Animated behind-the-scenes clip from Matteo Curcio's About page">
+            <source src={aboutAnimated} type="video/mp4" />
+          </video>
+        </figure>
+      </div>
+    </section>
 
-    <p>I am now moving formally into cybersecurity - a direction I hold an ISC2 certification in, and am continuing to build. This is not a departure from creative work, but a continuation of the same thinking. The boundary between a production pipeline and a digital infrastructure problem is thinner than most people assume. The questions are identical: what breaks first, where is the exposure, how do you reduce fragility, and what does a clean, reliable output actually require.</p>
+    <section class="about-story-block">
+      <div class="about-story-copy">
+        <p>
+          I am now moving more formally into cybersecurity. I hold the ISC2 Certified in Cybersecurity credential and I
+          am currently completing the Certificate IV in Cyber Security at RMIT. I do not see that as a pivot away from
+          the rest of the work. It feels more like naming the deeper instinct directly: where is the exposure, what
+          fails first, what is trusted too easily, and what makes a system dependable once real people start leaning on
+          it.
+        </p>
 
-    <p>And then there's the elephant in the room: Artificial Intelligence is reshaping what skilled work looks like in creative production, and the pace of that change is worth taking seriously. The tools arriving now are not incremental. Some of what has taken years to develop as craft is being compressed, automated, or made redundant - and that process is not finished. What remains valuable is judgment: the ability to reason clearly about a system, recognise when an output is wrong even if it looks right, and communicate across technical and creative teams in ways that machines still cannot replicate. I watch this space carefully, work with these tools directly, and adjust accordingly.</p>
+        <p>
+          Outside client work, I build and maintain my own home lab and self-hosted services. That matters because it
+          keeps the infrastructure side grounded in practice instead of abstraction. Music has never disappeared either.
+          I still think about timing, density, and emotional structure through sound as much as through picture. And I
+          keep writing, here and on Substack, because useful thinking deserves a place to live outside the job that
+          produced it.
+        </p>
+      </div>
+    </section>
 
-    <figure class="about-inline-media about-animated-frame">
-      <video autoplay loop muted playsinline preload="metadata" poster={aboutAnimatedFallback} aria-label="Animated behind-the-scenes clip from Matteo Curcio's About page">
-        <source src={aboutAnimated} type="video/mp4" />
-      </video>
-    </figure>
-
-
-    <p>If you are a producer or director who needs a reliable creative technologist, I understand what a project requires at each stage of post.</p>
-
-    <p>If you are a studio or organisation building or auditing digital workflows, I bring both creative literacy and the technical depth to make changes that actually hold.</p>
-
-    <p>If you are a creative who wants to work faster and think more clearly - I teach that, without the condescension.</p>
+    <nav class="about-pathways" aria-label="About page links">
+      {pathways.map((item) => (
+        <a class="about-pathway" href={item.href}>
+          <span class="about-pathway-label">{item.label}</span>
+          <span class="about-pathway-note">{item.note}</span>
+        </a>
+      ))}
+    </nav>
   </article>
-
-  <script is:inline define:vars={{ aboutHeadlines: ABOUT_HEADLINES, aboutIntros: ABOUT_INTRO_PARAGRAPHS }}>
-    const aboutTitle = document.getElementById("about-random-title");
-    if (aboutTitle && Array.isArray(aboutHeadlines) && aboutHeadlines.length > 0) {
-      const randomIndex = Math.floor(Math.random() * aboutHeadlines.length);
-      const randomHeadline = aboutHeadlines[randomIndex];
-      if (typeof randomHeadline === "string" && randomHeadline.trim().length > 0) {
-        aboutTitle.textContent = randomHeadline;
-      }
-    }
-
-    const aboutIntro = document.getElementById("about-random-intro");
-    if (aboutIntro && Array.isArray(aboutIntros) && aboutIntros.length > 0) {
-      const randomIndex = Math.floor(Math.random() * aboutIntros.length);
-      const randomIntro = aboutIntros[randomIndex];
-      if (typeof randomIntro === "string" && randomIntro.trim().length > 0) {
-        aboutIntro.textContent = randomIntro;
-      }
-    }
-  </script>
 </BaseLayout>

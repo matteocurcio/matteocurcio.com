@@ -1,0 +1,106 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { CONTACT_MAILTO, SITE_CONFIG } from "../config/site";
+
+const strengths = [
+  {
+    title: "Security Through Systems Thinking",
+    body: "I approach security the same way I have approached creative infrastructure for years: identify the weak links, reduce hidden fragility, document clearly, and design for reliable operation instead of heroic last-minute fixes."
+  },
+  {
+    title: "Hands-On Infrastructure Context",
+    body: "I maintain a home lab and self-hosted services, which keeps the work grounded in real operating conditions rather than abstract theory. That practical layer matters to me."
+  },
+  {
+    title: "Clear Communication Under Pressure",
+    body: "A large part of my career has been translating technical complexity for producers, clients, and teams who still need to make decisions quickly. That communication discipline carries directly into security work."
+  },
+  {
+    title: "Workflow and Risk Awareness",
+    body: "Creative production taught me to see access gaps, version confusion, brittle handoffs, backup failures, and delivery risk early. Security formalises that same instinct and sharpens it."
+  }
+];
+
+const signals = [
+  "ISC2 Certified in Cybersecurity (CC)",
+  "Currently completing Certificate IV in Cyber Security at RMIT",
+  "Home lab and self-hosted infrastructure practice",
+  "Workflow and infrastructure consulting background",
+  "Melbourne based, open to remote and hybrid opportunities"
+];
+---
+
+<BaseLayout
+  title="Security & Infrastructure | Matteo Curcio"
+  description="Security, infrastructure, and systems work from a Melbourne-based creative technologist moving formally into cybersecurity."
+  path="/security"
+>
+  <section class="services-head page-head">
+    <h1>Security, infrastructure, and systems work.</h1>
+    <p>
+      I am building the cybersecurity side of my practice formally, with the same systems-first approach that has
+      shaped my work in post-production, workflow design, and digital infrastructure for years.
+    </p>
+    <div class="credibility-strip security-signals" aria-label="Security signals">
+      {signals.map((item) => <span>{item}</span>)}
+    </div>
+  </section>
+
+  <section class="section two-col security-overview">
+    <article class="panel">
+      <p class="kicker">Context</p>
+      <h2>The thread did not change. The language did.</h2>
+      <p>
+        I have spent two decades working on systems that people depend on when deadlines, scale, and complexity start
+        colliding. Sometimes that system was a colour pipeline. Sometimes it was a delivery workflow. Sometimes it was
+        the infrastructure that kept a creative team from losing access, context, or control.
+      </p>
+      <p>
+        Cybersecurity is a natural continuation of that work, not a dramatic pivot away from it. I am interested in
+        resilience, exposure, operational clarity, and the point where a process starts becoming unsafe long before it
+        becomes obviously broken.
+      </p>
+    </article>
+
+    <article class="panel">
+      <p class="kicker">What I Bring</p>
+      <p>
+        I bring a combination that is unusual but useful: formal security study, practical infrastructure curiosity,
+        workflow auditing experience, and strong communication with non-specialist stakeholders. I know how to reason
+        through messy systems and explain what matters without theatrics.
+      </p>
+      <p>
+        If you are looking for someone moving into security who already understands operations, delivery pressure, and
+        documentation discipline, that is the angle I come from.
+      </p>
+    </article>
+  </section>
+
+  <section class="section lane-grid" aria-label="Security strengths">
+    {strengths.map((item) => (
+      <article class="lane">
+        <h3>{item.title}</h3>
+        <p>{item.body}</p>
+      </article>
+    ))}
+  </section>
+
+  <section class="cta section">
+    <div>
+      <h2>Interested in the security side of the work?</h2>
+      <p>
+        I am happy to talk about infrastructure, workflow risk, early-career security opportunities, or roles where
+        strong systems thinking matters as much as the tools themselves.
+      </p>
+    </div>
+    <a href={CONTACT_MAILTO}>Get in touch</a>
+  </section>
+
+  <section class="services-note section">
+    <p>
+      For broader context, the rest of the site still matters. The creative work is not separate from this; it is part
+      of the same story. If you want the fuller picture, start with the <a href="/about">About page</a> or browse the
+      writing here and on <a href={SITE_CONFIG.social.substack} target="_blank" rel="noopener noreferrer">Substack</a>.
+    </p>
+  </section>
+</BaseLayout>

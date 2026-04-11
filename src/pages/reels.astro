@@ -35,12 +35,24 @@ const filterOrder: Array<{ key: ReelFilterKey; label: string }> = [
   { key: "music", label: "MUSIC" }
 ];
 
+const REEL_CATEGORY_LABELS: Record<Exclude<ReelFilterKey, "all">, string> = {
+  colour: "Colour",
+  motion: "Motion",
+  immersive: "Immersive",
+  video: "Video",
+  music: "Music"
+};
+
 const reels = LEGACY_REELS
   .map((item) => ({
     ...item,
     categoryKey: REEL_CATEGORY_BY_SLUG[item.slug]
   }))
-  .filter((item): item is typeof item & { categoryKey: Exclude<ReelFilterKey, "all"> } => Boolean(item.categoryKey));
+  .filter((item): item is typeof item & { categoryKey: Exclude<ReelFilterKey, "all"> } => Boolean(item.categoryKey))
+  .map((item) => ({
+    ...item,
+    categoryLabel: REEL_CATEGORY_LABELS[item.categoryKey]
+  }));
 ---
 
 <BaseLayout title="Reels | Matteo Curcio" path="/reels">

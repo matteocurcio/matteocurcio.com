@@ -102,6 +102,9 @@ const works = LEGACY_WORKS.map((item) => {
   return {
     ...item,
     categoryKey: CATEGORY_KEY_BY_LABEL[item.category],
+    meta: [project?.data.client, project?.data.year ? String(project.data.year) : undefined, item.category]
+      .filter(Boolean)
+      .join(" · "),
     image: resolvedImage || "",
     video: resolvedVideo,
     href: `/projects/${item.slug}/`
@@ -144,6 +147,10 @@ const filterOrder: Array<{ key: "all" | "colour" | "motion" | "immersive" | "vid
           {item.video ? (
             <video class="works-preview" src={item.video} muted loop playsinline preload="none" aria-hidden="true" />
           ) : null}
+          <div class="works-tile-overlay">
+            <p class="works-tile-title">{item.title}</p>
+            <p class="works-tile-meta">{item.meta}</p>
+          </div>
         </div>
       </a>
     ))}
