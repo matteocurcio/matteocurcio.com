@@ -1365,7 +1365,7 @@ h1 {
   flex-direction: column;
   justify-content: flex-end;
   padding-top: 6.25rem;
-  padding-bottom: 3.2rem;
+  padding-bottom: 2.45rem;
   color: #f7f1e7;
 }
 
@@ -1451,13 +1451,13 @@ h1 {
 }
 
 .home-section {
-  margin-top: clamp(2.15rem, 4vw, 2.75rem);
+  margin-top: clamp(1.7rem, 3.2vw, 2.3rem);
 }
 
 .home-proof-strip {
-  margin-top: 0.7rem;
+  margin-top: 0.3rem;
   display: grid;
-  gap: 0.8rem;
+  gap: 0.6rem;
 }
 
 .home-proof-strip,
@@ -1481,7 +1481,7 @@ h1 {
 
 .home-section-head {
   max-width: 52rem;
-  margin-bottom: 1.15rem;
+  margin-bottom: 0.95rem;
 }
 
 .home-section-head p:last-child {
@@ -1664,7 +1664,7 @@ h1 {
   .home-hero-inner {
     min-height: 100vh;
     padding-top: 5.25rem;
-    padding-bottom: 4.5rem;
+    padding-bottom: 3.2rem;
   }
 
   .home-hero h1 {
@@ -1680,6 +1680,27 @@ h1 {
     grid-template-columns: 1fr;
   }
 
+}
+
+@media (max-width: 420px) {
+  .nav {
+    gap: 0.7rem;
+  }
+
+  .brand-wordmark {
+    font-size: 0.96rem;
+  }
+
+  .nav-links {
+    max-width: calc(100vw - 2rem);
+    padding: 0.72rem 0.85rem;
+  }
+
+  .nav-links a {
+    min-height: 2.2rem;
+    font-size: 0.88rem;
+    letter-spacing: 0.03em;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
