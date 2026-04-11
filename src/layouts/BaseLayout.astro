@@ -7,7 +7,7 @@ interface Props {
   description?: string;
   path?: string;
   theme?: "default" | "dark";
-  navSection?: "works" | "reels" | "about" | "services" | "tutoring" | "blog";
+  navSection?: "works" | "reels" | "about" | "services" | "security" | "tutoring" | "blog";
   noIndex?: boolean;
 }
 
@@ -21,6 +21,7 @@ const {
 } = Astro.props;
 
 const canonical = new URL(path, Astro.site);
+const ogImage = new URL("/images/og/matteo-curcio-og.png", Astro.site);
 const schema = {
   "@context": "https://schema.org",
   "@graph": [
@@ -65,10 +66,15 @@ const socialLinks = [
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical.href} />
     <meta property="og:site_name" content={SITE_CONFIG.ownerName} />
+    <meta property="og:image" content={ogImage.href} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Matteo Curcio — finishing, systems, music, and security-minded work." />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:site" content={SITE_CONFIG.social.x} />
+    <meta name="twitter:image" content={ogImage.href} />
     <script type="application/ld+json" set:html={JSON.stringify(schema)} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -111,33 +117,38 @@ const socialLinks = [
           </span>
           <span class="brand-wordmark"><span class="brand-first">matteo</span> <span class="brand-last">curcio</span></span>
         </a>
-        <button class="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-        <nav class="nav-links" id="site-nav" aria-label="Main" data-nav-links>
-          <a href="/about" aria-current={path === "/about" ? "page" : undefined}>About</a>
-          <a href="/works" aria-current={(navSection ? navSection === "works" : path === "/works" || path === "/work" || path.startsWith("/projects")) ? "page" : undefined}>Projects</a>
-          <a href="/reels" aria-current={(navSection ? navSection === "reels" : path === "/reels") ? "page" : undefined}>Reels</a>
-          <a href="/services" aria-current={path === "/services" ? "page" : undefined}>Services</a>
-          <a href="/tutoring" aria-current={path === "/tutoring" ? "page" : undefined}>Tutoring</a>
-          <a href="/blog" aria-current={path.startsWith("/blog") ? "page" : undefined}>Blog</a>
-          <button
-            class="theme-toggle"
-            type="button"
-            aria-label="Switch to dark mode"
-            title="Toggle dark mode"
-            data-theme-toggle
-          >
-            <svg class="theme-toggle-icon" viewBox="0 0 24 24" aria-hidden="true">
-              <circle cx="12" cy="12" r="8.4" fill="none" stroke="currentColor" stroke-width="1.5" />
-              <path d="M12 3.6a8.4 8.4 0 0 1 0 16.8c2.65-1.55 4.18-4.48 4.18-8.4S14.65 5.15 12 3.6Z" fill="currentColor" />
-              <circle cx="12" cy="7.9" r="1.25" fill="none" stroke="currentColor" stroke-width="1.1" />
-              <circle cx="12" cy="16.1" r="1.25" fill="currentColor" />
-            </svg>
-          </button>
-        </nav>
+        <div class="nav-right">
+          <nav class="nav-links" id="site-nav" aria-label="Main" data-nav-links>
+            <a href="/about" aria-current={path === "/about" ? "page" : undefined}>About</a>
+            <a href="/works" aria-current={(navSection ? navSection === "works" : path === "/works" || path === "/work" || path.startsWith("/projects")) ? "page" : undefined}>Projects</a>
+            <a href="/reels" aria-current={(navSection ? navSection === "reels" : path === "/reels") ? "page" : undefined}>Reels</a>
+            <a href="/services" aria-current={path === "/services" ? "page" : undefined}>Services</a>
+            <a href="/security" aria-current={(navSection ? navSection === "security" : path === "/security") ? "page" : undefined}>Security</a>
+            <a href="/tutoring" aria-current={path === "/tutoring" ? "page" : undefined}>Tutoring</a>
+            <a href="/blog" aria-current={path.startsWith("/blog") ? "page" : undefined}>Blog</a>
+          </nav>
+          <div class="nav-actions">
+            <button
+              class="theme-toggle"
+              type="button"
+              aria-label="Switch to dark mode"
+              title="Toggle dark mode"
+              data-theme-toggle
+            >
+              <svg class="theme-toggle-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="8.4" fill="none" stroke="currentColor" stroke-width="1.5" />
+                <path d="M12 3.6a8.4 8.4 0 0 1 0 16.8c2.65-1.55 4.18-4.48 4.18-8.4S14.65 5.15 12 3.6Z" fill="currentColor" />
+                <circle cx="12" cy="7.9" r="1.25" fill="none" stroke="currentColor" stroke-width="1.1" />
+                <circle cx="12" cy="16.1" r="1.25" fill="currentColor" />
+              </svg>
+            </button>
+            <button class="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+          </div>
+        </div>
       </div>
     </header>
     <main>

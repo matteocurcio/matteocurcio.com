@@ -198,13 +198,14 @@ const services = [
   const MIN_FILL_MS = 4000;
   const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const LAST_SUBMIT_KEY = "mc_services_last_submit";
+  const FORM_ENDPOINT = "https://formsubmit.co/ajax/hello@matteocurcio.com";
 
   if (startedAtInput instanceof HTMLInputElement) {
     startedAtInput.value = String(Date.now());
   }
 
   if (form instanceof HTMLFormElement) {
-    form.addEventListener("submit", (event) => {
+    form.addEventListener("submit", async (event) => {
       event.preventDefault();
 
       const now = Date.now();
@@ -244,21 +245,53 @@ const services = [
         return;
       }
 
-      const subject = "Services enquiry";
-      const body = [
-        `Name: ${name}`,
-        `Email: ${email}`,
-        "",
-        "Message:",
-        message
-      ].join("\n");
-      const mailto = `mailto:hello@matteocurcio.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-      window.localStorage.setItem(LAST_SUBMIT_KEY, String(now));
       if (formNote) {
-        formNote.textContent = "Opening your email app...";
+        formNote.textContent = "Sending enquiry...";
       }
-      window.location.href = mailto;
+
+      const submitButton = form.querySelector('button[type="submit"]');
+      if (submitButton instanceof HTMLButtonElement) {
+        submitButton.disabled = true;
+      }
+
+      try {
+        const response = await fetch(FORM_ENDPOINT, {
+          method: "POST",
+          headers: {
+            Accept: "application/json"
+          },
+          body: new URLSearchParams({
+            name,
+            email,
+            message,
+            _subject: "Services enquiry",
+            _template: "table",
+            _honey: website
+          })
+        });
+
+        const payload = await response.json().catch(() => null);
+        if (!response.ok || (payload && payload.success === "false")) {
+          throw new Error("Form submission failed.");
+        }
+
+        window.localStorage.setItem(LAST_SUBMIT_KEY, String(now));
+        form.reset();
+        if (startedAtInput instanceof HTMLInputElement) {
+          startedAtInput.value = String(Date.now());
+        }
+        if (formNote) {
+          formNote.textContent = "Enquiry sent. Thank you.";
+        }
+      } catch (error) {
+        if (formNote) {
+          formNote.textContent = "Unable to send right now. Please try again shortly.";
+        }
+      } finally {
+        if (submitButton instanceof HTMLButtonElement) {
+          submitButton.disabled = false;
+        }
+      }
     });
   }
 </script>

@@ -17,7 +17,7 @@ const tutoringAreas = [
   },
   {
     number: "02",
-    icon: "/icons/apps/premiere.svg",
+    icon: "/icons/apps/premiere-pro.png",
     iconAlt: "Adobe Premiere Pro",
     name: "Adobe Premiere Pro",
     tag: "Timeline flow and exports",
@@ -30,7 +30,7 @@ const tutoringAreas = [
   },
   {
     number: "03",
-    icon: "/icons/apps/after-effects.svg",
+    icon: "/icons/apps/after-effects.png",
     iconAlt: "Adobe After Effects",
     name: "After Effects",
     tag: "Animation and compositing basics",
@@ -43,20 +43,33 @@ const tutoringAreas = [
   },
   {
     number: "04",
-    icon: "/icons/apps/photoshop-lightroom.svg",
-    iconAlt: "Adobe Photoshop and Lightroom",
-    name: "Photoshop & Lightroom",
-    tag: "Retouching and batch workflows",
+    icon: "/icons/apps/photoshop.png",
+    iconAlt: "Adobe Photoshop",
+    name: "Adobe Photoshop",
+    tag: "Retouching, masking, finishing",
     description:
-      "These sessions clarify which job belongs in Lightroom and which belongs in Photoshop. We can focus on retouching, masking, colour management, catalogue structure, or faster batch workflows.",
+      "Photoshop sessions focus on the detailed end of the image: retouching, masking, cleanup, compositing, and the small technical decisions that make stills feel properly finished.",
     audience:
-      "Photographers, retouchers, designers, and content creators who want to stop guessing which tool to use and why.",
-    ctaLabel: "Book a session",
+      "Photographers, retouchers, designers, and content creators who want more control over the final image instead of relying on guesswork.",
+    ctaLabel: "Book a Photoshop session",
     ctaUrl: "https://www.superprof.com.au/certified-davinci-resolve-editor-and-colorist-offering-one-one-training-for-editors-videomakers-influencers-directors-dop-and.html"
   },
   {
     number: "05",
-    icon: "/icons/apps/adobe-suite.svg",
+    icon: "/icons/apps/lightroom.png",
+    iconAlt: "Adobe Lightroom",
+    name: "Adobe Lightroom",
+    tag: "Catalogues, grading, batch flow",
+    description:
+      "Lightroom sessions are about speed and consistency across whole bodies of work. We can focus on catalogue structure, colour workflow, batch editing, exports, and keeping large libraries manageable.",
+    audience:
+      "Photographers and image-makers who want a cleaner, faster workflow from ingest to export.",
+    ctaLabel: "Book a Lightroom session",
+    ctaUrl: "https://www.superprof.com.au/certified-davinci-resolve-editor-and-colorist-offering-one-one-training-for-editors-videomakers-influencers-directors-dop-and.html"
+  },
+  {
+    number: "06",
+    icon: "/icons/apps/adobe-suite.png",
     iconAlt: "Adobe Creative Cloud",
     name: "Adobe Suite as a System",
     tag: "Connected suite-wide production",
@@ -68,7 +81,7 @@ const tutoringAreas = [
     ctaUrl: "https://www.superprof.com.au/certified-davinci-resolve-editor-and-colorist-offering-one-one-training-for-editors-videomakers-influencers-directors-dop-and.html"
   },
   {
-    number: "06",
+    number: "07",
     icon: "/icons/apps/adobe-express-official.png",
     iconAlt: "Adobe Express",
     name: "Adobe Express",
@@ -78,6 +91,19 @@ const tutoringAreas = [
     audience:
       "Marketing teams, content creators, educators, and small business owners who need to produce consistent, professional-looking content quickly and without a steep learning curve.",
     ctaLabel: "Book an Express session",
+    ctaUrl: "https://www.superprof.com.au/certified-davinci-resolve-editor-and-colorist-offering-one-one-training-for-editors-videomakers-influencers-directors-dop-and.html"
+  },
+  {
+    number: "08",
+    icon: "/icons/apps/ai-workflows.svg",
+    iconAlt: "AI-assisted workflows",
+    name: "AI-Assisted Workflows",
+    tag: "Automation, prompting, practical creative systems",
+    description:
+      "This is for people who want to use AI tools sensibly inside real creative work: research support, transcript cleanup, first-pass asset organisation, prompt design, and small automations that save time without making the work generic.",
+    audience:
+      "Editors, photographers, designers, educators, and small teams who want practical AI habits they can trust rather than hype they cannot repeat.",
+    ctaLabel: "Book an AI workflow session",
     ctaUrl: "https://www.superprof.com.au/certified-davinci-resolve-editor-and-colorist-offering-one-one-training-for-editors-videomakers-influencers-directors-dop-and.html"
   }
 ];
@@ -129,7 +155,12 @@ const testimonials = [
       <article class="service-card">
         <div class="service-card-head">
           <span class="service-number tutoring-service-icon" aria-hidden="true">
-            <img class={`tutoring-app-icon ${area.number === "01" ? "is-resolve" : ""}`} src={area.icon} alt={area.iconAlt} loading="lazy" />
+            <img
+              class="tutoring-app-icon"
+              src={area.icon}
+              alt={area.iconAlt}
+              loading="lazy"
+            />
           </span>
           <div class="service-card-title-group">
             <h2 class="service-name">{area.name}</h2>

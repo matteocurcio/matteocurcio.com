@@ -1,0 +1,50 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#F4F1EA"/>
+  <rect width="1200" height="630" fill="url(#bgGlow)"/>
+  <circle cx="1010" cy="140" r="210" fill="url(#accentGlow)" fill-opacity="0.55"/>
+  <circle cx="150" cy="560" r="220" fill="url(#softGlow)" fill-opacity="0.7"/>
+
+  <g transform="translate(86 86)">
+    <circle cx="42" cy="42" r="42" fill="#111111"/>
+    <path d="M41.98 5.2L38.38 18.7C45.3 20.64 52.88 20.76 60.3 18.77L56.7 5.27C51.72 6.66 46.67 6.5 41.98 5.2Z" fill="#0291CD"/>
+    <path d="M29.65 12.54L19.79 22.39C24.88 27.63 31.32 31.46 38.39 33.4L41.99 19.9C37.28 18.52 32.97 15.95 29.65 12.54Z" fill="#0247FE"/>
+    <path d="M56.72 19.87L60.32 33.37C67.74 31.37 74.13 27.52 79.15 22.44L69.29 12.58C65.97 15.99 61.67 18.56 56.72 19.87Z" fill="#66B132"/>
+    <path d="M69.31 12.74L79.17 22.59C84.28 17.38 87.97 10.86 89.77 3.74L76.27 0.12C75.16 4.94 72.76 9.25 69.31 12.74Z" fill="#D0E92B"/>
+    <path d="M89.4 -18.03L75.9 -14.43C75.97 -14.18 76.06 -13.92 76.15 -13.66C77.39 -8.95 77.39 -4.26 76.28 0.12L89.78 3.74C91.48 -2.78 91.53 -9.96 89.67 -16.96C89.58 -17.32 89.49 -17.67 89.4 -18.03Z" fill="#FFFE32"/>
+    <path d="M12.84 0.76C12.77 0.51 12.72 0.26 12.68 0L-0.82 3.6C-0.75 3.86 -0.69 4.12 -0.62 4.38C1.25 11.37 4.86 17.51 9.63 22.44L19.49 12.59C16.31 9.36 14 5.35 12.84 0.76Z" fill="#3E01A4"/>
+    <path d="M68.52 -30.35L78.38 -40.21C73.24 -45.15 66.87 -48.72 59.98 -50.52L56.38 -37.02C60.87 -35.88 65.05 -33.57 68.52 -30.35Z" fill="#FB9902"/>
+    <path d="M56.36 -37.01L59.96 -50.51C53.26 -52.23 46.01 -52.32 38.83 -50.37L42.43 -36.87C47.11 -38.15 51.81 -38.1 56.36 -37.01Z" fill="#FD5308"/>
+    <path d="M75.89 -14.4L89.39 -18C87.31 -25.18 83.49 -31.37 78.37 -36.4L68.51 -26.54C71.89 -23.42 74.54 -19.37 75.89 -14.4Z" fill="#F9BC02"/>
+    <path d="M13.09 -14.32L-0.41 -17.94C-2.34 -11.18 -2.54 -3.84 -0.75 3.56L12.75 -0.04C11.59 -4.83 11.76 -9.66 13.09 -14.32Z" fill="#8601B0"/>
+    <path d="M42.46 -36.86L38.86 -50.36C31.67 -48.42 25.47 -44.75 20.53 -39.79L30.39 -29.94C33.62 -33.1 37.7 -35.49 42.46 -36.86Z" fill="#FE2712"/>
+    <path d="M30.39 -29.92L20.54 -39.78C15.43 -34.75 11.74 -28.48 9.76 -21.58L23.27 -17.98C24.59 -22.45 27.05 -26.6 30.39 -29.92Z" fill="#A7194B"/>
+  </g>
+
+  <text x="86" y="220" fill="#111111" font-family="'Instrument Sans', 'Helvetica Neue', Arial, sans-serif" font-size="104" font-weight="700" letter-spacing="-7">
+    matteo curcio
+  </text>
+  <text x="86" y="314" fill="#2B2622" font-family="'Instrument Sans', 'Helvetica Neue', Arial, sans-serif" font-size="40" font-weight="500" letter-spacing="-1.5">
+    finishing, systems, music, and security-minded work
+  </text>
+  <text x="86" y="430" fill="#5C554F" font-family="'Instrument Sans', 'Helvetica Neue', Arial, sans-serif" font-size="26" font-weight="500">
+    Melbourne / Remote
+  </text>
+  <text x="86" y="474" fill="#5C554F" font-family="'Instrument Sans', 'Helvetica Neue', Arial, sans-serif" font-size="26" font-weight="500">
+    Colour • workflow • music • tutoring • cybersecurity
+  </text>
+
+  <defs>
+    <radialGradient id="bgGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1024 132) rotate(135) scale(620 510)">
+      <stop stop-color="#FFF6E8"/>
+      <stop offset="1" stop-color="#F4F1EA" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="accentGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1010 140) rotate(90) scale(210)">
+      <stop stop-color="#D9481E"/>
+      <stop offset="1" stop-color="#D9481E" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="softGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(150 560) rotate(90) scale(220)">
+      <stop stop-color="#E7DDD0"/>
+      <stop offset="1" stop-color="#E7DDD0" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+</svg>

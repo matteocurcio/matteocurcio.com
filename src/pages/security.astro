@@ -28,6 +28,29 @@ const signals = [
   "Workflow and infrastructure consulting background",
   "Melbourne based, open to remote and hybrid opportunities"
 ];
+
+const pathways = [
+  {
+    href: "/about",
+    label: "About",
+    note: "The wider story linking image, infrastructure, music, teaching, and security."
+  },
+  {
+    href: "/services",
+    label: "Services",
+    note: "The commercial and systems-facing side of the practice in one place."
+  },
+  {
+    href: "/blog",
+    label: "Writing",
+    note: "Workflow notes, field reports, and technical thinking with more detail."
+  },
+  {
+    href: "/reels/music/",
+    label: "Music",
+    note: "A quicker route into the sound side of the work and the broader range."
+  }
+];
 ---
 
 <BaseLayout
@@ -103,4 +126,13 @@ const signals = [
       writing here and on <a href={SITE_CONFIG.social.substack} target="_blank" rel="noopener noreferrer">Substack</a>.
     </p>
   </section>
+
+  <nav class="about-pathways section security-pathways" aria-label="Security page links">
+    {pathways.map((item) => (
+      <a class="about-pathway" href={item.href}>
+        <span class="about-pathway-label">{item.label}</span>
+        <span class="about-pathway-note">{item.note}</span>
+      </a>
+    ))}
+  </nav>
 </BaseLayout>
