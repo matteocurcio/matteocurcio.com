@@ -1,0 +1,297 @@
+post:
+  slug: grade-with-intention
+  current_title: "Grade with Intention"
+  previous_title: "Teaching the Why Behind Colour Decisions"
+  date: "2026-05-06"
+  format: blog_post
+  status: draft_candidate_for_publication
+  canonical_path: "/blog/grade-with-intention/"
+
+purpose:
+  primary_goal: >
+    Explain the reasoning framework behind two education products, Signal to Noise
+    and Color Systems, and position them as training built around understanding
+    rather than imitation.
+  secondary_goals:
+    - Introduce Matteo's teaching philosophy around colour, video pipelines, and decision-making.
+    - Bridge the gap between beginner tutorials and deeply technical engineering material.
+    - Show that colour grading is both aesthetic and systemic.
+    - Establish a clear position on AI: useful, but not a substitute for literacy.
+    - Support tutoring and course demand by showing the depth and shape of the offering.
+  strategic_role_on_site:
+    - strengthens the tutoring and education side of the practice
+    - reinforces the systems-thinking thread that connects creative and technical work
+    - supports authority in colour, workflow, and post-production reasoning
+
+core_thesis:
+  one_line: >
+    Strong grading does not come from memorising recipes; it comes from
+    understanding why an image behaves the way it does and making decisions with intention.
+  supporting_claims:
+    - Technical literacy and aesthetic judgement need each other.
+    - Tutorial-style shortcuts break as soon as footage, workflow, or delivery conditions change.
+    - Most learners need applied theory translated into working post-production language.
+    - AI increases the value of judgment because plausible outputs can hide weak reasoning.
+
+reader:
+  primary_audience:
+    - editors
+    - colourists
+    - filmmakers
+    - content creators
+    - post-production students
+    - early-career video professionals
+  secondary_audience:
+    - current or prospective tutoring clients
+    - educators or institutions evaluating Matteo's teaching voice
+    - technically curious creatives who need a clearer bridge into colour logic
+  reader_problem:
+    - they can follow steps but struggle to adapt when conditions change
+    - they know tools exist but not always why to use them
+    - they often confuse software fluency with image literacy
+    - they are caught between oversimplified tutorials and overly abstract theory
+  promised_outcome: >
+    The reader should leave with a clearer mental model of what the two courses teach,
+    why the distinction matters, and why understanding the logic underneath grading
+    leads to stronger, more adaptable decisions.
+
+positioning:
+  signal_to_noise:
+    domain: digital_video_foundations
+    core_question: "What is the signal, and what damages it?"
+    focus:
+      - codecs
+      - containers
+      - compression
+      - bit depth
+      - dynamic range
+      - HDR
+      - delivery standards
+      - metadata
+      - ffmpeg
+      - workflow integrity
+    teaching_value: >
+      Helps students understand the image as data moving through a pipeline,
+      so technical choices become visible before they become problems.
+  color_systems:
+    domain: grading_logic_and_repeatability
+    core_question: "Once I understand the signal, how do I control colour with intent?"
+    focus:
+      - scopes
+      - colour management
+      - shot matching
+      - node structure
+      - skin tone
+      - secondaries
+      - groups
+      - transforms
+      - continuity
+      - repeatable grading systems
+    teaching_value: >
+      Helps students organise creative and technical grading decisions into a
+      structure that can scale beyond a single good-looking shot.
+  relationship_between_courses:
+    - They solve different problems and should not be collapsed into one vague "colour course."
+    - Signal to Noise explains image behaviour as data.
+    - Color Systems explains image behaviour as a grade.
+    - Together they form a fuller literacy around how images survive, translate, and are shaped.
+
+logic_map:
+  opening_move:
+    intent: >
+      Introduce the two-course concept and immediately clarify that they are related
+      but distinct, so the reader understands the post is about educational design,
+      not just a list of slide screenshots.
+    effect_on_reader:
+      - creates curiosity
+      - frames authority through specificity
+      - prevents the courses from being mistaken for generic software training
+  anti_tutorial_argument:
+    intent: >
+      Reject purely recipe-based learning and establish that memorised steps are fragile
+      in professional conditions.
+    effect_on_reader:
+      - validates frustrations readers may already feel
+      - creates a need for deeper reasoning
+      - positions Matteo as someone teaching adaptive thinking rather than hacks
+  course_breakdown:
+    intent: >
+      Show what each course actually covers so the reader can feel the structure,
+      scope, and seriousness of the teaching material.
+    effect_on_reader:
+      - increases trust
+      - makes the offer concrete
+      - demonstrates that the curriculum is already materially developed
+  missing_middle_section:
+    intent: >
+      Name the educational gap between beginner tutorials and engineering literature.
+    effect_on_reader:
+      - gives language to a common but rarely articulated pain point
+      - frames the course as a needed translation layer
+  systems_argument:
+    intent: >
+      Reframe grading as aesthetic decision-making inside a technical system rather
+      than as isolated taste.
+    effect_on_reader:
+      - deepens the intellectual credibility of the post
+      - connects colour work to Matteo's broader systems-thinking identity
+  ai_section:
+    intent: >
+      Update the argument for the current moment by showing why literacy matters
+      even more when tools can generate plausible outputs automatically.
+    effect_on_reader:
+      - makes the post timely
+      - broadens relevance beyond traditional grading
+      - positions Matteo as neither anti-AI nor naive about it
+  teaching_philosophy_section:
+    intent: >
+      Shift from diagnosing the problem to stating the pedagogical approach:
+      teach evidence, structure, and reasoning rather than mystique.
+    effect_on_reader:
+      - makes the post feel generous and practical
+      - clarifies how Matteo teaches, not just what he knows
+  closing_confidence_section:
+    intent: >
+      End by redefining confidence as the ability to explain why a decision is being made.
+    effect_on_reader:
+      - creates a memorable takeaway
+      - turns the post into a statement of educational values
+      - supports conversion into tutoring or course interest
+
+section_by_section:
+  - heading: "Beyond Tutorials"
+    function: setup
+    key_points:
+      - introduces the two courses
+      - distinguishes infrastructure from grading logic
+      - explains why recipe learning becomes fragile
+    rhetorical_job: move the reader from "software tips" into "decision frameworks"
+  - heading: "What Each Course Covers"
+    function: scope_definition
+    key_points:
+      - outlines the technical territory of Signal to Noise
+      - outlines the practical grading territory of Color Systems
+      - explains why the courses are separate but connected
+    rhetorical_job: make the educational offer concrete and legible
+  - heading: "The Missing Middle"
+    function: problem_definition
+    key_points:
+      - identifies a gap in current video education
+      - argues that working creatives need translated applied theory
+      - reframes grading as technical choices inside a system
+    rhetorical_job: justify why these courses need to exist
+  - heading: "AI Makes This More Important"
+    function: contemporary_relevance
+    key_points:
+      - AI tools can produce plausible but weakly understood results
+      - literacy enables better prompting, inspection, and judgment
+      - the issue is not whether to use AI, but how knowingly
+    rhetorical_job: future-proof the argument
+  - heading: "Teaching Tools, Not Easy Solutions"
+    function: pedagogy
+    key_points:
+      - scopes are evidence
+      - colour management is infrastructure
+      - codecs and transforms are thinking tools
+    rhetorical_job: translate expertise into a teachable ethos
+  - heading: "A Better Kind of Confidence"
+    function: conclusion
+    key_points:
+      - good training produces better questions
+      - explanation is the marker of understanding
+      - intention matters more than button-pushing
+    rhetorical_job: leave the reader with an actionable philosophy
+
+pedagogy:
+  teaching_principles:
+    - Start from the behaviour of the image, not from stylistic presets.
+    - Treat technical constraints as part of creative judgment, not separate from it.
+    - Use scopes, transforms, codecs, and metadata as evidence-based tools.
+    - Prioritise repeatable systems over improvised hero-shot success.
+    - Translate theory into working post-production language.
+    - Teach enough depth to build adaptation, not just execution.
+  what_the_post_rejects:
+    - LUT dependency as understanding
+    - node-tree copying as expertise
+    - AI outputs mistaken for reasoning
+    - taste detached from pipeline knowledge
+  what_the_post_advocates:
+    - literacy
+    - intent
+    - repeatability
+    - practical systems thinking
+    - adaptable judgment
+
+tone_and_voice:
+  desired_tone:
+    - authoritative
+    - precise
+    - generous
+    - non-theatrical
+    - thoughtful
+  avoid:
+    - guru language
+    - vague inspiration
+    - anti-technology posturing
+    - overclaiming the course status if development is still in progress
+  signature_lines:
+    - "What matters then is not whether you remember a recipe. It is whether you understand why the recipe worked in the first place."
+    - "Technical literacy without aesthetic judgement becomes rigid; aesthetic judgement without technical literacy becomes fragile."
+    - "The point is not to reject AI. The point is to remain literate enough to question it."
+    - "If you can explain why, you are no longer just operating software. You are making decisions with intent."
+
+image_logic:
+  role_of_images: >
+    The screenshots are evidence of real course development and visual anchors for
+    the curriculum, not decorative illustrations.
+  assets:
+    - file: "/images/blog/color-systems-signal-noise/two-courses-split.jpeg"
+      role: establishes the two-course split immediately
+    - file: "/images/blog/color-systems-signal-noise/signal-noise-session-1-agenda.jpeg"
+      role: grounds Signal to Noise in structured curriculum
+    - file: "/images/blog/color-systems-signal-noise/signal-noise-session-2-agenda.jpeg"
+      role: shows ffmpeg and workflow reasoning as part of the teaching
+    - file: "/images/blog/color-systems-signal-noise/color-systems-session-1-agenda.jpeg"
+      role: anchors Color Systems in foundational grading language
+    - file: "/images/blog/color-systems-signal-noise/color-systems-session-2-agenda.jpeg"
+      role: introduces matching and continuity as real-world grading problems
+    - file: "/images/blog/color-systems-signal-noise/color-systems-session-3-agenda.jpeg"
+      role: shows how the course scales into systems and sequence-level thinking
+    - file: "/images/blog/color-systems-signal-noise/color-systems-balance-before-look.jpeg"
+      role: visually supports the idea of structure before style
+    - file: "/images/blog/color-systems-signal-noise/color-systems-scopes-rule.jpeg"
+      role: reinforces scopes as evidence rather than intimidation
+    - file: "/images/blog/color-systems-signal-noise/color-systems-vectorscope.jpeg"
+      role: supports the argument for readable, actionable analysis
+    - file: "/images/blog/color-systems-signal-noise/color-systems-balance-workflow.jpeg"
+      role: closes on repeatable process rather than isolated aesthetics
+
+conversion_logic:
+  implied_call_to_action: >
+    Readers who feel under-served by recipe-based tutorials should recognise that
+    Matteo offers a more rigorous and useful way to learn.
+  likely_next_steps_for_reader:
+    - visit the Tutoring page
+    - inquire about one-to-one coaching
+    - express interest in the courses
+    - read related technical posts on workflow and delivery
+  supporting_site_links:
+    - "/tutoring"
+    - "/services"
+    - "/blog"
+
+editorial_notes:
+  strengths:
+    - clear thesis
+    - strong distinction between the two courses
+    - timely AI framing without hype
+    - consistent systems-thinking throughline
+    - grounded screenshots that make the work tangible
+  risks_to_watch:
+    - avoid sounding too abstract for readers seeking concrete outcomes
+    - ensure the eventual tutoring/course pages reflect the same language and promises
+    - keep the post honest about what is already built versus still in development
+  future_extensions:
+    - link this post directly from tutoring or course landing pages
+    - break out Signal to Noise and Color Systems into separate dedicated pages later
+    - add a short CTA at the end when the courses are ready for enrolment

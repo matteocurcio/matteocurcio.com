@@ -1,0 +1,71 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="800" y1="0" x2="800" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#090A0E"/>
+      <stop offset="1" stop-color="#16110E"/>
+    </linearGradient>
+    <radialGradient id="glowLeft" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(460 580) rotate(90) scale(300 520)">
+      <stop stop-color="#F2A254" stop-opacity="0.17"/>
+      <stop offset="1" stop-color="#F2A254" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowRight" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1140 590) rotate(90) scale(300 520)">
+      <stop stop-color="#47A9D8" stop-opacity="0.12"/>
+      <stop offset="1" stop-color="#47A9D8" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="desk" x1="800" y1="620" x2="800" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1E1713"/>
+      <stop offset="1" stop-color="#0E0B0A"/>
+    </linearGradient>
+    <linearGradient id="bezel" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#1F222A"/>
+      <stop offset="1" stop-color="#090A0D"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="160%">
+      <feDropShadow dx="0" dy="28" stdDeviation="32" flood-color="#000000" flood-opacity="0.55"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#glowLeft)"/>
+  <rect width="1600" height="900" fill="url(#glowRight)"/>
+
+  <ellipse cx="800" cy="698" rx="640" ry="52" fill="#000000" fill-opacity="0.42"/>
+  <path d="M0 690C238 650 470 634 800 634C1130 634 1362 650 1600 690V900H0V690Z" fill="url(#desk)"/>
+  <path d="M0 736C233 704 466 688 800 688C1134 688 1367 704 1600 736" stroke="#6D4A2A" stroke-opacity="0.28" stroke-width="2"/>
+
+  <g filter="url(#shadow)">
+    <g transform="translate(340 210)">
+      <rect x="0" y="0" width="920" height="320" rx="26" fill="url(#bezel)"/>
+      <rect x="18" y="18" width="884" height="284" rx="16" fill="#050608"/>
+      <image href="/images/blog/color-systems-signal-noise/color-systems-scopes-rule.jpeg" x="18" y="18" width="884" height="284" preserveAspectRatio="xMidYMid slice"/>
+      <rect x="18" y="18" width="884" height="284" rx="16" fill="#000000" fill-opacity="0.08"/>
+      <circle cx="460" cy="310" r="5" fill="#2F343E"/>
+    </g>
+
+    <g transform="translate(208 470) rotate(-7 250 145)">
+      <rect x="0" y="0" width="500" height="290" rx="24" fill="url(#bezel)"/>
+      <rect x="16" y="16" width="468" height="258" rx="14" fill="#050608"/>
+      <image href="/images/blog/color-systems-signal-noise/signal-to-noise-title.jpeg" x="16" y="16" width="468" height="258" preserveAspectRatio="xMidYMid slice"/>
+      <rect x="16" y="16" width="468" height="258" rx="14" fill="#000000" fill-opacity="0.12"/>
+      <circle cx="250" cy="282" r="4.5" fill="#2F343E"/>
+    </g>
+
+    <g transform="translate(898 476) rotate(7 250 145)">
+      <rect x="0" y="0" width="500" height="290" rx="24" fill="url(#bezel)"/>
+      <rect x="16" y="16" width="468" height="258" rx="14" fill="#050608"/>
+      <image href="/images/blog/color-systems-signal-noise/colour-systems-title.jpeg" x="16" y="16" width="468" height="258" preserveAspectRatio="xMidYMid slice"/>
+      <rect x="16" y="16" width="468" height="258" rx="14" fill="#000000" fill-opacity="0.12"/>
+      <circle cx="250" cy="282" r="4.5" fill="#2F343E"/>
+    </g>
+  </g>
+
+  <rect x="742" y="538" width="116" height="92" rx="10" fill="#15171C"/>
+  <rect x="780" y="630" width="40" height="36" rx="10" fill="#1E2128"/>
+  <rect x="768" y="666" width="64" height="10" rx="5" fill="#272B34"/>
+
+  <rect x="344" y="812" width="910" height="18" rx="9" fill="#0A0B0E"/>
+  <rect x="360" y="815" width="878" height="4" rx="2" fill="#29201A"/>
+
+  <text x="84" y="102" fill="#C8B7A7" font-family="IBM Plex Mono, Menlo, monospace" font-size="24" letter-spacing="3">COURSE PREVIEW</text>
+  <text x="84" y="152" fill="#F4EFE7" font-family="Instrument Sans, Arial, sans-serif" font-size="78" font-weight="600" letter-spacing="-3.2">Two systems. One grading practice.</text>
+</svg>

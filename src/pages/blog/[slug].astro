@@ -20,6 +20,11 @@ const formattedDate = new Intl.DateTimeFormat("en-US", {
 
 <BaseLayout title={`${post.data.title} | Matteo Curcio`} path={`/blog/${post.slug}/`}>
   <article class="prose blog-post">
+    {post.data.cover ? (
+      <figure class="blog-hero">
+        <img src={post.data.cover} alt={post.data.coverAlt || post.data.title} loading="eager" />
+      </figure>
+    ) : null}
     <h1>{post.data.title}</h1>
     <p class="post-meta">{formattedDate}</p>
     <Content />
