@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { CONTACT_MAILTO } from "../config/site";
 
 const tutoringAreas = [
   {
@@ -246,5 +247,16 @@ const tutoringSignals = [
         </article>
       ))}
     </div>
+  </section>
+
+  <section class="cta section">
+    <div>
+      <h2>Prefer to book directly?</h2>
+      <p>
+        If you would rather explain what you are working on before choosing a session, email me directly and I will
+        suggest the cleanest way to structure it.
+      </p>
+    </div>
+    <a href={CONTACT_MAILTO}>Contact me</a>
   </section>
 </BaseLayout>

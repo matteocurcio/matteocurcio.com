@@ -1,8 +1,8 @@
 ---
 title: "Grade with Intention"
 date: "2026-05-06"
-excerpt: "After many years of teaching colour and post-production, one pattern kept repeating: students knew how to operate the tools but not why the tools worked. This is the course I built to fix that."
-description: "After many years teaching colour and post-production, one pattern kept repeating: students knew how to operate the tools but not why. This is the course I built to fix that."
+excerpt: "After many years of teaching colour and post-production, one pattern kept repeating: students knew how to operate the tools but not why. These are the courses I built to fix that."
+description: "After many years of teaching colour and post-production, one pattern kept repeating: students knew how to operate the tools but not why. These are the courses I built to fix that."
 cover: "/images/blog/color-systems-signal-noise/grading-studio-courses-cover-final.png"
 coverAlt: "Three-monitor grading studio composition featuring the exact Signal to Noise and Colour Systems course covers with a hero scopes display"
 ogImage: "/images/blog/color-systems-signal-noise/grading-studio-courses-cover-final.png"
