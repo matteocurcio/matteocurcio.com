@@ -29,8 +29,11 @@ const posts = defineCollection({
     title: z.string(),
     date: z.string(), // ISO date (YYYY-MM-DD)
     excerpt: z.string().default(""),
+    description: z.string().optional(),
     cover: z.string().optional(),
     coverAlt: z.string().default(""),
+    ogImage: z.string().optional(),
+    ogImageAlt: z.string().optional(),
     tags: z.array(z.string()).default([]),
     draft: z.boolean().default(false),
 

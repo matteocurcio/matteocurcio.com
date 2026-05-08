@@ -6,7 +6,7 @@ import PostCard from "./PostCard.astro";
 const latestPosts = (await getCollection("posts"))
   .filter((post) => !post.data.draft)
   .sort((a, b) => b.data.date.localeCompare(a.data.date))
-  .slice(0, 2);
+  .slice(0, 3);
 
 const featuredWorks = [
   {

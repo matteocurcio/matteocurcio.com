@@ -4,7 +4,8 @@ Persistent handoff for the Astro site so the working state does not depend on Co
 
 ## Repo
 
-- Path: `/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Code/matteocurcio.com`
+- Path: `/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Projects/50-Web/matteocurcio.com`
+- Project memory name: `website`
 - Primary remote: `git@github.com:matteocurcio/matteocurcio.com.git`
 - Stack: Astro static site
 

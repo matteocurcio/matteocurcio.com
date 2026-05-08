@@ -134,12 +134,21 @@ const testimonials = [
     context: "DaVinci Resolve · online"
   }
 ];
+
+const tutoringSignals = [
+  "One-on-one sessions",
+  "Remote or Fitzroy",
+  "Session rates confirmed before booking",
+  "Team and project blocks quoted on request"
+];
 ---
 
 <BaseLayout
   title="Tutoring — Matteo Curcio"
   description="Private sessions on DaVinci Resolve and the Adobe Creative Suite. Melbourne-based and online. For working professionals, not beginners."
   path="/tutoring"
+  ogImage="/images/og/matteo-curcio-tutoring-og.png"
+  ogImageAlt="Matteo Curcio private tutoring social card for Resolve, Adobe, AI workflows, and creative systems"
 >
   <section class="services-head">
     <h1>You've watched the tutorials.<br />Something still isn't clicking.</h1>
@@ -148,6 +157,9 @@ const testimonials = [
       and your specific gaps. Not a curriculum. Not a course. A conversation with someone who uses these tools on
       real jobs.
     </p>
+    <div class="credibility-strip" aria-label="Tutoring booking details">
+      {tutoringSignals.map((item) => <span>{item}</span>)}
+    </div>
   </section>
 
   <section class="services-index services-card-grid tutoring-index" aria-label="Tutoring areas">

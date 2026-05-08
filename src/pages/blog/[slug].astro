@@ -16,9 +16,21 @@ const formattedDate = new Intl.DateTimeFormat("en-US", {
   day: "numeric",
   year: "numeric"
 }).format(new Date(`${post.data.date}T00:00:00`));
+
+const description = post.data.description || post.data.excerpt;
+const ogImage = post.data.ogImage || post.data.cover;
+const ogImageAlt = post.data.ogImageAlt || post.data.coverAlt || post.data.title;
 ---
 
-<BaseLayout title={`${post.data.title} | Matteo Curcio`} path={`/blog/${post.slug}/`}>
+<BaseLayout
+  title={`${post.data.title} | Matteo Curcio`}
+  description={description}
+  path={`/blog/${post.slug}/`}
+  navSection="blog"
+  ogType="article"
+  ogImage={ogImage}
+  ogImageAlt={ogImageAlt}
+>
   <article class="prose blog-post">
     {post.data.cover ? (
       <figure class="blog-hero">
