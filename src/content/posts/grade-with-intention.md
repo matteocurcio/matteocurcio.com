@@ -1,8 +1,8 @@
 ---
 title: "Grade with Intention"
 date: "2026-05-06"
-excerpt: "After ten years of teaching colour and post-production, one pattern kept repeating: students knew how to operate the tools but not why the tools worked. This is the course I built to fix that."
-description: "After ten years teaching colour and post-production, one pattern kept repeating: students knew how to operate the tools but not why. This is the course I built to fix that."
+excerpt: "After many years of teaching colour and post-production, one pattern kept repeating: students knew how to operate the tools but not why the tools worked. This is the course I built to fix that."
+description: "After many years teaching colour and post-production, one pattern kept repeating: students knew how to operate the tools but not why. This is the course I built to fix that."
 cover: "/images/blog/color-systems-signal-noise/grading-studio-courses-cover-final.png"
 coverAlt: "Three-monitor grading studio composition featuring the exact Signal to Noise and Colour Systems course covers with a hero scopes display"
 ogImage: "/images/blog/color-systems-signal-noise/grading-studio-courses-cover-final.png"
@@ -19,7 +19,7 @@ draft: false
 
 ## A pattern that kept repeating itself
 
-After ten years of teaching colour grading, video pipelines, and post-production to students and professionals of all ages and experience levels, one pattern kept repeating itself.
+After many years of teaching colour grading, video pipelines, and post-production to students and professionals of all ages and experience levels, one pattern kept repeating itself.
 
 Students knew how to operate the tools. They could find the wheels, pull a curve, apply a LUT, build a basic node tree. Many of them had watched hours of tutorials, good ones, from experienced practitioners, and had genuinely learned from them. But the moment conditions changed, something broke. Different footage. A new camera. A delivery spec they had not seen before. A client who wanted something outside the template. And suddenly, the technique that had worked perfectly stopped working, and they had no way to reason their way through it.
 
