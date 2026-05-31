@@ -1,0 +1,44 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#0D0F12"/>
+  <rect x="56" y="56" width="1488" height="788" rx="28" fill="url(#bg)"/>
+  <rect x="56" y="56" width="1488" height="788" rx="28" stroke="#232830" stroke-width="2"/>
+  <path d="M1115 186C1010 127 895 113 760 145C615 179 504 260 430 385C356 510 331 627 356 735" stroke="url(#arc)" stroke-width="2" stroke-linecap="round" opacity="0.55"/>
+  <path d="M1205 255C1112 208 1018 197 914 223C785 255 682 331 606 448C532 563 495 676 495 786" stroke="url(#arc2)" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+  <circle cx="1230" cy="220" r="8" fill="#E15A24"/>
+  <circle cx="1098" cy="286" r="6" fill="#F4F1EA" opacity="0.8"/>
+  <circle cx="953" cy="237" r="5" fill="#E15A24" opacity="0.65"/>
+  <circle cx="785" cy="162" r="4" fill="#F4F1EA" opacity="0.55"/>
+  <g opacity="0.85">
+    <rect x="120" y="152" width="260" height="14" rx="7" fill="#E15A24"/>
+    <rect x="120" y="188" width="356" height="14" rx="7" fill="#F4F1EA"/>
+    <rect x="120" y="224" width="332" height="14" rx="7" fill="#F4F1EA"/>
+    <rect x="120" y="260" width="284" height="14" rx="7" fill="#F4F1EA"/>
+  </g>
+  <text x="118" y="408" fill="#F4F1EA" font-family="Instrument Sans, Arial, sans-serif" font-size="112" font-weight="700" letter-spacing="-5">
+    <tspan x="118" dy="0">The Mainstream</tspan>
+    <tspan x="118" dy="106">Machine</tspan>
+  </text>
+  <text x="124" y="610" fill="#D8D3C7" font-family="Instrument Sans, Arial, sans-serif" font-size="34" font-weight="400" letter-spacing="-0.7">
+    <tspan x="124" dy="0">Why AI may not be making us smarter,</tspan>
+    <tspan x="124" dy="44">just more average.</tspan>
+  </text>
+  <rect x="122" y="698" width="200" height="1" fill="#D8D3C7" opacity="0.4"/>
+  <text x="122" y="742" fill="#E15A24" font-family="IBM Plex Mono, monospace" font-size="21" font-weight="400" letter-spacing="1.8">
+    CULTURE / AI / CONSENSUS
+  </text>
+  <defs>
+    <linearGradient id="bg" x1="212" y1="90" x2="1394" y2="846" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#12161A"/>
+      <stop offset="0.45" stop-color="#121418"/>
+      <stop offset="1" stop-color="#19130F"/>
+    </linearGradient>
+    <linearGradient id="arc" x1="1115" y1="186" x2="356" y2="735" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E15A24"/>
+      <stop offset="1" stop-color="#F4F1EA" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="arc2" x1="1205" y1="255" x2="495" y2="786" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F4F1EA"/>
+      <stop offset="1" stop-color="#E15A24" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+</svg>
