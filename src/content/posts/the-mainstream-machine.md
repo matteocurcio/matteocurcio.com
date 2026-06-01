@@ -14,6 +14,7 @@ tags:
   - "Writing"
   - "Philosophy"
 draft: false
+writingKind: "essay"
 originalUrl: "https://matteocurcio.substack.com/p/the-mainstream-machine"
 ---
 

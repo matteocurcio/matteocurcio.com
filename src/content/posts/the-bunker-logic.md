@@ -14,6 +14,7 @@ tags:
   - "Surveillance"
   - "Writing"
 draft: false
+writingKind: "essay"
 ---
 
 We’re living through the construction of a world where the billionaires have stopped believing in the rest of us.

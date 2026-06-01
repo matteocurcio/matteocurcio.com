@@ -36,6 +36,7 @@ const posts = defineCollection({
     ogImageAlt: z.string().optional(),
     tags: z.array(z.string()).default([]),
     draft: z.boolean().default(false),
+    writingKind: z.enum(["technical", "essay"]).default("technical"),
 
     // Migration helpers
     originalUrl: z.string().url().optional()

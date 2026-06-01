@@ -1,12 +1,9 @@
 ---
-import { getCollection } from "astro:content";
 import { CONTACT_MAILTO, SITE_CONFIG } from "../config/site";
+import { technicalPosts } from "../lib/posts";
 import PostCard from "./PostCard.astro";
 
-const latestPosts = (await getCollection("posts"))
-  .filter((post) => !post.data.draft)
-  .sort((a, b) => b.data.date.localeCompare(a.data.date))
-  .slice(0, 3);
+const latestPosts = technicalPosts.slice(0, 3);
 
 const featuredWorks = [
   {
@@ -150,10 +147,10 @@ const proofSignals = [
       <p class="kicker">How I Work</p>
       <h2>Form equals function.</h2>
       <p>
-        I work across colour, finishing, motion, editorial problem-solving, and delivery. Increasingly, I also work on the part most portfolios skip: the workflow decisions that determine whether a creative process stays coherent when deadlines tighten and file structures start fighting back.
+        My work spans colour, finishing, motion, and editorial, the craft you'd expect from any post house. But a lot of what I actually do happens earlier, in the decisions most reels never mention: how a project is structured, where the files live, how the work survives three rounds of notes and a delivery spec that shifted on a Friday afternoon. Those choices are what keep a creative process from quietly coming apart once the schedule tightens.
       </p>
       <p>
-        That combination is the point. A good outcome is rarely just aesthetic. It is aesthetic plus operational. If the process is fragile, the output eventually shows it.
+        I care about both halves because they aren't really separable. Something can be beautifully made and still be a problem if the pipeline behind it is held together with guesswork. When the underlying process is solid, the work holds up: through revisions, under pressure, and well after the deadline that made it all feel urgent.
       </p>
     </div>
 
@@ -171,28 +168,39 @@ const proofSignals = [
 <section class="home-section section">
   <div class="home-section-head">
     <p class="kicker">Writing</p>
-    <h2>Notes on post-production, tools, and process.</h2>
+    <h2>Technical notes here, broader essays elsewhere.</h2>
     <p>
-      Technical when needed, skeptical of defaults, and written from the perspective of someone who actually has to deliver.
+      The on-site blog stays focused on post-production, workflow, and technical practice. Cultural and broader essay writing lives separately on Substack.
     </p>
+  </div>
+
+  <div class="writing-destinations">
+    <a class="writing-destination" href="/blog">
+      <span>Technical Blog</span>
+      <strong>Workflow, tools, colour, infrastructure, and practical post-production systems.</strong>
+    </a>
+    <a class="writing-destination" href={SITE_CONFIG.social.substack} target="_blank" rel="noopener noreferrer">
+      <span>Substack</span>
+      <strong>Broader essays on culture, technology, media, and the stranger edges of the machine.</strong>
+    </a>
   </div>
 
   <div class="blog-grid">
     {latestPosts.map((post) => (
       <PostCard
         slug={post.slug}
-        title={post.data.title}
-        date={post.data.date}
-        excerpt={post.data.excerpt}
-        cover={post.data.cover}
-        coverAlt={post.data.coverAlt}
+        title={post.title}
+        date={post.date}
+        excerpt={post.excerpt}
+        cover={post.cover}
+        coverAlt={post.coverAlt}
       />
     ))}
   </div>
 
   <div class="home-inline-link">
-    <a class="button-link" href="/blog">Read the blog</a>
-    <a class="button-link" href="/blog">Browse all posts</a>
+    <a class="button-link" href="/blog">Read the technical blog</a>
+    <a class="button-link" href={SITE_CONFIG.social.substack} target="_blank" rel="noopener noreferrer">Read other writing on Substack</a>
   </div>
 </section>
 
@@ -200,9 +208,9 @@ const proofSignals = [
   <div class="home-cta">
     <div>
       <p class="kicker">Start Here</p>
-      <h2>If the work is ambitious and the workflow is delicate, I can help.</h2>
+      <h2>Post-house quality, without the post house.</h2>
       <p>
-        Producers, agencies, studios, and working creatives usually come to me for one of two reasons: the image matters, or the process is starting to break. Often both.
+        Producers, agencies, and studios come to me when the work still has to be excellent and they'd rather keep things close than route everything through a bigger machine.
       </p>
     </div>
     <div class="home-cta-actions">

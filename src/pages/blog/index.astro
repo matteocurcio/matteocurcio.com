@@ -1,27 +1,24 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import PostCard from "../../components/PostCard.astro";
-import { getCollection } from "astro:content";
+import { technicalPosts } from "../../lib/posts";
 
-const posts = (await getCollection("posts"))
-  .filter((p) => !p.data.draft)
-  .sort((a, b) => b.data.date.localeCompare(a.data.date));
+const posts = technicalPosts;
 ---
 
 <BaseLayout title="Blog | Matteo Curcio" path="/blog">
-  <h1>Notes on post-production, tools, and process.</h1>
+  <h1>Technical notes on post-production, tools, and process.</h1>
 
   <div class="section blog-grid">
     {posts.map((post) => (
       <PostCard
         slug={post.slug}
-        title={post.data.title}
-        date={post.data.date}
-        excerpt={post.data.excerpt}
-        cover={post.data.cover}
-        coverAlt={post.data.coverAlt}
+        title={post.title}
+        date={post.date}
+        excerpt={post.excerpt}
+        cover={post.cover}
+        coverAlt={post.coverAlt}
       />
     ))}
   </div>
 </BaseLayout>
-
