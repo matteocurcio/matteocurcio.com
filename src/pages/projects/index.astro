@@ -20,7 +20,7 @@ const services = ["all", "color", "editing", "motion"];
   <div class="projects-grid">
     {all.map((project) => (
       <ProjectCard
-        slug={project.slug}
+        slug={project.id}
         title={project.data.title}
         client={project.data.client}
         year={project.data.year}

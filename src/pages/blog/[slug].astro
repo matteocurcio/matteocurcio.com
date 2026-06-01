@@ -6,7 +6,7 @@ export async function getStaticPaths() {
   const posts = await getCollection("posts");
   return posts
     .filter((p) => !p.data.draft)
-    .map((post) => ({ params: { slug: post.slug }, props: { post } }));
+    .map((post) => ({ params: { slug: post.id }, props: { post } }));
 }
 
 const { post } = Astro.props;
@@ -25,7 +25,7 @@ const ogImageAlt = post.data.ogImageAlt || post.data.coverAlt || post.data.title
 <BaseLayout
   title={`${post.data.title} | Matteo Curcio`}
   description={description}
-  path={`/blog/${post.slug}/`}
+  path={`/blog/${post.id}/`}
   navSection="blog"
   ogType="article"
   ogImage={ogImage}

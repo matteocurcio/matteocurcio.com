@@ -761,7 +761,7 @@ function inferReelClientsLabel(values: string[]) {
 }
 export async function getStaticPaths() {
   const projects = await getCollection("projects");
-  const slugs = new Set<string>(projects.map((project) => project.slug));
+  const slugs = new Set<string>(projects.map((project) => project.id));
   Object.keys(LEGACY_BY_SLUG).forEach((slug) => slugs.add(slug));
 
   return Array.from(slugs).map((slug) => ({ params: { slug } }));
@@ -769,7 +769,7 @@ export async function getStaticPaths() {
 
 const slug = Astro.params.slug ?? "";
 const projects = await getCollection("projects");
-const project = projects.find((entry) => entry.slug === slug);
+const project = projects.find((entry) => entry.id === slug);
 const legacy = getLegacyItem(slug);
 const migrated = wpContent[slug] || {};
 

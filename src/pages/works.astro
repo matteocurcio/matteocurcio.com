@@ -9,7 +9,7 @@ type WpContentMap = Record<string, { images?: string[] }>;
 const wpContent = wpProjectContent as WpContentMap;
 
 const projects = await getCollection("projects");
-const projectMap = new Map(projects.map((project) => [project.slug, project]));
+const projectMap = new Map(projects.map((project) => [project.id, project]));
 const CATEGORY_KEY_BY_LABEL: Record<WorkCategory, "colour" | "motion" | "immersive" | "video" | "photo"> = {
   "COLOUR": "colour",
   "MOTION": "motion",

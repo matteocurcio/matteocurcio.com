@@ -777,7 +777,7 @@ export async function getStaticPaths() {
 
 const slug = Astro.params.slug ?? "";
 const projects = await getCollection("projects");
-const project = projects.find((entry) => entry.slug === slug);
+const project = projects.find((entry) => entry.id === slug);
 const legacy = getLegacyItem(slug);
 const migrated = wpContent[slug] || {};
 

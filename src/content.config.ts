@@ -1,7 +1,8 @@
 import { defineCollection, z } from "astro:content";
+import { glob } from "astro/loaders";
 
 const projects = defineCollection({
-  type: "content",
+  loader: glob({ base: "./src/content/projects", pattern: "**/*.md" }),
   schema: z.object({
     title: z.string(),
     service: z.enum(["color", "editing", "motion"]),
@@ -24,7 +25,7 @@ const projects = defineCollection({
 });
 
 const posts = defineCollection({
-  type: "content",
+  loader: glob({ base: "./src/content/posts", pattern: "**/*.md" }),
   schema: z.object({
     title: z.string(),
     date: z.string(), // ISO date (YYYY-MM-DD)
