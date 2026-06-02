@@ -3,10 +3,10 @@ title: "Building a Dedicated Observability Kiosk for My Proxmox Homelab"
 date: "2026-06-02"
 excerpt: "A practical architecture note on turning a Proxmox homelab into a visible, rack-mounted observability system using Grafana, Prometheus, Loki, PULSE, and a Raspberry Pi kiosk."
 description: "A practical architecture note on turning a Proxmox homelab into a visible, rack-mounted observability system using Grafana, Prometheus, Loki, PULSE, and a Raspberry Pi kiosk."
-cover: "/images/blog/proxmox-observability-kiosk/proxmox-lab-observability-architecture.jpg"
-coverAlt: "High-level architecture of a Proxmox MiniPC lab observability platform running on a Minisforum MS-01"
-ogImage: "/images/blog/proxmox-observability-kiosk/proxmox-lab-observability-architecture.jpg"
-ogImageAlt: "High-level architecture of a Proxmox MiniPC lab observability platform running on a Minisforum MS-01"
+cover: "/images/blog/proxmox-observability-kiosk/proxmox-observability-kiosk-rack.png"
+coverAlt: "Rack-mounted homelab observability kiosk showing green Grafana status panels beneath a Minisforum MS-01 and patch panel"
+ogImage: "/images/blog/proxmox-observability-kiosk/proxmox-observability-kiosk-rack.png"
+ogImageAlt: "Rack-mounted homelab observability kiosk showing green Grafana status panels beneath a Minisforum MS-01 and patch panel"
 tags:
   - "Homelab"
   - "Proxmox"
@@ -21,61 +21,23 @@ writingKind: "technical"
 
 ## Introduction
 
-Every homelab eventually develops the same problem.
+Every homelab reaches a point where the hard part is no longer getting another service running. The hard part is knowing, at a glance, what state the whole environment is in.
 
-Not a hardware problem.
+That was the point I reached while moving from a simple Proxmox server to a more complete lab built around a Minisforum MS-01 running Proxmox VE, OPNsense, Grafana, Loki, Prometheus, UniFi, Proxmox Backup Server, and a growing set of Linux virtual machines.
 
-Not a networking problem.
+Nothing was especially mysterious on its own. The firewall had its own interface. Proxmox had its own interface. UniFi had its own interface. PBS had its own interface. Logs and metrics existed, but they lived in too many places. I kept opening browser tabs to answer basic operational questions: is the hypervisor healthy, are the backups succeeding, is the internet connection stable, did a VM stop overnight, what caused that CPU spike, what did the firewall block while I was asleep?
 
-A visibility problem.
+The information was there. The problem was that it was fragmented.
 
-As infrastructure grows, understanding the state of the environment becomes increasingly difficult. What begins as a single server evolves into a collection of virtual machines, firewalls, switches, VLANs, backup systems, monitoring platforms, logging systems, VPN gateways, and security tooling.
+The answer was not simply to build another dashboard and leave it buried in a browser tab. I wanted a dedicated observability appliance: a small rack-mounted screen that continuously shows the operational state of the lab without needing a laptop, a login, or a round of clicking through separate tools.
 
-At some point the challenge stops being building infrastructure and becomes understanding infrastructure.
-
-My homelab reached that point during the transition from a simple Proxmox server to a multi-service environment built around a Minisforum MS-01 running Proxmox VE, OPNsense, Grafana, Loki, Prometheus, UniFi, Proxmox Backup Server, and a growing collection of Linux virtual machines.
-
-I found myself repeatedly opening browser tabs to answer simple questions:
-
-- Is the hypervisor healthy?
-- Are backups succeeding?
-- Is the internet connection stable?
-- Did a VM stop unexpectedly?
-- Why is CPU utilisation suddenly high?
-- What firewall events occurred overnight?
-
-The information existed, but it was fragmented across multiple interfaces.
-
-The solution was not another dashboard.
-
-The solution was a dedicated observability appliance.
-
-Today a rack-mounted touchscreen continuously displays the operational state of the environment using Grafana dashboards backed by Prometheus and Loki. The kiosk functions as a miniature Network Operations Centre, providing visibility into infrastructure, networking, security, logging, and backup health from a single physical interface.
-
-This article documents the hardware, software, architecture, and dashboard design behind that system.
+The result is a 9-inch rack display driven by a Raspberry Pi 5. It shows Grafana dashboards backed by Prometheus and Loki, and it works more like a small Network Operations Centre than a normal web page. This post documents the hardware, software, architecture, and dashboard structure behind that setup.
 
 ## The Infrastructure Being Monitored
 
-The observability platform monitors a virtualised infrastructure running on a Minisforum MS-01.
+The observability platform monitors a virtualised environment running on a Minisforum MS-01. The MS-01 is the primary Proxmox host and carries most of the core lab services: OPNsense, UniFi, PBS, GRAFANA, PULSE, Linux infrastructure VMs, security tooling, and test or training environments.
 
-The MS-01 acts as the primary Proxmox hypervisor and hosts the core services of the lab.
-
-These include:
-
-- OPNsense firewall
-- GRAFANA virtual machine
-- PULSE virtual machine
-- UniFi Controller
-- PBS (Proxmox Backup Server)
-- Linux infrastructure servers
-- Security tooling
-- Test and training environments
-
-The environment is segmented using multiple VLANs and routed through OPNsense.
-
-The kiosk therefore does not monitor a single server.
-
-It monitors an entire infrastructure stack.
+The network is segmented with VLANs and routed through OPNsense, so the kiosk is not really watching a single machine. It is watching a small infrastructure stack: compute, storage, networking, backups, logs, metrics, and the services that sit between them.
 
 ![High-level architecture of the observability platform running on a Minisforum MS-01 with Proxmox VE, showing the physical, hypervisor, VM, observability and presentation layers.](/images/blog/proxmox-observability-kiosk/proxmox-lab-observability-architecture.jpg)
 
@@ -83,59 +45,21 @@ It monitors an entire infrastructure stack.
 
 ## Design Philosophy
 
-The project was built around several guiding principles.
+The design goal was simple: make the state of the lab visible without turning the display client into another critical system.
 
-### Visibility Without Interaction
+The first principle was visibility without interaction. Useful monitoring should not always require opening a laptop, authenticating, and navigating a UI. If I walk past the rack, I should be able to tell whether the lab is healthy.
 
-The most useful monitoring systems are the ones you do not need to open.
+The second principle was separation of concerns. The display should display, the collection layer should collect, the visualisation layer should visualise, and storage should be treated as its own workload. Keeping those roles separate makes the system easier to troubleshoot and less fragile when one component has a problem.
 
-Operational information should be immediately visible.
-
-Walking past the rack should provide enough information to determine whether the environment is healthy.
-
-### Separation of Concerns
-
-Each component should perform one role.
-
-The display system displays.
-
-The collection platform collects.
-
-The visualisation platform visualises.
-
-The storage layer stores.
-
-This simplifies troubleshooting and improves reliability.
-
-### Disposable Clients
-
-The display client should contain no critical state.
-
-If the display hardware fails, monitoring should continue uninterrupted.
-
-The kiosk is therefore treated as a replaceable endpoint rather than part of the monitoring platform itself.
+The third principle was making the kiosk disposable. The Raspberry Pi should not hold important state. If it fails, the observability platform should keep collecting and storing telemetry. Replacing the display client should be annoying, not catastrophic.
 
 ## Hardware
 
 ### Raspberry Pi Display Client
 
-The display client is a Raspberry Pi 5 with 8GB of RAM and an official Raspberry Pi Active Cooler.
+The display client is a Raspberry Pi 5 with 8GB of RAM and the official active cooler. It boots from a microSD card and runs Raspberry Pi OS.
 
-The Raspberry Pi boots from a microSD card and runs Raspberry Pi OS.
-
-Unlike many Raspberry Pi projects, no SSD is used.
-
-The reason is simple.
-
-The Raspberry Pi performs no data collection, no database operations, and no storage-intensive workloads.
-
-Its only responsibilities are:
-
-- Running Chromium
-- Running Python automation scripts
-- Displaying dashboards
-
-The workload is extremely light and does not justify the complexity of SSD storage.
+I deliberately avoided adding SSD storage to the Pi. In this design, the Pi does not collect metrics, store logs, run databases, or process telemetry. It runs Chromium, runs a small Python controller, and displays Grafana dashboards. That workload is light enough that adding more storage would mostly add complexity.
 
 | Component | Specification |
 | --- | --- |
@@ -145,7 +69,7 @@ The workload is extremely light and does not justify the complexity of SSD stora
 | Storage | microSD Card |
 | Operating System | Raspberry Pi OS |
 | Browser | Chromium |
-| Purpose | Dashboard Display Client |
+| Purpose | Dashboard display client |
 
 ![Architecture of the Raspberry Pi 5 kiosk client: a Python controller handling configuration, rotation, input, browser control and health monitoring, driving Chromium in kiosk mode over HDMI to a rack display, with a 7-key USB keypad for navigation.](/images/blog/proxmox-observability-kiosk/kiosk-client-architecture.jpg)
 
@@ -153,112 +77,40 @@ The workload is extremely light and does not justify the complexity of SSD stora
 
 ### Rack-Mounted Touchscreen
 
-The display itself is a GeekPi 9-inch rack-mounted touchscreen.
-
-The screen occupies 3U of rack space and is mounted directly into the infrastructure rack.
-
-Specifications:
+The display is a GeekPi 9-inch rack-mounted touchscreen. It occupies 3U of rack space and connects over HDMI, with USB used for touch input.
 
 | Component | Specification |
 | --- | --- |
 | Manufacturer | GeekPi |
 | Display Size | 9-inch |
 | Resolution | 1280 x 720 |
-| Touch Technology | Capacitive Touch |
+| Touch Technology | Capacitive touch |
 | Rack Height | 3U |
-| Interface | HDMI + USB Touch |
+| Interface | HDMI + USB touch |
 
-Unlike a desk monitor, the rack-mounted display becomes part of the infrastructure itself.
-
-The state of the environment is visible every time the rack is approached.
+The practical difference between this and a desk monitor is surprisingly large. Once the screen is mounted in the rack, observability becomes part of the infrastructure rather than something I remember to open. The rack itself shows whether the environment is behaving.
 
 ### Dashboard Control Keypad
 
-Mounted beneath the screen is a programmable seven-key mechanical USB keypad.
+Beneath the screen is a programmable seven-key mechanical USB keypad. Each key maps to a specific dashboard, so switching views does not require a mouse, keyboard, or reaching for a browser address bar.
 
-Each key corresponds to a specific dashboard.
-
-This allows immediate navigation without requiring a mouse, keyboard, or touchscreen interaction.
-
-The result feels less like a computer and more like a dedicated operational appliance.
+That small detail changes the feel of the system. It stops behaving like a general-purpose computer and starts behaving like a dedicated operational panel.
 
 ## Architecture
 
-The observability platform consists of three independent layers.
+The observability platform is split into three layers: presentation, visualisation, and collection.
 
 ![Observability data flow: every system ships metrics to Prometheus and logs to Loki on the PULSE VM, which writes to dedicated NVMe storage; GRAFANA reads from PULSE for visualisation, and the Raspberry Pi kiosk only displays dashboards.](/images/blog/proxmox-observability-kiosk/observability-data-flow.jpg)
 
 *Figure 3: How data moves. All metrics are scraped by Prometheus and all logs are shipped to Loki, both running on the PULSE VM and stored on dedicated NVMe. GRAFANA queries PULSE; the kiosk simply renders the result.*
 
-### Presentation Layer
+The presentation layer is the Raspberry Pi, Chromium, and the Python control software. It displays dashboards, handles dashboard switching, and rotates between views. It does not store logs or metrics.
 
-Hardware:
+The visualisation layer is the GRAFANA VM. Grafana renders dashboards, presents alerts, manages access, and queries the data sources. It is responsible for making telemetry readable, but it is not responsible for collecting it.
 
-- Raspberry Pi 5
-- Chromium
-- Python control software
+The collection layer is the PULSE VM. This is where Prometheus and Loki live, and where metrics, logs, time-series data, and telemetry processing are handled. In this architecture, GRAFANA is the face of the platform and PULSE is the engine room.
 
-Responsibilities:
-
-- Display dashboards
-- Dashboard switching
-- Automatic dashboard rotation
-
-The Raspberry Pi stores no metrics and no logs.
-
-It is effectively a dedicated browser appliance.
-
-### Visualisation Layer
-
-Hosted on:
-
-GRAFANA VM
-
-Responsibilities:
-
-- Dashboard rendering
-- Historical visualisation
-- Alert presentation
-- User access management
-
-Grafana is responsible for displaying information.
-
-Grafana is not responsible for collecting information.
-
-This distinction is fundamental to the architecture.
-
-### Collection Layer
-
-Hosted on:
-
-PULSE VM
-
-Responsibilities:
-
-- Metrics collection
-- Log collection
-- Time-series storage
-- Telemetry processing
-
-PULSE acts as the observability backend.
-
-Every monitored device ultimately reports telemetry to PULSE.
-
-If GRAFANA is the face of the platform, PULSE is the engine room.
-
-### Where the Virtual Machines Run
-
-Both GRAFANA and PULSE run as dedicated virtual machines on the Minisforum MS-01 Proxmox host.
-
-This architecture provides several advantages:
-
-- VM snapshots
-- Backup integration
-- Resource isolation
-- Simplified migration
-- Operational separation
-
-The hierarchy looks like this:
+Both GRAFANA and PULSE run as dedicated virtual machines on the Minisforum MS-01 Proxmox host. That keeps them easy to snapshot, back up, isolate, and migrate.
 
 ```text
 MS-01 Physical Host
@@ -272,102 +124,29 @@ MS-01 Physical Host
 └── Security/Test VMs
 ```
 
-The Raspberry Pi sits completely outside this hierarchy.
-
-If the Raspberry Pi fails, monitoring continues.
-
-If Grafana fails, collection continues.
-
-If the collection platform fails, the display continues operating but loses access to fresh data.
-
-Each layer can fail independently.
+The Raspberry Pi sits outside that hierarchy. If the Pi fails, collection continues. If Grafana fails, collection continues. If PULSE fails, the display may keep running but no longer has fresh telemetry to query. Each layer can fail without immediately dragging the others with it.
 
 ## Dedicated NVMe Storage
 
-One of the most important design decisions was separating observability data from operating system storage.
+One of the more important choices was separating observability data from operating system storage.
 
-Prometheus and Loki generate continuous write activity.
+Prometheus and Loki produce constant write activity. Metrics are recorded, logs are ingested, indexes are updated, retention policies are applied, and historical telemetry grows over time. In a small lab it is easy to underestimate this, but observability can become one of the busiest storage workloads in the environment.
 
-Every minute:
-
-- Metrics are recorded
-- Logs are written
-- Databases are updated
-- Historical telemetry grows
-
-Over time, observability becomes one of the busiest storage workloads in the environment.
-
-For this reason, all telemetry is written to a dedicated NVMe volume.
-
-This includes:
-
-- Prometheus databases
-- Loki storage
-- Historical metrics
-- Historical logs
-
-Separating telemetry storage provides:
-
-**Better Performance**
-
-Metrics and logs do not compete with operating system activity.
-
-**Simpler Backups**
-
-Telemetry can be backed up independently.
-
-**Easier Migration**
-
-Observability data can be moved separately from the virtual machines themselves.
-
-**Better Scalability**
-
-Retention periods can increase without redesigning storage.
+For that reason, Prometheus databases, Loki storage, historical metrics, and historical logs all live on a dedicated NVMe volume. That keeps telemetry from competing with normal VM operating system activity, makes backup policy easier to reason about, and gives retention room to grow without redesigning the whole storage layout.
 
 ## Understanding the Data Sources
 
-The kiosk relies on two primary observability technologies.
+The kiosk relies on two main kinds of telemetry.
 
-### Prometheus
+Prometheus stores numerical time-series metrics: CPU usage, memory usage, storage consumption, network throughput, uptime, temperatures, backup durations, and similar measurements. In practical terms, Prometheus answers the question: what is happening?
 
-Prometheus stores numerical time-series metrics.
+Loki stores logs: firewall events, authentication failures, service crashes, VPN activity, application errors, and system events. Loki answers a different question: why did it happen?
 
-Examples:
-
-- CPU utilisation
-- Memory usage
-- Storage consumption
-- Network throughput
-- Uptime
-- Temperatures
-- Backup durations
-
-Prometheus answers:
-
-*What is happening?*
-
-### Loki
-
-Loki stores logs.
-
-Examples:
-
-- Firewall events
-- Authentication failures
-- Service crashes
-- VPN activity
-- Application errors
-- System events
-
-Loki answers:
-
-*Why did it happen?*
-
-Together they provide both state and context.
+The value comes from having both. Metrics show state, logs provide context.
 
 ## The Dashboards
 
-Grafana dashboards are organised by function. Each dashboard answers a specific question and is powered by the right combination of metrics (Prometheus) and logs (Loki).
+The Grafana dashboards are organised by function. Each dashboard answers a specific operational question and uses the right mix of Prometheus metrics and Loki logs.
 
 ![Dashboard hierarchy and data sources: from the kiosk client, an Executive Overview branches into Infrastructure, Network Operations, Security Operations, Centralised Logging and Backup Operations, each labelled with its question and whether it draws on Prometheus, Loki or both.](/images/blog/proxmox-observability-kiosk/dashboard-hierarchy-data-sources.jpg)
 
@@ -375,130 +154,50 @@ Grafana dashboards are organised by function. Each dashboard answers a specific 
 
 ### Dashboard 1: Executive Overview
 
-Question:
+The executive overview answers the simplest question: is the environment healthy?
 
-*Is the environment healthy?*
+It is designed to be understood in under five seconds. The panels cover hypervisor health, running virtual machines, WAN status, backup status, and active alerts. Most of this data comes from Prometheus via Proxmox, OPNsense, PBS, and alerting rules.
 
-This dashboard is designed to be understood in under five seconds.
-
-**Hypervisor Health**: Source: Prometheus. Origin: Proxmox exporter. Displays CPU %, RAM %, Storage %, and Uptime. Provides immediate visibility into host health.
-
-**Running Virtual Machines**: Source: Prometheus. Origin: Proxmox API. Displays total VMs, running VMs, and stopped VMs. Used to detect unexpected outages.
-
-**WAN Status**: Source: Prometheus. Origin: OPNsense. Displays latency, packet loss, and gateway status. Often the fastest indicator of external connectivity issues.
-
-**Backup Status**: Source: Prometheus. Origin: PBS (Proxmox Backup Server) metrics. Displays the last successful backup, backup age, and success state. Arguably the most important panel in the entire system.
-
-**Active Alerts**: Source: Prometheus. Origin: alerting rules. Displays infrastructure, availability, and storage alerts. Provides immediate visibility into abnormal conditions.
+The backup panel is probably the most important part of the whole dashboard. A lab can tolerate a lot of inconvenience, but a failed backup chain changes the risk profile immediately.
 
 ### Dashboard 2: Infrastructure
 
-Question:
+The infrastructure dashboard answers: how is the platform performing?
 
-*How is the platform performing?*
-
-Almost every panel on this dashboard uses Prometheus.
-
-**Hypervisor CPU**: Source: Prometheus. Origin: Proxmox exporter. Displays CPU utilisation over time. Used to identify resource contention.
-
-**Hypervisor Memory**: Source: Prometheus. Origin: Proxmox exporter. Displays memory utilisation trends. Useful for identifying memory pressure before performance degradation occurs.
-
-**Storage Consumption**: Source: Prometheus. Origin: Proxmox exporter. Displays datastore utilisation and growth trends. Supports capacity planning.
-
-**VM Resource Utilisation**: Source: Prometheus. Origin: Node Exporters. Displays CPU, RAM, and Disk. Provides visibility into guest workloads.
-
-**VM Availability**: Source: Prometheus. Origin: Proxmox. Displays VM state and VM uptime. Allows rapid identification of failed guests.
+This view is almost entirely metric-driven. It tracks hypervisor CPU and memory, storage consumption, VM resource usage, and VM availability. The purpose is to spot resource pressure before it becomes a user-visible problem, especially memory pressure, datastore growth, or a guest workload becoming unexpectedly expensive.
 
 ### Dashboard 3: Network Operations
 
-Question:
+The network operations dashboard answers: what is happening on the network?
 
-*What is happening on the network?*
+This one combines Prometheus and Loki. Prometheus handles throughput, gateway latency, DNS activity, and VPN status. Loki adds the event view: firewall denies, rule hits, blocked destinations, and other network events that are easier to understand as logs than as graphs.
 
-This dashboard combines Prometheus metrics with Loki event data.
-
-**WAN Throughput**: Source: Prometheus. Origin: OPNsense. Displays upload traffic, download traffic, and historical utilisation.
-
-**Gateway Latency**: Source: Prometheus. Origin: OPNsense. Displays RTT, packet loss, and gateway state. Often the first indicator of ISP problems.
-
-**DNS Activity**: Source: Prometheus. Origin: Unbound DNS. Displays query volume, cache efficiency, and resolver activity. Useful for identifying unusual behaviour.
-
-**VPN Status**: Source: Prometheus. Origin: WireGuard / OPNsense. Displays tunnel status, handshake age, and transfer volume. Critical for remote administration.
-
-**Firewall Events**: Source: Loki. Origin: OPNsense syslog. Displays denied connections, rule hits, and top blocked destinations. Unlike throughput graphs, these panels are log-driven.
+The distinction matters. Throughput tells me how busy the network is. Firewall logs tell me what the network is doing.
 
 ### Dashboard 4: Security Operations
 
-Question:
+The security dashboard answers: is anything behaving unexpectedly?
 
-*Is anything behaving unexpectedly?*
-
-Most panels on this dashboard use Loki. Security monitoring is fundamentally event-based.
-
-**Authentication Failures**: Source: Loki. Origin: Linux auth logs, SSH logs, OPNsense logs. Displays failed login activity.
-
-**Firewall Denies**: Source: Loki. Origin: OPNsense. Displays blocked traffic and policy violations.
-
-**VPN Events**: Source: Loki. Origin: WireGuard / OPNsense. Displays connection events and errors.
-
-**IDS / IPS Events**: Source: Loki. Origin: security tooling (Suricata). Displays triggered signatures and severity levels.
-
-**Security Timeline**: Source: Loki. Origin: multiple sources. Provides a chronological event stream.
+Most of this view is event-based, so it leans heavily on Loki. It brings together authentication failures, firewall denies, VPN events, IDS or IPS events, and a security timeline. The goal is not to turn the homelab into a miniature SOC, but to make suspicious activity visible without needing to go hunting through separate log files.
 
 ### Dashboard 5: Centralised Logging
 
-Question:
+The centralised logging dashboard answers: what actually happened?
 
-*What actually happened?*
-
-Every panel on this dashboard uses Loki. This dashboard exists for investigation rather than monitoring.
-
-**OPNsense Logs**: Source: Loki. Origin: OPNsense syslog. Used for routing, firewall, and DNS troubleshooting.
-
-**Proxmox Logs**: Source: Loki. Origin: Proxmox. Used for VM lifecycle and infrastructure analysis.
-
-**Linux Logs**: Source: Loki. Origin: Linux virtual machines. Used for service troubleshooting and authentication analysis.
-
-**Application Logs**: Source: Loki. Origin: hosted services. Used for debugging application behaviour.
+This is the investigation view rather than the glanceable monitoring view. It pulls together OPNsense logs, Proxmox logs, Linux logs, and application logs. If something breaks, this is where I can move from a symptom to a sequence of events.
 
 ### Dashboard 6: Backup Operations
 
-Question:
+The backup operations dashboard answers: can I recover if something fails?
 
-*Can I recover if something fails?*
+It combines Prometheus metrics with Loki investigation panels. Prometheus tracks backup success rate, duration, repository usage, and historical trends. Loki provides the details when a job fails: errors, warnings, and PBS log context.
 
-This dashboard combines Prometheus metrics with Loki investigation panels.
-
-**Backup Success Rate**: Source: Prometheus. Displays historical backup success rates.
-
-**Backup Duration**: Source: Prometheus. Displays runtime trends.
-
-**Repository Utilisation**: Source: Prometheus. Displays storage consumption and growth.
-
-**Failed Backup Events**: Source: Loki. Origin: PBS logs. Displays detailed failure reasons.
-
-**Recovery Readiness**: Source: combined (Prometheus metrics + Loki validation events). Answers a single question: if the hypervisor died right now, could the environment be recovered?
+The useful question is not simply "did the last job run?" It is whether the environment is actually recoverable if the hypervisor fails right now.
 
 ## Conclusion
 
-The most valuable outcome of this project was not the dashboards.
+The most valuable outcome of this project was not the dashboards themselves. It was the shift from reactive administration to continuous awareness.
 
-It was the shift from reactive administration to continuous awareness.
+The infrastructure no longer waits for me to check it. Prometheus provides state, Loki provides context, Grafana turns both into something readable, PULSE collects and stores the telemetry, and the Raspberry Pi presents it in the rack.
 
-The infrastructure no longer needs to be checked.
-
-It continuously reports its own condition.
-
-Prometheus provides state.
-
-Loki provides context.
-
-Grafana turns both into information.
-
-PULSE collects and stores telemetry.
-
-GRAFANA visualises it.
-
-The Raspberry Pi presents it.
-
-Together they form a dedicated observability platform that transforms a collection of servers, virtual machines, and services into something that can be understood at a glance.
+Together, those pieces turn a collection of servers, virtual machines, and services into an environment that can be understood at a glance. For a homelab, that is a surprisingly large quality-of-life improvement.
