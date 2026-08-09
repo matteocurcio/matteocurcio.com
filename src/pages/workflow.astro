@@ -1,0 +1,211 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { CONTACT_MAILTO, SITE_CONFIG } from "../config/site";
+
+const builds = [
+  {
+    title: "Grid",
+    href: "/blog/grid-layout-system-generator/",
+    image: "/images/coding/grid.png",
+    imageAlt: "Grid layout generator interface showing page settings and a generated print grid preview",
+    meta: "Static browser tool",
+    stack: ["HTML", "CSS", "JavaScript", "Cloudflare Pages"],
+    body:
+      "A layout grid generator for print and screen work: page presets, margins, bleed, columns, rows, baseline grids, measurement overlays, and SVG/PNG/JPG export."
+  },
+  {
+    title: "Portfolio",
+    href: "/blog/portfolio-tracker-private-by-design/",
+    image: "/images/coding/portfolio.png",
+    imageAlt: "Portfolio tracker interface with market value cards, allocation panel and transaction tables",
+    meta: "Personal finance tool",
+    stack: ["HTML", "JavaScript", "Cloudflare Worker"],
+    body:
+      "A browser-first holdings tracker for stocks and ETFs, with local data, import/export, live quote fetching through a Cloudflare Worker, and a deliberately private data model."
+  },
+  {
+    title: "Travel",
+    href: "/blog/offline-first-travel-expense-tracker/",
+    image: "/images/coding/travel.png",
+    imageAlt: "Travel tracker log view showing a Bangkok trip total in three currencies, a trip-wide flight and per-night accommodation splits",
+    meta: "Offline-first PWA",
+    stack: ["React", "Vite", "IndexedDB", "Supabase"],
+    body:
+      "A mobile-first travel expense tracker built around offline logging, trip budgets, currency conversion, location-aware entries, maps, reports, and sync when the connection returns."
+  },
+  {
+    title: "Living Costs",
+    href: "/blog/living-costs-tracker/",
+    image: "/images/coding/expenses.png",
+    imageAlt: "Living costs tracker interface showing summary cards, categories, and expense records",
+    meta: "Private cost tracker",
+    stack: ["React", "Vite", "IndexedDB", "Supabase"],
+    body:
+      "A private living costs tracker for recurring and one-off expenses: monthly commitments, everyday costs, categories, projections, places, and a shared design system carried across the rest of my tools."
+  },
+  {
+    title: "Teleprompter",
+    href: "/blog/browser-teleprompter-production-tool/",
+    image: "/images/coding/teleprompter.png",
+    imageAlt: "Sanitized teleprompter interface concept showing display, remote, library and device controls",
+    meta: "Production utility",
+    stack: ["Svelte", "Vite", "Fastify", "WebSockets", "SQLite"],
+    body:
+      "A browser teleprompter with script library, remote control, mirrored display mode, device coordination, and a small local server designed for practical production use."
+  },
+  {
+    title: "Scopes",
+    href: "/blog/scopes-image-analysis-tool/",
+    image: "/images/coding/scopes.png",
+    imageAlt: "Scope Tools interface composite showing waveform, RGB parade and vectorscope output panels",
+    meta: "Command-line image tool",
+    stack: ["Python", "NumPy", "Pillow", "Image processing"],
+    body:
+      "A command-line toolkit for generating DaVinci Resolve-style waveform, RGB parade, and vectorscope images from still frames, useful for teaching and visual analysis."
+  },
+  {
+    title: "Network Kiosk",
+    href: "/blog/proxmox-observability-kiosk/",
+    image: "/images/blog/proxmox-observability-kiosk/proxmox-observability-kiosk-rack.png",
+    imageAlt: "Rack-mounted homelab observability kiosk showing green Grafana status panels",
+    meta: "Homelab observability",
+    stack: ["Proxmox", "Grafana", "Prometheus", "Loki", "Raspberry Pi"],
+    body:
+      "A rack-mounted observability kiosk for the homelab: Proxmox, logs, metrics, backups, network state, and a small Pi display that works like a miniature NOC."
+  },
+  {
+    title: "Home Kiosk",
+    href: "/blog/building-an-ultrawide-home-kiosk/",
+    image: "/images/blog/wide-home-kiosk/ultrawide-kiosk-cover.png",
+    imageAlt: "Ultrawide home kiosk in a 3D-printed frame with a seven-button switcher",
+    meta: "Domestic information display",
+    stack: ["Raspberry Pi", "Python", "Chromium", "Fusion", "3D printing"],
+    body:
+      "An ultrawide home information kiosk with calendar, transport, weather, satellite, system status, clocks, living costs, and physical seven-key navigation."
+  }
+];
+
+---
+
+<BaseLayout
+  title="Workflow & Infrastructure | Secure, Reliable Production Systems | Matteo Curcio"
+  description="Workflow and infrastructure consulting for post-production: process audits, custom hardware and software built for specific problems, and security treated as part of the workflow rather than an afterthought."
+  path="/workflow"
+>
+  <section class="page-head">
+    <h1>Make the workflow strong enough for the work.</h1>
+    <p>
+      A lot of what I actually do happens before anyone opens a timeline: how a project is structured, where the files
+      live, who can reach them, and how the work survives three rounds of notes and a delivery spec that shifted on a
+      Friday afternoon. Those choices are what keep a creative process from quietly coming apart once the schedule
+      tightens.
+    </p>
+    <p>
+      For studios and production teams hitting the same failures over and over — broken handoffs, version confusion,
+      brittle storage, unclear permissions, weak backups — I audit what is fragile and make it more reliable. And when
+      an existing tool is too heavy, too vague, or too far from the way the work actually happens, I build the missing
+      piece instead of waiting for it.
+    </p>
+  </section>
+
+  <section class="section" id="builds">
+    <div class="page-head">
+      <p class="kicker">Hardware &amp; Software</p>
+      <h2>Small tools for real problems.</h2>
+      <p>
+        I design small tools around the workflow first: what the user needs to do, what the interface should make
+        obvious, what needs to stay private, and where the process tends to fail. AI-assisted development helps with
+        the implementation, but the useful part is defining the right problem clearly enough that the tool has a reason
+        to exist.
+      </p>
+    </div>
+  </section>
+
+  <section class="section blog-grid coding-grid" aria-label="Things I've built">
+    {builds.map((project) => (
+      <article class="post-card coding-card">
+        <a
+          href={project.href}
+          target={project.external ? "_blank" : undefined}
+          rel={project.external ? "noopener noreferrer" : undefined}
+        >
+          <div class="thumb-frame">
+            <img class="thumb" src={project.image} alt={project.imageAlt} loading="lazy" />
+          </div>
+          <div class="body">
+            <p class="post-meta">{project.meta}</p>
+            <h3>{project.title}</h3>
+            <p>{project.body}</p>
+            <div class="coding-tags" aria-label={`${project.title} stack`}>
+              {project.stack.map((item) => <span>{item}</span>)}
+            </div>
+          </div>
+        </a>
+      </article>
+    ))}
+  </section>
+
+  <section class="section" id="secure-systems">
+    <div class="page-head">
+      <p class="kicker">Secure, Reliable, Redundant</p>
+      <h2>A workflow that isn't secure isn't finished.</h2>
+    </div>
+
+    <div class="two-col security-overview">
+      <article class="panel">
+        <p>
+          Every question a workflow audit asks is already a security question. Who can reach the masters. What happens
+          when someone leaves mid-project. Whether the backup has ever been restored or merely scheduled. Where the
+          client's unreleased footage actually sits tonight, and how many copies of it exist. These get treated as
+          housekeeping until the week they become the entire problem.
+        </p>
+        <p>
+          I studied cybersecurity formally to put proper language and method behind what twenty-five years of post
+          production had already taught me to notice. Production teaches you to feel where a process is fragile — the
+          handoff nobody documented, the shared login, the drive that only one person knows the state of. The training
+          turned that instinct into something I can audit against, document, and hand over, instead of a hunch I raise
+          in a meeting and hope somebody acts on.
+        </p>
+        <p>
+          I hold the ISC2 Certified in Cybersecurity credential and the Certificate IV in Cyber Security from RMIT, and
+          I use my own infrastructure as the place where the theory has to survive contact with reality.
+        </p>
+      </article>
+
+      <article class="panel">
+        <p>
+          There has also never been a moment where this mattered more. Post-production runs on shared cloud drives,
+          remote review links, freelancers on their own machines, AI tools that quietly want your footage, and delivery
+          chains that cross a dozen companies before a master lands. The attack surface of a modern production is
+          enormous, and almost none of it was designed — it accumulated, one convenient shortcut at a time.
+        </p>
+        <p>
+          So I treat security as part of the workflow rather than a separate service bolted on afterwards: sane
+          permissions, segmented networks, backups that get tested, redundancy where the schedule can't absorb a
+          failure, and documentation that survives the person who wrote it. Not compliance theatre — just the version
+          of the process that still works on the bad day.
+        </p>
+        <p>
+          My own lab is where I keep that honest: OPNsense with seven VLANs, Mullvad WireGuard with policy-based
+          routing, Suricata IDS, Unbound DNS with DoT, and a Proxmox cluster hosting 13+ VMs monitored via Grafana and
+          Prometheus. I have worked through real failures there, including a full floating rule collapse after a major
+          OPNsense update, and recovered them systematically. The <a href="/blog">writing here</a> and on
+          <a href={SITE_CONFIG.social.substack} target="_blank" rel="noopener noreferrer">Substack</a> goes into more
+          detail.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="cta section">
+    <div>
+      <h2>Something fragile you have not named yet?</h2>
+      <p>
+        Workflow audits, infrastructure reviews, custom tooling, or the security side of any of it. A short description of
+        where the friction is now is enough to start.
+      </p>
+    </div>
+    <a href={CONTACT_MAILTO}>Get in touch</a>
+  </section>
+
+</BaseLayout>

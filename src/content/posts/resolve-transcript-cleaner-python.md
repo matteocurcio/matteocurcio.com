@@ -5,6 +5,7 @@ excerpt: "How I turned Resolve transcript exports into readable interview dialog
 cover: "/assets/services/common/Screenshot-2025-08-19-at-2.29.01-pm.png"
 coverAlt: "From Resolve Studio 20 AI Transcript to Readable Dialogue with Python"
 tags: []
+topic: "craft"
 draft: false
 ---
 

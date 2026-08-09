@@ -15,6 +15,7 @@ tags:
   - "Prometheus"
   - "Loki"
   - "Raspberry Pi"
+topic: "infrastructure"
 draft: false
 writingKind: "technical"
 ---

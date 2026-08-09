@@ -1,17 +1,135 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import ServicePage from "../components/ServicePage.astro";
+import { CONTACT_MAILTO } from "../config/site";
+import { REEL_CAPTIONS } from "../data/reelCaptions";
+
+// The genre pages are built from the reels, so the copy on each card is the
+// same thinking that sits on the reel itself rather than a second description
+// invented to fill the page.
+const REELS = ["advertising", "beauty-retouch", "fashion", "food", "sport", "realestate"];
+const TITLES: Record<string, string> = {
+  advertising: "Advertising",
+  "beauty-retouch": "Beauty & Retouch",
+  fashion: "Fashion",
+  food: "Food",
+  sport: "Sport",
+  realestate: "Real Estate & Architecture"
+};
+const IMAGES: Record<string, string> = {
+  advertising: "/assets/reels/color-grading-advertising/thumbnail_advertising.webp",
+  "beauty-retouch": "/assets/reels/reels-beauty-retouch/thumbnail_beauty_retouch.webp",
+  fashion: "/assets/reels/reels-fashion/thumbnail_fashion.webp",
+  food: "/assets/reels/reels-food/thumbnail_food.webp",
+  sport: "/assets/reels/reels-sport/thumbnail_sport.webp",
+  realestate: "/assets/reels/reels-realestate/thumbnail_realestate.webp"
+};
+
+const genres = REELS.map((slug) => ({
+  slug,
+  title: TITLES[slug],
+  image: IMAGES[slug],
+  body: (REEL_CAPTIONS[slug] || [""])[0]
+}));
+
+const process = [
+  {
+    title: "Reference before knobs",
+    body: "Every grade starts with what the picture is supposed to feel like and what it will be judged against — the brand's existing work, the director's references, the platform it lands on. Deciding that first is what stops a grade drifting over three rounds of notes."
+  },
+  {
+    title: "One look, every deliverable",
+    body: "A campaign is rarely one film. Hero cut, cutdowns, socials, stills, versions per market — they all have to read as the same piece of work. I build the look so it survives being re-cut and re-framed rather than being hand-matched each time."
+  },
+  {
+    title: "Skin is the hardest thing",
+    body: "Most grades live or die on skin tone. I protect texture and the natural behaviour of light on faces while still moving the image where the brand needs it, because the moment skin looks manufactured the viewer stops believing the rest."
+  },
+  {
+    title: "Technically correct, not just pretty",
+    body: "Colour management from camera original to master, correct transfer and primaries, legal levels for broadcast, and a grade that holds up on a phone as well as a calibrated display. The nice image is the easy half."
+  }
+];
 ---
 
-<BaseLayout title="Color | Matteo Curcio" path="/color">
-  <ServicePage
-    title="Color Grading"
-    intro="Film emulation, commercial polish, and sequence-level balancing for multi-format delivery."
-    list={[
-      "DaVinci Resolve workflows",
-      "Look development and shot matching",
-      "HDR and SDR trims",
-      "Deliverables for broadcast and web"
-    ]}
-  />
+<BaseLayout
+  title="Colour Grading in Melbourne | Commercial Colourist | Matteo Curcio"
+  description="Commercial colour grading in Melbourne and remote: advertising, beauty, fashion, food, sport and architecture. Film emulation, skin-tone control and colour-managed delivery in DaVinci Resolve."
+  path="/color"
+>
+  <section class="page-head">
+    <p class="kicker">Colour Grading</p>
+    <h1>Colour grading for commercial and branded work.</h1>
+    <p>
+      I am Matteo Curcio, a Melbourne-based colourist working remotely with agencies, producers and studios. Commercial
+      grading, film emulation, beauty and skin-tone work, and sequence-level balancing across every deliverable a
+      campaign actually ships. Australian clients write colourist and colour grading; international ones write colorist
+      and color grading — same work.
+    </p>
+    <p class="page-head-actions">
+      <a class="button-link" href={CONTACT_MAILTO}>Start a project</a>
+      <a class="button-link" href="/reels/finishing/">Watch the reel</a>
+    </p>
+  </section>
+
+  <section class="section lane-grid" aria-label="How the grade is approached">
+    {process.map((item) => (
+      <article class="lane">
+        <h3>{item.title}</h3>
+        <p>{item.body}</p>
+      </article>
+    ))}
+  </section>
+
+  <section class="section" aria-label="Genres">
+    <div class="page-head">
+      <p class="kicker">By Genre</p>
+      <h2>Different problems, not different buttons.</h2>
+      <p>
+        Each of these asks something specific of a grade. The reels below go into what that is, with the work attached.
+      </p>
+    </div>
+  </section>
+
+  <section class="section blog-grid coding-grid" aria-label="Colour reels by genre">
+    {genres.map((g) => (
+      <article class="post-card coding-card">
+        <a href={`/reels/${g.slug}/`}>
+          <div class="thumb-frame">
+            <img class="thumb" src={g.image} alt={`${g.title} colour grading reel`} loading="lazy" />
+          </div>
+          <div class="body">
+            <p class="post-meta">Reel</p>
+            <h3>{g.title}</h3>
+            <p>{g.body}</p>
+          </div>
+        </a>
+      </article>
+    ))}
+  </section>
+
+  <section class="cta section">
+    <div>
+      <h2>Got something to grade?</h2>
+      <p>
+        Send the cut, the references, and the delivery spec — or just the problem, if the brief is still forming. I work
+        in person across Melbourne and remotely everywhere else.
+      </p>
+    </div>
+    <a href={CONTACT_MAILTO}>Get in touch</a>
+  </section>
+
+  <nav class="about-pathways section security-pathways" aria-label="Related pages">
+    <a class="about-pathway" href="/finishing">
+      <span class="about-pathway-label">Colour &amp; finishing</span>
+      <span class="about-pathway-note">The full post-production service, from conform to master.</span>
+    </a>
+    <a class="about-pathway" href="/editing">
+      <span class="about-pathway-label">Online editing</span>
+      <span class="about-pathway-note">Conform, versioning, cleanup and delivery.</span>
+    </a>
+    <a class="about-pathway" href="/works">
+      <span class="about-pathway-label">Projects</span>
+      <span class="about-pathway-note">Selected commercial work across every discipline.</span>
+    </a>
+  </nav>
 </BaseLayout>

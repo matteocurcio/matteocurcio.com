@@ -13,6 +13,7 @@ tags:
   - "Technology"
   - "Surveillance"
   - "Writing"
+topic: "essay"
 draft: false
 writingKind: "essay"
 ---

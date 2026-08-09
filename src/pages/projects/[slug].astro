@@ -944,11 +944,27 @@ const displayTitle = showClientProjectTitle
 const metaText = "";
 
 const pageTitle = `${displayTitle} | Matteo Curcio`;
+
+// Every project page previously inherited the site-wide description, so 107
+// pages shipped identical meta. Build one from what this project actually is.
+const pageDescription = (() => {
+  // Year deliberately omitted — the catalogue spans years and dating each
+  // piece made the body of work read as older than it is.
+  const bits = [
+    isReelPage ? `${title} showreel` : title,
+    project?.data.client && project.data.client !== "Selected Work" ? `for ${project.data.client}` : null
+  ].filter(Boolean).join(" ");
+  const lead = isReelPage
+    ? `${bits}.`
+    : `${bits} — commercial post-production by Matteo Curcio.`;
+  return `${lead} Colour grading, online editing and finishing from Melbourne, Australia.`.slice(0, 160);
+})();
 ---
 
-<BaseLayout title={pageTitle} path={isReelPage ? `/reels/${slug}/` : `/projects/${slug}/`} navSection={isReelPage ? "reels" : "works"}>
+<BaseLayout title={pageTitle} description={pageDescription} path={isReelPage ? `/reels/${slug}/` : `/projects/${slug}/`} navSection={isReelPage ? "reels" : "works"}>
   <article class="project-layout">
     <header class="project-header">
+      {(showClientProjectTitle || showReelTitleBox) && <h1 class="sr-only">{displayTitle}</h1>}
       {showClientProjectTitle ? (
         <div class="project-title-panels" aria-label="Project title">
           <div class="credit-item title-credit-item">

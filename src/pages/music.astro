@@ -1,0 +1,159 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { CONTACT_MAILTO } from "../config/site";
+
+const musicReels = [
+  {
+    slug: "music",
+    title: "Original Music",
+    image: "/assets/reels/reels-music/thumbnail_music.webp",
+    body: "Original composition, production, and screen-adjacent sound work, most of it made as Musetta."
+  },
+  {
+    slug: "sync",
+    title: "Sync Music",
+    image: "/assets/reels/reels-sync/thumbnail_sync.webp",
+    body: "Composed cues and music placement for screen, campaign, and media contexts, with licensing handled cleanly."
+  },
+  {
+    slug: "royaltyfree",
+    title: "Royalty-Free Music",
+    image: "/assets/reels/reels-royaltyfree/thumbnail_royaltyfree.webp",
+    body: "Library tracks with consistent production standards and enough character that they don't disappear into the background."
+  }
+];
+
+const approach = [
+  {
+    title: "Emotion First",
+    body: "Before arrangement, before sound design, before production polish, we ask what the picture actually needs to feel. From there we work backwards into structure, instrumentation, and sonic space."
+  },
+  {
+    title: "Composition And Mix Together",
+    body: "These are never separate stages. The way something is arranged shapes how it will sit in the mix, and the realities of the mix inform how we arrange. Building both at once is what makes the result feel intentional rather than corrected."
+  },
+  {
+    title: "Space, Texture, Restraint",
+    body: "Our style sits between atmospheric minimalism and melodic cinematic writing. We prefer tension that breathes rather than overwhelms. Even when arrangements expand, they do so with purpose, and nothing is ornamental for its own sake."
+  },
+  {
+    title: "Integration Over Attention",
+    body: "The music must sit inside the film, not on top of it. If we have done our job properly the piece arrives production-ready, integrates cleanly with picture, and doesn't need endless revision because it was composed before the brief was understood."
+  }
+];
+
+const pathways = [
+  {
+    href: "/reels",
+    label: "Reels",
+    note: "Every reel in one place, filterable down to music."
+  },
+  {
+    href: "/works",
+    label: "Projects",
+    note: "The picture side of the practice, where a lot of this music ended up."
+  },
+  {
+    href: "/about",
+    label: "About",
+    note: "The wider story linking image, infrastructure, music, teaching, and security."
+  },
+  {
+    href: "/finishing",
+    label: "Colour & finishing",
+    note: "Post-production work for commercial, branded, and agency projects."
+  }
+];
+---
+
+<BaseLayout
+  title="Music | Original Composition, Sync & Score | Matteo Curcio"
+  description="Original music, sync composition, and royalty-free cues by Matteo Curcio as one half of Musetta: cinematic writing for film, television, and advertising."
+  path="/music"
+>
+  <section class="page-head">
+    <p class="kicker">Music</p>
+    <h1>Music that sits inside the film, not on top of it.</h1>
+    <p>
+      Original composition, sync work, and production for film, television, and advertising, made as one half of Musetta.
+      Cinematic writing built around space, texture, and restraint, and arriving production-ready rather than needing to
+      be argued into place.
+    </p>
+  </section>
+
+  <section class="section two-col security-overview">
+    <article class="panel">
+      <p class="kicker">Musetta</p>
+      <h2>Everything starts from emotion.</h2>
+      <p>
+        Musetta was formed around a shared interest in cinematic storytelling through sound. Over the years our music has
+        travelled across film, television, and advertising, and has been recognised internationally, including award
+        nominations and wins in independent film circuits.
+      </p>
+      <p>
+        Those moments matter to us, but more as confirmation that clarity and emotional honesty resonate than as an
+        endpoint. We are not interested in loudness for attention. We are interested in alignment. That has always been
+        the core of Musetta.
+      </p>
+    </article>
+
+    <article class="panel">
+      <p class="kicker">Why It Works With The Rest</p>
+      <p>
+        Scoring and colour grading turn out to be the same discipline in different materials. Both are about what a scene
+        is supposed to feel like, and both go wrong in the same way: something technically correct that sits on top of the
+        picture instead of inside it.
+      </p>
+      <p>
+        Working across both sides also means the practical questions get answered early. Stems, formats, versioning, and
+        delivery specs are familiar territory, so the music arrives in the shape the edit actually needs.
+      </p>
+    </article>
+  </section>
+
+  <section class="section lane-grid" aria-label="Approach to music">
+    {approach.map((item) => (
+      <article class="lane">
+        <h3>{item.title}</h3>
+        <p>{item.body}</p>
+      </article>
+    ))}
+  </section>
+
+  <section class="section blog-grid coding-grid" aria-label="Music reels">
+    {musicReels.map((reel) => (
+      <article class="post-card coding-card">
+        <a href={`/reels/${reel.slug}/`}>
+          <div class="thumb-frame">
+            <img class="thumb" src={reel.image} alt={`${reel.title} reel thumbnail`} loading="lazy" />
+          </div>
+          <div class="body">
+            <p class="post-meta">Reel</p>
+            <h3>{reel.title}</h3>
+            <p>{reel.body}</p>
+          </div>
+        </a>
+      </article>
+    ))}
+  </section>
+
+  <section class="cta section">
+    <div>
+      <h2>Need music for a picture?</h2>
+      <p>
+        Original score, sync placement, or library cues, whether the edit is locked or the brief is still forming. Tell me
+        what the scene needs to feel like and we can work backwards from there.
+      </p>
+    </div>
+    <a href={CONTACT_MAILTO}>Get in touch</a>
+  </section>
+
+  <nav class="about-pathways section security-pathways" aria-label="Music page links">
+    {pathways.map((item) => (
+      <a class="about-pathway" href={item.href}>
+        <span class="about-pathway-label">{item.label}</span>
+        <span class="about-pathway-note">{item.note}</span>
+      </a>
+    ))}
+  </nav>
+</BaseLayout>

@@ -16,32 +16,125 @@ interface Props {
 
 const {
   title,
-  description = "Portfolio of Matteo Curcio. Finishing, motion, music, infrastructure, teaching, and security-minded systems work.",
+  description = "Portfolio of Matteo Curcio, Melbourne-based online editor, colourist, finishing artist, and workflow consultant.",
   path = "/",
   theme = "default",
   navSection,
   noIndex = false,
   ogImage: ogImagePath = "/images/og/matteo-curcio-og.png",
-  ogImageAlt = "Matteo Curcio — finishing, systems, music, and security-minded work.",
+  ogImageAlt = "Matteo Curcio — Melbourne online editor, colourist, finishing artist, and workflow consultant.",
   ogType = "website"
 } = Astro.props;
 
 const canonical = new URL(path, Astro.site);
 const ogImage = new URL(ogImagePath, Astro.site);
+const siteUrl = `https://${SITE_CONFIG.primaryDomain}`;
+const sameAs = [
+  SITE_CONFIG.social.linkedin,
+  SITE_CONFIG.social.github,
+  SITE_CONFIG.social.instagram,
+  SITE_CONFIG.social.substack,
+  SITE_CONFIG.social.medium,
+  SITE_CONFIG.social.pinterest,
+  SITE_CONFIG.social.youtube,
+  "https://www.filmlight.ltd.uk/store/freelance/listing/matteo-curcio/"
+];
+
 const schema = {
   "@context": "https://schema.org",
   "@graph": [
     {
       "@type": "Person",
+      "@id": `${siteUrl}/#person`,
       name: SITE_CONFIG.ownerName,
+      jobTitle: "Online editor, colourist, finishing artist, and workflow consultant",
+      // Australian spelling is the house style, but most of the world searches
+      // (and most models were trained on) the US spelling. Both are true of the
+      // same role, so both belong in the machine-readable description.
+      alternateName: ["Matteo Curcio, colorist", "Matteo Curcio, color grading Australia"],
       email: SITE_CONFIG.contactEmail,
-      url: `https://${SITE_CONFIG.primaryDomain}`
+      url: siteUrl,
+      image: `${siteUrl}/images/og/matteo-curcio-og.png`,
+      sameAs,
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Melbourne",
+        addressRegion: "VIC",
+        addressCountry: "AU"
+      },
+      knowsAbout: [
+        "Online editing",
+        "Colour grading",
+        "Color grading",
+        "Colourist",
+        "Colorist",
+        "Post-production finishing",
+        "DaVinci Resolve",
+        "Commercial post-production",
+        "Branded content",
+        "Motion graphics",
+        "Delivery workflows",
+        "Post-production workflow consulting",
+        "Creative infrastructure",
+        "Cybersecurity",
+        "Original music composition"
+      ]
     },
     {
-      "@type": "Organization",
+      "@type": ["ProfessionalService", "Organization"],
+      "@id": `${siteUrl}/#business`,
       name: SITE_CONFIG.ownerName,
       email: SITE_CONFIG.contactEmail,
-      url: `https://${SITE_CONFIG.primaryDomain}`
+      url: siteUrl,
+      sameAs,
+      founder: { "@id": `${siteUrl}/#person` },
+      areaServed: [
+        {
+          "@type": "City",
+          name: "Melbourne"
+        },
+        {
+          "@type": "AdministrativeArea",
+          name: "Australia"
+        },
+        "Remote"
+      ],
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Melbourne",
+        addressRegion: "VIC",
+        addressCountry: "AU"
+      },
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Post-production and workflow services",
+        itemListElement: [
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Colour grading, online editing, and finishing",
+              areaServed: "Melbourne and remote"
+            }
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Motion graphics and editorial polish",
+              areaServed: "Melbourne and remote"
+            }
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Post-production workflow consulting",
+              areaServed: "Melbourne and remote"
+            }
+          }
+        ]
+      }
     }
   ]
 };
@@ -126,10 +219,10 @@ const socialLinks = [
         <div class="nav-right">
           <nav class="nav-links" id="site-nav" aria-label="Main" data-nav-links>
             <a href="/about" aria-current={path === "/about" ? "page" : undefined}>About</a>
-            <a href="/works" aria-current={(navSection ? navSection === "works" : path === "/works" || path === "/work" || path.startsWith("/projects")) ? "page" : undefined}>Projects</a>
+            <a href="/works" aria-current={(navSection ? navSection === "works" : path === "/works" || path === "/work" || path.startsWith("/projects")) ? "page" : undefined}>Works</a>
             <a href="/reels" aria-current={(navSection ? navSection === "reels" : path === "/reels") ? "page" : undefined}>Reels</a>
             <a href="/services" aria-current={path === "/services" ? "page" : undefined}>Services</a>
-            <a href="/security" aria-current={(navSection ? navSection === "security" : path === "/security") ? "page" : undefined}>Security</a>
+            <a href="/workflow" aria-current={path === "/workflow" ? "page" : undefined}>Workflow</a>
             <a href="/tutoring" aria-current={path === "/tutoring" ? "page" : undefined}>Tutoring</a>
             <a href="/blog" aria-current={path.startsWith("/blog") ? "page" : undefined}>Blog</a>
           </nav>

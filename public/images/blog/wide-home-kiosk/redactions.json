@@ -1,0 +1,37 @@
+{
+  "calendar.png": [
+    {
+      "text": "calendar-area",
+      "box": [
+        430,
+        150,
+        1845,
+        520
+      ]
+    },
+    {
+      "text": "calendar-area",
+      "box": [
+        45,
+        70,
+        270,
+        500
+      ]
+    }
+  ],
+  "clocks.png": [],
+  "satellite.png": [],
+  "status.png": [
+    {
+      "text": "91.190.106.68",
+      "box": [
+        1745,
+        54,
+        1883,
+        76
+      ]
+    }
+  ],
+  "transport.png": [],
+  "weather.png": []
+}

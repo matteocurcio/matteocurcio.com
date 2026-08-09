@@ -5,6 +5,7 @@ excerpt: "A practical breakdown of how I use Post Haste to standardise project s
 cover: "/assets/services/common/Templates.png"
 coverAlt: "Post Haste for Mac: A Must-Have Tool for Organizing Creative Projects"
 tags: []
+topic: "craft"
 draft: false
 ---
 

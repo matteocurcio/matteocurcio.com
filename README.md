@@ -40,6 +40,8 @@ npm run build
   Standalone security landing page.
 - `src/styles/global.css`
   Shared visual system and responsive behavior.
+- `DESIGN-SYSTEM.md`
+  Pointer to the canonical website design system in `/Users/matteo/Documents/Projects/01-Design Systems/Website`.
 - `public/images/og/`
   Social preview assets.
 - `public/images/about/`

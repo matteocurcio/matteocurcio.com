@@ -1,0 +1,126 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { CONTACT_MAILTO } from "../config/site";
+
+const reels = [
+  {
+    slug: "presentology",
+    title: "Presentation Design",
+    image: "/assets/reels/reels-presentology/thumbnail_presentology.webp",
+    body: "Keynote systems and executive decks built from narrative structure outward, then designed to survive other hands."
+  },
+  {
+    slug: "dataviz",
+    title: "Data Visualization",
+    image: "/assets/reels/reels-dataviz/thumbnail_dataviz.webp",
+    body: "Chart logic, labelling hierarchy, and colour systems that stay legible when the data changes."
+  }
+];
+
+const principles = [
+  {
+    title: "Structure Before Surface",
+    body: "I build presentation systems from narrative structure outward: what's the argument, what's the hierarchy, where does the audience need to breathe. The visual framework comes after that, designed around the case being made rather than decorating it afterwards."
+  },
+  {
+    title: "A Deck Only You Can Update Is A Liability",
+    body: "Most decks fall apart the moment someone other than the designer touches them. A layout that only works in the original presenter's hands isn't a template. Clean master slides, locked type systems, and logical naming mean anyone on the team can swap a chart or restructure a section without the whole thing collapsing."
+  },
+  {
+    title: "Legible In Thirty Seconds",
+    body: "A chart that needs a paragraph of explanation underneath it has failed at its job. Data visualisation isn't about making numbers look interesting, it's about making them legible to someone who has thirty seconds and a decision to make."
+  },
+  {
+    title: "Designed To Survive Revisions",
+    body: "Revision cycles are where most dashboards and reports start drifting: a quick fix here, a cramped label there, and suddenly nothing reads cleanly. Because the data always changes, I build these to survive updates rather than just the first round of approval."
+  }
+];
+
+const pathways = [
+  {
+    href: "/services",
+    label: "Services",
+    note: "The full commercial picture: finishing, immersive, presentation, coaching, and consulting."
+  },
+  {
+    href: "/works",
+    label: "Projects",
+    note: "Presentation and data-led projects alongside the rest of the commercial work."
+  },
+  {
+    href: "/workflow",
+    label: "Workflow & infrastructure",
+    note: "The template systems and process design that keep a deck maintainable after handoff."
+  },
+  {
+    href: "/reels",
+    label: "Reels",
+    note: "Every reel in one place, including presentation and data visualisation."
+  }
+];
+---
+
+<BaseLayout
+  title="Presentation & Data-Viz | Executive Decks & Keynote Systems | Matteo Curcio"
+  description="Strategic presentations, keynote visuals, and data visualisation for executive audiences, pitches, events, and broadcast: designed to hold attention and survive revisions."
+  path="/presentation"
+>
+  <section class="page-head">
+    <p class="kicker">Presentation &amp; Data-Viz</p>
+    <h1>Made to hold a room, and to survive the next revision.</h1>
+    <p>
+      Strategic presentations and visual communication for executive audiences, pitches, events, and broadcast contexts.
+      Designed to hold attention quickly and carry authority in the room — then designed again so the team can keep using
+      it after I hand it over.
+    </p>
+    <p>
+      For organisations, government bodies, and senior teams who need to communicate clearly at scale.
+    </p>
+  </section>
+
+  <section class="section lane-grid" aria-label="How presentation work is approached">
+    {principles.map((item) => (
+      <article class="lane">
+        <h3>{item.title}</h3>
+        <p>{item.body}</p>
+      </article>
+    ))}
+  </section>
+
+  <section class="section blog-grid coding-grid" aria-label="Presentation reels">
+    {reels.map((reel) => (
+      <article class="post-card coding-card">
+        <a href={`/reels/${reel.slug}/`}>
+          <div class="thumb-frame">
+            <img class="thumb" src={reel.image} alt={`${reel.title} reel thumbnail`} loading="lazy" />
+          </div>
+          <div class="body">
+            <p class="post-meta">Reel</p>
+            <h3>{reel.title}</h3>
+            <p>{reel.body}</p>
+          </div>
+        </a>
+      </article>
+    ))}
+  </section>
+
+  <section class="cta section">
+    <div>
+      <h2>Something important to present?</h2>
+      <p>
+        A pitch, a keynote, a board deck, or a reporting system that has stopped reading clearly. Tell me the audience and
+        the argument and we can work backwards from there.
+      </p>
+    </div>
+    <a href={CONTACT_MAILTO}>Get in touch</a>
+  </section>
+
+  <nav class="about-pathways section security-pathways" aria-label="Presentation page links">
+    {pathways.map((item) => (
+      <a class="about-pathway" href={item.href}>
+        <span class="about-pathway-label">{item.label}</span>
+        <span class="about-pathway-note">{item.note}</span>
+      </a>
+    ))}
+  </nav>
+</BaseLayout>

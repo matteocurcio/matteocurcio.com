@@ -1,6 +1,53 @@
 import { defineConfig } from "astro/config";
+import sitemap from "@astrojs/sitemap";
+
+// Pages that exist only to forward an old URL, or that aren't for the public.
+// Astro already marks the generated redirect stubs noindex; this keeps them
+// (and the dev-only preview) out of the sitemap as well.
+const EXCLUDE = [
+  "/coding", "/making", "/problem-solving", "/tools", "/security",
+  "/for-studios", "/training", "/work", "/contact",
+  "/dark-preview", "/client",
+  "/blog/teaching-the-why-behind-colour-decisions"
+];
+
+// Every reel also renders under /projects/<slug>, and those copies already
+// canonicalise to /reels/<slug>. A sitemap should only advertise canonical
+// URLs, so the duplicates are dropped here too.
+const REEL_SLUGS = [
+  "advertising", "ar", "beauty-retouch", "corporate", "dataviz", "fashion",
+  "finishing", "food", "immersive", "in-store", "mapping", "music",
+  "online-editing", "presentology", "realestate", "royaltyfree", "sport",
+  "sync", "video-games-advertising"
+];
 
 export default defineConfig({
   site: "https://matteocurcio.com",
-  output: "static"
+  output: "static",
+  integrations: [
+    sitemap({
+      filter: (page) => {
+        const path = new URL(page).pathname.replace(/\/$/, "");
+        if (EXCLUDE.includes(path)) return false;
+        const reelTwin = path.startsWith("/projects/") &&
+          REEL_SLUGS.includes(path.slice("/projects/".length));
+        return !reelTwin;
+      }
+    })
+  ],
+  redirects: {
+    "/coding": "/workflow",
+    "/making": "/workflow",
+    "/problem-solving": "/workflow",
+    "/tools": "/workflow",
+    "/security": "/workflow",
+    // Legacy pages that were only a sentence telling you where to go instead.
+    // As real redirects they stop being thin indexable pages of their own.
+    "/for-studios": "/services",
+    "/training": "/tutoring",
+    "/work": "/works",
+    "/contact": "/about",
+    // The listing duplicated /works, which is the one in the nav.
+    "/projects": "/works"
+  }
 });

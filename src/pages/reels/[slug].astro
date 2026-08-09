@@ -907,11 +907,21 @@ const reelNarrativeParagraphs = isReelPage
 const metaText = "";
 
 const pageTitle = `${title} | Matteo Curcio`;
+
+// Reel pages also inherited the site-wide description; give each its own,
+// falling back to the reel's own summary copy where there is one.
+const reelSummary = (REEL_CAPTIONS[slug] || reelDescriptionParagraphs || [])[0] || "";
+const pageDescription = (
+  reelSummary
+    ? `${title} showreel by Matteo Curcio. ${reelSummary.replace(/\s+/g, " ")}`
+    : `${title} showreel by Matteo Curcio — colour grading, online editing and finishing from Melbourne, Australia.`
+).slice(0, 160);
 ---
 
-<BaseLayout title={pageTitle} path={`/reels/${slug}/`} navSection="reels">
+<BaseLayout title={pageTitle} description={pageDescription} path={`/reels/${slug}/`} navSection="reels">
   <article class="project-layout">
     <header class="project-header">
+      <h1 class="sr-only">{title} showreel</h1>
       <div class="project-title-panels project-title-panels-single" aria-label="Showreel title">
         <div class="credit-item title-credit-item">
           <p class="credit-label">SHOWREEL</p>

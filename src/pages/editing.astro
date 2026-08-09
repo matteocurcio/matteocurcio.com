@@ -1,17 +1,117 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import ServicePage from "../components/ServicePage.astro";
+import { CONTACT_MAILTO } from "../config/site";
+import { REEL_CAPTIONS } from "../data/reelCaptions";
+
+const REELS = ["online-editing", "corporate", "video-games-advertising", "finishing"];
+const TITLES: Record<string, string> = {
+  "online-editing": "Online Editing",
+  corporate: "Corporate Video",
+  "video-games-advertising": "Video Games Advertising",
+  finishing: "Finishing & Delivery"
+};
+const IMAGES: Record<string, string> = {
+  "online-editing": "/assets/reels/reels-online-editing/thumbnail_online_editing.webp",
+  corporate: "/assets/reels/reels-corporate/thumbnail_corporate.webp",
+  "video-games-advertising": "/assets/reels/online-editing-video-games-advertising/thumbnail_video_games_advertising.webp",
+  finishing: "/assets/reels/reels-finishing/thumbnail_finishing.webp"
+};
+
+const reels = REELS.map((slug) => ({
+  slug,
+  title: TITLES[slug],
+  image: IMAGES[slug],
+  body: (REEL_CAPTIONS[slug] || [""])[0]
+}));
+
+const included = [
+  {
+    title: "Conform and timeline hygiene",
+    body: "Rebuilding the offline against camera originals, matching every cut and effect, and leaving a timeline someone else could open in a year and understand. Online is where shortcuts taken earlier in the pipeline come back to bite."
+  },
+  {
+    title: "Versioning that doesn't collapse",
+    body: "Cutdowns, market versions, aspect ratios, supers and legals, platform specs. Versions get built from one source of truth so a late change to the hero propagates rather than being re-done fifteen times by hand."
+  },
+  {
+    title: "Cleanup and repair",
+    body: "Rig removal, tracking and patching, screen replacement, dust and gate checks, motion cleanup, and the dozen small fixes that nobody notices until they are missing."
+  },
+  {
+    title: "Delivery you don't have to babysit",
+    body: "Correct codecs, correct colour metadata, correct loudness, correct file names, checked against what the broadcaster or platform actually requires — not what someone assumed three weeks ago."
+  }
+];
 ---
 
-<BaseLayout title="Editing | Matteo Curcio" path="/editing">
-  <ServicePage
-    title="Editing"
-    intro="Narrative and commercial editing with tight pacing, visual continuity, and platform-specific cuts."
-    list={[
-      "Offline and online edits",
-      "Versioning for social campaigns",
-      "Story and rhythm refinement",
-      "Cross-team handoff with sound and VFX"
-    ]}
-  />
+<BaseLayout
+  title="Online Editing & Conform in Melbourne | Matteo Curcio"
+  description="Commercial online editing in Melbourne and remote: conform, versioning, cleanup, motion graphics integration and platform-correct delivery for agency and branded work."
+  path="/editing"
+>
+  <section class="page-head">
+    <p class="kicker">Online Editing</p>
+    <h1>Online editing, conform and delivery.</h1>
+    <p>
+      The stage between a locked cut and a master that actually passes QC. Conform, versioning, cleanup, and delivery
+      specs that match the platform's real requirements. I treat online as a quality-control environment as much as a
+      finishing one — the aim is a master you can send without checking it twice.
+    </p>
+    <p class="page-head-actions">
+      <a class="button-link" href={CONTACT_MAILTO}>Start a project</a>
+      <a class="button-link" href="/reels/online-editing/">Watch the reel</a>
+    </p>
+  </section>
+
+  <section class="section lane-grid" aria-label="What online editing includes">
+    {included.map((item) => (
+      <article class="lane">
+        <h3>{item.title}</h3>
+        <p>{item.body}</p>
+      </article>
+    ))}
+  </section>
+
+  <section class="section blog-grid coding-grid" aria-label="Online editing reels">
+    {reels.map((r) => (
+      <article class="post-card coding-card">
+        <a href={`/reels/${r.slug}/`}>
+          <div class="thumb-frame">
+            <img class="thumb" src={r.image} alt={`${r.title} reel`} loading="lazy" />
+          </div>
+          <div class="body">
+            <p class="post-meta">Reel</p>
+            <h3>{r.title}</h3>
+            <p>{r.body}</p>
+          </div>
+        </a>
+      </article>
+    ))}
+  </section>
+
+  <section class="cta section">
+    <div>
+      <h2>Cut locked, or nearly?</h2>
+      <p>
+        Send the timeline, the media, and the delivery spec. If the spec is the part you're unsure about, that's usually
+        the most useful conversation to have first.
+      </p>
+    </div>
+    <a href={CONTACT_MAILTO}>Get in touch</a>
+  </section>
+
+  <nav class="about-pathways section security-pathways" aria-label="Related pages">
+    <a class="about-pathway" href="/finishing">
+      <span class="about-pathway-label">Colour &amp; finishing</span>
+      <span class="about-pathway-note">The full post-production service in one place.</span>
+    </a>
+    <a class="about-pathway" href="/color">
+      <span class="about-pathway-label">Colour grading</span>
+      <span class="about-pathway-note">Commercial grading across advertising, beauty, fashion and more.</span>
+    </a>
+    <a class="about-pathway" href="/workflow">
+      <span class="about-pathway-label">Workflow &amp; infrastructure</span>
+      <span class="about-pathway-note">The process design that keeps versioning from becoming chaos.</span>
+    </a>
+  </nav>
 </BaseLayout>

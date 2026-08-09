@@ -43,6 +43,28 @@ const REEL_CATEGORY_LABELS: Record<Exclude<ReelFilterKey, "all">, string> = {
   music: "Music"
 };
 
+const REEL_SUMMARIES: Partial<Record<string, string>> = {
+  finishing: "Commercial colour grading, online editing, finishing, and final delivery.",
+  "beauty-retouch": "Beauty retouching and colour polish for faces, skin, texture, and product detail.",
+  advertising: "Advertising colour grading and finishing for commercial campaigns.",
+  sport: "Sportswear colour grading, movement, texture, and energetic campaign finishing.",
+  realestate: "Real estate video finishing with clean interiors, architecture, and natural light.",
+  fashion: "Fashion colour grading with skin tone control, texture, and editorial polish.",
+  food: "Food advertising colour work built around appetite, detail, and controlled saturation.",
+  "video-games-advertising": "Online editing and finishing for video game advertising and campaign assets.",
+  corporate: "Corporate video editing, polish, and delivery for clear business communication.",
+  "online-editing": "Online editing, versioning, cleanup, and final delivery for commercial video.",
+  presentology: "Presentation design, keynote systems, and motion-led visual communication.",
+  dataviz: "Data visualisation, information design, and animated explanation work.",
+  "in-store": "In-store advertising and screen content for retail environments.",
+  immersive: "Immersive video content designed for large-format and environment-led media.",
+  mapping: "Projection mapping and spatial content for live events and architectural surfaces.",
+  ar: "Augmented reality and interactive content for brand and event experiences.",
+  sync: "Sync music and composed cues for screen, campaign, and media contexts.",
+  royaltyfree: "Royalty-free music cues built for clean licensing and production use.",
+  music: "Original music, production, and screen-adjacent sound work."
+};
+
 const reels = LEGACY_REELS
   .map((item) => ({
     ...item,
@@ -51,16 +73,21 @@ const reels = LEGACY_REELS
   .filter((item): item is typeof item & { categoryKey: Exclude<ReelFilterKey, "all"> } => Boolean(item.categoryKey))
   .map((item) => ({
     ...item,
-    categoryLabel: REEL_CATEGORY_LABELS[item.categoryKey]
+    categoryLabel: REEL_CATEGORY_LABELS[item.categoryKey],
+    summary: REEL_SUMMARIES[item.slug] || `${REEL_CATEGORY_LABELS[item.categoryKey]} reel by Matteo Curcio.`
   }));
 ---
 
-<BaseLayout title="Reels | Matteo Curcio" path="/reels">
+<BaseLayout
+  title="Reels | Colour Grading, Online Editing, Motion & Music"
+  description="Showreels for Matteo Curcio covering commercial colour grading, online editing, finishing, motion design, immersive media, corporate video, and music."
+  path="/reels"
+>
   <section class="services-head page-head">
     <h1>And what does that look like in motion?</h1>
     <p>
-      A condensed view across colour, motion, immersive, video, and music.
-      Quick reads on pacing, tone, finish, and visual range.
+      A condensed view across commercial colour grading, online editing, post-production finishing, motion design,
+      immersive media, corporate video, and music. Quick reads on pacing, tone, finish, and visual range.
     </p>
   </section>
 
@@ -79,9 +106,14 @@ const reels = LEGACY_REELS
 
   <section class="reels-grid" aria-label="Reel categories" data-reel-grid>
     {reels.map((item) => (
-      <a class="reel-tile" href={`/reels/${item.slug}/`} aria-label={item.title} data-reel-category-key={item.categoryKey}>
+      <a
+        class="reel-tile"
+        href={`/reels/${item.slug}/`}
+        aria-label={`${item.title}: ${item.summary}`}
+        data-reel-category-key={item.categoryKey}
+      >
         <div class="reel-media">
-          <img src={item.image} alt={item.title} loading="lazy" />
+          <img src={item.image} alt={`${item.title} reel thumbnail. ${item.summary}`} loading="lazy" />
         </div>
       </a>
     ))}

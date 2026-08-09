@@ -1,72 +1,44 @@
 ---
-import { CONTACT_MAILTO, SITE_CONFIG } from "../config/site";
-import { technicalPosts } from "../lib/posts";
-import PostCard from "./PostCard.astro";
+import { CONTACT_MAILTO } from "../config/site";
+import { getResolvedWorks } from "../lib/works";
+import ClientMarquee from "./ClientMarquee.astro";
 
-const latestPosts = technicalPosts.slice(0, 3);
+// The carousel pool: every work that has a moving preview, so each slide can
+// play on hover. Order is fixed at build time; the entry point is randomised
+// client-side so the reel doesn't open on the same project every visit.
+const carouselWorks = (await getResolvedWorks()).filter((item) => Boolean(item.video));
 
-const featuredWorks = [
-  {
-    href: "/projects/a-gentle-giant/",
-    title: "A Gentle Giant",
-    client: "Gigabyte",
-    year: "2023",
-    discipline: "Motion",
-    image: "/assets/projects/gigabyte-a-gentle-giant/thumbnail_a_gentle_giant.webp",
-    video: "/assets/projects/gigabyte-a-gentle-giant/thumbnail_a_gentle_giant.mp4"
-  },
-  {
-    href: "/projects/amp/",
-    title: "Quay Quarter",
-    client: "AMP",
-    year: "2023",
-    discipline: "Motion",
-    image: "/assets/projects/amp-quay-quarter/thumbnail_amp.webp",
-    video: "/assets/projects/amp-quay-quarter/video_amp.mov"
-  },
-  {
-    href: "/projects/merrie-melodies/",
-    title: "Merrie Melodies",
-    client: "Original music",
-    year: "2022",
-    discipline: "Music",
-    image: "/assets/projects/music-merrie-melodies/thumbnail_merrie_melodies.webp"
-  }
+// Rendered twice so the track can wrap seamlessly: once scrolling passes the
+// halfway mark the script snaps back by exactly half a track, which lands on an
+// identical slide. Clones are hidden from assistive tech and tab order.
+const carouselLoop = [
+  ...carouselWorks.map((item) => ({ item, isClone: false })),
+  ...carouselWorks.map((item) => ({ item, isClone: true }))
 ];
 
 const serviceLanes = [
   {
-    title: "Finishing",
-    body: "Colour, editorial, motion graphics, and delivery for commercial and branded work that needs to hold together under pressure.",
-    href: "/services"
+    title: "Colour, Online Editing & Finishing",
+    body: "Online editing, colour grading, finishing, motion cleanup, and final delivery for commercial and branded post-production.",
+    href: "/finishing"
   },
   {
-    title: "Workflow",
-    body: "Creative infrastructure, delivery systems, and process design for studios that are tired of avoidable chaos.",
-    href: "/services"
-  },
-  {
-    title: "Security",
-    body: "A systems-first move into cybersecurity, informed by infrastructure practice, workflow auditing, and the habit of finding weak links early.",
-    href: "/security"
+    title: "Workflow & Infrastructure",
+    body: "Process design, the hardware and software I build to fix specific problems, and the security thinking underneath both.",
+    href: "/workflow"
   },
   {
     title: "Coaching",
-    body: "Resolve, Adobe, and production workflows taught from real constraints, not tutorial theatre.",
+    body: "From tutoring Adobe at RMIT to one-on-one coaching: Resolve and production workflows taught from real constraints, not tutorial theatre.",
     href: "/tutoring"
+  },
+  {
+    title: "Music",
+    body: "Original composition, sync, and score for film, television, and advertising as one half of Grammy-nominated Musetta.",
+    href: "/music"
   }
 ];
 
-const professionalContext =
-  "Twenty years across finishing, immersive media, music, workflow design, and increasingly security. The throughline is systems: how they behave, where they fail, and how to make them reliable under pressure.";
-
-const proofSignals = [
-  "ISC2 CC",
-  "RMIT Cyber Security",
-  "Grammy-nominated music collaboration",
-  "Expo 2020 / UAE",
-  "Melbourne / Remote"
-];
 ---
 
 <section class="home-hero" aria-label="Homepage hero" data-home-hero>
@@ -86,63 +58,70 @@ const proofSignals = [
   <canvas class="home-hero-code-canvas" aria-hidden="true" data-home-hero-code-canvas></canvas>
   <div class="home-hero-inner shell">
     <p class="home-kicker">Melbourne / Remote · For studios, producers & agencies</p>
-    <h1>The Ghost in the Machine.</h1>
-    <p class="home-hero-copy">
-      The aesthetic draws you in. The logic is why it stays. I work where both are true at once.
+    <h1 class="home-hero-headline">Colour, finishing and delivery for work that has to land.</h1>
+    <p class="home-hero-literal">
+      Matteo Curcio is a Melbourne-based online editor, colourist, finishing artist, and workflow consultant for commercial, branded, and agency post-production.
     </p>
     <div class="home-hero-actions">
-      <a class="home-button" href="/works">View Projects</a>
-      <a class="home-button" href="/services">How I work</a>
+      <a class="home-button home-button-primary" href={CONTACT_MAILTO}>Start a project</a>
+      <a class="home-button" href="/works">See the work</a>
     </div>
   </div>
 </section>
 
-<section class="home-proof-strip section" aria-label="Professional context">
-  <p class="home-context-line">{professionalContext}</p>
-  <div class="credibility-strip">
-    {proofSignals.map((item) => <span>{item}</span>)}
-  </div>
-</section>
-
 <section class="home-section section" id="selected-work">
-  <div class="home-section-head">
+  <div class="home-section-head home-carousel-head">
     <p class="kicker">Selected Work</p>
-    <h2>Motion-first, but not motion-only.</h2>
-    <p>
-      The work moves across finishing, motion, immersive formats, editorial structure, and the systems underneath all of it.
-    </p>
+    <h2>Commercial colour, finishing and motion.</h2>
   </div>
 
-  <div class="home-feature-grid">
-    {featuredWorks.map((item) => (
-      <a class="home-feature-card" href={item.href}>
-        <div class="home-feature-media" data-hover-preview="true">
-          <img src={item.image} alt={item.title} loading="lazy" />
-          <video
-            class="home-feature-preview"
-            src={item.video}
-            muted
-            loop
-            playsinline
-            preload="metadata"
-            aria-hidden="true"
-          />
-          <div class="home-feature-overlay">
-            <p class="home-feature-title">{item.title}</p>
-            <p class="home-feature-meta">{item.client} · {item.year} · {item.discipline}</p>
+  <div class="home-carousel" data-work-carousel>
+    <div class="home-carousel-track" data-work-carousel-track>
+      {carouselLoop.map(({ item, isClone }) => (
+        <a
+          class="home-feature-card home-carousel-slide"
+          href={item.href}
+          aria-hidden={isClone ? "true" : undefined}
+          tabindex={isClone ? -1 : undefined}
+        >
+          <div class="home-feature-media" data-hover-preview="true">
+            <img src={item.image} alt={item.title} loading="lazy" />
+            <video
+              class="home-feature-preview"
+              src={item.video}
+              muted
+              loop
+              playsinline
+              preload="none"
+              aria-hidden="true"
+            />
+            <div class="home-feature-overlay">
+              <p class="home-feature-title">{item.title}</p>
+              <p class="home-feature-meta">{item.meta}</p>
+            </div>
           </div>
-        </div>
-      </a>
-    ))}
+        </a>
+      ))}
+    </div>
+
   </div>
 
-  <div class="home-inline-link">
-    <a class="button-link" href="/works">Browse all projects</a>
-  </div>
+  <ClientMarquee />
 </section>
 
 <section class="home-section section">
   <div class="home-editorial">
+    <div class="home-lane-stack">
+      {serviceLanes.map((lane) => (
+        <a class="home-lane" href={lane.href}>
+          <h3>{lane.title}</h3>
+          <div class="home-lane-body">
+            <p>{lane.body}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+
     <div class="home-editorial-copy panel">
       <p class="kicker">How I Work</p>
       <h2>Form equals function.</h2>
@@ -153,54 +132,6 @@ const proofSignals = [
         I care about both halves because they aren't really separable. Something can be beautifully made and still be a problem if the pipeline behind it is held together with guesswork. When the underlying process is solid, the work holds up: through revisions, under pressure, and well after the deadline that made it all feel urgent.
       </p>
     </div>
-
-    <div class="home-lane-stack">
-      {serviceLanes.map((lane) => (
-        <a class="home-lane" href={lane.href}>
-          <h3>{lane.title}</h3>
-          <p>{lane.body}</p>
-        </a>
-      ))}
-    </div>
-  </div>
-</section>
-
-<section class="home-section section">
-  <div class="home-section-head">
-    <p class="kicker">Writing</p>
-    <h2>Technical notes here, broader essays elsewhere.</h2>
-    <p>
-      The on-site blog stays focused on post-production, workflow, and technical practice. Cultural and broader essay writing lives separately on Substack.
-    </p>
-  </div>
-
-  <div class="writing-destinations">
-    <a class="writing-destination" href="/blog">
-      <span>Technical Blog</span>
-      <strong>Workflow, tools, colour, infrastructure, and practical post-production systems.</strong>
-    </a>
-    <a class="writing-destination" href={SITE_CONFIG.social.substack} target="_blank" rel="noopener noreferrer">
-      <span>Substack</span>
-      <strong>Broader essays on culture, technology, media, and the stranger edges of the machine.</strong>
-    </a>
-  </div>
-
-  <div class="blog-grid">
-    {latestPosts.map((post) => (
-      <PostCard
-        slug={post.slug}
-        title={post.title}
-        date={post.date}
-        excerpt={post.excerpt}
-        cover={post.cover}
-        coverAlt={post.coverAlt}
-      />
-    ))}
-  </div>
-
-  <div class="home-inline-link">
-    <a class="button-link" href="/blog">Read the technical blog</a>
-    <a class="button-link" href={SITE_CONFIG.social.substack} target="_blank" rel="noopener noreferrer">Read other writing on Substack</a>
   </div>
 </section>
 
@@ -221,6 +152,63 @@ const proofSignals = [
 </section>
 
 <script is:inline>
+  (() => {
+    const carousel = document.querySelector("[data-work-carousel]");
+    const track = document.querySelector("[data-work-carousel-track]");
+    if (!carousel || !track) return;
+
+    const slides = Array.from(track.querySelectorAll(".home-carousel-slide"));
+    if (slides.length < 2) return;
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const step = () => {
+      const gap = parseFloat(getComputedStyle(track).columnGap || "0") || 0;
+      return slides[0].getBoundingClientRect().width + gap;
+    };
+
+    // The track holds two identical copies of the pool, so scrollLeft and
+    // scrollLeft - half render the same thing. Rewinding by half while the
+    // track is at rest is therefore invisible, and the reel never runs out.
+    // Measured as one copy's worth of steps, not scrollWidth / 2: the track has
+    // one fewer gap than slides, so scrollWidth / 2 is half a gap short and the
+    // wrap would drift a few pixels every lap.
+    const half = () => (slides.length / 2) * step();
+    const wrap = () => {
+      if (track.scrollLeft >= half()) track.scrollLeft -= half();
+      else if (track.scrollLeft <= 0) track.scrollLeft += half();
+    };
+
+    // Open on a different project each visit rather than always the first.
+    track.scrollLeft = Math.floor(Math.random() * (slides.length / 2)) * step();
+
+    const advance = (direction) => {
+      wrap();
+      track.scrollBy({ left: step() * direction, behavior: reduceMotion ? "auto" : "smooth" });
+    };
+
+    // Also rewind after a manual trackpad or touch scroll settles.
+    let settle = 0;
+    track.addEventListener("scroll", () => {
+      window.clearTimeout(settle);
+      settle = window.setTimeout(wrap, 180);
+    });
+
+    if (reduceMotion) return;
+
+    let timer = window.setInterval(() => advance(1), 4500);
+    const pause = () => window.clearInterval(timer);
+    const resume = () => {
+      pause();
+      timer = window.setInterval(() => advance(1), 4500);
+    };
+
+    carousel.addEventListener("pointerenter", pause);
+    carousel.addEventListener("pointerleave", resume);
+    carousel.addEventListener("focusin", pause);
+    carousel.addEventListener("focusout", resume);
+    document.addEventListener("visibilitychange", () => (document.hidden ? pause() : resume()));
+  })();
+
   const homeHero = document.querySelector("[data-home-hero]");
   const heroVideo = document.querySelector("[data-home-hero-video]");
   const heroCodeCanvas = document.querySelector("[data-home-hero-code-canvas]");

@@ -1,0 +1,221 @@
+---
+import { CONTACT_MAILTO, SITE_CONFIG } from "../config/site";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const capabilities = [
+  {
+    title: "Colour Grading",
+    body:
+      "Look development, shot matching, skin tone control, contrast shaping, SDR trims, and sequence-level balance in DaVinci Resolve, so every shot cuts together like it was lit that way."
+  },
+  {
+    title: "Online Editing",
+    body:
+      "Conform checks, edit polish, cleanup, versioning, titles, supers, end cards, aspect-ratio versions, and agency review support, so the edit survives every round of notes without drift."
+  },
+  {
+    title: "Finishing & Delivery",
+    body:
+      "Export preparation, technical QC, codec choices, broadcast and web deliverables, social cutdowns, and final master handoff, so your master passes cleanly in every format it needs to land."
+  },
+  {
+    title: "Workflow Support",
+    body:
+      "Practical help with messy handoffs, fragile timelines, storage structure, naming, renders, relinks, and the delivery details that tend to break late, so the job stays predictable even when the timeline is not."
+  }
+];
+
+const processSteps = [
+  {
+    title: "Send the job.",
+    body:
+      "Tell me what you are making, where it is up to, and what needs to land. I will come back with an approach and a quote."
+  },
+  {
+    title: "We lock the plan.",
+    body:
+      "Scope, timeline, remote review method, and delivery specs are agreed before the job starts."
+  },
+  {
+    title: "You get masters that hold.",
+    body:
+      "Graded, finished, checked, and delivered in the versions required, without needing someone to babysit the process."
+  }
+];
+
+const faqs = [
+  {
+    question: "How do you charge?",
+    answer:
+      "Day rate or fixed project quote, depending on the job. If the scope is clear, I can quote it as a package."
+  },
+  {
+    question: "Can we sit in on the grade?",
+    answer:
+      "I work remotely only. It keeps the setup lean, removes room and attendance costs from my side, and means you are paying for the grade and the delivery rather than a bigger session footprint."
+  },
+  {
+    question: "What do I send you?",
+    answer:
+      "A locked cut if you have one, project files, camera originals or graded references, delivery specs, and anything the agency or client has already approved."
+  },
+  {
+    question: "What do you work in?",
+    answer:
+      "DaVinci Resolve for colour and finishing, with conform and delivery support from the major editorial workflows."
+  }
+];
+
+const heroProjects = [
+  {
+    title: "A Gentle Giant",
+    client: "Gigabyte",
+    href: "/projects/a-gentle-giant/",
+    image: "/assets/projects/gigabyte-a-gentle-giant/thumbnail_a_gentle_giant.webp"
+  },
+  {
+    title: "Quay Quarter",
+    client: "AMP",
+    href: "/projects/amp/",
+    image: "/assets/projects/amp-quay-quarter/thumbnail_amp.webp"
+  },
+  {
+    title: "National Hero",
+    client: "Football Australia",
+    href: "/projects/national-hero/",
+    image: "/assets/projects/football-australia-national-hero/thumbnail_national_hero.webp"
+  }
+];
+---
+
+<BaseLayout
+  title="Colour Grading, Online Editing & Finishing in Melbourne | Matteo Curcio"
+  description="Melbourne-based online editor, colourist, finishing artist, and workflow consultant for commercial, branded, and agency post-production."
+  path="/finishing"
+  navSection="services"
+  ogImage="/images/og/matteo-curcio-services-og.png"
+  ogImageAlt="Matteo Curcio colour grading, online editing, and finishing services"
+>
+  <section class="services-head page-head">
+    <p class="kicker">Colour / Online / Finishing</p>
+    <h1>Colour Grading, Online Editing & Finishing in Melbourne</h1>
+    <p>
+      I am Matteo Curcio, a Melbourne-based colourist, online editor, and finishing artist for commercial, branded,
+      and agency post-production. I work remotely with teams that need sharp creative judgement, clean execution, and
+      delivery they do not have to babysit.
+    </p>
+    <p>
+      Australian clients tend to write colourist and colour grading; American and international ones write colorist and
+      color grading. Same work either way — commercial grading, online editing and finishing, delivered from Melbourne
+      to anywhere.
+    </p>
+  </section>
+
+  <section class="section finishing-hero-work" aria-label="Selected finishing projects">
+    <div class="finishing-hero-projects" aria-label="Selected finishing projects">
+      {heroProjects.map((project) => (
+        <a class="finishing-hero-project" href={project.href}>
+          <img src={project.image} alt={`${project.title} project thumbnail`} loading="eager" />
+          <span>
+            <strong>{project.title}</strong>
+            <small>{project.client}</small>
+          </span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="finishing-intro section">
+    <div class="panel finishing-intro-panel">
+      <p>
+        Finishing is where jobs quietly go wrong: a grade that does not match across shots, an online that falls apart
+        under agency notes, or a master bounced back on QC the day before air.
+      </p>
+      <p>
+        That is the part I take off your plate. Craft-level colour and finishing, plus the systems thinking to keep a
+        commercial post job reliable under pressure, so what you deliver holds up the first time.
+      </p>
+    </div>
+  </section>
+
+  <section class="services-index services-card-grid finishing-card-grid" aria-label="Colour grading, online editing, and finishing capabilities">
+    {capabilities.map((item) => (
+      <article class="service-card">
+        <div class="service-card-head">
+          <div class="service-card-title-group">
+            <h2 class="service-name">{item.title}</h2>
+          </div>
+        </div>
+        <div class="service-card-body">
+          <p class="service-description">{item.body}</p>
+        </div>
+      </article>
+    ))}
+  </section>
+
+  <section class="home-section section">
+    <div class="home-editorial-copy panel finishing-good-fit">
+      <p class="kicker">Good Fit</p>
+      <h2>For producers, agencies, and studios who need the finish to hold.</h2>
+      <p>
+        I can join a project for a focused colour grade, take care of online editing and delivery, or help stabilise the
+        workflow around a job that has too many moving parts. The work is practical, collaborative, remote-first, and built
+        around the constraints of the actual production.
+      </p>
+    </div>
+  </section>
+
+  <section class="home-section section">
+    <div class="finishing-process-grid">
+      <div class="panel finishing-process-intro">
+        <p class="kicker">How It Works</p>
+        <h2>Simple handoff, clear plan, clean masters.</h2>
+        <p>
+          The job does not need theatre. It needs a clear path from current state to approved delivery, with enough
+          structure that notes, versions, and spec changes do not turn into avoidable mess.
+        </p>
+      </div>
+      {processSteps.map((step) => (
+        <article class="panel finishing-process-card">
+          <span>{step.title}</span>
+          <p>{step.body}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="home-section section">
+    <div class="panel finishing-faq">
+      <p class="kicker">Mini FAQ</p>
+      <h2>Before you send the job.</h2>
+      <div class="finishing-faq-grid">
+        {faqs.map((item) => (
+          <article>
+            <h3>{item.question}</h3>
+            <p>{item.answer}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="home-section section">
+    <div class="home-cta">
+      <div>
+        <p class="kicker">Start Here</p>
+        <h2>Post-house quality, without the post house.</h2>
+        <p>
+          Send through what you are making, where it is up to, and what needs to land. I will come back with an approach
+          and a quote.
+          <br />
+          Direct email: <a href={CONTACT_MAILTO}>{SITE_CONFIG.contactEmail}</a>
+        </p>
+      </div>
+      <div class="home-cta-actions">
+        <a class="home-button home-button-primary" href={CONTACT_MAILTO}>Start a project</a>
+        <a class="home-button" href="/works">View projects</a>
+        <a class="home-button" href="/reels/finishing/">View finishing reel</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

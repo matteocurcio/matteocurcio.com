@@ -20,6 +20,9 @@ html,
 body {
   margin: 0;
   padding: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 html {
@@ -353,6 +356,9 @@ body[data-theme="dark"] .theme-toggle-icon {
 
 main {
   padding: 2.2rem 0 4rem;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: clip;
 }
 
 body.is-theme-transitioning,
@@ -389,6 +395,9 @@ body[data-path="/about"] main {
 }
 
 .kicker {
+  /* A kicker is a label sitting directly on top of its heading, so it must not
+     carry the UA paragraph margin that was pushing it down inside panels. */
+  margin: 0 0 0.4rem;
   font-family: var(--font-mono);
   text-transform: uppercase;
   letter-spacing: 0.09em;
@@ -886,6 +895,10 @@ h1 {
   background: #efe7dc;
   font-size: 0.8rem;
   letter-spacing: 0.04em;
+}
+
+.services-head .credibility-strip {
+  margin-top: 1.2rem;
 }
 
 .proof-grid {
@@ -1395,6 +1408,24 @@ h1 {
   line-height: 1.5;
 }
 
+/* Human-facing headline; the keyword-dense sentence sits under it as body copy
+   so both readers and crawlers get what they need. */
+.home-hero h1.home-hero-headline {
+  max-width: 18ch;
+  font-size: clamp(2.4rem, 5.2vw, 4.4rem);
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+  font-weight: 700;
+}
+
+.home-hero-literal {
+  max-width: 40rem;
+  margin: 0.9rem 0 0;
+  font-size: clamp(1rem, 1.1vw, 1.16rem);
+  line-height: 1.5;
+  color: rgb(247 241 231 / 82%);
+}
+
 .home-hero-actions {
   display: flex;
   flex-wrap: wrap;
@@ -1499,6 +1530,32 @@ h1 {
   display: block;
 }
 
+.home-carousel {
+  position: relative;
+}
+
+/* Native scroll + snap: gives touch swipe and keyboard scrolling for free,
+   and the auto-advance script just calls scrollBy on top of it. */
+.home-carousel-track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - 2rem) / 3);
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  padding-bottom: 0.2rem;
+}
+
+.home-carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+.home-carousel-slide {
+  scroll-snap-align: start;
+}
+
+
 .home-feature-media {
   position: relative;
   aspect-ratio: 16 / 11;
@@ -1563,7 +1620,7 @@ h1 {
 
 .writing-destinations {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
   margin-bottom: 1.25rem;
 }
@@ -1603,7 +1660,7 @@ h1 {
 
 .home-editorial {
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
   gap: 1rem;
   align-items: start;
 }
@@ -1638,13 +1695,142 @@ h1 {
 }
 
 .home-lane h3 {
-  margin-bottom: 0.45rem;
+  margin-bottom: 0;
   font-size: 1.15rem;
 }
 
 .home-lane p {
   margin: 0;
   color: var(--muted);
+}
+
+.home-lane-body {
+  padding-top: 0.45rem;
+}
+
+.finishing-intro {
+  padding-top: 0;
+}
+
+.finishing-hero-projects {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+.finishing-hero-project {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 0.65rem;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 0.65rem;
+  color: inherit;
+  text-decoration: none;
+  background: linear-gradient(145deg, #fffaf2, #efe6db);
+  transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+}
+
+.finishing-hero-project:hover,
+.finishing-hero-project:focus-visible {
+  transform: translateY(-2px);
+  border-color: #c7bdb2;
+  box-shadow: 0 10px 26px rgb(17 14 10 / 8%);
+}
+
+.finishing-hero-project img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 14px;
+  object-fit: cover;
+  background: #d8d1c6;
+}
+
+.finishing-hero-project span {
+  display: grid;
+  gap: 0.16rem;
+  padding: 0 0.15rem 0.1rem;
+}
+
+.finishing-hero-project strong {
+  font-size: 1.02rem;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.finishing-hero-project small {
+  color: var(--muted);
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+}
+
+.finishing-intro-panel {
+  max-width: 78ch;
+}
+
+.finishing-good-fit {
+  max-width: 78ch;
+}
+
+.finishing-process-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.finishing-process-intro h2,
+.finishing-faq h2 {
+  margin: 0.25rem 0 0.65rem;
+  font-size: clamp(1.4rem, 2.3vw, 2.2rem);
+  letter-spacing: -0.06em;
+}
+
+.finishing-process-intro p:last-child {
+  margin-bottom: 0;
+  color: var(--muted);
+}
+
+.finishing-process-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 13rem;
+}
+
+.finishing-process-card span {
+  display: block;
+  font-size: clamp(1.15rem, 1.6vw, 1.45rem);
+  font-weight: 700;
+  letter-spacing: -0.045em;
+}
+
+.finishing-process-card p {
+  margin: 1rem 0 0;
+  color: var(--muted);
+}
+
+.finishing-faq-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.finishing-faq-grid article {
+  padding-top: 0.8rem;
+  border-top: 1px solid rgb(31 29 27 / 10%);
+}
+
+.finishing-faq-grid h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.02rem;
+  letter-spacing: -0.035em;
+}
+
+.finishing-faq-grid p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.48;
 }
 
 .home-cta {
@@ -1688,12 +1874,19 @@ h1 {
   .home-feature-grid,
   .home-editorial,
   .writing-destinations,
-  .home-cta {
+  .home-cta,
+  .finishing-hero-projects,
+  .finishing-process-grid,
+  .finishing-faq-grid {
     grid-template-columns: 1fr;
   }
 
   .home-cta-actions {
     justify-content: flex-start;
+  }
+
+  .home-carousel-track {
+    grid-auto-columns: calc((100% - 1rem) / 2);
   }
 }
 
@@ -1713,12 +1906,21 @@ h1 {
     font-size: clamp(2.7rem, 12vw, 4.5rem);
   }
 
+  .home-hero h1.home-hero-headline {
+    max-width: 14ch;
+    font-size: clamp(2.1rem, 10vw, 3rem);
+  }
+
   .home-hero-copy {
     max-width: 28rem;
   }
 
   .home-feature-grid {
     grid-template-columns: 1fr;
+  }
+
+  .home-carousel-track {
+    grid-auto-columns: 100%;
   }
 
 }
@@ -2394,6 +2596,46 @@ body.is-lightbox-open {
   line-height: 1.52;
 }
 
+.coding-grid {
+  align-items: stretch;
+}
+
+.coding-card a {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.coding-card .body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.coding-card h3 {
+  margin-top: 0.18rem;
+}
+
+.coding-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.42rem;
+  margin-top: auto;
+  padding-top: 0.9rem;
+}
+
+.coding-tags span {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid #ded4c7;
+  border-radius: 999px;
+  background: rgba(244, 241, 234, 0.72);
+  color: #5b5148;
+  font-size: 0.74rem;
+  line-height: 1;
+  padding: 0.42rem 0.58rem;
+}
+
 .blog-post {
   max-width: 84ch;
   border: 1px solid #e1d8cb;
@@ -2526,6 +2768,10 @@ body.is-lightbox-open {
   grid-template-columns: auto 1fr;
   gap: 0.9rem;
   align-items: start;
+}
+
+.finishing-card-grid .service-card-head {
+  grid-template-columns: 1fr;
 }
 
 .service-card-title-group {
@@ -2685,6 +2931,10 @@ body.is-lightbox-open {
 }
 
 .services-index .service-cta-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem;
   margin-top: auto;
   padding-top: 0.85rem;
 }
@@ -3758,6 +4008,12 @@ body[data-theme="dark"] .post-card .thumb-frame {
   background: #171a20;
 }
 
+body[data-theme="dark"] .coding-tags span {
+  border-color: rgb(243 237 228 / 12%);
+  background: rgb(243 237 228 / 5%);
+  color: #cfc5b7;
+}
+
 body[data-theme="dark"] .blog-post table {
   border-color: rgb(243 237 228 / 12%);
   background: #11141a;
@@ -4059,4 +4315,246 @@ body[data-theme="dark"] .site-footer-social a:hover img,
 body[data-theme="dark"] .site-footer-social a:focus-visible img {
   filter: grayscale(0) brightness(1);
   opacity: 1;
+}
+
+/* Available to screen readers and crawlers, invisible on screen. Used where a
+   page's real heading is rendered as a styled label/value panel rather than a
+   heading element, so the document still has an <h1>. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ── Client marquee ──────────────────────────────────────────────
+   Two identical lists translated by -50% for a seamless loop. Every item
+   occupies an identical fixed-width slot, so the horizontal rhythm stays even
+   despite logo aspect ratios running from 1:1 to nearly 8:1. */
+.client-marquee {
+  margin-top: 2.4rem;
+}
+
+.client-marquee-label {
+  margin: 0 0 0.85rem;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  font-size: 0.76rem;
+  color: var(--muted);
+}
+
+.client-marquee-viewport {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+
+.client-marquee-track {
+  display: flex;
+  width: max-content;
+  /* translate3d and will-change keep the track on its own compositor layer;
+     animating a non-composited transform is what made it judder. */
+  will-change: transform;
+  animation: client-marquee-scroll 150s linear infinite;
+}
+
+/* Paused on hover and on keyboard focus so the linked clients can actually be
+   clicked; the row is a navigation element, not just decoration. */
+.client-marquee:hover .client-marquee-track,
+.client-marquee:focus-within .client-marquee-track {
+  animation-play-state: paused;
+}
+
+.client-marquee-list li a {
+  display: flex;
+  align-items: center;
+  color: inherit;
+  text-decoration: none;
+}
+
+.client-marquee-list li a:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.client-marquee-list {
+  display: flex;
+  align-items: center;
+  gap: 3.25rem;
+  margin: 0;
+  padding: 0 1.625rem 0 0;
+  list-style: none;
+}
+
+/* Each item takes its natural width. The assets are trimmed to the ink, so a
+   single gap value gives an even optical rhythm across the row. */
+.client-marquee-list li {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  font-size: clamp(0.95rem, 1.2vw, 1.15rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--muted);
+  opacity: 0.85;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.client-marquee-list li:hover {
+  color: var(--text);
+  opacity: 1;
+}
+
+/* Logos are black-on-transparent silhouettes, so the light theme uses them as
+   drawn and the dark theme inverts them to white. One asset, both themes.
+   Constrained on both axes so a 1:1 mark and an 8:1 wordmark both sit
+   comfortably inside the same slot. */
+.client-marquee-list li img {
+  height: 1.75rem;
+  width: auto;
+  /* Caps the handful of very wide wordmarks (Oracle is nearly 8:1) so they
+     sit in the row rather than dominating it. */
+  max-width: 9rem;
+  object-fit: contain;
+  display: block;
+  opacity: 0.62;
+  transition: opacity 0.2s ease;
+}
+
+.client-marquee-list li.has-logo:hover img {
+  opacity: 0.95;
+}
+
+body[data-theme="dark"] .client-marquee-list li img {
+  filter: invert(1);
+  opacity: 0.7;
+}
+
+body[data-theme="dark"] .client-marquee-list li.has-logo:hover img {
+  opacity: 1;
+}
+
+@keyframes client-marquee-scroll {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
+}
+
+/* No motion: fall back to a wrapped, static list. */
+@media (prefers-reduced-motion: reduce) {
+  .client-marquee-track {
+    animation: none;
+    width: 100%;
+    will-change: auto;
+  }
+  .client-marquee-track .client-marquee-list:last-child {
+    display: none;
+  }
+  .client-marquee-list {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  .client-marquee-viewport {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+}
+
+/* Blog topic groups */
+.blog-topic + .blog-topic {
+  padding-top: 0.5rem;
+}
+
+.blog-topic-head {
+  margin-bottom: 1.1rem;
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.blog-topic-head h2 {
+  margin: 0 0 0.25rem;
+  font-size: clamp(1.35rem, 2vw, 1.75rem);
+}
+
+.blog-topic-head p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.home-carousel-head {
+  margin-bottom: 1.1rem;
+}
+
+.service-sublinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin: 0.7rem 0 0;
+}
+
+.service-sublinks a {
+  text-decoration: none;
+}
+
+/* Page-head CTA row. Uses .button-link rather than .home-button, which is
+   built for the dark hero and disappears on a light background. */
+.page-head-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 1.1rem;
+}
+
+/* Final mobile containment pass: long editorial headings are allowed to feel
+   large, but they should never force the page wider than the viewport. */
+@media (max-width: 760px) {
+  .shell {
+    width: 100vw;
+    max-width: 100vw;
+    padding-inline: 1rem;
+    overflow-x: clip;
+  }
+
+  h1 {
+    font-size: clamp(2.15rem, 10.2vw, 3.25rem);
+    line-height: 0.98;
+    overflow-wrap: anywhere;
+  }
+
+  h2,
+  h3,
+  p,
+  li {
+    overflow-wrap: anywhere;
+  }
+
+  .home-hero h1.home-hero-headline {
+    max-width: min(12ch, 100%);
+    font-size: clamp(2.25rem, 11vw, 3.15rem);
+  }
+
+  .page-head,
+  .services-head,
+  .about-intro,
+  .about-lead,
+  .home-section-head,
+  .home-editorial-copy,
+  .panel,
+  .blog-post,
+  .prose {
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .services-head .credibility-strip {
+    margin-top: 1.2rem;
+  }
 }

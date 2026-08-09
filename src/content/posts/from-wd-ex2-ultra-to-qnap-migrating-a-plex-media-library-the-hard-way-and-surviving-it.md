@@ -5,6 +5,7 @@ excerpt: "A field report from a failed “quick” NAS migration that became a r
 cover: "/assets/services/common/4477FA15-10DB-4934-AF3C-D0AD0F7B9684.png"
 coverAlt: "From WD EX2 Ultra to QNAP: migrating a PLEX media library the hard way (and surviving it)"
 tags: []
+topic: "infrastructure"
 draft: false
 ---
 

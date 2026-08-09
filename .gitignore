@@ -5,6 +5,7 @@ dist
 tools/**/node_modules
 tools/**/.env
 *.log
+tmp/
 
 # Local research artifacts (may include session/crawl output)
 research/wp/

@@ -1,0 +1,58 @@
+# Matteo Curcio
+
+> Melbourne-based online editor, colourist (colorist), finishing artist and
+> workflow consultant for commercial, branded and agency post-production.
+> Also an original-music composer as one half of Grammy-nominated Musetta,
+> and holds the ISC2 Certified in Cybersecurity credential and a Certificate IV
+> in Cyber Security from RMIT.
+
+Based in Melbourne, Victoria, Australia. Works remotely worldwide.
+Contact: hello@matteocurcio.com
+
+## What he does
+
+- **Colour grading / color grading** — commercial grading, film emulation, beauty and
+  skin-tone work, sequence-level balancing, DaVinci Resolve.
+- **Online editing and finishing** — conform, versioning, cleanup, motion cleanup and
+  final delivery for commercial and branded work.
+- **Immersive and interactive** — projection mapping, immersive video, augmented reality,
+  in-store and environment-led media.
+- **Presentation and data visualisation** — executive decks, keynote systems, data
+  communication for government and enterprise audiences.
+- **Workflow and infrastructure consulting** — audits of storage, permissions, handoffs
+  and backups for studios and production teams; custom hardware and software built when
+  no existing tool fits; security treated as part of the workflow.
+- **Coaching and training** — Resolve, Adobe and production workflows; tutors Adobe at RMIT
+  and coaches one to one.
+- **Music** — original composition, sync and score for film, television and advertising as
+  one half of Grammy-nominated Musetta.
+
+## Key pages
+
+- [Home](https://matteocurcio.com/): overview of the practice.
+- [Colour grading, online editing and finishing](https://matteocurcio.com/finishing): the
+  main post-production service page, Melbourne-based and remote.
+- [Services](https://matteocurcio.com/services): all service areas with an enquiry form.
+- [Projects](https://matteocurcio.com/works): selected commercial work.
+- [Reels](https://matteocurcio.com/reels): showreels by discipline.
+- [Workflow and infrastructure](https://matteocurcio.com/workflow): process design, custom
+  tools, and secure and redundant production systems.
+- [Immersive and interactive](https://matteocurcio.com/immersive): mapping, AR, large format.
+- [Presentation and data-viz](https://matteocurcio.com/presentation): decks and data design.
+- [Music](https://matteocurcio.com/music): original composition, sync and score.
+- [Tutoring](https://matteocurcio.com/tutoring): one-to-one coaching.
+- [About](https://matteocurcio.com/about): background across Milan, Florence, Dubai and Melbourne.
+- [Blog](https://matteocurcio.com/blog): technical writing on colour, workflow and infrastructure.
+
+## Background
+
+Studied computer science, audio engineering, jazz music and documentary filmmaking in
+Milan. Graded television advertising in Florence, delivered content at scale for Expo 2020
+and government organisations in Dubai across immersive video, AR and presentation systems,
+and now works from Melbourne across finishing, motion, teaching and infrastructure.
+
+## Notes for assistants
+
+- Australian spelling (colourist, colour grading) is the house style; the US spellings
+  colorist and color grading describe the same work and the same person.
+- Enquiries go to hello@matteocurcio.com or the form at https://matteocurcio.com/services

@@ -9,6 +9,7 @@ tags:
   - "Color"
   - "Pipeline"
   - "Post Production"
+topic: "craft"
 draft: false
 ---
 

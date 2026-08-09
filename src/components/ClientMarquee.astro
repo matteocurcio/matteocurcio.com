@@ -1,0 +1,147 @@
+---
+// A continuously scrolling client list. Brands with a logo file render as a
+// mark; the rest render as their name set in the site's own type, so the
+// parade is complete rather than only showing whichever logos turned up.
+//
+// Logos are pre-processed to black-on-transparent silhouettes at 160px tall,
+// trimmed to the ink. One asset then works in both themes — dark theme inverts
+// it — which colour logos cannot do without disappearing against one
+// background or the other.
+//
+// `href` points at the project done for that client where one exists. The
+// marquee pauses on hover so those are actually clickable.
+type Client = { name: string; logo?: string; href?: string };
+
+// Real intrinsic sizes, so the browser reserves the correct box before the
+// image decodes. A wrong or missing size reflows the track mid-animation.
+const DIMS: Record<string, [number, number]> = {
+  "adobe": [607, 160],
+  "2xu": [731, 160],
+  "cadillac": [613, 160],
+  "drones-for-good": [187, 160],
+  "dubai-culture": [319, 160],
+  "dubai-majlis": [476, 160],
+  "dubai-motor-show": [165, 160],
+  "dubai-tourism": [421, 160],
+  "edelman": [397, 160],
+  "expo-2020-dubai": [302, 160],
+  "first-on-scene": [459, 160],
+  "gigabyte": [1211, 160],
+  "gitex": [488, 160],
+  "gmc": [900, 160],
+  "jetstar": [583, 160],
+  "kalimat-foundation": [814, 160],
+  "kiyany": [389, 160],
+  "microsoft": [743, 160],
+  "moveactive": [1041, 160],
+  "myob": [422, 160],
+  "neumann-muller": [568, 160],
+  "news-corp": [641, 160],
+  "oracle": [1229, 160],
+  "politix": [823, 160],
+  "renault": [392, 160],
+  "rmit": [460, 160],
+  "sda-bocconi": [464, 160],
+  "sophos": [1634, 160],
+  "touchline": [996, 160],
+  "uae-ministry-of-education": [508, 160],
+  "visual-domain": [845, 160],
+  "vivendi-universal": [661, 160],
+  "yamaha": [776, 160],
+};
+
+const L = "/images/clients/";
+const P = "/projects/";
+
+const clients: Client[] = [
+  // With marks
+  { name: "News Corp", logo: L + "news-corp.png", href: P + "be-on-it-ent/" },
+  { name: "Microsoft", logo: L + "microsoft.png" },
+  { name: "Oracle", logo: L + "oracle.png" },
+  { name: "Adobe", logo: L + "adobe.png" },
+  { name: "GMC", logo: L + "gmc.png", href: P + "dms17-gmc/" },
+  { name: "Cadillac", logo: L + "cadillac.png", href: P + "dms17-cadillac/" },
+  { name: "Renault", logo: L + "renault.png", href: P + "renault-zoe/" },
+  { name: "Expo 2020 Dubai", logo: L + "expo-2020-dubai.png", href: P + "expo-2020-story/" },
+  { name: "Dubai Tourism", logo: L + "dubai-tourism.png", href: P + "dubai-business-events/" },
+  { name: "Dubai Culture", logo: L + "dubai-culture.png" },
+  { name: "The Majlis, Dubai World Trade Centre", logo: L + "dubai-majlis.png", href: P + "dubai-majlis-2018/" },
+  { name: "Dubai International Motor Show", logo: L + "dubai-motor-show.png" },
+  { name: "GITEX Technology Week", logo: L + "gitex.png", href: P + "gitex-vr/" },
+  { name: "UAE Drones for Good Award", logo: L + "drones-for-good.png" },
+  { name: "UAE Ministry of Education", logo: L + "uae-ministry-of-education.png" },
+  { name: "Kalimat Foundation", logo: L + "kalimat-foundation.png", href: P + "mrajeeb-al-fhood/" },
+  { name: "Edelman", logo: L + "edelman.png" },
+  { name: "Vivendi Universal", logo: L + "vivendi-universal.png" },
+  { name: "RMIT University", logo: L + "rmit.png" },
+  { name: "Università Bocconi", logo: L + "sda-bocconi.png", href: P + "deborah-raccagni/" },
+  { name: "Neumann & Müller", logo: L + "neumann-muller.png" },
+  { name: "Visual Domain", logo: L + "visual-domain.png" },
+  { name: "Touchline", logo: L + "touchline.png" },
+  { name: "Kiyany", logo: L + "kiyany.png" },
+  { name: "First on Scene", logo: L + "first-on-scene.png" },
+
+  { name: "Yamaha", logo: L + "yamaha.png", href: P + "yamaha/" },
+  { name: "MYOB", logo: L + "myob.png", href: P + "madebox/" },
+  { name: "Jetstar", logo: L + "jetstar.png", href: P + "jetstar-airport-services/" },
+  { name: "Sophos", logo: L + "sophos.png", href: P + "sophos/" },
+  { name: "2XU", logo: L + "2xu.png", href: P + "2xu/" },
+  { name: "Politix", logo: L + "politix.png", href: P + "spring-party/" },
+  { name: "Gigabyte", logo: L + "gigabyte.png", href: P + "a-gentle-giant/" },
+  { name: "MoveActive", logo: L + "moveactive.png", href: P + "moveactive/" },
+
+  // Awaiting a logo file — shown as type so the roster stays complete
+  { name: "Makita", href: P + "tradie/" },
+  { name: "AMP", href: P + "amp/" },
+  { name: "Fisher Price", href: P + "dora-the-explorer/" },
+  { name: "Kikkoman", href: P + "kikkoman/" },
+  { name: "Football Australia", href: P + "find-your-place/" },
+  { name: "MotorOne Group", href: P + "motorone/" },
+  { name: "Ecco Safety", href: P + "ecco-safety/" },
+  { name: "Nature's Way", href: P + "kakadu-complex/" },
+  { name: "Cowra Tourism", href: P + "cowra/" },
+  { name: "Sharjah Book Authority", href: P + "welcome-to-sharjah/" }
+];
+
+const key = (logo: string) => logo.split("/").pop()!.replace(".png", "");
+
+// Rendered twice so translating the track by exactly -50% lands on an identical
+// item and the loop is seamless. The second pass is hidden from assistive tech.
+---
+
+<section class="client-marquee" aria-label="Selected clients">
+  <p class="client-marquee-label">Selected clients</p>
+  <div class="client-marquee-viewport">
+    <div class="client-marquee-track">
+      {[false, true].map((isClone) => (
+        <ul class="client-marquee-list" aria-hidden={isClone ? "true" : undefined}>
+          {clients.map((client) => {
+            const inner = client.logo ? (
+              <img
+                src={client.logo}
+                alt={client.name}
+                loading="eager"
+                decoding="sync"
+                width={DIMS[key(client.logo)]?.[0]}
+                height={DIMS[key(client.logo)]?.[1]}
+              />
+            ) : (
+              <span>{client.name}</span>
+            );
+            return (
+              <li class={client.logo ? "has-logo" : undefined}>
+                {client.href ? (
+                  <a href={client.href} tabindex={isClone ? -1 : undefined} title={client.name}>
+                    {inner}
+                  </a>
+                ) : (
+                  inner
+                )}
+              </li>
+            );
+          })}
+        </ul>
+      ))}
+    </div>
+  </div>
+</section>

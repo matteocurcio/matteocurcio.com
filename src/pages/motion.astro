@@ -1,17 +1,116 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import ServicePage from "../components/ServicePage.astro";
+import { CONTACT_MAILTO } from "../config/site";
+import { REEL_CAPTIONS } from "../data/reelCaptions";
+
+const REELS = ["presentology", "dataviz", "in-store", "video-games-advertising"];
+const TITLES: Record<string, string> = {
+  presentology: "Presentation Design",
+  dataviz: "Data Visualisation",
+  "in-store": "In-Store & Retail Screens",
+  "video-games-advertising": "Video Games Advertising"
+};
+const IMAGES: Record<string, string> = {
+  presentology: "/assets/reels/reels-presentology/thumbnail_presentology.webp",
+  dataviz: "/assets/reels/reels-dataviz/thumbnail_dataviz.webp",
+  "in-store": "/assets/reels/reels-in-store/thumbnail_in_store.webp",
+  "video-games-advertising": "/assets/reels/online-editing-video-games-advertising/thumbnail_video_games_advertising.webp"
+};
+
+const reels = REELS.map((slug) => ({
+  slug,
+  title: TITLES[slug],
+  image: IMAGES[slug],
+  body: (REEL_CAPTIONS[slug] || [""])[0]
+}));
+
+const principles = [
+  {
+    title: "Motion that carries meaning",
+    body: "Animation earns its place when it explains something a static frame cannot — a sequence, a relationship, a change over time. Movement added for energy alone is the first thing an audience stops seeing."
+  },
+  {
+    title: "Systems, not one-offs",
+    body: "Styleframes, a type and colour system, and templates the team can actually use. A motion language that only works in the original designer's hands isn't a system, it's a dependency."
+  },
+  {
+    title: "Built for the screen it plays on",
+    body: "A retail screen at an angle in changing daylight, a phone with the sound off, a conference stage at 12 metres wide. Legibility, contrast and pace get set for the real viewing condition rather than a laptop in a meeting room."
+  },
+  {
+    title: "Delivered to survive revisions",
+    body: "Layered, named and versioned so the inevitable late change to a super, a logo or a legal line takes minutes rather than a rebuild."
+  }
+];
 ---
 
-<BaseLayout title="Motion | Matteo Curcio" path="/motion">
-  <ServicePage
-    title="Motion Design"
-    intro="2D motion systems and title design to support campaigns, explainers, and branded films."
-    list={[
-      "Styleframes and animation systems",
-      "Title sequences and supers",
-      "Template-ready deliverables",
-      "Motion language aligned to brand"
-    ]}
-  />
+<BaseLayout
+  title="Motion Design & Data Visualisation in Melbourne | Matteo Curcio"
+  description="Motion design, title and template systems, data visualisation, presentation design and in-store screen content for campaigns, events and corporate communication."
+  path="/motion"
+>
+  <section class="page-head">
+    <p class="kicker">Motion Design</p>
+    <h1>Motion design, titles and data visualisation.</h1>
+    <p>
+      2D motion systems, title design, animated explanation and screen content for campaigns, events, retail and
+      corporate communication. Built as systems the team can keep using rather than one-off files that only work once.
+    </p>
+    <p class="page-head-actions">
+      <a class="button-link" href={CONTACT_MAILTO}>Start a project</a>
+      <a class="button-link" href="/reels/presentology/">Watch the reel</a>
+    </p>
+  </section>
+
+  <section class="section lane-grid" aria-label="How motion work is approached">
+    {principles.map((item) => (
+      <article class="lane">
+        <h3>{item.title}</h3>
+        <p>{item.body}</p>
+      </article>
+    ))}
+  </section>
+
+  <section class="section blog-grid coding-grid" aria-label="Motion reels">
+    {reels.map((r) => (
+      <article class="post-card coding-card">
+        <a href={`/reels/${r.slug}/`}>
+          <div class="thumb-frame">
+            <img class="thumb" src={r.image} alt={`${r.title} reel`} loading="lazy" />
+          </div>
+          <div class="body">
+            <p class="post-meta">Reel</p>
+            <h3>{r.title}</h3>
+            <p>{r.body}</p>
+          </div>
+        </a>
+      </article>
+    ))}
+  </section>
+
+  <section class="cta section">
+    <div>
+      <h2>Something to animate or explain?</h2>
+      <p>
+        A campaign, a keynote, a dataset that isn't reading clearly, or a screen system that needs to work in a real
+        space. Tell me what it has to communicate and where it plays.
+      </p>
+    </div>
+    <a href={CONTACT_MAILTO}>Get in touch</a>
+  </section>
+
+  <nav class="about-pathways section security-pathways" aria-label="Related pages">
+    <a class="about-pathway" href="/presentation">
+      <span class="about-pathway-label">Presentation &amp; data-viz</span>
+      <span class="about-pathway-note">Executive decks and keynote systems in more depth.</span>
+    </a>
+    <a class="about-pathway" href="/immersive">
+      <span class="about-pathway-label">Immersive &amp; interactive</span>
+      <span class="about-pathway-note">Mapping, AR and large-format work for real spaces.</span>
+    </a>
+    <a class="about-pathway" href="/works">
+      <span class="about-pathway-label">Projects</span>
+      <span class="about-pathway-note">Selected commercial work across every discipline.</span>
+    </a>
+  </nav>
 </BaseLayout>

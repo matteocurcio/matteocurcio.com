@@ -1,0 +1,138 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { CONTACT_MAILTO } from "../config/site";
+
+const reels = [
+  {
+    slug: "immersive",
+    title: "Immersive Video",
+    image: "/assets/reels/reels-immersive/thumbnail_immersive.webp",
+    body: "Large-format and environment-led video planned around the playback space from the first capture decision."
+  },
+  {
+    slug: "mapping",
+    title: "Projection Mapping",
+    image: "/assets/reels/reels-mapping/thumbnail_mapping.webp",
+    body: "Content and architecture treated as one system: geometry, timing, blending, and playback redundancy."
+  },
+  {
+    slug: "ar",
+    title: "Augmented Reality",
+    image: "/assets/reels/content-production-matteo-curcio-augmented-reality/thumbnail_ar.webp",
+    body: "AR concepts developed with tracking stability, performance budgets, and device limits addressed early."
+  },
+  {
+    slug: "in-store",
+    title: "In-Store Advertising",
+    image: "/assets/reels/reels-in-store/thumbnail_in_store.webp",
+    body: "Retail screen content designed for real brightness, real mounting angles, and viewers walking past in seconds."
+  }
+];
+
+const principles = [
+  {
+    title: "Plan For The Playback Environment",
+    body: "Immersive formats break most of the rules you rely on in conventional production. You can't control where the viewer looks, cuts behave differently, and spatial continuity matters in ways flat screens forgive. I plan capture, stitching, and finishing around the actual environment — a headset, a dome, a large-format install, a controlled venue screening — from the beginning."
+  },
+  {
+    title: "The Hard Part Is The Night It Runs",
+    body: "The impressive part of projection mapping is easy to sell. Making it run reliably on the night is the work. Geometry alignment, timing, blending, and playback redundancy all have to hold together under live conditions where you don't get a second take. Bold creative is encouraged, but it has to be backed by execution that doesn't rely on luck."
+  },
+  {
+    title: "Build For Deployment, Not The Demo",
+    body: "AR gets pitched as magic and delivered as a demo that works in one room under controlled lighting. The gap between concept and deployment is where most projects stall, usually because nobody thought about tracking stability, asset optimisation, or device limitations until too late. I bake those constraints in from the start."
+  },
+  {
+    title: "Real Conditions, Not Proof-Of-Concept Conditions",
+    body: "Retail environments don't care about your calibrated monitor. Screens vary in brightness, colour, and angle; ambient light changes by the hour. I design motion content and visual hierarchy for those conditions, so messaging lands quickly and stays legible across whatever hardware the space actually has."
+  }
+];
+
+const pathways = [
+  {
+    href: "/services",
+    label: "Services",
+    note: "The full commercial picture: finishing, immersive, presentation, coaching, and consulting."
+  },
+  {
+    href: "/works",
+    label: "Projects",
+    note: "Installed, mapped, and immersive projects alongside the rest of the commercial work."
+  },
+  {
+    href: "/workflow",
+    label: "Workflow & infrastructure",
+    note: "The systems and reliability thinking that keeps a live install from failing on the night."
+  },
+  {
+    href: "/reels",
+    label: "Reels",
+    note: "Every reel in one place, filterable down to immersive."
+  }
+];
+---
+
+<BaseLayout
+  title="Immersive & Interactive | Projection Mapping, AR & Large-Format | Matteo Curcio"
+  description="Projection mapping, immersive video, augmented reality, and in-store media for real spaces: creative ambition matched with the operational reliability to get it live properly."
+  path="/immersive"
+>
+  <section class="page-head">
+    <p class="kicker">Immersive &amp; Interactive</p>
+    <h1>Built for the room it actually runs in.</h1>
+    <p>
+      Projection mapping, immersive video, augmented reality, and in-store media built for real spaces. I understand both
+      the creative ambition and the operational complexity of getting it live properly — which is usually where these
+      projects are won or lost.
+    </p>
+    <p>
+      For brands, agencies, and event producers with an environment to fill.
+    </p>
+  </section>
+
+  <section class="section lane-grid" aria-label="How immersive work is approached">
+    {principles.map((item) => (
+      <article class="lane">
+        <h3>{item.title}</h3>
+        <p>{item.body}</p>
+      </article>
+    ))}
+  </section>
+
+  <section class="section blog-grid coding-grid" aria-label="Immersive reels">
+    {reels.map((reel) => (
+      <article class="post-card coding-card">
+        <a href={`/reels/${reel.slug}/`}>
+          <div class="thumb-frame">
+            <img class="thumb" src={reel.image} alt={`${reel.title} reel thumbnail`} loading="lazy" />
+          </div>
+          <div class="body">
+            <p class="post-meta">Reel</p>
+            <h3>{reel.title}</h3>
+            <p>{reel.body}</p>
+          </div>
+        </a>
+      </article>
+    ))}
+  </section>
+
+  <section class="cta section">
+    <div>
+      <h2>Have an environment to fill?</h2>
+      <p>
+        A surface, a venue, a headset, or a retail floor. Tell me the space, the constraints, and the date it has to
+        work, and we can shape the rest from there.
+      </p>
+    </div>
+    <a href={CONTACT_MAILTO}>Talk through your project</a>
+  </section>
+
+  <nav class="about-pathways section security-pathways" aria-label="Immersive page links">
+    {pathways.map((item) => (
+      <a class="about-pathway" href={item.href}>
+        <span class="about-pathway-label">{item.label}</span>
+        <span class="about-pathway-note">{item.note}</span>
+      </a>
+    ))}
+  </nav>
+</BaseLayout>
