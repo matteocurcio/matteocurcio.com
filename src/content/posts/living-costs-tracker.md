@@ -10,6 +10,7 @@ tags:
   - "Product Design"
   - "Personal Systems"
   - "Privacy"
+  - "UX Architecture"
 topic: "tools"
 draft: false
 writingKind: "technical"
@@ -27,6 +28,8 @@ It uses the same local-first pattern as the [travel tracker](/blog/offline-first
 
 ![Living costs tracker interface showing summary cards, category navigation, and expense records.](/images/coding/expenses.png)
 
+The implementation was AI-assisted, but the harder work was not asking for "an expenses app." It was defining the shape of the problem: recurring and non-recurring costs in the same mental model, quick entry without shame or friction, privacy as a default, and an interface that explains spending without turning it into a moral lecture.
+
 ## Recurring is a layer, not the product
 
 Recurring expenses still have their own logic because they behave differently from ordinary transactions. They are templates rather than events. A template can project forward, estimate annual cost, pause for a month, end on a specific date, or generate a backfilled history if I am adding something I have been paying for a while.
@@ -35,13 +38,7 @@ That matters, but it is only one layer. A useful cost tracker also needs the ord
 
 The model therefore treats expenses as first-class records and recurring rules as one way those records can be created. That distinction keeps the interface honest. It lets predictable costs contribute to monthly projections without forcing every cost into a subscription-shaped box.
 
-The practical result is a dashboard that can answer several different questions without making me jump between tools:
-
-- What is already committed before the month starts?
-- Which categories are carrying the most weight?
-- What was a one-off spike rather than a new pattern?
-- Which places or vendors keep appearing?
-- What does the year look like if the current commitments continue?
+The practical result is a dashboard that can answer several different questions without making me jump between tools: what is already committed before the month starts, which categories are carrying the most weight, what was a one-off spike rather than a new pattern, which places or vendors keep appearing, and what the year looks like if the current commitments continue.
 
 ## The interface work
 
@@ -59,15 +56,7 @@ Places are part of the interface too. Expenses can attach to locations populated
 
 The important design decision was treating this as part of a small family of tools rather than a one-off dashboard. I have enough personal software now that inconsistency becomes a cost of its own. If each tool invents its own buttons, cards, tables, warnings, and spacing, the friction moves from the problem into the interface.
 
-So the expense tracker inherits the same product grammar as the rest of the apps:
-
-- Metric cards for at-a-glance state.
-- Soft panels for grouped information.
-- Small caps and chips for metadata.
-- Tables only where tabular comparison is genuinely useful.
-- Local-first assumptions for private data.
-- Import and export controls that make data ownership explicit.
-- Mobile layouts that prioritise entry speed over decorative density.
+So the expense tracker inherits the same product grammar as the rest of the apps: metric cards for at-a-glance state, soft panels for grouped information, small caps and chips for metadata, tables only where tabular comparison is genuinely useful, local-first assumptions for private data, import and export controls that make data ownership explicit, and mobile layouts that prioritise entry speed over decorative density.
 
 That last point matters. A living costs tracker is only useful if it is easier to add an expense than to postpone adding it. The interface has to make the common path quick, then let the more detailed structure exist underneath when needed.
 
