@@ -73,9 +73,13 @@ function isVideoSrc(src?: string) {
   return Boolean(src && /\.(mp4|mov|webm)(\?|$)/i.test(src));
 }
 
-// High-resolution thumbnails regenerated from each project's graded stills.
-// The originals are 228x128, which is well under half of what the cards
-// display at, let alone on a retina screen.
+// Higher-resolution thumbnails. The originals are 228x128, which is well under
+// half of what the cards display at, let alone on a retina screen.
+//
+// Each one must stay the first frame of that tile's hover video, so the still
+// and the preview line up on hover. Where a graded still of that same frame
+// exists it is used (1280x720); otherwise the frame is pulled from the video
+// itself and is capped at the clip's own resolution, which is often 480x270.
 const HIRES_THUMBS = new Set(
   Object.keys(import.meta.glob("/public/images/work-thumbs/*.webp", { eager: true }))
     .map((path) => path.split("/").pop()!.replace(".webp", ""))
