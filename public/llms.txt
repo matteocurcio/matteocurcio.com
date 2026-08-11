@@ -15,6 +15,8 @@ Contact: hello@matteocurcio.com
   skin-tone work, sequence-level balancing, DaVinci Resolve.
 - **Online editing and finishing** — conform, versioning, cleanup, motion cleanup and
   final delivery for commercial and branded work.
+- **Videography** — compact two-camera video and photography, colour-aware shooting,
+  audio capture, finishing and delivery.
 - **Immersive and interactive** — projection mapping, immersive video, augmented reality,
   in-store and environment-led media.
 - **Presentation and data visualisation** — executive decks, keynote systems, data
@@ -37,7 +39,10 @@ Contact: hello@matteocurcio.com
 - [Reels](https://matteocurcio.com/reels): showreels by discipline.
 - [Workflow and infrastructure](https://matteocurcio.com/workflow): process design, custom
   tools, and secure and redundant production systems.
-- [Immersive and interactive](https://matteocurcio.com/immersive): mapping, AR, large format.
+- [Videography](https://matteocurcio.com/videography): non-immersive video, photography,
+  colour-aware shooting, audio capture, finishing and delivery.
+- [Immersive and interactive](https://matteocurcio.com/immersive): mapping, AR, 360 video,
+  VR, in-store and large-format work.
 - [Presentation and data-viz](https://matteocurcio.com/presentation): decks and data design.
 - [Music](https://matteocurcio.com/music): original composition, sync and score.
 - [Tutoring](https://matteocurcio.com/tutoring): one-to-one coaching.

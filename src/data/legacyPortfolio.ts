@@ -1,4 +1,4 @@
-export type WorkCategory = "COLOUR" | "MOTION" | "IMMERSIVE" | "VIDEO" | "PHOTO";
+export type WorkCategory = "COLOUR" | "MOTION" | "IMMERSIVE" | "VIDEO" | "PHOTO" | "CODE";
 
 export interface LegacyWorkItem {
   slug: string;
@@ -6,6 +6,8 @@ export interface LegacyWorkItem {
   category: WorkCategory;
   image?: string;
   video?: string;
+  href?: string;
+  meta?: string;
 }
 
 export const WORK_CATEGORIES: WorkCategory[] = [
@@ -13,10 +15,13 @@ export const WORK_CATEGORIES: WorkCategory[] = [
   "MOTION",
   "IMMERSIVE",
   "VIDEO",
-  "PHOTO"
+  "PHOTO",
+  "CODE"
 ];
 
 export const LEGACY_POST_WORKS: LegacyWorkItem[] = [
+  { slug: "six-the-musical-2024-trailer", title: "Six the Musical Australia | 2024 Trailer", category: "COLOUR", image: "/assets/projects/six-the-musical-australia-2024-trailer/thumbnail_six_the_musical.webp" },
+  { slug: "sunset-boulevard-epk-trailer", title: "Sunset Boulevard EPK Trailer", category: "COLOUR", image: "/assets/projects/sunset-boulevard-australia-epk-trailer/thumbnail_sunset_boulevard.webp" },
   { slug: "moveactive", title: "April Campaign", category: "COLOUR", image: "/assets/projects/moveactive-april-campaign/thumbnail_moveactive.webp", video: "/assets/services/common/thumbnail_placeholder.jpg" },
   { slug: "yamaha", title: "Make Waves", category: "COLOUR", image: "/assets/projects/yamaha-make-waves/thumbnail_yamaha.webp", video: "/assets/services/common/thumbnail_placeholder.jpg" },
   { slug: "victorian-queens", title: "Victorian Queens", category: "COLOUR", image: "/assets/projects/garden-of-voices-victorian-queens/thumbnail_victorian_queens.webp", video: "/assets/services/common/thumbnail_placeholder.jpg" },
@@ -85,17 +90,86 @@ export const LEGACY_PHOTO_WORKS: LegacyWorkItem[] = [
   { slug: "deborah-raccagni", title: "Deborah Raccagni", category: "PHOTO" }
 ];
 
+export const LEGACY_CODE_WORKS: LegacyWorkItem[] = [
+  {
+    slug: "grid-layout-system-generator",
+    title: "Grid",
+    category: "CODE",
+    image: "/images/coding/grid.png",
+    href: "/blog/grid-layout-system-generator/",
+    meta: "Layout systems tool"
+  },
+  {
+    slug: "portfolio-tracker-private-by-design",
+    title: "Portfolio",
+    category: "CODE",
+    image: "/images/coding/portfolio.png",
+    href: "/blog/portfolio-tracker-private-by-design/",
+    meta: "Private finance interface"
+  },
+  {
+    slug: "offline-first-travel-expense-tracker",
+    title: "Travel",
+    category: "CODE",
+    image: "/images/coding/travel.png",
+    href: "/blog/offline-first-travel-expense-tracker/",
+    meta: "Offline-first travel tool"
+  },
+  {
+    slug: "living-costs-tracker",
+    title: "Living Costs",
+    category: "CODE",
+    image: "/images/coding/expenses.png",
+    href: "/blog/living-costs-tracker/",
+    meta: "Life cost tracker"
+  },
+  {
+    slug: "browser-teleprompter-production-tool",
+    title: "Teleprompter",
+    category: "CODE",
+    image: "/images/coding/teleprompter.png",
+    href: "/blog/browser-teleprompter-production-tool/",
+    meta: "Production utility"
+  },
+  {
+    slug: "scopes-image-analysis-tool",
+    title: "Scopes",
+    category: "CODE",
+    image: "/images/coding/scopes.png",
+    href: "/blog/scopes-image-analysis-tool/",
+    meta: "Image analysis tool"
+  },
+  {
+    slug: "proxmox-observability-kiosk",
+    title: "Network Kiosk",
+    category: "CODE",
+    image: "/images/blog/proxmox-observability-kiosk/proxmox-observability-kiosk-rack.png",
+    href: "/blog/proxmox-observability-kiosk/",
+    meta: "Homelab observability"
+  },
+  {
+    slug: "building-an-ultrawide-home-kiosk",
+    title: "Home Kiosk",
+    category: "CODE",
+    image: "/images/blog/wide-home-kiosk/ultrawide-kiosk-cover.png",
+    href: "/blog/building-an-ultrawide-home-kiosk/",
+    meta: "Domestic information display"
+  }
+];
+
 export const LEGACY_WORKS: LegacyWorkItem[] = [
   ...LEGACY_POST_WORKS,
   ...LEGACY_MOTION_WORKS,
   ...LEGACY_VIDEO_WORKS,
-  ...LEGACY_PHOTO_WORKS
+  ...LEGACY_PHOTO_WORKS,
+  ...LEGACY_CODE_WORKS
 ];
 
 export const NON_COMPARE_WORK_SLUGS = new Set<string>([
   ...LEGACY_MOTION_WORKS.map((item) => item.slug),
   ...LEGACY_VIDEO_WORKS.map((item) => item.slug),
-  ...LEGACY_PHOTO_WORKS.map((item) => item.slug)
+  ...LEGACY_PHOTO_WORKS.map((item) => item.slug),
+  ...LEGACY_CODE_WORKS.map((item) => item.slug)
 ]);
 
 export interface LegacyReelTile {

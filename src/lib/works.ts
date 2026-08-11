@@ -6,14 +6,15 @@ import wpProjectContent from "../data/wpProjectContent.json";
 type WpContentMap = Record<string, { images?: string[] }>;
 const wpContent = wpProjectContent as WpContentMap;
 
-export type WorkCategoryKey = "colour" | "motion" | "immersive" | "video" | "photo";
+export type WorkCategoryKey = "colour" | "motion" | "immersive" | "video" | "photo" | "code";
 
 export const CATEGORY_KEY_BY_LABEL: Record<WorkCategory, WorkCategoryKey> = {
   "COLOUR": "colour",
   "MOTION": "motion",
   "IMMERSIVE": "immersive",
   "VIDEO": "video",
-  "PHOTO": "photo"
+  "PHOTO": "photo",
+  "CODE": "code"
 };
 
 const GENERIC_THUMBNAIL = "/assets/services/common/thumbnail_placeholder.jpg";
@@ -121,10 +122,10 @@ export async function getResolvedWorks() {
       categoryKey: CATEGORY_KEY_BY_LABEL[item.category],
       // Client only. The year made a varied catalogue read as one old batch,
       // and the category is already carried by the filter bar on /works.
-      meta: project?.data.client || "",
+      meta: item.meta || project?.data.client || "",
       image: resolvedImage || "",
       video: resolvedVideo,
-      href: `/projects/${item.slug}/`
+      href: item.href || `/projects/${item.slug}/`
     };
   }).filter((item) => Boolean(item.image));
 }

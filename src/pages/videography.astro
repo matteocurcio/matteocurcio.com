@@ -1,0 +1,185 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { CONTACT_MAILTO } from "../config/site";
+
+const process = [
+  {
+    title: "Pre-production that protects the day",
+    body:
+      "We clarify the audience, deliverables, schedule, locations, references, sound needs, and post path before anyone is standing around waiting for decisions. The aim is a shoot that feels calm because the important problems were solved early."
+  },
+  {
+    title: "Capture with the finish in mind",
+    body:
+      "I shoot for the grade, the edit, the crop, and the delivery spec. Exposure, colour, lens choice, movement, audio, and coverage are planned around what the final piece has to become, not just what looks good on the monitor."
+  },
+  {
+    title: "Colour, edit, sound, and delivery in one chain",
+    body:
+      "Because I have worked as a videographer, photographer, colourist, finishing artist, and music producer, the handoff between production and post is much tighter. The same judgement carries from pre-production to final masters."
+  },
+  {
+    title: "Versions that survive real use",
+    body:
+      "Hero films, social cutdowns, still pulls, subtitles, client review files, web masters, and event playback all get treated as part of the job. The work is built to travel across platforms without losing the shape of the idea."
+  }
+];
+
+const videographyKit = [
+  {
+    title: "Two-camera videography",
+    body:
+      "Sony FX30 digital cinema camera and Sigma fp L for a compact two-camera setup covering motion, interviews, detail work, and stills when a job needs both video and photography."
+  },
+  {
+    title: "Cine and documentary lenses",
+    body:
+      "Sirui Nightwalker T1.2 S35 cine lens set, Sony G 18-110mm f/4 power zoom, Sigma 16mm f/1.4, Voigtlander APO-LANTHAR 35mm, and supporting filters for controlled exposure and consistent rendering."
+  },
+  {
+    title: "Monitoring and control",
+    body:
+      "Atomos Shogun Inferno, Lilliput A7S, Blackmagic UltraStudio 4K Mini, X-Rite ColorChecker Passport, and Resolve control surfaces for reliable capture checks, colour reference, and finishing review."
+  },
+  {
+    title: "Movement, rigging, and small studio setup",
+    body:
+      "DJI RS 3 Mini gimbal, Tilta FX30 cage, Tilta shoulder rig, Benro carbon tripod, Sirui fluid head, Manfrotto stands, black and white backdrops, and Aputure RGBWW tube lights."
+  },
+  {
+    title: "Audio and music",
+    body:
+      "Zoom F3 field recorder, Sony ECM-W3 wireless kit, Audio-Technica AT2040, MOTU interface, Dynaudio monitors, Ableton Live, and music-production tools for clean location sound, mix decisions, and original score when needed."
+  },
+  {
+    title: "Post and delivery setup",
+    body:
+      "DaVinci Resolve, ScopeBox, Blackmagic playback hardware, calibrated review habits, fast local storage, and clear versioning for clean masters, social cutdowns, still pulls, subtitles, and review files."
+  }
+];
+
+const fit = [
+  "Brand films, founder stories, social campaigns, product pieces, and launch content.",
+  "Interview-led work where lighting, sound, colour, and delivery all have to be handled cleanly.",
+  "Small-footprint productions that need senior post judgement on set.",
+  "Agencies that need one person who can shoot, grade, finish, version, and deliver without building a large crew around every job."
+];
+
+const pathways = [
+  {
+    href: "/immersive",
+    label: "Immersive work",
+    note: "Projection mapping, AR, 360 video, VR, retail screens, and large-format media."
+  },
+  {
+    href: "/works",
+    label: "Projects",
+    note: "Selected commercial work across colour, motion, video, photography, and immersive media."
+  },
+  {
+    href: "/finishing",
+    label: "Colour & finishing",
+    note: "The post-production side in more depth: grade, online, QC, and final masters."
+  },
+  {
+    href: "/music",
+    label: "Music",
+    note: "Original composition, score, sync, and mix-minded production support."
+  }
+];
+---
+
+<BaseLayout
+  title="Videography in Melbourne | Matteo Curcio"
+  description="Melbourne videography, photography, colour grading, finishing, audio and delivery for agencies, brands and producers. Compact two-camera videography with post-production built in."
+  path="/videography"
+  navSection="services"
+>
+  <section class="page-head">
+    <p class="kicker">Videography</p>
+    <h1>Videography with the finish already in mind.</h1>
+    <p>
+      I shoot video and photography for brands, agencies, and producers who need a compact camera setup with senior
+      post-production judgement built in. I can plan the shoot, capture, grade, finish, mix, version, and deliver the work instead of
+      passing it through a fragile chain of handoffs.
+    </p>
+    <p>
+      That means the same person thinking about the camera is also thinking about the colour grade, the audio, the edit,
+      the social crops, the master files, and the place the work will finally play.
+    </p>
+    <p class="page-head-actions">
+      <a class="button-link" href={CONTACT_MAILTO}>Start a videography brief</a>
+      <a class="button-link" href="/works">View projects</a>
+    </p>
+  </section>
+
+  <section class="section lane-grid" aria-label="Videography process">
+    {process.map((item) => (
+      <article class="lane">
+        <h3>{item.title}</h3>
+        <p>{item.body}</p>
+      </article>
+    ))}
+  </section>
+
+  <section class="home-section section">
+    <div class="home-editorial-copy panel finishing-good-fit">
+      <p class="kicker">Working Mode</p>
+      <h2>A small footprint, not a small standard.</h2>
+      <p>
+        Some jobs need a full crew. Some need a sharp videographer who can keep the footprint light, make good decisions
+        quickly, and carry the material cleanly through post. This page is for the second kind: commercial work where
+        camera, lighting, sound, taste, technical discipline, and delivery all need to line up.
+      </p>
+    </div>
+  </section>
+
+  <section class="section services-index services-card-grid finishing-card-grid" aria-label="Videography kit">
+    {videographyKit.map((item) => (
+      <article class="service-card">
+        <div class="service-card-head">
+          <div class="service-card-title-group">
+            <h2 class="service-name">{item.title}</h2>
+          </div>
+        </div>
+        <div class="service-card-body">
+          <p class="service-description">{item.body}</p>
+        </div>
+      </article>
+    ))}
+  </section>
+
+  <section class="home-section section">
+    <div class="panel finishing-faq">
+      <p class="kicker">Good Fit</p>
+      <h2>Where this setup makes sense.</h2>
+      <div class="finishing-faq-grid">
+        {fit.map((item) => (
+          <article>
+            <h3>{item}</h3>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cta section">
+    <div>
+      <h2>Have something to shoot?</h2>
+      <p>
+        Send the brief, location, deliverables, deadline, and any references. If the shape is still loose, send the
+        problem and I can help define what the shoot needs.
+      </p>
+    </div>
+    <a href={CONTACT_MAILTO}>Talk through your project</a>
+  </section>
+
+  <nav class="about-pathways section security-pathways" aria-label="Videography page links">
+    {pathways.map((item) => (
+      <a class="about-pathway" href={item.href}>
+        <span class="about-pathway-label">{item.label}</span>
+        <span class="about-pathway-note">{item.note}</span>
+      </a>
+    ))}
+  </nav>
+</BaseLayout>
