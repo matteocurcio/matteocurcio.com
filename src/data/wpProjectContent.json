@@ -1179,9 +1179,9 @@
       "/assets/reels/reels-sync/slide_house-of-lies_sync.jpg",
       "/assets/reels/reels-sync/slide_freeville-spring_sync.jpg",
       "/assets/reels/reels-sync/slide_logan-fall-winter_sync.jpg",
-      "/assets/reels/reels-sync/slide_01_sync.jpg",
-      "/assets/reels/reels-sync/slide_02_sync.jpg",
-      "/assets/reels/reels-sync/slide_03_sync.jpg"
+      "/assets/reels/reels-sync/slide_enough-said_sync.jpg",
+      "/assets/reels/reels-sync/slide_star-crossed_sync.jpg",
+      "/assets/reels/reels-sync/slide_il-passato_sync.jpg"
     ]
   },
   "royaltyfree": {
@@ -1194,7 +1194,7 @@
       "Pro Tools\nLogic Studio\nAbleton Live\nFinal Cut Pro\nAdobe Premiere",
       "Pond5\nAudiojungle\nAudiomicro\nMusic Revolution\nLuckstock\nMotion Elements\n123RF\nEZMediart\nClipdealer\nDreamstime\nVfine\n100Audio\nAudiocrowd\nMusic Grid\nSoundclick\nSongtradr"
     ],
-    "embedUrl": "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1229166052&color=%23ff5500&auto_play=false&hide_related=false&show_comments=false&show_user=false&show_reposts=false&show_teaser=false",
+    "embedUrl": "https://w.soundcloud.com/player/?visual=true&url=https%3A%2F%2Fapi.soundcloud.com%2Fusers%2F848100&show_artwork=true",
     "images": [
       "/assets/reels/reels-royaltyfree/slide_01_royaltyfree.jpg",
       "/assets/services/common/thumbnail_placeholder.jpg",

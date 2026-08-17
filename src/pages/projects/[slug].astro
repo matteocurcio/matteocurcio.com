@@ -237,11 +237,20 @@ function toEmbedUrl(url?: string) {
       const numericId = pathParts.find((part) => /^\d+$/.test(part));
       return numericId ? `https://player.vimeo.com/video/${numericId}` : undefined;
     }
+
+    if (host === "w.soundcloud.com" && pathParts[0] === "player") {
+      return input;
+    }
+
+    if (host === "soundcloud.com" && pathParts[0]) {
+      return `https://w.soundcloud.com/player/?visual=true&url=${encodeURIComponent(input)}&show_artwork=true`;
+    }
   } catch {
     const youtubeId = input.match(/(?:youtube\.com\/embed\/|youtu\.be\/)([A-Za-z0-9_-]{6,})/i)?.[1];
     if (youtubeId) return fromYouTubeId(youtubeId);
     const vimeoId = input.match(/vimeo\.com\/(?:video\/)?(\d+)/i)?.[1];
     if (vimeoId) return `https://player.vimeo.com/video/${vimeoId}`;
+    if (/^https:\/\/w\.soundcloud\.com\/player\//i.test(input)) return input;
   }
 
   return undefined;
