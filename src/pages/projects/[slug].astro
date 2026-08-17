@@ -591,17 +591,23 @@ function splitMagazineParagraphs(text: string) {
 
   if (explicitParagraphs.length > 1) return explicitParagraphs;
 
-  const normalized = normalizedNewlines.replace(/\s+/g, " ").trim();
+  const normalized = normalizedNewlines
+    .replace(/\s+/g, " ")
+    .replace(/\bSt\.\s*Petersburg\b/g, "St__PETERSBURG__")
+    .trim();
   const sentences =
-    normalized.match(/[^.!?]+[.!?]+(?:["')\]]+)?|[^.!?]+$/g)?.map((part) => part.trim()).filter(Boolean) ||
+    normalized
+      .match(/[^.!?]+[.!?]+(?:["')\]]+)?|[^.!?]+$/g)
+      ?.map((part) => part.replace(/St__PETERSBURG__/g, "St.Petersburg").trim())
+      .filter(Boolean) ||
     [normalized];
 
-  if (sentences.length <= 2) return [normalized];
+  if (sentences.length <= 2) return [normalized.replace(/St__PETERSBURG__/g, "St.Petersburg")];
 
   const sentenceWordCounts = sentences.map((sentence) => sentence.split(/\s+/).filter(Boolean).length);
   const totalWords = sentenceWordCounts.reduce((sum, count) => sum + count, 0);
 
-  if (totalWords < 42 || sentences.length < 3) return [normalized];
+  if (totalWords < 42 || sentences.length < 3) return [normalized.replace(/St__PETERSBURG__/g, "St.Petersburg")];
 
   const minParagraphWords = 18;
   let bestBreak = -1;
@@ -619,7 +625,7 @@ function splitMagazineParagraphs(text: string) {
     }
   }
 
-  if (bestBreak === -1) return [normalized];
+  if (bestBreak === -1) return [normalized.replace(/St__PETERSBURG__/g, "St.Petersburg")];
 
   return [
     sentences.slice(0, bestBreak + 1).join(" "),

@@ -2286,6 +2286,12 @@ h1 {
   border-radius: 8px;
 }
 
+.project-gallery.reel-gallery.is-sync-gallery img {
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+  background: #000;
+}
+
 .project-gallery.reel-gallery.is-square-gallery img {
   aspect-ratio: 1 / 1;
   object-fit: cover;
