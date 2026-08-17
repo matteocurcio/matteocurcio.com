@@ -4,6 +4,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import { LEGACY_BY_SLUG, LEGACY_REELS, getLegacyItem } from "../../data/legacyPortfolio";
 import { WORK_TECHNICAL_CAPTIONS, fallbackTechnicalCaption } from "../../data/workTechnicalCaptions";
 import { REEL_CAPTIONS } from "../../data/reelCaptions";
+import { MUSIC_ALBUM_LINKS } from "../../data/musicAlbumLinks";
 import wpProjectContent from "../../data/wpProjectContent.json";
 
 const WP_WORK_BASE = "https://matteocurcio.com/work";
@@ -846,6 +847,10 @@ const gallery = isReelPage
         extras: galleryImages.length > 0 ? galleryImages : cover ? [cover] : []
       }
     : buildBeforeAfterPairs(galleryImages, service === "COLOUR" ? cover : undefined);
+const linkedGalleryExtras = gallery.extras.map((src) => ({
+  src,
+  href: slug === "music" ? MUSIC_ALBUM_LINKS[src] : undefined
+}));
 
 const technicalWorkDescription = !isReelPage
   ? WORK_TECHNICAL_CAPTIONS[slug] || fallbackTechnicalCaption(title, client)
@@ -1066,10 +1071,16 @@ const pageDescription = (
         isReelPage ? (
           <>
             <section class={`project-gallery reel-gallery ${slug === "music" ? "is-square-gallery" : ""}`} aria-label="Project stills">
-              {gallery.extras.map((src, idx) => (
-                <button class="reel-lightbox-trigger" type="button" data-lightbox-trigger data-lightbox-index={idx} aria-label="Open frame">
-                  <img src={src} alt={title} loading="lazy" />
-                </button>
+              {linkedGalleryExtras.map((item, idx) => (
+                item.href ? (
+                  <a class="reel-lightbox-trigger" href={item.href} target="_blank" rel="noopener noreferrer" aria-label={`Open ${title} album on Bandcamp`}>
+                    <img src={item.src} alt={title} loading="lazy" />
+                  </a>
+                ) : (
+                  <button class="reel-lightbox-trigger" type="button" data-lightbox-trigger data-lightbox-index={idx} aria-label="Open frame">
+                    <img src={item.src} alt={title} loading="lazy" />
+                  </button>
+                )
               ))}
             </section>
 
@@ -1084,8 +1095,14 @@ const pageDescription = (
           </>
         ) : (
           <section class="project-gallery" aria-label="Project stills">
-            {gallery.extras.map((src) => (
-              <img src={src} alt={title} loading="lazy" />
+            {linkedGalleryExtras.map((item) => (
+              item.href ? (
+                <a href={item.href} target="_blank" rel="noopener noreferrer" aria-label={`Open ${title} album on Bandcamp`}>
+                  <img src={item.src} alt={title} loading="lazy" />
+                </a>
+              ) : (
+                <img src={item.src} alt={title} loading="lazy" />
+              )
             ))}
           </section>
         )

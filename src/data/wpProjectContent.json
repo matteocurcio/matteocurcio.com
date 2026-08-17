@@ -1174,10 +1174,12 @@
     ],
     "embedUrl": "https://www.youtube.com/embed/3oFnS-EwxSI?feature=oembed",
     "images": [
-      "/assets/services/common/thumbnail_placeholder.jpg",
-      "/assets/services/common/thumbnail_placeholder.jpg",
+      "/assets/reels/reels-sync/slide_better-call-saul_sync.jpg",
+      "/assets/reels/reels-sync/slide_elementary_sync.jpg",
+      "/assets/reels/reels-sync/slide_house-of-lies_sync.jpg",
+      "/assets/reels/reels-sync/slide_freeville-spring_sync.jpg",
+      "/assets/reels/reels-sync/slide_logan-fall-winter_sync.jpg",
       "/assets/reels/reels-sync/slide_01_sync.jpg",
-      "/assets/services/common/thumbnail_placeholder.jpg",
       "/assets/reels/reels-sync/slide_02_sync.jpg",
       "/assets/reels/reels-sync/slide_03_sync.jpg"
     ]
@@ -1232,15 +1234,15 @@
     ],
     "embedUrl": "https://www.youtube.com/embed/kG_0fReY2Qk?feature=oembed",
     "images": [
-      "/assets/services/common/thumbnail_placeholder.jpg",
-      "/assets/reels/reels-music/slide_01_music.jpg",
-      "/assets/reels/reels-music/slide_02_music.jpg",
-      "/assets/reels/reels-music/slide_03_music.jpg",
-      "/assets/services/common/thumbnail_placeholder.jpg",
-      "/assets/reels/reels-music/slide_04_music.jpg",
-      "/assets/reels/reels-music/slide_05_music.jpg",
-      "/assets/reels/reels-music/slide_06_music.jpg",
-      "/assets/reels/reels-music/slide_07_music.jpg"
+      "/assets/reels/reels-music/album_ultramarine-remixes.jpg",
+      "/assets/reels/reels-music/album_atlantide.jpg",
+      "/assets/reels/reels-music/album_telescope.jpg",
+      "/assets/reels/reels-music/album_ultramarine.jpg",
+      "/assets/reels/reels-music/album_mice-to-meet-you.jpg",
+      "/assets/reels/reels-music/album_red-star-ep.jpg",
+      "/assets/reels/reels-music/album_peace-and-melody-ep.jpg",
+      "/assets/reels/reels-music/album_nicotine-ep.jpg",
+      "/assets/reels/reels-music/album_standing-by-my-side-ep.jpg"
     ]
   },
   "dubai-majlis-2018": {

@@ -2336,6 +2336,10 @@ h1 {
   overflow: hidden;
 }
 
+.reel-lightbox-trigger[href] {
+  cursor: pointer;
+}
+
 .reel-lightbox-trigger img {
   display: block;
   width: 100%;
