@@ -1,5 +1,7 @@
 import { defineConfig } from "astro/config";
 import sitemap from "@astrojs/sitemap";
+import { copyFileSync, existsSync } from "node:fs";
+import { fileURLToPath } from "node:url";
 
 // Pages that exist only to forward an old URL, or that aren't for the public.
 // Astro already marks the generated redirect stubs noindex; this keeps them
@@ -8,6 +10,8 @@ const EXCLUDE = [
   "/coding", "/making", "/problem-solving", "/tools", "/security",
   "/for-studios", "/training", "/work", "/contact",
   "/dark-preview", "/client",
+  "/blog/life-cost-tracker",
+  "/blog/recurring-expenses-tracker",
   "/blog/teaching-the-why-behind-colour-decisions"
 ];
 
@@ -33,7 +37,19 @@ export default defineConfig({
           REEL_SLUGS.includes(path.slice("/projects/".length));
         return !reelTwin;
       }
-    })
+    }),
+    {
+      name: "sitemap-legacy-alias",
+      hooks: {
+        "astro:build:done": ({ dir }) => {
+          const indexPath = fileURLToPath(new URL("sitemap-index.xml", dir));
+          const legacyPath = fileURLToPath(new URL("sitemap.xml", dir));
+          if (existsSync(indexPath)) {
+            copyFileSync(indexPath, legacyPath);
+          }
+        }
+      }
+    }
   ],
   redirects: {
     "/coding": "/workflow",

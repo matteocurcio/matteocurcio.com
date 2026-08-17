@@ -5,4 +5,4 @@ Allow: /
 Disallow: /dark-preview
 Disallow: /client
 
-Sitemap: https://matteocurcio.com/sitemap-index.xml
+Sitemap: https://matteocurcio.com/sitemap.xml
