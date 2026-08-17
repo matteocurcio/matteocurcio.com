@@ -59,6 +59,16 @@ const REEL_LAYOUT_OVERRIDES: Record<
   }
 };
 
+const SYNC_POSTER_LIGHTBOX: Record<string, string> = {
+  "/assets/reels/reels-sync/slide_better-call-saul-v3_sync.jpg": "/assets/reels/reels-sync/poster_better-call-saul_sync.jpg",
+  "/assets/reels/reels-sync/slide_elementary-v3_sync.jpg": "/assets/reels/reels-sync/poster_elementary_sync.jpg",
+  "/assets/reels/reels-sync/slide_house-of-lies-v3_sync.jpg": "/assets/reels/reels-sync/poster_house-of-lies_sync.jpg",
+  "/assets/reels/reels-sync/slide_romeo-gigli-v3_sync.jpg": "/assets/reels/reels-sync/poster_romeo-gigli_sync.jpg",
+  "/assets/reels/reels-sync/slide_enough-said-v3_sync.jpg": "/assets/reels/reels-sync/poster_enough-said_sync.jpg",
+  "/assets/reels/reels-sync/slide_star-crossed-v3_sync.jpg": "/assets/reels/reels-sync/poster_star-crossed_sync.jpg",
+  "/assets/reels/reels-sync/slide_il-passato-v3_sync.jpg": "/assets/reels/reels-sync/poster_il-passato_sync.jpg"
+};
+
 const CREDIT_LABELS = new Set([
   "production",
   "producers",
@@ -858,7 +868,8 @@ const gallery = isReelPage
     : buildBeforeAfterPairs(galleryImages, service === "COLOUR" ? cover : undefined);
 const linkedGalleryExtras = gallery.extras.map((src) => ({
   src,
-  href: slug === "music" ? MUSIC_ALBUM_LINKS[src] : undefined
+  href: slug === "music" ? MUSIC_ALBUM_LINKS[src] : undefined,
+  lightboxSrc: slug === "sync" ? SYNC_POSTER_LIGHTBOX[src] : undefined
 }));
 
 const technicalWorkDescription = !isReelPage
@@ -1086,7 +1097,14 @@ const pageDescription = (
                     <img src={item.src} alt={title} loading="lazy" />
                   </a>
                 ) : (
-                  <button class="reel-lightbox-trigger" type="button" data-lightbox-trigger data-lightbox-index={idx} aria-label="Open frame">
+                  <button
+                    class="reel-lightbox-trigger"
+                    type="button"
+                    data-lightbox-trigger
+                    data-lightbox-index={idx}
+                    data-lightbox-src={item.lightboxSrc || item.src}
+                    aria-label="Open frame"
+                  >
                     <img src={item.src} alt={title} loading="lazy" />
                   </button>
                 )
@@ -1213,7 +1231,10 @@ const pageDescription = (
       let activeIndex = 0;
 
       const render = () => {
-        const src = triggers[activeIndex]?.querySelector("img")?.getAttribute("src") || "";
+        const src =
+          triggers[activeIndex]?.getAttribute("data-lightbox-src") ||
+          triggers[activeIndex]?.querySelector("img")?.getAttribute("src") ||
+          "";
         if (!src) return;
         image.setAttribute("src", src);
       };
