@@ -1,8 +1,9 @@
 ---
 title: "Grid: Rebuilding InDesign's Layout Dialog as a Browser Tool"
+metaTitle: "Grid Layout Generator | Matteo Curcio"
 date: "2026-08-03"
 excerpt: "A browser tool for designing print and screen layout grids, shaped around familiar design workflows, clean exports, and one consistent geometry model."
-description: "Designing a layout grid generator around familiar creative-tool behaviour: one geometry model for preview and export, facing-page logic, safe unit conversion, and deployment debugging."
+description: "Designing a browser grid generator around creative-tool behaviour, facing pages, safe unit conversion and clean exports."
 cover: "/images/coding/grid.png"
 coverAlt: "Grid layout generator interface showing page settings and a generated print grid preview"
 tags:

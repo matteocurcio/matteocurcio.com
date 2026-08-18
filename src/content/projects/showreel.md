@@ -1,9 +1,9 @@
 ---
 title: "Showreel"
 service: "color"
-client: "Online editing, finishing, color grading, mograph, audio mix/sweetening/mastering and original music for TV, Cinema, Web, Immersive and AR."
+client: "Matteo Curcio"
 year: 2021
-excerpt: "Showreel 2021 My latest über reel showcasing colour grading, VFX, Mograph, Presentology, AR, Immersive and Original Music TV, cinema, online, and events. Specialties&nbsp; Colour Grading Visual Effect"
+excerpt: "A compact showreel of colour grading, online editing, finishing, motion, immersive, and music work across TV, cinema, online, and live events."
 cover: "/assets/services/common/thumbnail_placeholder.jpg"
 coverAlt: "Showreel"
 featured: false

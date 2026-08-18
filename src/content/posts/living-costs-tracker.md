@@ -2,7 +2,7 @@
 title: "A Private Living Costs Tracker"
 date: "2026-06-05"
 excerpt: "A private tracker for the real shape of living costs: recurring commitments, one-off expenses, places, categories, projections, and the small interface decisions that make money easier to read."
-description: "Designing a private living costs tracker around recurring and non-recurring expenses, monthly commitments, one-off spending, places, projections, and a shared design system used across my personal tools."
+description: "A private living costs tracker for recurring commitments, one-off spending, places, projections and a shared app design system."
 cover: "/images/coding/expenses.png"
 coverAlt: "Living costs tracker interface showing summary cards, categories, and expense records"
 tags:

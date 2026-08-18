@@ -999,21 +999,37 @@ const displayTitle = showClientProjectTitle
 
 const metaText = "";
 
-const pageTitle = `${displayTitle} | Matteo Curcio`;
+const serviceTitle = isReelPage
+  ? "Showreel"
+  : service === "MOTION/PHOTO"
+    ? "Creative Project"
+    : "Colour & Finishing";
+
+const compactTitle = (() => {
+  if (isReelPage) return `${title} ${serviceTitle}`;
+  if (showClientProjectTitle) return `${title} | ${client}`;
+  return `${title} | ${serviceTitle}`;
+})();
+
+const pageTitleBase = `${compactTitle} | Matteo Curcio`;
+const pageTitle = pageTitleBase.length > 68
+  ? `${title} | Matteo Curcio`
+  : pageTitleBase;
 
 // Every project page previously inherited the site-wide description, so 107
 // pages shipped identical meta. Build one from what this project actually is.
 const pageDescription = (() => {
-  // Year deliberately omitted — the catalogue spans years and dating each
-  // piece made the body of work read as older than it is.
-  const bits = [
-    isReelPage ? `${title} showreel` : title,
-    project?.data.client && project.data.client !== "Selected Work" ? `for ${project.data.client}` : null
-  ].filter(Boolean).join(" ");
-  const lead = isReelPage
-    ? `${bits}.`
-    : `${bits} — commercial post-production by Matteo Curcio.`;
-  return `${lead} Colour grading, online editing and finishing from Melbourne, Australia.`.slice(0, 160);
+  const cleanClient = project?.data.client && project.data.client !== "Selected Work" ? project.data.client : "";
+  const role = isReelPage
+    ? "showreel"
+    : service === "MOTION/PHOTO"
+      ? "creative project"
+      : "commercial colour grading, online editing and finishing";
+  const clientPart = cleanClient ? ` for ${cleanClient}` : "";
+  const base = isReelPage
+    ? `${title} ${role} by Matteo Curcio, Melbourne-based online editor, colourist and finishing artist.`
+    : `${title}${clientPart}: ${role} by Matteo Curcio in Melbourne.`;
+  return base.length > 155 ? `${base.slice(0, 152).trim()}...` : base;
 })();
 ---
 

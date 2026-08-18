@@ -18,12 +18,13 @@ const formattedDate = new Intl.DateTimeFormat("en-US", {
 }).format(new Date(`${post.data.date}T00:00:00`));
 
 const description = post.data.description || post.data.excerpt;
+const metaTitle = post.data.metaTitle || `${post.data.title} | Matteo Curcio`;
 const ogImage = post.data.ogImage || post.data.cover;
 const ogImageAlt = post.data.ogImageAlt || post.data.coverAlt || post.data.title;
 ---
 
 <BaseLayout
-  title={`${post.data.title} | Matteo Curcio`}
+  title={metaTitle}
   description={description}
   path={`/blog/${post.id}/`}
   navSection="blog"

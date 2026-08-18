@@ -1,8 +1,9 @@
 ---
 title: "Building a Dedicated Observability Kiosk for My Proxmox Homelab"
+metaTitle: "Proxmox Observability Kiosk | Matteo Curcio"
 date: "2026-06-02"
 excerpt: "A practical architecture note on turning a Proxmox homelab into a visible, rack-mounted observability system using Grafana, Prometheus, Loki, PULSE, and a Raspberry Pi kiosk."
-description: "A practical architecture note on turning a Proxmox homelab into a visible, rack-mounted observability system using Grafana, Prometheus, Loki, PULSE, and a Raspberry Pi kiosk."
+description: "A Proxmox homelab observability kiosk using Grafana, Prometheus, Loki, PULSE and a Raspberry Pi rack display."
 cover: "/images/blog/proxmox-observability-kiosk/proxmox-observability-kiosk-rack.png"
 coverAlt: "Rack-mounted homelab observability kiosk showing green Grafana status panels beneath a Minisforum MS-01 and patch panel"
 ogImage: "/images/blog/proxmox-observability-kiosk/proxmox-observability-kiosk-rack.png"

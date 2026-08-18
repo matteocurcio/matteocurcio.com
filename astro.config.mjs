@@ -12,7 +12,11 @@ const EXCLUDE = [
   "/dark-preview", "/client",
   "/blog/life-cost-tracker",
   "/blog/recurring-expenses-tracker",
-  "/blog/teaching-the-why-behind-colour-decisions"
+  "/blog/teaching-the-why-behind-colour-decisions",
+  // These essays remain live for direct links, but they are not part of the
+  // technical blog/search strategy for the portfolio site.
+  "/blog/the-bunker-logic",
+  "/blog/the-mainstream-machine"
 ];
 
 // Every reel also renders under /projects/<slug>, and those copies already

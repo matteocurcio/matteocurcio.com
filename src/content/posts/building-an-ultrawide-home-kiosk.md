@@ -2,7 +2,7 @@
 title: "The Ultrawide Home Kiosk I Actually Use Every Day"
 date: "2026-08-07"
 excerpt: "A practical build note on turning a Raspberry Pi 3, a 3840 × 1100 ultrawide monitor, a 3D-printed frame, and a seven-key button switcher into a dedicated home information display."
-description: "A practical build note on turning a Raspberry Pi 3, a 3840 × 1100 ultrawide monitor, a 3D-printed frame, and a seven-key button switcher into a dedicated home information display for calendar, transport, weather, satellite, status, clocks, and monthly expenses."
+description: "A Raspberry Pi ultrawide home kiosk for calendar, transport, weather, satellite views, status, clocks and monthly expenses."
 cover: "/images/blog/wide-home-kiosk/ultrawide-kiosk-cover.png"
 coverAlt: "Ultrawide home kiosk displaying a satellite view of Australia, mounted in a pink 3D-printed frame with a seven-button switcher below"
 ogImage: "/images/blog/wide-home-kiosk/ultrawide-kiosk-cover.png"

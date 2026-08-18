@@ -2,6 +2,7 @@
 title: "Digital Literacy & Content Creation"
 date: "2025-09-19"
 excerpt: "An interview for RMIT on digital literacy as practical creative confidence: using tools with intent, communicating clearly, and building portfolio-ready work under real constraints."
+description: "An RMIT interview on digital literacy, creative confidence, clear communication and portfolio-ready work."
 cover: "/images/blog/digital-literacy-interview/matteo-adobe-coach.jpg"
 coverAlt: "Matteo Curcio holding a Blackmagic Pocket Cinema Camera on a handheld gimbal in front of a shopfront"
 tags: []

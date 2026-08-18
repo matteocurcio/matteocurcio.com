@@ -2,7 +2,7 @@
 title: "An Offline-First Travel Expense Tracker"
 date: "2026-06-04"
 excerpt: "A travel expense tracker designed around the reality of travelling: no signal, quick entry, local-first logging, cached rates, GPS capture, and sync that waits its turn."
-description: "Designing an offline-first travel expense tracker around interruption, quick entry, recoverable sync, location memory, rate caching, and AI-assisted implementation guided by product constraints."
+description: "An offline-first travel expense tracker shaped around quick entry, recoverable sync, location memory and cached exchange rates."
 cover: "/images/coding/travel.png"
 coverAlt: "Travel tracker log view showing a Bangkok trip total in three currencies, a trip-wide flight and per-night accommodation splits"
 tags:

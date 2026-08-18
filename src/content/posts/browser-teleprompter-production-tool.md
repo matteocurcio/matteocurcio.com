@@ -2,7 +2,7 @@
 title: "A Browser Teleprompter for Production Work"
 date: "2026-06-11"
 excerpt: "A local-network teleprompter designed for production work, where an iPad in the glass and an iPhone remote stay in sync without depending on the cloud."
-description: "Designing a LAN teleprompter around production reliability: content-based synchronisation, independent displays, approval, eyeline behaviour, script management, and AI-assisted implementation under a strict product brief."
+description: "A LAN teleprompter designed around production reliability, synced displays, approval, eyeline behaviour and script control."
 cover: "/images/coding/teleprompter.png"
 coverAlt: "Sanitized teleprompter interface concept showing display, remote, library and device controls"
 tags:

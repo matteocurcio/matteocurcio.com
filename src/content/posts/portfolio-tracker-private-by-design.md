@@ -2,7 +2,7 @@
 title: "Portfolio Tracker, Private by Design"
 date: "2026-06-02"
 excerpt: "A private holdings tracker for stocks and ETFs, designed around local data, controlled exports, live quotes, and the simple rule that personal finances should not end up in a repository."
-description: "Designing a browser-first portfolio tracker around privacy, refusal, readable financial state, and an implementation model where AI helped turn the product brief into a working tool."
+description: "A private portfolio tracker designed around local data, readable financial state, controlled exports and deliberate refusal."
 cover: "/images/coding/portfolio.png"
 coverAlt: "Portfolio tracker interface with market value cards, allocation panel and transaction tables"
 tags:

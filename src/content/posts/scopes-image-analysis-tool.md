@@ -2,7 +2,7 @@
 title: "Scopes as a Small Image Analysis Tool"
 date: "2026-04-26"
 excerpt: "A small image-analysis workflow for generating waveform, RGB parade and vectorscope visuals from stills, built for teaching, writing, and explaining colour decisions."
-description: "Designing a scopes tool for colour education: portable waveform, RGB parade and vectorscope renders, Resolve-style conventions, and visuals that can live outside a grading suite."
+description: "A small scopes tool for colour education, with portable waveform, RGB parade and vectorscope renders from still images."
 cover: "/images/coding/scopes.png"
 coverAlt: "Scope Tools interface composite showing waveform, RGB parade and vectorscope output panels"
 tags:

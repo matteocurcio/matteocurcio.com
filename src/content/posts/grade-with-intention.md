@@ -2,7 +2,7 @@
 title: "Grade with Intention"
 date: "2026-05-06"
 excerpt: "After many years of teaching colour and post-production, one pattern kept repeating: students knew how to operate the tools but not why. These are the courses I built to fix that."
-description: "After many years of teaching colour and post-production, one pattern kept repeating: students knew how to operate the tools but not why. These are the courses I built to fix that."
+description: "Why colour training needs applied reasoning, not recipes, and how Signal to Noise and Colour Systems teach grading with intention."
 cover: "/images/blog/color-systems-signal-noise/grading-studio-courses-cover-final.png"
 coverAlt: "Three-monitor grading studio composition featuring the exact Signal to Noise and Colour Systems course covers with a hero scopes display"
 ogImage: "/images/blog/color-systems-signal-noise/grading-studio-courses-cover-final.png"
