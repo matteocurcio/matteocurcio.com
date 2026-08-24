@@ -1,0 +1,72 @@
+# Canonical host
+https://www.matteocurcio.com/* https://matteocurcio.com/:splat 301
+
+# Legacy section URLs
+/coding /workflow/ 301
+/coding/ /workflow/ 301
+/making /workflow/ 301
+/making/ /workflow/ 301
+/problem-solving /workflow/ 301
+/problem-solving/ /workflow/ 301
+/tools /workflow/ 301
+/tools/ /workflow/ 301
+/security /workflow/ 301
+/security/ /workflow/ 301
+/for-studios /services/ 301
+/for-studios/ /services/ 301
+/training /tutoring/ 301
+/training/ /tutoring/ 301
+/work /works/ 301
+/work/ /works/ 301
+/contact /about/ 301
+/contact/ /about/ 301
+/projects /works/ 301
+/projects/ /works/ 301
+
+# Renamed blog posts
+/blog/life-cost-tracker /blog/living-costs-tracker/ 301
+/blog/life-cost-tracker/ /blog/living-costs-tracker/ 301
+/blog/recurring-expenses-tracker /blog/living-costs-tracker/ 301
+/blog/recurring-expenses-tracker/ /blog/living-costs-tracker/ 301
+/blog/teaching-the-why-behind-colour-decisions /blog/grade-with-intention/ 301
+/blog/teaching-the-why-behind-colour-decisions/ /blog/grade-with-intention/ 301
+
+# Reel pages used to render under /projects as duplicate canonical copies.
+/projects/advertising /reels/advertising/ 301
+/projects/advertising/ /reels/advertising/ 301
+/projects/ar /reels/ar/ 301
+/projects/ar/ /reels/ar/ 301
+/projects/beauty-retouch /reels/beauty-retouch/ 301
+/projects/beauty-retouch/ /reels/beauty-retouch/ 301
+/projects/corporate /reels/corporate/ 301
+/projects/corporate/ /reels/corporate/ 301
+/projects/dataviz /reels/dataviz/ 301
+/projects/dataviz/ /reels/dataviz/ 301
+/projects/fashion /reels/fashion/ 301
+/projects/fashion/ /reels/fashion/ 301
+/projects/finishing /reels/finishing/ 301
+/projects/finishing/ /reels/finishing/ 301
+/projects/food /reels/food/ 301
+/projects/food/ /reels/food/ 301
+/projects/immersive /reels/immersive/ 301
+/projects/immersive/ /reels/immersive/ 301
+/projects/in-store /reels/in-store/ 301
+/projects/in-store/ /reels/in-store/ 301
+/projects/mapping /reels/mapping/ 301
+/projects/mapping/ /reels/mapping/ 301
+/projects/music /reels/music/ 301
+/projects/music/ /reels/music/ 301
+/projects/online-editing /reels/online-editing/ 301
+/projects/online-editing/ /reels/online-editing/ 301
+/projects/presentology /reels/presentology/ 301
+/projects/presentology/ /reels/presentology/ 301
+/projects/realestate /reels/realestate/ 301
+/projects/realestate/ /reels/realestate/ 301
+/projects/royaltyfree /reels/royaltyfree/ 301
+/projects/royaltyfree/ /reels/royaltyfree/ 301
+/projects/sport /reels/sport/ 301
+/projects/sport/ /reels/sport/ 301
+/projects/sync /reels/sync/ 301
+/projects/sync/ /reels/sync/ 301
+/projects/video-games-advertising /reels/video-games-advertising/ 301
+/projects/video-games-advertising/ /reels/video-games-advertising/ 301

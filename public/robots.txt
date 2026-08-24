@@ -1,8 +1,4 @@
 User-agent: *
 Allow: /
 
-# Dev-only preview and the private client portal.
-Disallow: /dark-preview
-Disallow: /client
-
 Sitemap: https://matteocurcio.com/sitemap.xml
