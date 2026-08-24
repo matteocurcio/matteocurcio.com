@@ -1,6 +1,3 @@
-# Canonical host
-https://www.matteocurcio.com/* https://matteocurcio.com/:splat 301
-
 # Legacy section URLs
 /coding /workflow/ 301
 /coding/ /workflow/ 301
