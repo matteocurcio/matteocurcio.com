@@ -24,11 +24,20 @@ const IMAGES: Record<string, string> = {
   realestate: "/assets/reels/reels-realestate/thumbnail_realestate.webp"
 };
 
+const SHORT_DESCRIPTIONS: Record<string, string> = {
+  advertising: "Commercial grades shaped around brand, product and campaign delivery.",
+  "beauty-retouch": "Beauty colour and retouch work with clean skin and controlled texture.",
+  fashion: "Fashion grades built around fabric, skin, contrast and mood.",
+  food: "Food colour with appetite, texture and natural product detail.",
+  sport: "Sport grades for energy, clarity and fast campaign cutdowns.",
+  realestate: "Architecture and property grades with clean light and believable spaces."
+};
+
 const genres = REELS.map((slug) => ({
   slug,
   title: TITLES[slug],
   image: IMAGES[slug],
-  body: (REEL_CAPTIONS[slug] || [""])[0]
+  body: SHORT_DESCRIPTIONS[slug] || (REEL_CAPTIONS[slug] || [""])[0]
 }));
 
 const process = [
@@ -54,7 +63,7 @@ const process = [
 <BaseLayout
   title="Colour Grading in Melbourne | Matteo Curcio"
   description="Commercial colour grading for advertising, beauty, fashion, food, sport and architecture, with Resolve colour-managed delivery."
-  path="/color"
+  path="/colour-grading/"
 >
   <section class="page-head">
     <p class="kicker">Colour Grading</p>

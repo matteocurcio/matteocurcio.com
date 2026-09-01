@@ -1,6 +1,31 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import HomePageContent from "../components/HomePageContent.astro";
+import { SITE_CONFIG } from "../config/site";
+
+const siteUrl = `https://${SITE_CONFIG.primaryDomain}`;
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": `${siteUrl}/#person`,
+  name: SITE_CONFIG.ownerName,
+  url: `${siteUrl}/`,
+  image: `${siteUrl}/images/og/matteo-curcio-og.png`,
+  jobTitle: "Colourist & Finishing Artist",
+  knowsAbout: [
+    "Colour Grading",
+    "Online Editing",
+    "Post-production",
+    "Finishing",
+    "DaVinci Resolve"
+  ],
+  sameAs: [
+    SITE_CONFIG.social.linkedin,
+    SITE_CONFIG.social.github,
+    SITE_CONFIG.social.instagram,
+    SITE_CONFIG.social.youtube
+  ]
+};
 ---
 
 <BaseLayout
@@ -9,6 +34,7 @@ import HomePageContent from "../components/HomePageContent.astro";
   path="/"
   ogImage="/images/og/matteo-curcio-home-og.png"
   ogImageAlt="Matteo Curcio homepage social card"
+  structuredData={personSchema}
 >
   <HomePageContent />
 </BaseLayout>

@@ -1,0 +1,166 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { CONTACT_MAILTO, SITE_CONFIG } from "../config/site";
+
+const siteUrl = `https://${SITE_CONFIG.primaryDomain}`;
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": `${siteUrl}/colour-grading/#service`,
+  name: "Colour Grading",
+  serviceType: "Colour grading, look development and colour-managed finishing",
+  url: `${siteUrl}/colour-grading/`,
+  provider: {
+    "@id": `${siteUrl}/#person`
+  },
+  areaServed: [
+    {
+      "@type": "City",
+      name: "Melbourne"
+    },
+    {
+      "@type": "Country",
+      name: "Australia"
+    },
+    "Remote"
+  ],
+  audience: {
+    "@type": "Audience",
+    audienceType: "Production companies, agencies, directors and post-production teams"
+  }
+};
+
+const projects = [
+  {
+    title: "Make Waves",
+    client: "Yamaha",
+    href: "/projects/yamaha/",
+    image: "/assets/projects/yamaha-make-waves/thumbnail_yamaha.webp",
+    alt: "Colour graded Yamaha Make Waves commercial frame"
+  },
+  {
+    title: "National Hero",
+    client: "Football Australia",
+    href: "/projects/national-hero/",
+    image: "/assets/projects/football-australia-national-hero/thumbnail_national_hero.webp",
+    alt: "Colour graded Football Australia National Hero campaign frame"
+  },
+  {
+    title: "Quay Quarter",
+    client: "AMP",
+    href: "/projects/amp/",
+    image: "/assets/projects/amp-quay-quarter/thumbnail_amp.webp",
+    alt: "Colour graded AMP Quay Quarter commercial frame"
+  }
+];
+
+const process = [
+  {
+    title: "Look development",
+    body: "Finding the visual character of a campaign before the job becomes a shot-by-shot correction exercise."
+  },
+  {
+    title: "Colour management",
+    body: "Building a reliable path through camera sources, review exports and final masters in DaVinci Resolve."
+  },
+  {
+    title: "Matching and continuity",
+    body: "Balancing exposure, colour matching, skin tones, product colour and mixed lighting so the work cuts cleanly."
+  },
+  {
+    title: "Delivery-aware grading",
+    body: "Keeping the grade practical for commercials, branded content, agency review, versioning and final delivery."
+  }
+];
+---
+
+<BaseLayout
+  title="Colour Grading Melbourne | Matteo Curcio"
+  description="Melbourne colourist providing colour grading, look development and colour-managed finishing for commercials, branded content and agency productions. Available in Melbourne and remotely."
+  path="/colour-grading/"
+  navSection="services"
+  ogImage="/assets/projects/yamaha-make-waves/thumbnail_yamaha.webp"
+  ogImageAlt="Colour graded Yamaha commercial frame"
+  structuredData={serviceSchema}
+>
+  <section class="page-head">
+    <p class="kicker">Colour Grading</p>
+    <h1>Colour grading for commercial and branded work.</h1>
+    <p>
+      I provide colour grading and look development for commercials, branded content, campaigns and selected narrative
+      work from Melbourne, working directly with production companies, agencies, directors and post-production teams.
+    </p>
+    <p>
+      The work ranges from shot matching and technical colour management through to developing the final visual character
+      of a piece. The objective is not simply consistency. It is deciding where the eye should go, how skin should
+      reproduce, how product and brand colours should behave, and how the image should feel when it reaches its final
+      screen.
+    </p>
+    <p>
+      Projects can move through DaVinci Resolve as standalone grading sessions or as part of a complete
+      <a href="/finishing">online and finishing workflow</a>, including conform, cleanup, versioning, QC and final
+      delivery.
+    </p>
+    <p class="page-head-actions">
+      <a class="button-link" href={CONTACT_MAILTO}>Start a project</a>
+      <a class="button-link" href="/reels/finishing/">Watch the reel</a>
+    </p>
+  </section>
+
+  <section class="section lane-grid" aria-label="Colour grading services">
+    {process.map((item) => (
+      <article class="lane">
+        <h3>{item.title}</h3>
+        <p>{item.body}</p>
+      </article>
+    ))}
+  </section>
+
+  <section class="section" aria-label="Selected colour grading projects">
+    <div class="page-head">
+      <p class="kicker">Selected Work</p>
+      <h2>Commercial grades with real delivery constraints.</h2>
+      <p>
+        Relevant portfolio examples across commercial, sport, property and branded work.
+      </p>
+    </div>
+    <div class="blog-grid coding-grid">
+      {projects.map((project) => (
+        <article class="post-card coding-card">
+          <a href={project.href}>
+            <div class="thumb-frame">
+              <img class="thumb" src={project.image} alt={project.alt} loading="lazy" />
+            </div>
+            <div class="body">
+              <p class="post-meta">{project.client}</p>
+              <h3>{project.title}</h3>
+              <p>View the {project.title} project.</p>
+            </div>
+          </a>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="cta section">
+    <div>
+      <h2>Need a Melbourne colourist?</h2>
+      <p>
+        Send the cut, references and delivery requirements. If the look is still open, that is often the most useful
+        place to start.
+      </p>
+    </div>
+    <a href={CONTACT_MAILTO}>Get in touch</a>
+  </section>
+
+  <nav class="about-pathways section security-pathways" aria-label="Related pages">
+    <a class="about-pathway" href="/finishing">
+      <span class="about-pathway-label">Online editing &amp; finishing</span>
+      <span class="about-pathway-note">Conform, cleanup, versioning, QC and delivery.</span>
+    </a>
+    <a class="about-pathway" href="/works">
+      <span class="about-pathway-label">Portfolio</span>
+      <span class="about-pathway-note">Selected commercial and branded post-production work.</span>
+    </a>
+  </nav>
+</BaseLayout>

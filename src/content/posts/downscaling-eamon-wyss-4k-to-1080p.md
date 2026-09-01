@@ -121,7 +121,7 @@ Colour problems do not always announce themselves dramatically. Sometimes they a
 
 Because this output was intended as a 1080p Rec.709 master, I explicitly tagged the file with `bt709` primaries, transfer, and colourspace metadata. That does not replace proper colour management upstream, but it does reduce the chances of a downstream application making bad assumptions.
 
-If your pipeline already lives in a disciplined [colour workflow](/color), this is simply extending that discipline into delivery. If it does not, metadata is often where avoidable confusion starts.
+If your pipeline already lives in a disciplined [colour workflow](/colour-grading/), this is simply extending that discipline into delivery. If it does not, metadata is often where avoidable confusion starts.
 
 ## Practical difference versus a default export
 
