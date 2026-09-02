@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { CONTACT_MAILTO, SITE_CONFIG } from "../config/site";
+import ServicesEnquiry from "../components/ServicesEnquiry.astro";
+import { SITE_CONFIG } from "../config/site";
 
 const siteUrl = `https://${SITE_CONFIG.primaryDomain}`;
 const serviceSchema = {
@@ -103,7 +104,7 @@ const process = [
       supervised grade in person is not practical.
     </p>
     <p class="page-head-actions">
-      <a class="button-link" href={CONTACT_MAILTO}>Start a project</a>
+      <a class="button-link" href="#enquiry">Start a project</a>
       <a class="button-link" href="/reels/finishing/">Watch the reel</a>
     </p>
   </section>
@@ -151,8 +152,10 @@ const process = [
         place to start.
       </p>
     </div>
-    <a href={CONTACT_MAILTO}>Get in touch</a>
+    <a href="#enquiry">Get in touch</a>
   </section>
+
+  <ServicesEnquiry subject="Colour grading enquiry" />
 
   <nav class="about-pathways section security-pathways" aria-label="Related pages">
     <a class="about-pathway" href="/finishing/">
