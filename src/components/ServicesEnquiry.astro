@@ -1,14 +1,16 @@
 ---
 interface Props {
+  heading?: string;
   subject?: string;
 }
 
-const { subject = "Services enquiry" } = Astro.props;
+const { heading, subject = "Services enquiry" } = Astro.props;
 ---
 
 <section class="services-enquiry" id="enquiry" aria-label="Services enquiry form">
   <div class="services-enquiry-grid">
     <form class="services-form" data-services-form data-services-subject={subject} novalidate>
+      {heading && <h2>{heading}</h2>}
       <p class="services-form-intro">
         I am available in person across Melbourne or remotely, depending on project needs, timeline, and workflow.
       </p>
