@@ -1,5 +1,4 @@
 ---
-import { CONTACT_MAILTO } from "../config/site";
 import { getResolvedWorks } from "../lib/works";
 import ClientMarquee from "./ClientMarquee.astro";
 
@@ -18,8 +17,8 @@ const carouselLoop = [
 
 const serviceLanes = [
   {
-    title: "Colour, Online Editing & Finishing",
-    body: "Online editing, colour grading, finishing, motion cleanup, and final delivery for commercial and branded post-production.",
+    title: "Colour Grading",
+    body: "Look development, colour management, shot matching, and delivery-aware grading for commercial and branded post-production.",
     href: "/colour-grading/"
   },
   {
@@ -63,7 +62,7 @@ const serviceLanes = [
       Matteo Curcio is a Melbourne-based online editor, colourist, finishing artist, and workflow consultant for commercial, branded, and agency post-production.
     </p>
     <div class="home-hero-actions">
-      <a class="home-button home-button-primary" href={CONTACT_MAILTO}>Start a project</a>
+      <a class="home-button home-button-primary" href="/services/#enquiry">Start a project</a>
       <a class="home-button" href="/works/">See the work</a>
     </div>
   </div>
@@ -147,7 +146,7 @@ const serviceLanes = [
       </p>
     </div>
     <div class="home-cta-actions">
-      <a class="home-button home-button-primary" href={CONTACT_MAILTO}>Start a project</a>
+      <a class="home-button home-button-primary" href="/services/#enquiry">Start a project</a>
       <a class="home-button" href="/services/">View services</a>
     </div>
   </div>
