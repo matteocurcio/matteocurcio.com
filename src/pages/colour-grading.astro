@@ -55,6 +55,11 @@ const projects = [
   }
 ];
 
+const carouselProjects = [
+  ...projects.map((project) => ({ project, isClone: false })),
+  ...projects.map((project) => ({ project, isClone: true }))
+];
+
 const process = [
   {
     title: "Look development",
@@ -103,10 +108,6 @@ const process = [
       delivery. I work with clients in Melbourne and remotely, running calibrated remote review sessions where a
       supervised grade in person is not practical.
     </p>
-    <p class="page-head-actions">
-      <a class="button-link" href="#enquiry">Start a project</a>
-      <a class="button-link" href="/reels/finishing/">Watch the reel</a>
-    </p>
   </section>
 
   <section class="section lane-grid" aria-label="Colour grading services">
@@ -126,10 +127,11 @@ const process = [
         Relevant portfolio examples across commercial, sport, property and branded work.
       </p>
     </div>
-    <div class="blog-grid coding-grid">
-      {projects.map((project) => (
-        <article class="post-card coding-card">
-          <a href={project.href}>
+    <div class="home-carousel" data-colour-work-carousel>
+      <div class="home-carousel-track" data-colour-work-carousel-track>
+        {carouselProjects.map(({ project, isClone }) => (
+          <article class="post-card coding-card home-carousel-slide" aria-hidden={isClone ? "true" : undefined}>
+            <a href={project.href} tabindex={isClone ? -1 : undefined}>
             <div class="thumb-frame">
               <img class="thumb" src={project.image} alt={project.alt} loading="lazy" />
             </div>
@@ -138,9 +140,10 @@ const process = [
               <h3>{project.title}</h3>
               <p>View the {project.title} project.</p>
             </div>
-          </a>
-        </article>
-      ))}
+            </a>
+          </article>
+        ))}
+      </div>
     </div>
   </section>
 
@@ -160,4 +163,52 @@ const process = [
       <span class="about-pathway-note">One-on-one and group sessions for editors who want to improve their colour work.</span>
     </a>
   </nav>
+
+  <script is:inline>
+    (() => {
+      const carousel = document.querySelector("[data-colour-work-carousel]");
+      const track = document.querySelector("[data-colour-work-carousel-track]");
+      if (!carousel || !track) return;
+
+      const slides = Array.from(track.querySelectorAll(".home-carousel-slide"));
+      if (slides.length < 2) return;
+
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const step = () => {
+        const gap = parseFloat(getComputedStyle(track).columnGap || "0") || 0;
+        return slides[0].getBoundingClientRect().width + gap;
+      };
+
+      const half = () => (slides.length / 2) * step();
+      const wrap = () => {
+        if (track.scrollLeft >= half()) track.scrollLeft -= half();
+        else if (track.scrollLeft <= 0) track.scrollLeft += half();
+      };
+
+      let settle = 0;
+      track.addEventListener("scroll", () => {
+        window.clearTimeout(settle);
+        settle = window.setTimeout(wrap, 180);
+      });
+
+      if (reduceMotion) return;
+
+      const advance = () => {
+        wrap();
+        track.scrollBy({ left: step(), behavior: "smooth" });
+      };
+      let timer = window.setInterval(advance, 4200);
+      const pause = () => window.clearInterval(timer);
+      const resume = () => {
+        pause();
+        timer = window.setInterval(advance, 4200);
+      };
+
+      carousel.addEventListener("pointerenter", pause);
+      carousel.addEventListener("pointerleave", resume);
+      carousel.addEventListener("focusin", pause);
+      carousel.addEventListener("focusout", resume);
+      document.addEventListener("visibilitychange", () => (document.hidden ? pause() : resume()));
+    })();
+  </script>
 </BaseLayout>
