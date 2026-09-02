@@ -2,6 +2,63 @@ import { SITE_CONFIG } from "../config/site";
 
 const siteUrl = `https://${SITE_CONFIG.primaryDomain}`;
 
+
+/**
+ * The Person node. It lives here rather than on the homepage because service,
+ * course and video nodes across the whole site reference it by @id, and Google
+ * resolves @id references per page — a provider pointing at a node that is not
+ * on the same page reads as no provider at all.
+ */
+export const PERSON_SCHEMA = {
+  "@type": "Person",
+  "@id": `${siteUrl}/#person`,
+  name: SITE_CONFIG.ownerName,
+  url: `${siteUrl}/`,
+  image: `${siteUrl}/images/og/matteo-curcio-og.png`,
+  jobTitle: "Colourist, Online Editor & Finishing Artist",
+  description:
+    "Melbourne-based freelance colourist, online editor and finishing artist working on commercial, branded and agency post-production across Australia and remotely.",
+  worksFor: { "@id": `${siteUrl}/#business` },
+  homeLocation: {
+    "@type": "Place",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Fitzroy",
+      addressRegion: "VIC",
+      addressCountry: "AU"
+    }
+  },
+  knowsLanguage: ["en", "it"],
+  memberOf: [
+    { "@type": "Organization", name: "Australian Screen Editors (ASE)" },
+    { "@type": "Organization", name: "International VR Professionals Association (IVRPA)" },
+    { "@type": "Organization", name: "International Documentary Festival (IDF)" }
+  ],
+  knowsAbout: [
+    "Colour Grading",
+    "Color Grading",
+    "Colourist",
+    "Colorist",
+    "Online Editing",
+    "Conform",
+    "Post-production",
+    "Finishing",
+    "DaVinci Resolve",
+    "Adobe Creative Cloud"
+  ],
+  sameAs: [
+    SITE_CONFIG.social.linkedin,
+    SITE_CONFIG.social.github,
+    SITE_CONFIG.social.instagram,
+    SITE_CONFIG.social.youtube,
+    SITE_CONFIG.social.substack,
+    "https://vimeo.com/matteocurcio",
+    "https://www.behance.net/matteocurcio",
+    "https://www.imdb.com/name/nm6164829/",
+    "https://www.filmlight.ltd.uk/store/freelance/listing/matteo-curcio/"
+  ]
+};
+
 export interface ServiceSchemaInput {
   /** Path with leading and trailing slash, e.g. "/editing/" */
   path: string;

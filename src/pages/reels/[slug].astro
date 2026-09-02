@@ -1053,7 +1053,9 @@ const reelSchema = {
       name: `${title} showreel — Matteo Curcio`,
       description: pageDescription,
       thumbnailUrl: [reelThumbnail],
-      uploadDate: "2026-01-01",
+      // Derived from the project's own year rather than invented; omitted where
+      // there is no year to derive it from.
+      ...(project?.data.year ? { uploadDate: `${project.data.year}-01-01` } : {}),
       contentUrl: videoUrl ? `${siteOrigin}${videoUrl}` : undefined,
       embedUrl: embeddedUrl || undefined,
       inLanguage: "en-AU",

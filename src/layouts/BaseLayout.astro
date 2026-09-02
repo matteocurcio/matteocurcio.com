@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import { CONTACT_MAILTO, SITE_CONFIG } from "../config/site";
+import { PERSON_SCHEMA } from "../lib/schema";
 
 interface Props {
   title: string;
@@ -33,7 +34,6 @@ const siteUrl = `https://${SITE_CONFIG.primaryDomain}`;
 // The business entity. Every page carries it so local and service queries have
 // something to attach to; page-level Service/Course nodes reference #person by @id.
 const businessSchema = {
-  "@context": "https://schema.org",
   "@type": "ProfessionalService",
   "@id": `${siteUrl}/#business`,
   name: SITE_CONFIG.ownerName,
@@ -89,6 +89,13 @@ const businessSchema = {
   ]
 };
 
+// One graph per page carrying both entities, so every @id reference elsewhere
+// on the page (provider, creator, publisher) resolves to a node that is present.
+const siteSchema = {
+  "@context": "https://schema.org",
+  "@graph": [businessSchema, PERSON_SCHEMA]
+};
+
 const normalizedPath = path === "/" ? "/" : `${path.replace(/\/$/, "")}/`;
 const canonical = new URL(normalizedPath, Astro.site);
 const ogImage = new URL(ogImagePath, Astro.site);
@@ -128,7 +135,7 @@ const socialLinks = [
     <meta name="twitter:description" content={description} />
     <meta name="twitter:site" content={SITE_CONFIG.social.x} />
     <meta name="twitter:image" content={ogImage.href} />
-    <script type="application/ld+json" set:html={JSON.stringify(businessSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(siteSchema)} />
     {structuredData && <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
