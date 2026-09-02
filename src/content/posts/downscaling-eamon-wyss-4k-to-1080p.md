@@ -41,7 +41,7 @@ The project contains exactly the kind of detail that punishes generic resizing:
 
 This is where the usual shortcut of "export straight from Resolve and trust the defaults" becomes less convincing.
 
-To be clear, this project was graded in [DaVinci Resolve Studio](/tutoring), which is absolutely production-safe and often sufficient for delivery. I use it happily. But sufficient is not the same thing as optimal for every specific resampling problem. If the delivery requirement is sensitive enough, external resampling with `ffmpeg` gives me a level of control that I prefer.
+To be clear, this project was graded in [DaVinci Resolve Studio](/training/), which is absolutely production-safe and often sufficient for delivery. I use it happily. But sufficient is not the same thing as optimal for every specific resampling problem. If the delivery requirement is sensitive enough, external resampling with `ffmpeg` gives me a level of control that I prefer.
 
 ## Why I did not treat the Resolve export as the final answer
 

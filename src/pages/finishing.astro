@@ -1,6 +1,7 @@
 ---
 import { CONTACT_MAILTO, SITE_CONFIG } from "../config/site";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { serviceSchema } from "../lib/schema";
 
 const capabilities = [
   {
@@ -86,19 +87,34 @@ const heroProjects = [
     image: "/assets/projects/football-australia-national-hero/thumbnail_national_hero.webp"
   }
 ];
+
+const pageSchema = serviceSchema({
+  path: "/finishing/",
+  name: "Post-Production Finishing",
+  alternateName: [
+    "Colour grading and finishing",
+    "Color grading and finishing",
+    "Post-production finishing"
+  ],
+  serviceType: "Colour grading, online editing, conform, QC and final delivery",
+  audience: "Producers, agencies and studios delivering commercial and branded work"
+});
+
 ---
 
 <BaseLayout
-  title="Colour Grading, Online Editing & Finishing | Matteo Curcio"
-  description="Melbourne-based online editor, colourist, finishing artist, and workflow consultant for commercial, branded, and agency post-production."
+  title="Post-Production Finishing Melbourne | Colour, Online Editing & Delivery"
+  description="Melbourne post-production finishing: colour grading, online editing, conform, versioning, QC and delivery for commercial, branded and agency work. Available across Australia and remotely."
   path="/finishing"
+  structuredData={pageSchema}
   navSection="services"
   ogImage="/images/og/matteo-curcio-services-og.png"
   ogImageAlt="Matteo Curcio colour grading, online editing, and finishing services"
 >
   <section class="services-head page-head">
     <p class="kicker">Colour / Online / Finishing</p>
-    <h1>Colour Grading, Online Editing & Finishing in Melbourne</h1>
+    <h1>Post-production finishing in Melbourne</h1>
+    <p class="services-head-standfirst">Colour grading, online editing and delivery, from one pair of hands.</p>
     <p>
       I am Matteo Curcio, a Melbourne-based colourist, online editor, and finishing artist for commercial, branded,
       and agency post-production. I work remotely with teams that need sharp creative judgement, clean execution, and
@@ -108,6 +124,10 @@ const heroProjects = [
       Australian clients tend to write colourist and colour grading; American and international ones write colorist and
       color grading. Same work either way — commercial grading, online editing and finishing, delivered from Melbourne
       to anywhere.
+    </p>
+    <p>
+      Working on a single part of it? <a href="/colour-grading/">Colour grading and look development</a> and
+      <a href="/editing/">online editing and conform</a> each have their own page.
     </p>
   </section>
 
@@ -215,6 +235,7 @@ const heroProjects = [
         <a class="home-button home-button-primary" href={CONTACT_MAILTO}>Start a project</a>
         <a class="home-button" href="/works/">View projects</a>
         <a class="home-button" href="/reels/finishing/">View finishing reel</a>
+        <a class="home-button" href="/remote/">Remote grading</a>
       </div>
     </div>
   </section>

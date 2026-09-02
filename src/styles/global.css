@@ -529,6 +529,130 @@ h1 {
   font-size: 0.9rem;
 }
 
+.about-credentials {
+  font-size: 0.86rem;
+  color: var(--muted);
+  border-left: 2px solid var(--line);
+  padding-left: 0.9rem;
+  margin-top: 0.9rem;
+  max-width: 62ch;
+}
+
+.site-footer-services {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.5rem 2rem;
+  padding-bottom: 1.6rem;
+  margin-bottom: 1.2rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.site-footer-services-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.site-footer-services-head {
+  margin: 0 0 0.2rem;
+  font-family: var(--font-mono, "IBM Plex Mono", monospace);
+  font-size: 0.68rem;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.site-footer-services a {
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.site-footer-services a:hover,
+.site-footer-services a:focus-visible {
+  color: var(--text, currentColor);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.site-footer-nap p {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.site-footer-address {
+  font-style: normal;
+}
+
+@media (max-width: 880px) {
+  .site-footer-services {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  .site-footer-services {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+}
+
+/* Training FAQ */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1.2rem;
+}
+
+.faq-item {
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  padding: 0.85rem 1.1rem;
+}
+
+.faq-item summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  list-style: none;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary::after {
+  content: "+";
+  float: right;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.faq-item[open] summary::after {
+  content: "\2212";
+}
+
+.faq-item[open] summary {
+  margin-bottom: 0.6rem;
+}
+
+.faq-item p {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--muted);
+  max-width: 68ch;
+}
+
+.services-head-standfirst {
+  font-size: 1.05rem;
+  color: var(--muted);
+  margin-top: 0.2rem;
+}
+
 .site-footer-grid {
   display: grid;
   grid-template-columns: 1fr auto 1fr;

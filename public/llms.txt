@@ -2,11 +2,13 @@
 
 > Melbourne-based online editor, colourist (colorist), finishing artist and
 > workflow consultant for commercial, branded and agency post-production.
-> Also an original-music composer as one half of Grammy-nominated Musetta,
+> Also an original-music composer as one half of Musetta,
 > and holds the ISC2 Certified in Cybersecurity credential and a Certificate IV
 > in Cyber Security from RMIT.
 
-Based in Melbourne, Victoria, Australia. Works remotely worldwide.
+Freelance. Based at 204 Napier Street, Fitzroy, Melbourne, Victoria 3065, Australia.
+Available across Melbourne and Australia, and works remotely worldwide.
+Member of the Australian Screen Editors (ASE), the IVRPA and the IDF.
 Contact: hello@matteocurcio.com
 
 ## What he does
@@ -24,10 +26,10 @@ Contact: hello@matteocurcio.com
 - **Workflow and infrastructure consulting** — audits of storage, permissions, handoffs
   and backups for studios and production teams; custom hardware and software built when
   no existing tool fits; security treated as part of the workflow.
-- **Coaching and training** — Resolve, Adobe and production workflows; tutors Adobe at RMIT
-  and coaches one to one.
+- **Coaching and training** — DaVinci Resolve, Adobe and production workflows; coaches Adobe
+  at RMIT University's Adobe Hub and teaches one to one in Melbourne and online.
 - **Music** — original composition, sync and score for film, television and advertising as
-  one half of Grammy-nominated Musetta.
+  one half of Musetta.
 
 ## Key pages
 
@@ -45,7 +47,14 @@ Contact: hello@matteocurcio.com
   VR, in-store and large-format work.
 - [Presentation and data-viz](https://matteocurcio.com/presentation): decks and data design.
 - [Music](https://matteocurcio.com/music): original composition, sync and score.
-- [Tutoring](https://matteocurcio.com/tutoring): one-to-one coaching.
+- [DaVinci Resolve and Adobe training](https://matteocurcio.com/training): one-to-one
+  training in Melbourne and online, with an FAQ and session details.
+- [Colour grading](https://matteocurcio.com/colour-grading): the colourist page —
+  look development, colour management and delivery-aware grading.
+- [Online editing and conform](https://matteocurcio.com/editing): the online editor
+  page — conform, versioning, cleanup and delivery.
+- [Remote colour grading](https://matteocurcio.com/remote): remote colourist and online
+  editor for clients across Australia and internationally.
 - [About](https://matteocurcio.com/about): background across Milan, Florence, Dubai and Melbourne.
 - [Blog](https://matteocurcio.com/blog): technical writing on colour, workflow and infrastructure.
 

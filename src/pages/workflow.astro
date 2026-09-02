@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { serviceSchema } from "../lib/schema";
 import { CONTACT_MAILTO, SITE_CONFIG } from "../config/site";
 
 const builds = [
@@ -85,12 +86,25 @@ const builds = [
   }
 ];
 
+
+const pageSchema = serviceSchema({
+  path: "/workflow/",
+  name: "Post-Production Workflow and Infrastructure Consulting",
+  alternateName: [
+    "Post-production workflow consulting",
+    "Media infrastructure consulting"
+  ],
+  serviceType: "Process audits, custom tooling, hardware builds and security-minded systems",
+  audience: "Studios, production teams, operations managers and heads of production"
+});
+
 ---
 
 <BaseLayout
   title="Workflow & Infrastructure for Post-Production | Matteo Curcio"
   description="Workflow and infrastructure consulting for post-production: process audits, custom tools, hardware builds and security-minded systems."
   path="/workflow"
+  structuredData={pageSchema}
 >
   <section class="page-head">
     <h1>I like finding where things break.</h1>

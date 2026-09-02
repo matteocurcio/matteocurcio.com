@@ -28,6 +28,67 @@ const {
   structuredData
 } = Astro.props;
 
+const siteUrl = `https://${SITE_CONFIG.primaryDomain}`;
+
+// The business entity. Every page carries it so local and service queries have
+// something to attach to; page-level Service/Course nodes reference #person by @id.
+const businessSchema = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "@id": `${siteUrl}/#business`,
+  name: SITE_CONFIG.ownerName,
+  alternateName: [
+    "Matteo Curcio Colour",
+    "Matteo Curcio — Melbourne Colourist",
+    "Matteo Curcio — Melbourne Colorist"
+  ],
+  url: `${siteUrl}/`,
+  email: SITE_CONFIG.contactEmail,
+  image: `${siteUrl}/images/og/matteo-curcio-og.png`,
+  founder: { "@id": `${siteUrl}/#person` },
+  priceRange: "$$",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "204 Napier Street",
+    addressLocality: "Fitzroy",
+    addressRegion: "VIC",
+    postalCode: "3065",
+    addressCountry: "AU"
+  },
+  areaServed: [
+    { "@type": "City", name: "Melbourne" },
+    { "@type": "State", name: "Victoria" },
+    { "@type": "Country", name: "Australia" },
+    "Remote"
+  ],
+  knowsAbout: [
+    "Colour grading",
+    "Color grading",
+    "Online editing",
+    "Conform",
+    "Post-production finishing",
+    "DaVinci Resolve",
+    "Adobe Creative Cloud training"
+  ],
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Post-production services",
+    itemListElement: [
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Colour grading", url: `${siteUrl}/colour-grading/` } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Online editing and conform", url: `${siteUrl}/editing/` } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Post-production finishing and delivery", url: `${siteUrl}/finishing/` } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Motion design and data visualisation", url: `${siteUrl}/motion/` } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "DaVinci Resolve and Adobe training", url: `${siteUrl}/training/` } }
+    ]
+  },
+  sameAs: [
+    SITE_CONFIG.social.linkedin,
+    SITE_CONFIG.social.instagram,
+    SITE_CONFIG.social.youtube,
+    SITE_CONFIG.social.substack
+  ]
+};
+
 const normalizedPath = path === "/" ? "/" : `${path.replace(/\/$/, "")}/`;
 const canonical = new URL(normalizedPath, Astro.site);
 const ogImage = new URL(ogImagePath, Astro.site);
@@ -67,6 +128,7 @@ const socialLinks = [
     <meta name="twitter:description" content={description} />
     <meta name="twitter:site" content={SITE_CONFIG.social.x} />
     <meta name="twitter:image" content={ogImage.href} />
+    <script type="application/ld+json" set:html={JSON.stringify(businessSchema)} />
     {structuredData && <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -114,9 +176,9 @@ const socialLinks = [
             <a href="/about/" aria-current={activePath === "/about" ? "page" : undefined}>About</a>
             <a href="/works/" aria-current={(navSection ? navSection === "works" : activePath === "/works" || activePath === "/work" || activePath.startsWith("/projects")) ? "page" : undefined}>Works</a>
             <a href="/reels/" aria-current={(navSection ? navSection === "reels" : activePath === "/reels") ? "page" : undefined}>Reels</a>
-            <a href="/colour-grading/" aria-current={activePath === "/colour-grading" ? "page" : undefined}>Colour</a>
+            <a href="/finishing/" aria-current={activePath === "/finishing" ? "page" : undefined}>Post</a>
             <a href="/services/" aria-current={activePath === "/services" ? "page" : undefined}>Services</a>
-            <a href="/tutoring/" aria-current={activePath === "/tutoring" ? "page" : undefined}>Tutoring</a>
+            <a href="/training/" aria-current={(navSection ? navSection === "tutoring" : activePath === "/training") ? "page" : undefined}>Training</a>
             <a href="/blog/" aria-current={activePath.startsWith("/blog") ? "page" : undefined}>Blog</a>
           </nav>
           <div class="nav-actions">
@@ -149,6 +211,36 @@ const socialLinks = [
       </div>
     </main>
     <footer class="site-footer">
+      <nav class="shell site-footer-services" aria-label="Services">
+        <div class="site-footer-services-col">
+          <p class="site-footer-services-head">Post-production</p>
+          <a href="/colour-grading/">Colour grading &amp; look development</a>
+          <a href="/editing/">Online editing &amp; conform</a>
+          <a href="/finishing/">Finishing &amp; delivery</a>
+          <a href="/remote/">Remote colour grading Australia</a>
+          <a href="/motion/">Motion design &amp; data visualisation</a>
+        </div>
+        <div class="site-footer-services-col">
+          <p class="site-footer-services-head">Production &amp; systems</p>
+          <a href="/videography/">Videography &amp; photography</a>
+          <a href="/immersive/">Immersive, projection mapping &amp; AR</a>
+          <a href="/presentation/">Presentation design</a>
+          <a href="/workflow/">Workflow &amp; infrastructure</a>
+        </div>
+        <div class="site-footer-services-col">
+          <p class="site-footer-services-head">Teaching &amp; music</p>
+          <a href="/training/">DaVinci Resolve &amp; Adobe training</a>
+          <a href="/music/">Music, sync &amp; score</a>
+          <a href="/works/">Selected work</a>
+          <a href="/about/">About &amp; contact</a>
+        </div>
+        <div class="site-footer-services-col site-footer-nap">
+          <p class="site-footer-services-head">Melbourne colourist</p>
+          <p>Colour grading, online editing and finishing for commercial, branded and agency post-production &mdash; in Melbourne, across Australia, and remote worldwide.</p>
+          <p class="site-footer-address">204 Napier Street<br />Fitzroy VIC 3065<br />Australia</p>
+          <p><a href={CONTACT_MAILTO}>{SITE_CONFIG.contactEmail}</a></p>
+        </div>
+      </nav>
       <div class="shell site-footer-grid">
         <p class="site-footer-left">© 2026 <a href={CONTACT_MAILTO} target="_self" rel="noopener">{SITE_CONFIG.ownerName}</a></p>
         <nav class="site-footer-social" aria-label="Social links">

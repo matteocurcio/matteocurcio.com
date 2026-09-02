@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { serviceSchema } from "../lib/schema";
 import { CONTACT_MAILTO } from "../config/site";
 
 const reels = [
@@ -58,12 +59,21 @@ const pathways = [
     note: "Every reel in one place, including presentation and data visualisation."
   }
 ];
+
+const pageSchema = serviceSchema({
+  path: "/presentation/",
+  name: "Presentation Design and Data Visualisation",
+  serviceType: "Executive presentations, keynote visuals and data visualisation",
+  audience: "Organisations, government bodies and senior leadership teams"
+});
+
 ---
 
 <BaseLayout
   title="Presentation Design & Data Visualisation | Matteo Curcio"
   description="Strategic presentations, keynote visuals and data visualisation for executive audiences, pitches, events and broadcast."
   path="/presentation"
+  structuredData={pageSchema}
 >
   <section class="page-head">
     <p class="kicker">Presentation &amp; Data-Viz</p>

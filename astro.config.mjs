@@ -8,7 +8,7 @@ import { fileURLToPath } from "node:url";
 // (and the dev-only preview) out of the sitemap as well.
 const EXCLUDE = [
   "/coding", "/making", "/problem-solving", "/tools", "/security",
-  "/for-studios", "/training", "/work", "/contact",
+  "/for-studios", "/tutoring", "/work", "/contact",
   "/dark-preview", "/client", "/color",
   "/blog/life-cost-tracker",
   "/blog/recurring-expenses-tracker",
@@ -64,7 +64,7 @@ export default defineConfig({
     // Legacy pages that were only a sentence telling you where to go instead.
     // As real redirects they stop being thin indexable pages of their own.
     "/for-studios": "/services",
-    "/training": "/tutoring",
+    "/tutoring": "/training/",
     "/work": "/works",
     "/contact": "/about",
     "/color": "/colour-grading/",

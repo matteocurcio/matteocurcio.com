@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { serviceSchema } from "../lib/schema";
 import { CONTACT_MAILTO } from "../config/site";
 import { REEL_CAPTIONS } from "../data/reelCaptions";
 
@@ -42,12 +43,25 @@ const principles = [
     body: "Layered, named and versioned so the inevitable late change to a super, a logo or a legal line takes minutes rather than a rebuild."
   }
 ];
+
+const pageSchema = serviceSchema({
+  path: "/motion/",
+  name: "Motion Design and Data Visualisation",
+  alternateName: [
+    "Motion graphics",
+    "Data visualization"
+  ],
+  serviceType: "Motion design, title and template systems, data visualisation and screen content",
+  audience: "Agencies, brands, event teams and corporate communication teams"
+});
+
 ---
 
 <BaseLayout
   title="Motion Design & Data Visualisation in Melbourne | Matteo Curcio"
   description="Motion design, title and template systems, data visualisation, presentation design and in-store screen content for campaigns, events and corporate communication."
   path="/motion"
+  structuredData={pageSchema}
 >
   <section class="page-head">
     <p class="kicker">Motion Design</p>

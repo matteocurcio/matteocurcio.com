@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { CONTACT_MAILTO } from "../config/site";
+import { CONTACT_MAILTO, SITE_CONFIG } from "../config/site";
 
 const tutoringAreas = [
   {
@@ -138,25 +138,150 @@ const testimonials = [
 
 const tutoringSignals = [
   "One-on-one sessions",
-  "Remote or Fitzroy",
-  "Session rates confirmed before booking",
+  "Typically 2 hours",
+  "Remote or in person in Fitzroy, Melbourne",
+  "One-on-one sessions from $100/h",
   "Team and project blocks quoted on request"
 ];
+
+const faqs = [
+  {
+    q: "Do I need my own footage or project to book a session?",
+    a: "No, but it helps. Sessions are built around whatever you are actually working on, so bringing your own timeline, footage or catalogue makes the time far more useful. If you do not have a project in front of you, we work on supplied material instead."
+  },
+  {
+    q: "Do you teach complete beginners?",
+    a: "Sessions assume you are already using the software and have hit specific walls with it. If you are opening DaVinci Resolve or After Effects for the very first time, a structured beginner course is better value than one-on-one time. Everyone past that point is well served here."
+  },
+  {
+    q: "Are sessions in person or online?",
+    a: "Both. Face-to-face sessions run in Fitzroy at 204 Napier Street, Melbourne. Remote sessions run over Zoom, Teams or Google Meet and work well for screen sharing, live troubleshooting and focused workflow fixes."
+  },
+  {
+    q: "What does a session cost?",
+    a: "One-on-one sessions start from $100/h and are usually booked as a two-hour block. Team or project blocks are quoted on request. Tell me what you are working on and what you want to walk away able to do, and I will come back with a structure and a price."
+  },
+  {
+    q: "Which software do you cover?",
+    a: "DaVinci Resolve, Adobe Premiere Pro, After Effects, Photoshop, Lightroom and Adobe Express, plus the Adobe suite as a connected system and practical AI-assisted workflows. Resolve and Premiere are the most requested."
+  },
+  {
+    q: "Can you train a whole team?",
+    a: "Yes. Team and project blocks are quoted on request, and they usually work best when built around one real job the team is delivering rather than a generic curriculum."
+  }
+];
+
+const siteUrl = `https://${SITE_CONFIG.primaryDomain}`;
+
+const courseSchemas = tutoringAreas.map((area) => ({
+  "@type": "Course",
+  "@id": `${siteUrl}/training/#course-${area.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")}`,
+  name: `${area.name} training in Melbourne`,
+  description: area.description,
+  url: `${siteUrl}/training/`,
+  inLanguage: "en-AU",
+  teaches: area.tag,
+  audience: {
+    "@type": "Audience",
+    audienceType: area.audience
+  },
+  provider: { "@id": `${siteUrl}/#person` },
+  hasCourseInstance: [
+    {
+      "@type": "CourseInstance",
+      courseMode: "onsite",
+      courseWorkload: "PT2H",
+      location: {
+        "@type": "Place",
+        name: "Fitzroy, Melbourne",
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: "204 Napier Street",
+          addressLocality: "Fitzroy",
+          addressRegion: "VIC",
+          postalCode: "3065",
+          addressCountry: "AU"
+        }
+      }
+    },
+    {
+      "@type": "CourseInstance",
+      courseMode: "online",
+      courseWorkload: "PT2H"
+    }
+  ]
+}));
+
+const trainingSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": `${siteUrl}/training/#service`,
+      name: "DaVinci Resolve and Adobe training",
+      serviceType: "One-on-one DaVinci Resolve, Adobe Creative Cloud and post-production workflow training",
+      url: `${siteUrl}/training/`,
+      provider: { "@id": `${siteUrl}/#person` },
+      areaServed: [
+        { "@type": "City", name: "Melbourne" },
+        { "@type": "State", name: "Victoria" },
+        { "@type": "Country", name: "Australia" },
+        "Remote"
+      ],
+      offers: {
+        "@type": "Offer",
+        price: "100",
+        priceCurrency: "AUD",
+        unitText: "hour",
+        availability: "https://schema.org/InStock",
+        url: `${siteUrl}/training/`
+      },
+      review: testimonials.map((item) => ({
+        "@type": "Review",
+        reviewBody: item.quote,
+        author: { "@type": "Person", name: item.name }
+      }))
+    },
+    ...courseSchemas,
+    {
+      "@type": "FAQPage",
+      "@id": `${siteUrl}/training/#faq`,
+      mainEntity: faqs.map((item) => ({
+        "@type": "Question",
+        name: item.q,
+        acceptedAnswer: { "@type": "Answer", text: item.a }
+      }))
+    }
+  ]
+};
+
 ---
 
 <BaseLayout
-  title="Tutoring — Matteo Curcio"
-  description="Private sessions on DaVinci Resolve and the Adobe Creative Suite. Melbourne-based and online. For working professionals, not beginners."
-  path="/tutoring"
+  title="DaVinci Resolve & Adobe Training in Melbourne | Matteo Curcio"
+  description="One-on-one DaVinci Resolve, Premiere Pro and After Effects training in Melbourne and online. Colour grading, editing and workflow taught by a working colourist and RMIT Adobe coach."
+  path="/training"
+  navSection="tutoring"
   ogImage="/images/og/matteo-curcio-tutoring-og.png"
   ogImageAlt="Matteo Curcio private tutoring social card for Resolve, Adobe, AI workflows, and creative systems"
+  structuredData={trainingSchema}
 >
   <section class="services-head">
-    <h1>You've watched the tutorials.<br />Something still isn't clicking.</h1>
+    <p class="kicker">DaVinci Resolve &amp; Adobe Training</p>
+    <h1>DaVinci Resolve and Adobe training in Melbourne</h1>
+    <p class="services-head-standfirst">You've watched the tutorials. Something still isn't clicking.</p>
     <p>
-      Private sessions on DaVinci Resolve and the Adobe Creative Suite - built around your project, your workflow,
-      and your specific gaps. Not a curriculum. Not a course. A conversation with someone who uses these tools on
-      real jobs.
+      One-on-one DaVinci Resolve, Premiere Pro, After Effects, Photoshop and Lightroom training - built around your
+      project, your workflow, and your specific gaps. Not a curriculum. Not a course. A conversation with someone who
+      uses these tools on real jobs, in Melbourne or online.
+    </p>
+    <p>
+      I grade and finish commercials for a living, and I coach Adobe Creative Cloud at RMIT University's Adobe Hub.
+      Sessions come from that: current practice, real constraints, and the shortcuts that only show up on paid work.
+    </p>
+    <p>
+      One-on-one sessions start from $100/h, usually booked as a two-hour block. Team training and project-based blocks
+      are quoted once the scope is clear.
     </p>
     <div class="credibility-strip" aria-label="Tutoring booking details">
       {tutoringSignals.map((item) => <span>{item}</span>)}
@@ -245,6 +370,21 @@ const tutoringSignals = [
             <span>{item.context}</span>
           </p>
         </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section faq-section" aria-label="Training FAQ">
+    <div class="page-head">
+      <p class="kicker">FAQ</p>
+      <h2>The questions that come up before booking.</h2>
+    </div>
+    <div class="faq-list">
+      {faqs.map((item) => (
+        <details class="faq-item">
+          <summary>{item.q}</summary>
+          <p>{item.a}</p>
+        </details>
       ))}
     </div>
   </section>

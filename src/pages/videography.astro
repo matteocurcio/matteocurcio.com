@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { serviceSchema } from "../lib/schema";
 import { CONTACT_MAILTO } from "../config/site";
 
 const process = [
@@ -87,12 +88,21 @@ const pathways = [
     note: "Original composition, score, sync, and mix-minded production support."
   }
 ];
+
+const pageSchema = serviceSchema({
+  path: "/videography/",
+  name: "Videography and Photography",
+  serviceType: "Videography, photography, colour grading, finishing, audio and delivery",
+  audience: "Agencies, brands and producers"
+});
+
 ---
 
 <BaseLayout
   title="Videography in Melbourne | Matteo Curcio"
   description="Melbourne videography, photography, colour grading, finishing, audio and delivery for agencies, brands and producers."
   path="/videography"
+  structuredData={pageSchema}
   navSection="services"
 >
   <section class="page-head">

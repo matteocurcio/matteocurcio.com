@@ -11,3 +11,6 @@ tmp/
 research/wp/
 research/*.html
 research/*.txt
+
+# Scratch: files Claude could not delete (safe to remove)
+_to_delete/

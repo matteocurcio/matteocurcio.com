@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { serviceSchema } from "../lib/schema";
 import { CONTACT_MAILTO } from "../config/site";
 
 const reels = [
@@ -70,12 +71,26 @@ const pathways = [
     note: "Every reel in one place, filterable down to immersive."
   }
 ];
+
+const pageSchema = serviceSchema({
+  path: "/immersive/",
+  name: "Immersive Media, Projection Mapping and AR",
+  alternateName: [
+    "Projection mapping",
+    "Augmented reality production",
+    "360 and VR video"
+  ],
+  serviceType: "Projection mapping, immersive video, augmented reality and in-store media",
+  audience: "Brands, event producers, retail and experiential teams"
+});
+
 ---
 
 <BaseLayout
   title="Immersive Video, Projection Mapping & AR | Matteo Curcio"
   description="Projection mapping, immersive video, augmented reality and in-store media built for real spaces and reliable playback."
   path="/immersive"
+  structuredData={pageSchema}
 >
   <section class="page-head">
     <p class="kicker">Immersive &amp; Interactive</p>

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { serviceSchema } from "../lib/schema";
 import { CONTACT_MAILTO } from "../config/site";
 import { REEL_CAPTIONS } from "../data/reelCaptions";
 
@@ -42,20 +43,42 @@ const included = [
     body: "Correct codecs, correct colour metadata, correct loudness, correct file names, checked against what the broadcaster or platform actually requires — not what someone assumed three weeks ago."
   }
 ];
+
+const pageSchema = serviceSchema({
+  path: "/editing/",
+  name: "Online Editing and Conform",
+  alternateName: [
+    "Online editing",
+    "Conform",
+    "Online finishing",
+    "Video finishing"
+  ],
+  serviceType: "Online editing, conform, versioning, cleanup and platform-correct delivery",
+  audience: "Production companies, agencies, producers and post-production teams"
+});
+
 ---
 
 <BaseLayout
   title="Online Editing & Conform in Melbourne | Matteo Curcio"
   description="Commercial online editing for conform, versioning, cleanup, motion graphics integration and platform-correct delivery."
   path="/editing"
+  structuredData={pageSchema}
+  navSection="services"
 >
   <section class="page-head">
     <p class="kicker">Online Editing</p>
-    <h1>Online editing, conform and delivery.</h1>
+    <h1>Online editor in Melbourne &mdash; conform, versioning and delivery</h1>
+    <p class="services-head-standfirst">Online editing, conform and delivery.</p>
     <p>
       The stage between a locked cut and a master that actually passes QC. Conform, versioning, cleanup, and delivery
       specs that match the platform's real requirements. I treat online as a quality-control environment as much as a
       finishing one — the aim is a master you can send without checking it twice.
+    </p>
+    <p>
+      I work as a freelance online editor and conform artist from Melbourne, with production companies, agencies and
+      post-production teams across Australia and remotely. American and international clients usually call the same
+      role an online editor and finishing colorist; the deliverable is identical either way.
     </p>
     <p class="page-head-actions">
       <a class="button-link" href={CONTACT_MAILTO}>Start a project</a>
@@ -112,6 +135,10 @@ const included = [
     <a class="about-pathway" href="/workflow/">
       <span class="about-pathway-label">Workflow &amp; infrastructure</span>
       <span class="about-pathway-note">The process design that keeps versioning from becoming chaos.</span>
+    </a>
+    <a class="about-pathway" href="/remote/">
+      <span class="about-pathway-label">Remote online editing</span>
+      <span class="about-pathway-note">Conform, review and delivery for teams outside Melbourne.</span>
     </a>
   </nav>
 </BaseLayout>

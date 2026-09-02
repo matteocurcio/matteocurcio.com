@@ -159,4 +159,4 @@ That is what I want to pass on.
 
 ---
 
-*Signal to Noise and Color Systems are currently in development. If you are interested in one-to-one tutoring based on this material, or want to be notified when the courses open, [get in touch](/tutoring).*
+*Signal to Noise and Color Systems are currently in development. If you are interested in one-to-one tutoring based on this material, or want to be notified when the courses open, [get in touch](/training/).*

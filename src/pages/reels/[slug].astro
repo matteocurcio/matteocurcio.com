@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { SITE_CONFIG } from "../../config/site";
 import { LEGACY_BY_SLUG, LEGACY_REELS, getLegacyItem } from "../../data/legacyPortfolio";
 import { WORK_TECHNICAL_CAPTIONS, fallbackTechnicalCaption } from "../../data/workTechnicalCaptions";
 import { REEL_CAPTIONS } from "../../data/reelCaptions";
@@ -947,9 +948,133 @@ const pageDescription = (
     ? `${title} showreel by Matteo Curcio. ${reelSummary.replace(/\s+/g, " ")}`
     : `${title} showreel by Matteo Curcio — colour grading, online editing and finishing from Melbourne, Australia.`
 ).slice(0, 160);
+
+// Each reel is a real video, so give it VideoObject markup — none of these were
+// eligible for video results before. Plus a breadcrumb, and a link down to the
+// service page the reel is evidence for, so these 20 pages stop being dead ends.
+const siteOrigin = `https://${SITE_CONFIG.primaryDomain}`;
+const reelUrl = `${siteOrigin}/reels/${slug}/`;
+const reelThumbnail = cover ? `${siteOrigin}${cover}` : `${siteOrigin}/images/og/matteo-curcio-og.png`;
+
+const REEL_SERVICE_PAGES: Record<string, { href: string; label: string; note: string }> = {
+  "online-editing": {
+    href: "/editing/",
+    label: "Online editing & conform",
+    note: "Conform, versioning, cleanup and platform-correct delivery in Melbourne."
+  },
+  finishing: {
+    href: "/finishing/",
+    label: "Post-production finishing",
+    note: "Colour, online and delivery as one service."
+  },
+  advertising: {
+    href: "/colour-grading/",
+    label: "Colour grading",
+    note: "Commercial grading and look development from Melbourne."
+  },
+  fashion: {
+    href: "/colour-grading/",
+    label: "Colour grading",
+    note: "Fashion and beauty grading with skin tone control."
+  },
+  "beauty-retouch": {
+    href: "/colour-grading/",
+    label: "Colour grading & beauty finishing",
+    note: "Retouch, skin work and delivery-aware grading."
+  },
+  food: {
+    href: "/colour-grading/",
+    label: "Colour grading",
+    note: "Product and food grading built around brand colour."
+  },
+  sport: {
+    href: "/colour-grading/",
+    label: "Colour grading",
+    note: "Sport and campaign grading with real delivery constraints."
+  },
+  realestate: {
+    href: "/videography/",
+    label: "Videography",
+    note: "Shooting with the finish already in mind."
+  },
+  corporate: {
+    href: "/editing/",
+    label: "Online editing & conform",
+    note: "Corporate edits, versioning and clean masters."
+  },
+  "video-games-advertising": {
+    href: "/editing/",
+    label: "Online editing & conform",
+    note: "Gameplay capture, cinematics, supers and legals in one timeline."
+  },
+  dataviz: {
+    href: "/motion/",
+    label: "Motion design & data visualisation",
+    note: "Data communication built to survive the next revision."
+  },
+  presentology: {
+    href: "/presentation/",
+    label: "Presentation design",
+    note: "Keynote visuals and executive decks."
+  },
+  "in-store": {
+    href: "/immersive/",
+    label: "Immersive & in-store media",
+    note: "Retail screens and environment-led content."
+  },
+  mapping: {
+    href: "/immersive/",
+    label: "Projection mapping",
+    note: "Immersive media built for the room it runs in."
+  },
+  immersive: {
+    href: "/immersive/",
+    label: "Immersive, mapping & AR",
+    note: "Projection mapping, 360, VR and AR production."
+  },
+  ar: {
+    href: "/immersive/",
+    label: "Augmented reality",
+    note: "AR and immersive builds for real spaces."
+  },
+  music: { href: "/music/", label: "Music & score", note: "Original composition, sync and score." },
+  sync: { href: "/music/", label: "Sync licensing", note: "Placements across film, television and advertising." },
+  royaltyfree: { href: "/music/", label: "Royalty-free music", note: "Production-ready cues written to licence directly." }
+};
+
+const relatedService = REEL_SERVICE_PAGES[slug];
+
+const reelSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "VideoObject",
+      "@id": `${reelUrl}#video`,
+      name: `${title} showreel — Matteo Curcio`,
+      description: pageDescription,
+      thumbnailUrl: [reelThumbnail],
+      uploadDate: "2026-01-01",
+      contentUrl: videoUrl ? `${siteOrigin}${videoUrl}` : undefined,
+      embedUrl: embeddedUrl || undefined,
+      inLanguage: "en-AU",
+      isFamilyFriendly: true,
+      creator: { "@id": `${siteOrigin}/#person` },
+      publisher: { "@id": `${siteOrigin}/#business` }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": `${reelUrl}#breadcrumb`,
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: `${siteOrigin}/` },
+        { "@type": "ListItem", position: 2, name: "Reels", item: `${siteOrigin}/reels/` },
+        { "@type": "ListItem", position: 3, name: title, item: reelUrl }
+      ]
+    }
+  ]
+};
 ---
 
-<BaseLayout title={pageTitle} description={pageDescription} path={`/reels/${slug}/`} navSection="reels">
+<BaseLayout title={pageTitle} description={pageDescription} path={`/reels/${slug}/`} navSection="reels" structuredData={reelSchema}>
   <article class="project-layout">
     <header class="project-header">
       <h1 class="sr-only">{title} showreel</h1>
@@ -1290,4 +1415,21 @@ const pageDescription = (
     }
   }
 </script>
+
+{relatedService && (
+  <nav class="about-pathways section security-pathways" aria-label="Related service">
+    <a class="about-pathway" href={relatedService.href}>
+      <span class="about-pathway-label">{relatedService.label}</span>
+      <span class="about-pathway-note">{relatedService.note}</span>
+    </a>
+    <a class="about-pathway" href="/reels/">
+      <span class="about-pathway-label">All showreels</span>
+      <span class="about-pathway-note">Colour, online editing, motion, immersive and music.</span>
+    </a>
+    <a class="about-pathway" href="/works/">
+      <span class="about-pathway-label">Selected work</span>
+      <span class="about-pathway-note">Individual projects and the constraints behind them.</span>
+    </a>
+  </nav>
+)}
 </BaseLayout>

@@ -1,0 +1,121 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ServicesEnquiry from "../components/ServicesEnquiry.astro";
+import { serviceSchema } from "../lib/schema";
+
+const pageSchema = serviceSchema({
+  path: "/remote/",
+  name: "Remote Colour Grading and Online Editing",
+  alternateName: [
+    "Remote colour grading Australia",
+    "Remote color grading",
+    "Remote colourist",
+    "Remote online editing"
+  ],
+  serviceType:
+    "Remote colour grading, look development, online editing, conform and delivery for clients across Australia and internationally",
+  audience:
+    "Production companies, agencies, directors and post-production teams outside Melbourne"
+});
+
+const cities = [
+  { name: "Sydney", note: "Agency and commercial work, remote review across the same time zone." },
+  { name: "Brisbane", note: "Campaign grades and online, no travel cost on the budget." },
+  { name: "Perth", note: "Two hours behind Melbourne, which makes for a long shared working day." },
+  { name: "Adelaide", note: "Half an hour behind, effectively local for review sessions." },
+  { name: "Canberra", note: "Government and institutional work with strict delivery specs." },
+  { name: "Hobart", note: "Same time zone, same turnaround as anywhere in Victoria." },
+  { name: "Darwin", note: "Remote sessions scheduled around the half-hour offset." },
+  { name: "New Zealand", note: "Two hours ahead; overnight turnarounds work in your favour." }
+];
+
+const how = [
+  {
+    title: "You send the job, not the drives",
+    body: "Camera originals or graded-ready proxies go up once. I work from a colour-managed Resolve project built around your sources, so nothing is regenerated twice and nothing gets lost between offices."
+  },
+  {
+    title: "Calibrated review, not a compressed stream",
+    body: "Review passes go out as colour-accurate files with the right metadata, or as a live supervised session where that is worth the setup. What you approve on your screen is what leaves mine."
+  },
+  {
+    title: "Notes handled the way an in-person session would",
+    body: "Rounds of notes are versioned from one source of truth, so a change to the hero propagates through cutdowns, aspect ratios and market versions instead of being redone by hand."
+  },
+  {
+    title: "Delivery checked against the real spec",
+    body: "Broadcast, platform and agency deliverables built to what the broadcaster actually requires. A remote job should not mean a master that comes back on QC."
+  }
+];
+---
+
+<BaseLayout
+  title="Remote Colour Grading & Online Editing Australia | Matteo Curcio"
+  description="Remote colourist and online editor for clients across Australia and worldwide. Colour grading, look development, conform, versioning and delivery, run as a colour-managed remote workflow from Melbourne."
+  path="/remote/"
+  navSection="services"
+  ogImage="/images/og/matteo-curcio-services-og.png"
+  ogImageAlt="Matteo Curcio remote colour grading and online editing"
+  structuredData={pageSchema}
+>
+  <section class="page-head">
+    <p class="kicker">Remote</p>
+    <h1>Remote colour grading and online editing, Australia-wide</h1>
+    <p class="services-head-standfirst">Melbourne based. The work does not need you to be.</p>
+    <p>
+      Most of my grading and online work now runs remotely. Clients in Sydney, Brisbane, Perth and further afield get
+      the same colour-managed pipeline, the same versioning discipline and the same delivery checks as a job booked
+      into a Melbourne suite, without a travel line on the budget or a facility day rate attached to it.
+    </p>
+    <p>
+      Australian clients tend to search for a remote colourist; American and international ones write remote colorist
+      or remote color grading. Same service either way — a freelance colourist and online editor working to your
+      timeline and your delivery spec.
+    </p>
+  </section>
+
+  <section class="section lane-grid" aria-label="How remote sessions run">
+    {how.map((item) => (
+      <article class="lane">
+        <h3>{item.title}</h3>
+        <p>{item.body}</p>
+      </article>
+    ))}
+  </section>
+
+  <section class="section" aria-label="Where remote clients are">
+    <div class="page-head">
+      <p class="kicker">Where the work comes from</p>
+      <h2>Time zones that actually work.</h2>
+      <p>
+        Australia spans two and a half hours. That is close enough that a supervised remote session still happens
+        inside one working day, which is the part that usually decides whether remote is worth it.
+      </p>
+    </div>
+    <div class="lane-grid">
+      {cities.map((city) => (
+        <article class="lane">
+          <h3>{city.name}</h3>
+          <p>{city.note}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <ServicesEnquiry heading="Working outside Melbourne?" subject="Remote colour grading enquiry" />
+
+  <nav class="about-pathways section security-pathways" aria-label="Related pages">
+    <a class="about-pathway" href="/colour-grading/">
+      <span class="about-pathway-label">Colour grading</span>
+      <span class="about-pathway-note">Look development, colour management and delivery-aware grading.</span>
+    </a>
+    <a class="about-pathway" href="/editing/">
+      <span class="about-pathway-label">Online editing &amp; conform</span>
+      <span class="about-pathway-note">Conform, versioning, cleanup and platform-correct delivery.</span>
+    </a>
+    <a class="about-pathway" href="/finishing/">
+      <span class="about-pathway-label">Post-production finishing</span>
+      <span class="about-pathway-note">The full colour, online and delivery service in one place.</span>
+    </a>
+  </nav>
+</BaseLayout>
