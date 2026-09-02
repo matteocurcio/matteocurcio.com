@@ -28,9 +28,10 @@ const {
   structuredData
 } = Astro.props;
 
-const canonical = new URL(path, Astro.site);
+const normalizedPath = path === "/" ? "/" : `${path.replace(/\/$/, "")}/`;
+const canonical = new URL(normalizedPath, Astro.site);
 const ogImage = new URL(ogImagePath, Astro.site);
-const normalizedPath = path.replace(/\/$/, "") || "/";
+const activePath = normalizedPath.replace(/\/$/, "") || "/";
 const socialLinks = [
   { label: "LinkedIn", href: SITE_CONFIG.social.linkedin, icon: "/icons/social/linkedin.svg" },
   { label: "GitHub", href: SITE_CONFIG.social.github, icon: "/icons/social/github.svg" },
@@ -74,7 +75,7 @@ const socialLinks = [
       rel="stylesheet"
     />
   </head>
-  <body data-path={path} data-theme={theme} data-theme-lock={theme !== "default" ? "true" : "false"}>
+  <body data-path={activePath} data-theme={theme} data-theme-lock={theme !== "default" ? "true" : "false"}>
     <script is:inline>
       (() => {
         const body = document.body;
@@ -110,12 +111,12 @@ const socialLinks = [
         </a>
         <div class="nav-right">
           <nav class="nav-links" id="site-nav" aria-label="Main" data-nav-links>
-            <a href="/about/" aria-current={normalizedPath === "/about" ? "page" : undefined}>About</a>
-            <a href="/works/" aria-current={(navSection ? navSection === "works" : normalizedPath === "/works" || normalizedPath === "/work" || normalizedPath.startsWith("/projects")) ? "page" : undefined}>Works</a>
-            <a href="/reels/" aria-current={(navSection ? navSection === "reels" : normalizedPath === "/reels") ? "page" : undefined}>Reels</a>
-            <a href="/services/" aria-current={normalizedPath === "/services" ? "page" : undefined}>Services</a>
-            <a href="/tutoring/" aria-current={normalizedPath === "/tutoring" ? "page" : undefined}>Tutoring</a>
-            <a href="/blog/" aria-current={normalizedPath.startsWith("/blog") ? "page" : undefined}>Blog</a>
+            <a href="/about/" aria-current={activePath === "/about" ? "page" : undefined}>About</a>
+            <a href="/works/" aria-current={(navSection ? navSection === "works" : activePath === "/works" || activePath === "/work" || activePath.startsWith("/projects")) ? "page" : undefined}>Works</a>
+            <a href="/reels/" aria-current={(navSection ? navSection === "reels" : activePath === "/reels") ? "page" : undefined}>Reels</a>
+            <a href="/services/" aria-current={activePath === "/services" ? "page" : undefined}>Services</a>
+            <a href="/tutoring/" aria-current={activePath === "/tutoring" ? "page" : undefined}>Tutoring</a>
+            <a href="/blog/" aria-current={activePath.startsWith("/blog") ? "page" : undefined}>Blog</a>
           </nav>
           <div class="nav-actions">
             <button
