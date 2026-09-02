@@ -67,6 +67,7 @@ export default defineConfig({
     "/training": "/tutoring",
     "/work": "/works",
     "/contact": "/about",
+    "/color": "/colour-grading/",
     // The listing duplicated /works, which is the one in the nav.
     "/projects": "/works"
   }
