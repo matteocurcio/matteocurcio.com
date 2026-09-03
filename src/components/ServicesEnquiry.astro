@@ -1,79 +1,125 @@
 ---
 interface Props {
+  buttonLabel?: string;
   heading?: string;
+  intro?: string;
+  panelBody?: string;
+  panelEyebrow?: string;
+  panelHeading?: string;
   subject?: string;
+  variant?: "section" | "form";
 }
 
-const { heading, subject = "Services enquiry" } = Astro.props;
+const {
+  buttonLabel = "Send enquiry",
+  heading,
+  intro = "I am available in person across Melbourne or remotely, depending on project needs, timeline, and workflow.",
+  panelBody = "Send the kind of project, approximate duration, current stage, deadline, and what you need help with. If there is a reference, rough cut, treatment, deck, or previous version, include that too.",
+  panelEyebrow = "Before we start",
+  panelHeading = "A few practical details are enough.",
+  subject = "Services enquiry",
+  variant = "section"
+} = Astro.props;
 ---
 
-<section class="services-enquiry" id="enquiry" aria-label="Services enquiry form">
-  <div class="services-enquiry-grid">
-    <form class="services-form" data-services-form data-services-subject={subject} novalidate>
-      {heading && <h2>{heading}</h2>}
-      <p class="services-form-intro">
-        I am available in person across Melbourne or remotely, depending on project needs, timeline, and workflow.
-      </p>
-      <div class="services-form-grid">
+{variant === "section" ? (
+  <section class="services-enquiry" id="enquiry" aria-label="Services enquiry form">
+    <div class="services-enquiry-grid">
+      <form class="services-form" data-services-form data-services-subject={subject} novalidate>
+        {heading && <h2>{heading}</h2>}
+        <p class="services-form-intro">{intro}</p>
+        <div class="services-form-grid">
+          <label>
+            Name
+            <input type="text" name="name" autocomplete="name" maxlength="80" required />
+          </label>
+          <label>
+            Email
+            <input type="email" name="email" autocomplete="email" maxlength="120" required />
+          </label>
+        </div>
         <label>
-          Name
-          <input type="text" name="name" autocomplete="name" maxlength="80" required />
+          Message
+          <textarea
+            name="message"
+            rows="6"
+            maxlength="2200"
+            placeholder="Share what you need."
+            required
+          ></textarea>
         </label>
-        <label>
-          Email
-          <input type="email" name="email" autocomplete="email" maxlength="120" required />
+        <label class="hp-field" aria-hidden="true">
+          Website
+          <input type="text" name="website" autocomplete="off" tabindex="-1" />
         </label>
-      </div>
+        <input type="hidden" name="formStartedAt" data-form-started-at />
+        <div class="services-form-actions">
+          <button type="submit" class="services-submit">{buttonLabel}</button>
+          <p class="services-form-note" data-form-note aria-live="polite"></p>
+        </div>
+      </form>
+
+      <aside class="services-enquiry-panel" aria-label="How projects usually begin">
+        <div class="services-enquiry-panel-block">
+          <p class="services-enquiry-eyebrow">{panelEyebrow}</p>
+          <h2>{panelHeading}</h2>
+          <p>{panelBody}</p>
+        </div>
+
+        <div class="services-enquiry-panel-block services-enquiry-panel-split">
+          <div>
+            <p class="services-enquiry-minihead">Useful information</p>
+            <p class="services-enquiry-list">
+              Project type, running time, edit status, format, delivery date, review process, and any technical
+              requirements already known.
+            </p>
+          </div>
+          <div>
+            <p class="services-enquiry-minihead">Helpful context</p>
+            <p class="services-enquiry-list">
+              Reference films, stills, colour notes, brand guidelines, sample exports, camera details, and whether the
+              job needs to happen in Melbourne, remotely, or a mix of both.
+            </p>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+) : (
+  <form class="services-form" data-services-form data-services-subject={subject} novalidate>
+    {heading && <h2>{heading}</h2>}
+    <p class="services-form-intro">{intro}</p>
+    <div class="services-form-grid">
       <label>
-        Message
-        <textarea
-          name="message"
-          rows="6"
-          maxlength="2200"
-          placeholder="Share what you need."
-          required
-        ></textarea>
+        Name
+        <input type="text" name="name" autocomplete="name" maxlength="80" required />
       </label>
-      <label class="hp-field" aria-hidden="true">
-        Website
-        <input type="text" name="website" autocomplete="off" tabindex="-1" />
+      <label>
+        Email
+        <input type="email" name="email" autocomplete="email" maxlength="120" required />
       </label>
-      <input type="hidden" name="formStartedAt" data-form-started-at />
-      <div class="services-form-actions">
-        <button type="submit" class="services-submit">Send enquiry</button>
-        <p class="services-form-note" data-form-note aria-live="polite"></p>
-      </div>
-    </form>
-
-    <aside class="services-enquiry-panel" aria-label="How projects usually begin">
-      <div class="services-enquiry-panel-block">
-        <p class="services-enquiry-eyebrow">Before we start</p>
-        <h2>A few practical details are enough.</h2>
-        <p>
-          Send the kind of project, approximate duration, current stage, deadline, and what you need help with.
-          If there is a reference, rough cut, treatment, deck, or previous version, include that too.
-        </p>
-      </div>
-
-      <div class="services-enquiry-panel-block services-enquiry-panel-split">
-        <div>
-          <p class="services-enquiry-minihead">Useful information</p>
-          <p class="services-enquiry-list">
-            Project type, running time, edit status, format, delivery date, review process, and any technical
-            requirements already known.
-          </p>
-        </div>
-        <div>
-          <p class="services-enquiry-minihead">Helpful context</p>
-          <p class="services-enquiry-list">
-            Reference films, stills, colour notes, brand guidelines, sample exports, camera details, and whether the
-            job needs to happen in Melbourne, remotely, or a mix of both.
-          </p>
-        </div>
-      </div>
-    </aside>
-  </div>
-</section>
+    </div>
+    <label>
+      Message
+      <textarea
+        name="message"
+        rows="6"
+        maxlength="2200"
+        placeholder="Tell me what you are trying to learn, where you are stuck, and whether you prefer remote or in-person."
+        required
+      ></textarea>
+    </label>
+    <label class="hp-field" aria-hidden="true">
+      Website
+      <input type="text" name="website" autocomplete="off" tabindex="-1" />
+    </label>
+    <input type="hidden" name="formStartedAt" data-form-started-at />
+    <div class="services-form-actions">
+      <button type="submit" class="services-submit">{buttonLabel}</button>
+      <p class="services-form-note" data-form-note aria-live="polite"></p>
+    </div>
+  </form>
+)}
 
 <script is:inline>
   const forms = document.querySelectorAll("[data-services-form]");

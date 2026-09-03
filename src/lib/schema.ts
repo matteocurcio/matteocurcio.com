@@ -32,7 +32,7 @@ export const PERSON_SCHEMA = {
   memberOf: [
     { "@type": "Organization", name: "Australian Screen Editors (ASE)" },
     { "@type": "Organization", name: "International VR Professionals Association (IVRPA)" },
-    { "@type": "Organization", name: "International Documentary Festival (IDF)" }
+    { "@type": "Organization", name: "Interaction Design Foundation (IxDF)", url: "https://ixdf.org/" }
   ],
   knowsAbout: [
     "Colour Grading",

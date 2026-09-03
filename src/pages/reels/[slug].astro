@@ -584,20 +584,25 @@ function splitMagazineParagraphs(text: string) {
   const normalized = normalizedNewlines
     .replace(/\s+/g, " ")
     .replace(/\bSt\.\s*Petersburg\b/g, "St__PETERSBURG__")
+    .replace(/\bDr\.\s*No\b/g, "Dr__NO__")
     .trim();
   const sentences =
     normalized
       .match(/[^.!?]+[.!?]+(?:["')\]]+)?|[^.!?]+$/g)
-      ?.map((part) => part.replace(/St__PETERSBURG__/g, "St.Petersburg").trim())
+      ?.map((part) => part.replace(/St__PETERSBURG__/g, "St.Petersburg").replace(/Dr__NO__/g, "Dr. No").trim())
       .filter(Boolean) ||
     [normalized];
 
-  if (sentences.length <= 2) return [normalized.replace(/St__PETERSBURG__/g, "St.Petersburg")];
+  if (sentences.length <= 2) {
+    return [normalized.replace(/St__PETERSBURG__/g, "St.Petersburg").replace(/Dr__NO__/g, "Dr. No")];
+  }
 
   const sentenceWordCounts = sentences.map((sentence) => sentence.split(/\s+/).filter(Boolean).length);
   const totalWords = sentenceWordCounts.reduce((sum, count) => sum + count, 0);
 
-  if (totalWords < 42 || sentences.length < 3) return [normalized.replace(/St__PETERSBURG__/g, "St.Petersburg")];
+  if (totalWords < 42 || sentences.length < 3) {
+    return [normalized.replace(/St__PETERSBURG__/g, "St.Petersburg").replace(/Dr__NO__/g, "Dr. No")];
+  }
 
   const minParagraphWords = 18;
   let bestBreak = -1;
@@ -615,7 +620,9 @@ function splitMagazineParagraphs(text: string) {
     }
   }
 
-  if (bestBreak === -1) return [normalized.replace(/St__PETERSBURG__/g, "St.Petersburg")];
+  if (bestBreak === -1) {
+    return [normalized.replace(/St__PETERSBURG__/g, "St.Petersburg").replace(/Dr__NO__/g, "Dr. No")];
+  }
 
   return [
     sentences.slice(0, bestBreak + 1).join(" "),

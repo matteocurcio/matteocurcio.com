@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { CONTACT_MAILTO, SITE_CONFIG } from "../config/site";
+import ServicesEnquiry from "../components/ServicesEnquiry.astro";
+import { SITE_CONFIG } from "../config/site";
 
 const tutoringAreas = [
   {
@@ -13,24 +14,34 @@ const tutoringAreas = [
       "Resolve is powerful because it joins edit, grade, audio, VFX, and delivery in one place. Sessions focus on the part you actually need, using your footage, your timeline, and the gaps slowing you down.",
     audience:
       "Editors, colorists, DOPs, directors, and content creators who want to work in Resolve properly - not just survive in it.",
-    ctaLabel: "Book a Resolve session",
-    ctaUrl: "https://www.superprof.com.au/certified-davinci-resolve-editor-and-colorist-offering-one-one-training-for-editors-videomakers-influencers-directors-dop-and.html"
+    ctaLabel: "Ask about Resolve"
   },
   {
     number: "02",
     icon: "/icons/apps/premiere-pro.png",
     iconAlt: "Adobe Premiere Pro",
     name: "Adobe Premiere Pro",
-    tag: "Timeline flow and exports",
+    tag: "Timeline flow, handoff, and exports",
     description:
-      "Premiere sessions are about speed, organisation, and fewer avoidable mistakes. We work on sequence structure, multicam, Dynamic Link, exports, and the habits that keep projects moving cleanly.",
+      "Premiere sessions are about speed, organisation, and fewer avoidable mistakes. We work on sequence structure, multicam, Dynamic Link, exports, and the handoffs that keep projects moving cleanly.",
     audience:
       "Editors at any level who want to work faster, waste less time troubleshooting, and stop rediscovering the same things repeatedly.",
-    ctaLabel: "Book a Premiere session",
-    ctaUrl: "https://www.superprof.com.au/certified-davinci-resolve-editor-and-colorist-offering-one-one-training-for-editors-videomakers-influencers-directors-dop-and.html"
+    ctaLabel: "Ask about Premiere"
   },
   {
     number: "03",
+    icon: "/icons/apps/final-cut-pro.svg",
+    iconAlt: "Final Cut Pro",
+    name: "Final Cut Pro workflows",
+    tag: "Libraries, handoff, and finishing",
+    description:
+      "Final Cut Pro sessions focus on getting from a clean edit to a clean finish: library structure, media management, roles, XML handoff, review exports, and moving projects into Resolve when the grade or delivery needs it.",
+    audience:
+      "Editors, videomakers, and small teams who like cutting in Final Cut Pro but need stronger workflow habits around delivery and collaboration.",
+    ctaLabel: "Ask about Final Cut"
+  },
+  {
+    number: "04",
     icon: "/icons/apps/after-effects.png",
     iconAlt: "Adobe After Effects",
     name: "After Effects",
@@ -39,11 +50,10 @@ const tutoringAreas = [
       "After Effects gets easier once the structure makes sense. Sessions cover motion basics, compositing, pre-comps, expressions, and the points where After Effects and Premiere usually start wasting your time.",
     audience:
       "Editors moving into motion, motion designers filling technical gaps, and anyone who has been faking their way through expressions.",
-    ctaLabel: "Book an After Effects session",
-    ctaUrl: "https://www.superprof.com.au/certified-davinci-resolve-editor-and-colorist-offering-one-one-training-for-editors-videomakers-influencers-directors-dop-and.html"
+    ctaLabel: "Ask about After Effects"
   },
   {
-    number: "04",
+    number: "05",
     icon: "/icons/apps/photoshop.png",
     iconAlt: "Adobe Photoshop",
     name: "Adobe Photoshop",
@@ -52,11 +62,10 @@ const tutoringAreas = [
       "Photoshop sessions focus on the detailed end of the image: retouching, masking, cleanup, compositing, and the small technical decisions that make stills feel properly finished.",
     audience:
       "Photographers, retouchers, designers, and content creators who want more control over the final image instead of relying on guesswork.",
-    ctaLabel: "Book a Photoshop session",
-    ctaUrl: "https://www.superprof.com.au/certified-davinci-resolve-editor-and-colorist-offering-one-one-training-for-editors-videomakers-influencers-directors-dop-and.html"
+    ctaLabel: "Ask about Photoshop"
   },
   {
-    number: "05",
+    number: "06",
     icon: "/icons/apps/lightroom.png",
     iconAlt: "Adobe Lightroom",
     name: "Adobe Lightroom",
@@ -65,24 +74,22 @@ const tutoringAreas = [
       "Lightroom sessions are about speed and consistency across whole bodies of work. We can focus on catalogue structure, colour workflow, batch editing, exports, and keeping large libraries manageable.",
     audience:
       "Photographers and image-makers who want a cleaner, faster workflow from ingest to export.",
-    ctaLabel: "Book a Lightroom session",
-    ctaUrl: "https://www.superprof.com.au/certified-davinci-resolve-editor-and-colorist-offering-one-one-training-for-editors-videomakers-influencers-directors-dop-and.html"
+    ctaLabel: "Ask about Lightroom"
   },
   {
-    number: "06",
+    number: "07",
     icon: "/icons/apps/adobe-suite.png",
     iconAlt: "Adobe Creative Cloud",
     name: "Adobe Suite as a System",
     tag: "Connected suite-wide production",
     description:
-      "This is for people using Adobe all day but feeling the workflow is messier than it should be. We look at file structure, asset flow, shared libraries, and which tool should handle which part of the job.",
+      "This is for people using the Adobe suite all day but feeling the workflow is messier than it should be. We look at file structure, asset flow, shared libraries, Acrobat, Illustrator, InDesign, Media Encoder, and which tool should handle which part of the job.",
     audience:
       "Designers, creative directors, and production teams who live inside Adobe all day and suspect there is a smarter way to organise it all.",
-    ctaLabel: "Book a workflow session",
-    ctaUrl: "https://www.superprof.com.au/certified-davinci-resolve-editor-and-colorist-offering-one-one-training-for-editors-videomakers-influencers-directors-dop-and.html"
+    ctaLabel: "Ask about Adobe workflows"
   },
   {
-    number: "07",
+    number: "08",
     icon: "/icons/apps/adobe-express-official.png",
     iconAlt: "Adobe Express",
     name: "Adobe Express",
@@ -91,21 +98,7 @@ const tutoringAreas = [
       "Adobe Express is best when speed and consistency matter at the same time. Sessions cover brand kits, templates, simple motion, and repeatable content systems that do not need a full design team behind them.",
     audience:
       "Marketing teams, content creators, educators, and small business owners who need to produce consistent, professional-looking content quickly and without a steep learning curve.",
-    ctaLabel: "Book an Express session",
-    ctaUrl: "https://www.superprof.com.au/certified-davinci-resolve-editor-and-colorist-offering-one-one-training-for-editors-videomakers-influencers-directors-dop-and.html"
-  },
-  {
-    number: "08",
-    icon: "/icons/apps/ai-workflows.svg",
-    iconAlt: "AI-assisted workflows",
-    name: "AI-Assisted Workflows",
-    tag: "Automation, prompting, practical creative systems",
-    description:
-      "This is for people who want to use AI tools sensibly inside real creative work: research support, transcript cleanup, first-pass asset organisation, prompt design, and small automations that save time without making the work generic.",
-    audience:
-      "Editors, photographers, designers, educators, and small teams who want practical AI habits they can trust rather than hype they cannot repeat.",
-    ctaLabel: "Book an AI workflow session",
-    ctaUrl: "https://www.superprof.com.au/certified-davinci-resolve-editor-and-colorist-offering-one-one-training-for-editors-videomakers-influencers-directors-dop-and.html"
+    ctaLabel: "Ask about Express"
   }
 ];
 
@@ -114,31 +107,34 @@ const testimonials = [
     quote:
       "Matteo's pace was just right for me. He was clear in his instructions, logical in his flow of teaching, and happy to answer my questions.",
     name: "Gwendolyn",
-    context: "DaVinci Resolve · Melbourne"
+    context: "DaVinci Resolve · Melbourne",
+    image: "/images/testimonials/gwendolyn.jpg"
   },
   {
     quote:
       "Matteo knows all the technical aspects of DaVinci Resolve very well, answered all my detailed questions, and communicated the concepts in an easily digestible manner. Happy to recommend him to others.",
     name: "Tim",
-    context: "DaVinci Resolve · online"
+    context: "DaVinci Resolve · online",
+    image: "/images/testimonials/tim.jpg"
   },
   {
     quote:
       "We covered the basics of multicam editing and he picked up the concepts quickly. Matteo tailored the session completely to the project I was working on.",
     name: "Diego",
-    context: "DaVinci Resolve · music video project"
+    context: "DaVinci Resolve · music video project",
+    image: "/images/testimonials/diego.jpg"
   },
   {
     quote:
       "Fantastic session. Matteo is very knowledgeable, very clear, and quick to diagnose exactly what was slowing me down in my workflow.",
     name: "Brian",
-    context: "DaVinci Resolve · online"
+    context: "DaVinci Resolve · online",
+    image: "/images/testimonials/brian.jpg"
   }
 ];
 
 const tutoringSignals = [
   "One-on-one sessions",
-  "Typically 2 hours",
   "Remote or in person in Fitzroy, Melbourne",
   "One-on-one sessions from $100/h",
   "Team and project blocks quoted on request"
@@ -146,26 +142,32 @@ const tutoringSignals = [
 
 const faqs = [
   {
+    icon: "project",
     q: "Do I need my own footage or project to book a session?",
     a: "No, but it helps. Sessions are built around whatever you are actually working on, so bringing your own timeline, footage or catalogue makes the time far more useful. If you do not have a project in front of you, we work on supplied material instead."
   },
   {
+    icon: "beginner",
     q: "Do you teach complete beginners?",
-    a: "Sessions assume you are already using the software and have hit specific walls with it. If you are opening DaVinci Resolve or After Effects for the very first time, a structured beginner course is better value than one-on-one time. Everyone past that point is well served here."
+    a: "Yes. If you are opening Resolve, Premiere, Final Cut Pro or an Adobe app for the first time, we start from the interface, the basic language, and one small practical goal. You do not need to arrive already fluent."
   },
   {
+    icon: "location",
     q: "Are sessions in person or online?",
     a: "Both. Face-to-face sessions run in Fitzroy at 204 Napier Street, Melbourne. Remote sessions run over Zoom, Teams or Google Meet and work well for screen sharing, live troubleshooting and focused workflow fixes."
   },
   {
+    icon: "pricing",
     q: "What does a session cost?",
-    a: "One-on-one sessions start from $100/h and are usually booked as a two-hour block. Team or project blocks are quoted on request. Tell me what you are working on and what you want to walk away able to do, and I will come back with a structure and a price."
+    a: "One-on-one sessions start from $100/h. Team or project blocks are quoted on request. Tell me what you are working on and what you want to walk away able to do, and I will suggest a simple structure before anything is booked."
   },
   {
+    icon: "software",
     q: "Which software do you cover?",
-    a: "DaVinci Resolve, Adobe Premiere Pro, After Effects, Photoshop, Lightroom and Adobe Express, plus the Adobe suite as a connected system and practical AI-assisted workflows. Resolve and Premiere are the most requested."
+    a: "DaVinci Resolve, Adobe Premiere Pro, Final Cut Pro workflows, After Effects, Photoshop, Lightroom, Adobe Express, and the rest of the Adobe suite as a connected production system. Resolve and Premiere are the most requested."
   },
   {
+    icon: "team",
     q: "Can you train a whole team?",
     a: "Yes. Team and project blocks are quoted on request, and they usually work best when built around one real job the team is delivering rather than a generic curriculum."
   }
@@ -176,7 +178,7 @@ const siteUrl = `https://${SITE_CONFIG.primaryDomain}`;
 const courseSchemas = tutoringAreas.map((area) => ({
   "@type": "Course",
   "@id": `${siteUrl}/training/#course-${area.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")}`,
-  name: `${area.name} training in Melbourne`,
+  name: `${area.name} training in Melbourne and remote`,
   description: area.description,
   url: `${siteUrl}/training/`,
   inLanguage: "en-AU",
@@ -190,7 +192,6 @@ const courseSchemas = tutoringAreas.map((area) => ({
     {
       "@type": "CourseInstance",
       courseMode: "onsite",
-      courseWorkload: "PT2H",
       location: {
         "@type": "Place",
         name: "Fitzroy, Melbourne",
@@ -206,8 +207,7 @@ const courseSchemas = tutoringAreas.map((area) => ({
     },
     {
       "@type": "CourseInstance",
-      courseMode: "online",
-      courseWorkload: "PT2H"
+      courseMode: "online"
     }
   ]
 }));
@@ -258,30 +258,29 @@ const trainingSchema = {
 ---
 
 <BaseLayout
-  title="DaVinci Resolve & Adobe Training in Melbourne | Matteo Curcio"
-  description="One-on-one DaVinci Resolve, Premiere Pro and After Effects training in Melbourne and online, taught by a working colourist and RMIT Adobe coach."
+  title="DaVinci Resolve & Adobe Training in Melbourne and Remote | Matteo Curcio"
+  description="One-on-one DaVinci Resolve, Premiere Pro, Final Cut Pro and Adobe training in Melbourne and online, taught by a working colourist and RMIT Adobe coach."
   path="/training"
   navSection="tutoring"
   ogImage="/images/og/matteo-curcio-tutoring-og.png"
-  ogImageAlt="Matteo Curcio private tutoring social card for Resolve, Adobe, AI workflows, and creative systems"
+  ogImageAlt="Matteo Curcio private tutoring social card for Resolve, Premiere, Final Cut Pro, Adobe workflows, and creative systems"
   structuredData={trainingSchema}
 >
   <section class="services-head">
     <p class="kicker">DaVinci Resolve &amp; Adobe Training</p>
-    <h1>DaVinci Resolve and Adobe training in Melbourne</h1>
+    <h1>DaVinci Resolve and Adobe training in Melbourne and remote</h1>
     <p class="services-head-standfirst">You've watched the tutorials. Something still isn't clicking.</p>
     <p>
-      One-on-one DaVinci Resolve, Premiere Pro, After Effects, Photoshop and Lightroom training - built around your
-      project, your workflow, and your specific gaps. Not a curriculum. Not a course. A conversation with someone who
-      uses these tools on real jobs, in Melbourne or online.
+      One-on-one DaVinci Resolve, Premiere Pro, Final Cut Pro workflow, After Effects, Photoshop and Lightroom training
+      - built around your project, your workflow, and your specific gaps. Not a curriculum. Not a course. A conversation
+      with someone who uses these tools on real jobs, in Melbourne or online.
     </p>
     <p>
       I grade and finish commercials for a living, and I coach Adobe Creative Cloud at RMIT University's Adobe Hub.
       Sessions come from that: current practice, real constraints, and the shortcuts that only show up on paid work.
     </p>
     <p>
-      One-on-one sessions start from $100/h, usually booked as a two-hour block. Team training and project-based blocks
-      are quoted once the scope is clear.
+      One-on-one sessions start from $100/h. Team training and project-based blocks are quoted once the scope is clear.
     </p>
     <div class="credibility-strip" aria-label="Tutoring booking details">
       {tutoringSignals.map((item) => <span>{item}</span>)}
@@ -310,7 +309,7 @@ const trainingSchema = {
           <p class="service-description">{area.description}</p>
           <p class="service-audience"><em>For {area.audience}</em></p>
           <p class="service-cta-wrap">
-            <a class="button-link tutoring-card-button" href={area.ctaUrl} target="_blank" rel="noopener noreferrer">
+            <a class="button-link tutoring-card-button" href="#enquiry">
               {area.ctaLabel}
             </a>
           </p>
@@ -364,6 +363,7 @@ const trainingSchema = {
     <div class="tutoring-testimonial-grid">
       {testimonials.map((item) => (
         <article class="tutoring-quote">
+          <img class="tutoring-quote-photo" src={item.image} alt={`${item.name} testimonial avatar`} loading="lazy" />
           <blockquote>{item.quote}</blockquote>
           <p class="tutoring-quote-meta">
             <span>{item.name}</span>
@@ -374,29 +374,31 @@ const trainingSchema = {
     </div>
   </section>
 
-  <section class="section faq-section" aria-label="Training FAQ">
-    <div class="page-head">
-      <p class="kicker">FAQ</p>
-      <h2>The questions that come up before booking.</h2>
+  <section class="section training-contact-grid" id="enquiry" aria-label="Training questions and enquiry form">
+    <div class="faq-section">
+      <div class="page-head">
+        <p class="kicker">FAQ</p>
+        <h2>The questions that come up before booking.</h2>
+      </div>
+      <div class="faq-list">
+        {faqs.map((item) => (
+          <details class="faq-item">
+            <summary>
+              <span class={`faq-icon faq-icon-${item.icon}`} aria-hidden="true"></span>
+              <span>{item.q}</span>
+            </summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
     </div>
-    <div class="faq-list">
-      {faqs.map((item) => (
-        <details class="faq-item">
-          <summary>{item.q}</summary>
-          <p>{item.a}</p>
-        </details>
-      ))}
-    </div>
-  </section>
 
-  <section class="cta section">
-    <div>
-      <h2>Prefer to book directly?</h2>
-      <p>
-        If you would rather explain what you are working on before choosing a session, email me directly and I will
-        suggest the cleanest way to structure it.
-      </p>
-    </div>
-    <a href={CONTACT_MAILTO}>Contact me</a>
+    <ServicesEnquiry
+      variant="form"
+      heading="Drop me an email"
+      intro="Tell me what you are trying to learn, where you are stuck, and whether you prefer remote or in-person. No need to choose a package or pay anything before we have worked out what would actually help."
+      buttonLabel="Send message"
+      subject="Training enquiry"
+    />
   </section>
 </BaseLayout>
