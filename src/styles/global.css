@@ -2054,8 +2054,16 @@ h1 {
 }
 
 .finishing-faq-grid article {
+  display: grid;
+  grid-template-columns: 1.65rem minmax(0, 1fr);
+  align-items: start;
+  column-gap: 0.72rem;
   padding-top: 0.8rem;
   border-top: 1px solid rgb(31 29 27 / 10%);
+}
+
+.finishing-faq-grid .faq-icon {
+  margin-top: 0.03rem;
 }
 
 .finishing-faq-grid h3 {
@@ -2065,6 +2073,7 @@ h1 {
 }
 
 .finishing-faq-grid p {
+  grid-column: 2;
   margin: 0;
   color: var(--muted);
   line-height: 1.48;
@@ -2105,6 +2114,30 @@ h1 {
   background: var(--text);
   color: #fff;
   border-color: var(--text);
+}
+
+.home-cta-with-form {
+  grid-template-columns: minmax(0, 0.92fr) minmax(20rem, 0.78fr);
+  align-items: start;
+}
+
+.home-cta-with-form .services-form {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.home-cta-with-form .services-form h2 {
+  margin: 0;
+  font-size: clamp(1.16rem, 1.8vw, 1.42rem);
+}
+
+.home-cta-with-form .services-form-intro {
+  font-size: 0.94rem;
+  line-height: 1.5;
 }
 
 @media (max-width: 980px) {

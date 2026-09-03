@@ -1,4 +1,6 @@
 ---
+import { SITE_CONFIG } from "../config/site";
+
 interface Props {
   buttonLabel?: string;
   heading?: string;
@@ -20,12 +22,14 @@ const {
   subject = "Services enquiry",
   variant = "section"
 } = Astro.props;
+
+const contactEmail = SITE_CONFIG.contactEmail;
 ---
 
 {variant === "section" ? (
   <section class="services-enquiry" id="enquiry" aria-label="Services enquiry form">
     <div class="services-enquiry-grid">
-      <form class="services-form" data-services-form data-services-subject={subject} novalidate>
+      <form class="services-form" data-services-form data-services-subject={subject} data-contact-email={contactEmail} novalidate>
         {heading && <h2>{heading}</h2>}
         <p class="services-form-intro">{intro}</p>
         <div class="services-form-grid">
@@ -86,7 +90,7 @@ const {
     </div>
   </section>
 ) : (
-  <form class="services-form" data-services-form data-services-subject={subject} novalidate>
+  <form class="services-form" data-services-form data-services-subject={subject} data-contact-email={contactEmail} novalidate>
     {heading && <h2>{heading}</h2>}
     <p class="services-form-intro">{intro}</p>
     <div class="services-form-grid">
@@ -128,6 +132,19 @@ const {
   const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const LAST_SUBMIT_KEY = "mc_services_last_submit";
   const FORM_ENDPOINT = "https://formsubmit.co/ajax/hello@matteocurcio.com";
+
+  function openEmailFallback(form, name, email, message) {
+    const contactEmail = form.dataset.contactEmail || "hello@matteocurcio.com";
+    const subject = form.dataset.servicesSubject || "Website enquiry";
+    const body = [
+      `Name: ${name}`,
+      `Email: ${email}`,
+      "",
+      message
+    ].join("\n");
+
+    window.location.href = `mailto:${encodeURIComponent(contactEmail)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  }
 
   forms.forEach((form) => {
     const formNote = form.querySelector("[data-form-note]");
@@ -206,7 +223,7 @@ const {
 
         const payload = await response.json().catch(() => null);
         if (!response.ok || (payload && payload.success === "false")) {
-          throw new Error("Form submission failed.");
+          throw new Error(payload?.message || "Form submission failed.");
         }
 
         window.localStorage.setItem(LAST_SUBMIT_KEY, String(now));
@@ -218,8 +235,9 @@ const {
           formNote.textContent = "Enquiry sent. Thank you.";
         }
       } catch (error) {
+        openEmailFallback(form, name, email, message);
         if (formNote) {
-          formNote.textContent = "Unable to send right now. Please try again shortly.";
+          formNote.textContent = "Your email app should open with this message ready to send.";
         }
       } finally {
         if (submitButton instanceof HTMLButtonElement) {

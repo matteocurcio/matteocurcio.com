@@ -1,7 +1,7 @@
 ---
-import { CONTACT_MAILTO, SITE_CONFIG } from "../config/site";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ClientMarquee from "../components/ClientMarquee.astro";
+import ServicesEnquiry from "../components/ServicesEnquiry.astro";
 import ThumbnailCarousel from "../components/ThumbnailCarousel.astro";
 import { serviceSchema } from "../lib/schema";
 
@@ -30,21 +30,25 @@ const capabilities = [
 
 const faqs = [
   {
+    icon: "pricing",
     question: "How do you charge?",
     answer:
       "Day rate, or a fixed quote where the scope is clear enough to price as a package. Versioning and delivery quote flat more easily than the grade."
   },
   {
+    icon: "location",
     question: "Can we attend the grade?",
     answer:
       "I work remotely rather than hosting attended sessions. Review goes out as files and notes come back over email or a call. It keeps room and attendance costs out of the quote — on a commercial, not a small share of it."
   },
   {
+    icon: "project",
     question: "What do I send you?",
     answer:
       "A locked cut, the project file, camera originals, your delivery specs, and anything the client has already signed off. If the specs are the part you are unsure about, send what you have and I will tell you what is missing."
   },
   {
+    icon: "software",
     question: "What do you work in?",
     answer:
       "DaVinci Resolve for grade and finish. Conform comes in from Premiere, Final Cut Pro or Resolve — an XML with handles is enough to start."
@@ -159,6 +163,7 @@ const pageSchema = serviceSchema({
       <div class="finishing-faq-grid">
         {faqs.map((item) => (
           <article>
+            <span class={`faq-icon faq-icon-${item.icon}`} aria-hidden="true"></span>
             <h3>{item.question}</h3>
             <p>{item.answer}</p>
           </article>
@@ -168,23 +173,22 @@ const pageSchema = serviceSchema({
   </section>
 
   <section class="home-section section">
-    <div class="home-cta">
+    <div class="home-cta home-cta-with-form">
       <div>
         <p class="kicker">Start here</p>
         <h2>Post-house finish, without the post house.</h2>
         <p>
           Tell me what you are making, where it is up to, and what has to be delivered. I will come back with an
           approach and a quote.
-          <br />
-          Direct email: <a href={CONTACT_MAILTO}>{SITE_CONFIG.contactEmail}</a>
         </p>
       </div>
-      <div class="home-cta-actions">
-        <a class="home-button home-button-primary" href={CONTACT_MAILTO}>Start a project</a>
-        <a class="home-button" href="/works/">View projects</a>
-        <a class="home-button" href="/reels/finishing/">View finishing reel</a>
-        <a class="home-button" href="/remote/">Remote grading</a>
-      </div>
+      <ServicesEnquiry
+        variant="form"
+        heading="Send the brief"
+        intro="A few lines is enough. Share the cut length, where the job is up to, the deadline, and any delivery specs you already have."
+        buttonLabel="Send message"
+        subject="Finishing enquiry"
+      />
     </div>
   </section>
 </BaseLayout>
