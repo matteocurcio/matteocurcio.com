@@ -266,25 +266,35 @@ const trainingSchema = {
   ogImageAlt="Matteo Curcio private tutoring social card for Resolve, Premiere, Final Cut Pro, Adobe workflows, and creative systems"
   structuredData={trainingSchema}
 >
-  <section class="services-head">
-    <p class="kicker">DaVinci Resolve &amp; Adobe Training</p>
-    <h1>DaVinci Resolve and Adobe training in Melbourne and remote</h1>
-    <p class="services-head-standfirst">You've watched the tutorials. Something still isn't clicking.</p>
-    <p>
-      One-on-one DaVinci Resolve, Premiere Pro, Final Cut Pro workflow, After Effects, Photoshop and Lightroom training
-      - built around your project, your workflow, and your specific gaps. Not a curriculum. Not a course. A conversation
-      with someone who uses these tools on real jobs, in Melbourne or online.
-    </p>
-    <p>
-      I grade and finish commercials for a living, and I coach Adobe Creative Cloud at RMIT University's Adobe Hub.
-      Sessions come from that: current practice, real constraints, and the shortcuts that only show up on paid work.
-    </p>
-    <p>
-      One-on-one sessions start from $100/h. Team training and project-based blocks are quoted once the scope is clear.
-    </p>
-    <div class="credibility-strip" aria-label="Tutoring booking details">
-      {tutoringSignals.map((item) => <span>{item}</span>)}
+  <section class="services-head training-hero">
+    <div class="training-hero-copy">
+      <p class="kicker">DaVinci Resolve &amp; Adobe Training</p>
+      <h1>DaVinci Resolve and Adobe training in Melbourne and remote</h1>
+      <p class="services-head-standfirst">You've watched the tutorials. Something still isn't clicking.</p>
+      <p>
+        One-on-one DaVinci Resolve, Premiere Pro, Final Cut Pro workflow, After Effects, Photoshop and Lightroom training
+        - built around your project, your workflow, and your specific gaps. Not a curriculum. Not a course. A conversation
+        with someone who uses these tools on real jobs, in Melbourne or online.
+      </p>
+      <p>
+        I grade and finish commercials for a living, and I coach Adobe Creative Cloud at RMIT University's Adobe Hub.
+        Sessions come from that: current practice, real constraints, and the shortcuts that only show up on paid work.
+      </p>
+      <p>
+        One-on-one sessions start from $100/h. Team training and project-based blocks are quoted once the scope is clear.
+      </p>
+      <div class="credibility-strip" aria-label="Tutoring booking details">
+        {tutoringSignals.map((item) => <span>{item}</span>)}
+      </div>
     </div>
+    <figure class="training-hero-media">
+      <img
+        src="/images/training/colour-systems-foundations.jpeg"
+        alt="Colour Systems foundations slide for a DaVinci Resolve colour training session"
+        loading="eager"
+        decoding="async"
+      />
+    </figure>
   </section>
 
   <section class="services-index services-card-grid tutoring-index" aria-label="Tutoring areas">

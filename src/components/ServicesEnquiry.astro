@@ -1,8 +1,7 @@
 ---
-import { SITE_CONFIG } from "../config/site";
-
 interface Props {
   buttonLabel?: string;
+  formKicker?: string;
   heading?: string;
   intro?: string;
   panelBody?: string;
@@ -14,7 +13,8 @@ interface Props {
 
 const {
   buttonLabel = "Send enquiry",
-  heading,
+  formKicker = "Enquiry",
+  heading = "Tell me what you need.",
   intro = "I am available in person across Melbourne or remotely, depending on project needs, timeline, and workflow.",
   panelBody = "Send the kind of project, approximate duration, current stage, deadline, and what you need help with. If there is a reference, rough cut, treatment, deck, or previous version, include that too.",
   panelEyebrow = "Before we start",
@@ -22,15 +22,14 @@ const {
   subject = "Services enquiry",
   variant = "section"
 } = Astro.props;
-
-const contactEmail = SITE_CONFIG.contactEmail;
 ---
 
 {variant === "section" ? (
   <section class="services-enquiry" id="enquiry" aria-label="Services enquiry form">
     <div class="services-enquiry-grid">
-      <form class="services-form" data-services-form data-services-subject={subject} data-contact-email={contactEmail} novalidate>
-        {heading && <h2>{heading}</h2>}
+      <form class="services-form" data-services-form data-services-subject={subject} novalidate>
+        <p class="services-form-kicker">{formKicker}</p>
+        <h2>{heading}</h2>
         <p class="services-form-intro">{intro}</p>
         <div class="services-form-grid">
           <label>
@@ -90,8 +89,9 @@ const contactEmail = SITE_CONFIG.contactEmail;
     </div>
   </section>
 ) : (
-  <form class="services-form" data-services-form data-services-subject={subject} data-contact-email={contactEmail} novalidate>
-    {heading && <h2>{heading}</h2>}
+  <form class="services-form" data-services-form data-services-subject={subject} novalidate>
+    <p class="services-form-kicker">{formKicker}</p>
+    <h2>{heading}</h2>
     <p class="services-form-intro">{intro}</p>
     <div class="services-form-grid">
       <label>
@@ -132,19 +132,6 @@ const contactEmail = SITE_CONFIG.contactEmail;
   const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const LAST_SUBMIT_KEY = "mc_services_last_submit";
   const FORM_ENDPOINT = "https://formsubmit.co/ajax/hello@matteocurcio.com";
-
-  function openEmailFallback(form, name, email, message) {
-    const contactEmail = form.dataset.contactEmail || "hello@matteocurcio.com";
-    const subject = form.dataset.servicesSubject || "Website enquiry";
-    const body = [
-      `Name: ${name}`,
-      `Email: ${email}`,
-      "",
-      message
-    ].join("\n");
-
-    window.location.href = `mailto:${encodeURIComponent(contactEmail)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  }
 
   forms.forEach((form) => {
     const formNote = form.querySelector("[data-form-note]");
@@ -215,14 +202,16 @@ const contactEmail = SITE_CONFIG.contactEmail;
             name,
             email,
             message,
+            _replyto: email,
             _subject: form.dataset.servicesSubject || "Services enquiry",
             _template: "table",
+            _captcha: "false",
             _honey: website
           })
         });
 
         const payload = await response.json().catch(() => null);
-        if (!response.ok || (payload && payload.success === "false")) {
+        if (!response.ok || (payload && (payload.success === "false" || payload.success === false))) {
           throw new Error(payload?.message || "Form submission failed.");
         }
 
@@ -235,9 +224,10 @@ const contactEmail = SITE_CONFIG.contactEmail;
           formNote.textContent = "Enquiry sent. Thank you.";
         }
       } catch (error) {
-        openEmailFallback(form, name, email, message);
         if (formNote) {
-          formNote.textContent = "Your email app should open with this message ready to send.";
+          formNote.textContent = error instanceof Error && error.message
+            ? error.message
+            : "Unable to send right now. Please try again shortly.";
         }
       } finally {
         if (submitButton instanceof HTMLButtonElement) {

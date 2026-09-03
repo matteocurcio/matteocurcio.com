@@ -2050,13 +2050,16 @@ h1 {
 .finishing-faq-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1rem;
+  align-items: start;
+  gap: 1.45rem 1.55rem;
 }
 
 .finishing-faq-grid article {
   display: grid;
   grid-template-columns: 1.65rem minmax(0, 1fr);
+  grid-template-rows: auto auto;
   align-items: start;
+  align-content: start;
   column-gap: 0.72rem;
   padding-top: 0.8rem;
   border-top: 1px solid rgb(31 29 27 / 10%);
@@ -2140,11 +2143,59 @@ h1 {
   line-height: 1.5;
 }
 
+.finishing-cta-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(1.2rem, 2.5vw, 1.65rem);
+  align-items: stretch;
+}
+
+.finishing-start-panel,
+.finishing-cta-grid .services-form {
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 1.4rem;
+  background: linear-gradient(145deg, #fffcf6, #f4ecdf);
+}
+
+.finishing-start-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.finishing-start-panel h2 {
+  max-width: 11ch;
+}
+
+.finishing-start-panel p:last-child {
+  margin-bottom: 0;
+}
+
+.finishing-cta-grid .services-form {
+  margin: 0;
+  box-shadow: none;
+  background:
+    radial-gradient(circle at 88% 2%, #fbe8d7 0%, transparent 32%),
+    linear-gradient(145deg, #fffcf6, #efe5d9);
+}
+
+.finishing-cta-grid .services-form h2 {
+  margin: 0;
+  font-size: clamp(1.22rem, 2vw, 1.58rem);
+}
+
+.finishing-cta-grid .services-form-intro {
+  font-size: 0.94rem;
+  line-height: 1.5;
+}
+
 @media (max-width: 980px) {
   .home-feature-grid,
   .home-editorial,
   .writing-destinations,
   .home-cta,
+  .finishing-cta-grid,
   .finishing-hero-projects,
   .finishing-process-grid,
   .finishing-faq-grid {
@@ -3537,7 +3588,6 @@ body.is-lightbox-open {
 }
 
 .training-contact-grid .services-form h2 {
-  margin: 0;
   font-size: clamp(1.18rem, 2vw, 1.48rem);
 }
 
@@ -3577,6 +3627,35 @@ body.is-lightbox-open {
 .tutoring-index .service-card:focus-within .tutoring-app-icon {
   opacity: 1;
   transform: scale(1.03);
+}
+
+.training-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(22rem, 0.72fr);
+  gap: clamp(1.2rem, 3vw, 2.4rem);
+  align-items: center;
+}
+
+.training-hero-copy {
+  min-width: 0;
+}
+
+.training-hero-media {
+  margin: 0;
+  align-self: stretch;
+  min-height: 21rem;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+  background: #171411;
+}
+
+.training-hero-media img {
+  width: 100%;
+  height: 100%;
+  min-height: 21rem;
+  display: block;
+  object-fit: cover;
 }
 
 .tutoring-index .service-description {
@@ -3633,6 +3712,15 @@ body.is-lightbox-open {
 }
 
 @media (max-width: 900px) {
+  .training-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .training-hero-media,
+  .training-hero-media img {
+    min-height: auto;
+  }
+
   .service-card-media-copy {
     max-width: 100%;
   }
@@ -3967,6 +4055,21 @@ body[data-path="/"] .site-header.is-scrolled .brand-wordmark {
   border-radius: 12px;
   background: #fffdf9;
   padding: 1rem;
+}
+
+.services-form-kicker {
+  margin: 0 0 0.35rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #756c62;
+}
+
+.services-form h2 {
+  margin: 0 0 0.55rem;
+  font-size: clamp(1.35rem, 2.2vw, 1.75rem);
+  line-height: 1.02;
+  letter-spacing: -0.04em;
 }
 
 .services-form-intro {
