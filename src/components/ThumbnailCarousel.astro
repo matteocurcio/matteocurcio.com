@@ -1,0 +1,105 @@
+---
+interface CarouselItem {
+  title: string;
+  href: string;
+  image: string;
+  imageAlt?: string;
+  alt?: string;
+  meta?: string;
+  body?: string;
+  stack?: string[];
+}
+
+interface Props {
+  items: CarouselItem[];
+  ariaLabel: string;
+}
+
+const { items, ariaLabel } = Astro.props;
+const carouselItems = [
+  ...items.map((item) => ({ item, isClone: false })),
+  ...items.map((item) => ({ item, isClone: true }))
+];
+---
+
+<div class="home-carousel thumbnail-carousel" data-thumbnail-carousel aria-label={ariaLabel}>
+  <div class="home-carousel-track" data-thumbnail-carousel-track>
+    {carouselItems.map(({ item, isClone }) => (
+      <article class="post-card coding-card home-carousel-slide" aria-hidden={isClone ? "true" : undefined}>
+        <a href={item.href} tabindex={isClone ? -1 : undefined}>
+          <div class="thumb-frame">
+            <img class="thumb" src={item.image} alt={item.imageAlt || item.alt || `${item.title} thumbnail`} loading="lazy" />
+          </div>
+          <div class="body">
+            {item.meta && <p class="post-meta">{item.meta}</p>}
+            <h3>{item.title}</h3>
+            {item.body && <p>{item.body}</p>}
+            {item.stack && (
+              <div class="coding-tags" aria-label={`${item.title} stack`}>
+                {item.stack.map((tag) => <span>{tag}</span>)}
+              </div>
+            )}
+          </div>
+        </a>
+      </article>
+    ))}
+  </div>
+</div>
+
+<script is:inline>
+  (() => {
+    const carousels = document.querySelectorAll("[data-thumbnail-carousel]");
+    if (!carousels.length) return;
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    carousels.forEach((carousel) => {
+      const track = carousel.querySelector("[data-thumbnail-carousel-track]");
+      if (!track) return;
+
+      const slides = Array.from(track.querySelectorAll(".home-carousel-slide"));
+      if (slides.length < 2) return;
+
+      const originalCount = slides.length / 2;
+      const step = () => {
+        const gap = parseFloat(getComputedStyle(track).columnGap || "0") || 0;
+        return slides[0].getBoundingClientRect().width + gap;
+      };
+      const half = () => originalCount * step();
+      const wrap = () => {
+        if (track.scrollLeft >= half()) track.scrollLeft -= half();
+        else if (track.scrollLeft <= 0) track.scrollLeft += half();
+      };
+
+      requestAnimationFrame(() => {
+        const start = Math.floor(Math.random() * originalCount);
+        track.scrollLeft = start * step();
+      });
+
+      let settle = 0;
+      track.addEventListener("scroll", () => {
+        window.clearTimeout(settle);
+        settle = window.setTimeout(wrap, 180);
+      });
+
+      if (reduceMotion) return;
+
+      const advance = () => {
+        wrap();
+        track.scrollBy({ left: step(), behavior: "smooth" });
+      };
+      let timer = window.setInterval(advance, 4200);
+      const pause = () => window.clearInterval(timer);
+      const resume = () => {
+        pause();
+        timer = window.setInterval(advance, 4200);
+      };
+
+      carousel.addEventListener("pointerenter", pause);
+      carousel.addEventListener("pointerleave", resume);
+      carousel.addEventListener("focusin", pause);
+      carousel.addEventListener("focusout", resume);
+      document.addEventListener("visibilitychange", () => (document.hidden ? pause() : resume()));
+    });
+  })();
+</script>

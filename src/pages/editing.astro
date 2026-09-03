@@ -1,5 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import ClientMarquee from "../components/ClientMarquee.astro";
+import ThumbnailCarousel from "../components/ThumbnailCarousel.astro";
 import { serviceSchema } from "../lib/schema";
 import { CONTACT_MAILTO } from "../config/site";
 import { REEL_CAPTIONS } from "../data/reelCaptions";
@@ -95,21 +97,19 @@ const pageSchema = serviceSchema({
     ))}
   </section>
 
-  <section class="section blog-grid coding-grid" aria-label="Online editing reels">
-    {reels.map((r) => (
-      <article class="post-card coding-card">
-        <a href={`/reels/${r.slug}/`}>
-          <div class="thumb-frame">
-            <img class="thumb" src={r.image} alt={`${r.title} reel`} loading="lazy" />
-          </div>
-          <div class="body">
-            <p class="post-meta">Reel</p>
-            <h3>{r.title}</h3>
-            <p>{r.body}</p>
-          </div>
-        </a>
-      </article>
-    ))}
+  <section class="section" aria-label="Online editing reels">
+    <ThumbnailCarousel
+      items={reels.map((r) => ({
+        title: r.title,
+        href: `/reels/${r.slug}/`,
+        image: r.image,
+        imageAlt: `${r.title} reel`,
+        meta: "Reel",
+        body: r.body
+      }))}
+      ariaLabel="Online editing reels"
+    />
+    <ClientMarquee />
   </section>
 
   <section class="cta section">

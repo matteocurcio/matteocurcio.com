@@ -1,6 +1,8 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ServicesEnquiry from "../components/ServicesEnquiry.astro";
+import ClientMarquee from "../components/ClientMarquee.astro";
+import ThumbnailCarousel from "../components/ThumbnailCarousel.astro";
 import { SITE_CONFIG } from "../config/site";
 
 const siteUrl = `https://${SITE_CONFIG.primaryDomain}`;
@@ -55,11 +57,6 @@ const projects = [
   }
 ];
 
-const carouselProjects = [
-  ...projects.map((project) => ({ project, isClone: false })),
-  ...projects.map((project) => ({ project, isClone: true }))
-];
-
 const process = [
   {
     title: "Look development",
@@ -108,8 +105,8 @@ const process = [
     <p>
       Projects can move through DaVinci Resolve as standalone grading sessions or as part of a complete
       <a href="/finishing/">online and finishing workflow</a>, including conform, cleanup, versioning, QC and final
-      delivery. I work with clients in Melbourne and remotely, running calibrated remote review sessions where a
-      supervised grade in person is not practical.
+      delivery. I work with clients in Melbourne and remotely, with review passes and notes handled as files rather
+      than attended sessions.
     </p>
   </section>
 
@@ -130,24 +127,18 @@ const process = [
         Commercial, sport, property and branded campaigns.
       </p>
     </div>
-    <div class="home-carousel" data-colour-work-carousel>
-      <div class="home-carousel-track" data-colour-work-carousel-track>
-        {carouselProjects.map(({ project, isClone }) => (
-          <article class="post-card coding-card home-carousel-slide" aria-hidden={isClone ? "true" : undefined}>
-            <a href={project.href} tabindex={isClone ? -1 : undefined}>
-            <div class="thumb-frame">
-              <img class="thumb" src={project.image} alt={project.alt} loading="lazy" />
-            </div>
-            <div class="body">
-              <p class="post-meta">{project.client}</p>
-              <h3>{project.title}</h3>
-              <p>View the {project.title} project.</p>
-            </div>
-            </a>
-          </article>
-        ))}
-      </div>
-    </div>
+    <ThumbnailCarousel
+      items={projects.map((project) => ({
+        title: project.title,
+        href: project.href,
+        image: project.image,
+        imageAlt: project.alt,
+        meta: project.client,
+        body: `View the ${project.title} project.`
+      }))}
+      ariaLabel="Selected colour grading projects"
+    />
+    <ClientMarquee />
   </section>
 
   <ServicesEnquiry heading="Need a Melbourne colourist?" subject="Colour grading enquiry" />
@@ -174,52 +165,4 @@ const process = [
       <span class="about-pathway-note">One-on-one DaVinci Resolve sessions in Melbourne or online.</span>
     </a>
   </nav>
-
-  <script is:inline>
-    (() => {
-      const carousel = document.querySelector("[data-colour-work-carousel]");
-      const track = document.querySelector("[data-colour-work-carousel-track]");
-      if (!carousel || !track) return;
-
-      const slides = Array.from(track.querySelectorAll(".home-carousel-slide"));
-      if (slides.length < 2) return;
-
-      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      const step = () => {
-        const gap = parseFloat(getComputedStyle(track).columnGap || "0") || 0;
-        return slides[0].getBoundingClientRect().width + gap;
-      };
-
-      const half = () => (slides.length / 2) * step();
-      const wrap = () => {
-        if (track.scrollLeft >= half()) track.scrollLeft -= half();
-        else if (track.scrollLeft <= 0) track.scrollLeft += half();
-      };
-
-      let settle = 0;
-      track.addEventListener("scroll", () => {
-        window.clearTimeout(settle);
-        settle = window.setTimeout(wrap, 180);
-      });
-
-      if (reduceMotion) return;
-
-      const advance = () => {
-        wrap();
-        track.scrollBy({ left: step(), behavior: "smooth" });
-      };
-      let timer = window.setInterval(advance, 4200);
-      const pause = () => window.clearInterval(timer);
-      const resume = () => {
-        pause();
-        timer = window.setInterval(advance, 4200);
-      };
-
-      carousel.addEventListener("pointerenter", pause);
-      carousel.addEventListener("pointerleave", resume);
-      carousel.addEventListener("focusin", pause);
-      carousel.addEventListener("focusout", resume);
-      document.addEventListener("visibilitychange", () => (document.hidden ? pause() : resume()));
-    })();
-  </script>
 </BaseLayout>

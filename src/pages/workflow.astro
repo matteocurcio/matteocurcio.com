@@ -1,5 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import ClientMarquee from "../components/ClientMarquee.astro";
+import ThumbnailCarousel from "../components/ThumbnailCarousel.astro";
 import { serviceSchema } from "../lib/schema";
 import { CONTACT_MAILTO, SITE_CONFIG } from "../config/site";
 
@@ -135,28 +137,20 @@ const pageSchema = serviceSchema({
     </div>
   </section>
 
-  <section class="section blog-grid coding-grid" aria-label="Things I've built">
-    {builds.map((project) => (
-      <article class="post-card coding-card">
-        <a
-          href={project.href}
-          target={project.external ? "_blank" : undefined}
-          rel={project.external ? "noopener noreferrer" : undefined}
-        >
-          <div class="thumb-frame">
-            <img class="thumb" src={project.image} alt={project.imageAlt} loading="lazy" />
-          </div>
-          <div class="body">
-            <p class="post-meta">{project.meta}</p>
-            <h3>{project.title}</h3>
-            <p>{project.body}</p>
-            <div class="coding-tags" aria-label={`${project.title} stack`}>
-              {project.stack.map((item) => <span>{item}</span>)}
-            </div>
-          </div>
-        </a>
-      </article>
-    ))}
+  <section class="section" aria-label="Things I've built">
+    <ThumbnailCarousel
+      items={builds.map((project) => ({
+        title: project.title,
+        href: project.href,
+        image: project.image,
+        imageAlt: project.imageAlt,
+        meta: project.meta,
+        body: project.body,
+        stack: project.stack
+      }))}
+      ariaLabel="Things I've built"
+    />
+    <ClientMarquee />
   </section>
 
   <section class="section" id="secure-systems">
