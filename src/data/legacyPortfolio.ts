@@ -92,6 +92,14 @@ export const LEGACY_PHOTO_WORKS: LegacyWorkItem[] = [
 
 export const LEGACY_CODE_WORKS: LegacyWorkItem[] = [
   {
+    slug: "earth-one-planet-no-undo",
+    title: "Earth",
+    category: "CODE",
+    image: "/images/coding/earth.png",
+    href: "/blog/earth-one-planet-no-undo/",
+    meta: "Climate-aware satellite image API"
+  },
+  {
     slug: "grid-layout-system-generator",
     title: "Grid",
     category: "CODE",
