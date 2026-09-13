@@ -30,7 +30,7 @@ Earth is a small contribution from the tools I know: imagery, colour, systems an
 
 ## A planet you can actually use
 
-Earth builds a usable planet texture from satellite imagery. The browser app lets you inspect the flat map, spin a globe, choose sources and download a JPEG or PNG. An optional local API provides automatically refreshing images for creative software. The screenshots below show revision 0.7 running locally on 13 September 2026, with imagery fetched from NASA GIBS. They document that session, not a permanently live view.
+Earth builds a usable planet texture from satellite imagery. The browser app lets you inspect the flat map, spin a globe, choose sources and download a JPEG or PNG. An optional local API provides automatically refreshing images for creative software.
 
 That could become a slowly changing backdrop in a gallery installation, a globe in a classroom, a museum display, a documentary graphic, or a desktop reminder that the weather outside belongs to a much larger system. A performance could use the image as material rather than stock decoration. An exhibition about climate could place it alongside properly sourced temperature or emissions records.
 
@@ -40,12 +40,12 @@ Those are different kinds of evidence. Today’s cloud pattern is weather. It ca
 
 <figure>
   <img src="/images/blog/earth/earth-split-view.png" alt="Earth app split view showing an equirectangular map, a globe and four satellite source switches." loading="lazy" />
-  <figcaption>The same composite as a flat texture and a globe, with source dates alongside it. Local app capture, revision 0.7.</figcaption>
+  <figcaption>The same composite as a flat texture and a globe, with source dates alongside it.</figcaption>
 </figure>
 
 **Split view** shows the image as a two-to-one equirectangular map and wrapped around a sphere. The flat map makes coverage boundaries and the texture’s left/right join easier to inspect. The globe shows how those same pixels will read on a planet in a scene. Drag the map horizontally to pan, or drag the globe to rotate it; the rotation control lets you stop and inspect a particular region. The **World map** and **Globe** tabs give either view more room.
 
-The **Sources** switches control which observations contribute to the composite and its export. In this capture, GOES East and West were about 54 minutes old, while the VIIRS and MODIS daily products were roughly 1.1 days old. Those labels explain why the map can look complete without representing one instant everywhere.
+The **Sources** switches control which observations contribute to the composite and its export. The source timestamps distinguish recent GOES frames from older VIIRS and MODIS daily products. Those labels explain why the map can look complete without representing one instant everywhere.
 
 ## Public science made portable
 
@@ -70,7 +70,7 @@ Earth combines selected observations with recent cached imagery and a static bac
   <figcaption>The age guide reveals the different times hidden inside a visually continuous map. The readout below identifies the source beneath the pointer.</figcaption>
 </figure>
 
-Open **Guides** and turn on **Imagery age guide** to see the dominant source at each location. In this capture, turquoise marks imagery under three hours old, yellow marks one-to-three-day-old observations, and purple marks static illustration. The legend also distinguishes intermediate and older age bands. Hover over the map or globe to inspect the contributing source and date. Feathered boundaries are approximate, and a daily product date does not mean every pixel was acquired at midnight.
+Open **Guides** and turn on **Imagery age guide** to see the dominant source at each location. Turquoise marks imagery under three hours old, yellow marks one-to-three-day-old observations, and purple marks static illustration. The legend also distinguishes intermediate and older age bands. Hover over the map or globe to inspect the contributing source and date. Feathered boundaries are approximate, and a daily product date does not mean every pixel was acquired at midnight.
 
 The age colours and optional coordinate grid appear only in the previews; they are excluded from exports. The **Map coverage** figure also needs context: 100% includes enabled static background. It describes a filled image, not 100% fresh satellite coverage.
 
@@ -109,7 +109,7 @@ That is why the dates are part of the product, rather than a footnote hidden beh
 
 ## Where it stands
 
-Earth revision 0.7 has a browser application intended for **earth.matteocurcio.com**, plus the optional Python service for local API use. The public domain did not resolve during this screenshot session, so these captures use the local build. The API requires repository access or a source archive; a public installer is not yet available. Source-specific redistribution, attribution and caching terms remain part of the commercial launch review.
+Earth brings together a browser application for exploring and exporting imagery and an optional Python service for automatic updates in creative software. Installing the local service requires repository access or a source archive; a public installer is not yet available.
 
 The reason for building it is already settled. We have one planet. Making it easier to see, understand and include in our work feels like a worthwhile use of these skills. It will not substitute for emissions cuts or political accountability. It can make the subject a little harder to push out of frame.
 
