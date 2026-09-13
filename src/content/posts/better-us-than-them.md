@@ -5,6 +5,7 @@ excerpt: "An AI researcher quit, a colleague put the odds of human extinction ab
 description: "An AI researcher quit, a colleague put the odds of human extinction above ten percent, and everyone went back to work. The logic holding that together is older than the bomb."
 cover: "/images/blog/better-us-than-them/better-us-than-them-cover.webp"
 coverAlt: "Three runners racing along an athletics track in front of stadium seating."
+coverCaption: "Photo by Eduardo Cano Photo Co. on Unsplash"
 tags:
   - "AI"
   - "Politics"
@@ -16,9 +17,6 @@ draft: false
 writingKind: "essay"
 ---
 
-An AI researcher quit, a colleague put the odds of human extinction above ten percent, and everyone went back to work. The logic holding that together is older than the bomb.
-
-*Photo by Eduardo Cano Photo Co. on Unsplash*
 On the morning of 16 July 1945, in the New Mexico desert, Enrico Fermi started taking bets from his colleagues. The wager was on whether the test they were about to run would set the atmosphere on fire.
 
 It was a joke, and a fairly dark one. But it could be a joke because the maths had already been done. Three years earlier Edward Teller had raised the possibility that a fission explosion might trigger runaway fusion in the nitrogen of the air. Hans Bethe sat down with the numbers and satisfied the group it was vanishingly unlikely. Fermi, who had left fascist Italy seven years earlier, was mocking a fear that had been calculated away.

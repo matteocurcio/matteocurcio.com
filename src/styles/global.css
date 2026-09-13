@@ -2779,15 +2779,16 @@ body.is-lightbox-open {
 
 .blog-post .blog-hero {
   width: 100%;
-  height: auto;
   display: block;
-  border: 1px solid var(--line);
-  border-radius: 10px;
   margin: 0.85rem 0 1.1rem;
 }
 
+.blog-post .blog-hero img {
+  border: 1px solid var(--line);
+}
+
 .blog-post figure {
-  margin: 1rem 0;
+  margin: 1rem 0 1.45rem;
 }
 
 .blog-post figure img {
@@ -2795,6 +2796,46 @@ body.is-lightbox-open {
   height: auto;
   display: block;
   border-radius: 10px;
+}
+
+.blog-post figcaption {
+  margin-top: 0.55rem;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.blog-post figcaption a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+.blog-post figcaption a:hover {
+  color: #2d2824;
+}
+
+.blog-post .blog-hero figcaption {
+  text-align: center;
+  font-size: 0.82rem;
+}
+
+.blog-post .post-dek {
+  margin: 0.55rem 0 0;
+  font-family: var(--font-sans);
+  font-size: clamp(1.2rem, 2.1vw, 1.45rem);
+  line-height: 1.38;
+  font-weight: 400;
+  letter-spacing: -0.022em;
+  color: #5f574f;
+}
+
+.blog-post .post-dek + .post-meta {
+  margin-top: 0.6rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--line);
 }
 
 .blog-post pre {
@@ -4477,6 +4518,22 @@ body[data-theme="dark"] .metric strong,
 body[data-theme="dark"] .blog-post h2,
 body[data-theme="dark"] .blog-post h3 {
   color: #f4eee6;
+}
+
+body[data-theme="dark"] .blog-post figcaption {
+  color: #9f968a;
+}
+
+body[data-theme="dark"] .blog-post figcaption a:hover {
+  color: #e7dfd4;
+}
+
+body[data-theme="dark"] .blog-post .post-dek {
+  color: #c5bcaf;
+}
+
+body[data-theme="dark"] .blog-post .post-dek + .post-meta {
+  border-bottom-color: rgb(243 237 228 / 12%);
 }
 
 body[data-theme="dark"] .meta,

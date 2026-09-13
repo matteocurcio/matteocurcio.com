@@ -29,11 +29,13 @@ const posts = defineCollection({
   schema: z.object({
     title: z.string(),
     metaTitle: z.string().optional(),
+    subtitle: z.string().optional(), // dek under the title; falls back to excerpt
     date: z.string(), // ISO date (YYYY-MM-DD)
     excerpt: z.string().default(""),
     description: z.string().optional(),
     cover: z.string().optional(),
     coverAlt: z.string().default(""),
+    coverCaption: z.string().optional(), // credit/caption under the hero image
     ogImage: z.string().optional(),
     ogImageAlt: z.string().optional(),
     tags: z.array(z.string()).default([]),

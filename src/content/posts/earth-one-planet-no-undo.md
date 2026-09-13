@@ -2,7 +2,7 @@
 title: "Earth: One Planet. No Undo Button."
 metaTitle: "Earth: Satellite Imagery for Creative Tools | Matteo Curcio"
 date: "2026-09-10"
-excerpt: "A changing planet should be easier to see. Why I’m building a satellite-image API for creative work, with complete maps, honest timestamps, and a very clear climate perspective."
+excerpt: "A changing planet should be easier to see. Inside the Earth app: satellite maps, an interactive globe, image-age guides and exports for creative work."
 description: "Earth turns NASA GIBS satellite imagery into portable world textures for installations, education and creative tools, with dated gap fill and transparent source information."
 cover: "/images/coding/earth.png"
 coverAlt: "Earth satellite mosaic combining recent observations with a static geographic background"
@@ -30,11 +30,22 @@ Earth is a small contribution from the tools I know: imagery, colour, systems an
 
 ## A planet you can actually use
 
-The idea is an Earth texture that updates as imagery becomes available, with a simple address you can use in your own work. A browser view lets you inspect the flat map or spin a globe. The useful part continues after you close the page: an API returns the image in a standard format and resolution.
+Earth builds a usable planet texture from satellite imagery. The browser app lets you inspect the flat map, spin a globe, choose sources and download a JPEG or PNG. An optional local API provides automatically refreshing images for creative software. The screenshots below show revision 0.7 running locally on 13 September 2026, with imagery fetched from NASA GIBS. They document that session, not a permanently live view.
 
 That could become a slowly changing backdrop in a gallery installation, a globe in a classroom, a museum display, a documentary graphic, or a desktop reminder that the weather outside belongs to a much larger system. A performance could use the image as material rather than stock decoration. An exhibition about climate could place it alongside properly sourced temperature or emissions records.
 
 Those are different kinds of evidence. Today’s cloud pattern is weather. It cannot, by itself, establish a climate trend. Earth is a visual entry point, not a climate model, a sea-ice monitoring product or an emergency information service.
+
+## One image, two ways to look at it
+
+<figure>
+  <img src="/images/blog/earth/earth-split-view.png" alt="Earth app split view showing an equirectangular map, a globe and four satellite source switches." loading="lazy" />
+  <figcaption>The same composite as a flat texture and a globe, with source dates alongside it. Local app capture, revision 0.7.</figcaption>
+</figure>
+
+**Split view** shows the image as a two-to-one equirectangular map and wrapped around a sphere. The flat map makes coverage boundaries and the texture’s left/right join easier to inspect. The globe shows how those same pixels will read on a planet in a scene. Drag the map horizontally to pan, or drag the globe to rotate it; the rotation control lets you stop and inspect a particular region. The **World map** and **Globe** tabs give either view more room.
+
+The **Sources** switches control which observations contribute to the composite and its export. In this capture, GOES East and West were about 54 minutes old, while the VIIRS and MODIS daily products were roughly 1.1 days old. Those labels explain why the map can look complete without representing one instant everywhere.
 
 ## Public science made portable
 
@@ -50,11 +61,18 @@ A satellite mosaic is not one photograph taken everywhere at once. Different sat
 
 A black wedge in a texture is an implementation problem for the artist using it. Pretending that every filled pixel is a fresh observation would be a different, more serious problem.
 
-Earth uses the newest available selected imagery first, dated recent observations underneath it, and a clearly labelled static illustration beneath the remaining gaps. The local history is bounded to seven days. Source masks remove known dark fill, and feathered transitions reduce the hard edges between coverage areas. Conservative colour gains match daily imagery to valid GOES daylight overlaps, without forcing different cloud patterns into a false match. The polar background combines relief and bathymetry with [NASA’s archived Blue Marble cloud composite](https://science.nasa.gov/earth/earth-observatory/the-blue-marble-2181/). That cloud map is from the 2002 collection, not today. A broad polar transition is applied once to the finished observation stack, so overlapping swaths cannot accumulate into a sharp dark edge. This is illustrative fill, not current polar weather or current sea ice.
+Earth combines selected observations with recent cached imagery and a static background underneath the remaining gaps. **Recent gap fill** keeps earlier valid observations available; **Maximum fallback age** limits that history to 24 hours, three days or seven days. It cannot recover an observation the browser has never cached. **Static Earth background** supplies Blue Marble geography, archived 2002 clouds and illustrative polar fill. Those areas are not current polar weather or sea ice.
 
-Daylight mode uses the sun position at each GOES observation time to soften away the night contribution and reveal the enabled fallback layers. The alternative retains the observed GeoColor day/night appearance. Both are composites; neither is a simultaneous daylight photograph of the entire world.
+**Daylight composite** uses fallback imagery where the GOES night side is masked. **Day / night · shaded GeoColor** dims the night side for presentation. That shading is illustrative, not a measurement of visible-light brightness. Neither mode creates a simultaneous photograph of the entire world.
 
-The age guide makes those compromises inspectable. Turn it on in either preview and see which source dominates a location, its product date, or whether the visible geography is static. Metadata travels separately from the image so the texture can remain clean without losing its provenance.
+<figure>
+  <img src="/images/blog/earth/earth-age-guide.png" alt="Earth world map with the image-age overlay showing recent coverage in turquoise, daily imagery in yellow and static fill in purple." loading="lazy" />
+  <figcaption>The age guide reveals the different times hidden inside a visually continuous map. The readout below identifies the source beneath the pointer.</figcaption>
+</figure>
+
+Open **Guides** and turn on **Imagery age guide** to see the dominant source at each location. In this capture, turquoise marks imagery under three hours old, yellow marks one-to-three-day-old observations, and purple marks static illustration. The legend also distinguishes intermediate and older age bands. Hover over the map or globe to inspect the contributing source and date. Feathered boundaries are approximate, and a daily product date does not mean every pixel was acquired at midnight.
+
+The age colours and optional coordinate grid appear only in the previews; they are excluded from exports. The **Map coverage** figure also needs context: 100% includes enabled static background. It describes a filled image, not 100% fresh satellite coverage.
 
 The goal is visual continuity and clear disclosure together. A static patch should never acquire a fresh timestamp just because the surrounding map was regenerated.
 
@@ -62,13 +80,20 @@ The goal is visual continuity and clear disclosure together. A static patch shou
 
 I work across applications. The planet should not need a different bespoke integration for each one.
 
-An equirectangular image has a familiar two-to-one shape and maps naturally onto a sphere. JPEG and PNG can be consumed by an enormous range of software. An HTTP API lets the caller describe the view with a few choices:
+An equirectangular image has a familiar two-to-one shape and maps naturally onto a sphere. JPEG and PNG can be consumed by an enormous range of software. The browser’s **Export** panel produces a file directly on your device. Choose a resolution and format, then select **Download image**. JPEG is smaller; PNG is lossless and can preserve transparent gaps when the static background is disabled. JPEG exports extend to 16K and PNG to 8K, but larger dimensions do not add satellite detail.
+
+<figure>
+  <img src="/images/blog/earth/earth-export.png" alt="Earth export panel set to a 4K PNG, showing its estimated size, upscale notice, download button and local API URL control." loading="lazy" />
+  <figcaption>A 4K PNG export is an upscale of the browser’s 2K source grid. The panel makes that limit visible before downloading.</figcaption>
+</figure>
+
+For a still graphic or a manually updated material, the downloaded file is enough. For an installation that needs to refresh automatically, run the optional local Earth service. **Copy local API URL** builds a request for `http://127.0.0.1:8000`; that address only works when the service is installed and running. There is no hosted image API behind the browser page. The local request lets the caller describe the view with a few choices:
 
 ```text
-/v1/image?width=4096&layers=modis,viirs,goes-west,goes-east&appearance=daylight&gap_fill=recent&max_age_hours=168&basemap=blue-marble&format=png
+http://127.0.0.1:8000/v1/image?width=4096&layers=modis,viirs,goes-west,goes-east&appearance=daylight&gap_fill=recent&max_age_hours=168&basemap=blue-marble&format=png
 ```
 
-The same service exposes `/v1/metadata` for observation times and provenance, and `/v1/latest/master` for the default master image. Consumers can pin a generation when they need a repeatable output.
+The local service also exposes `/v1/metadata` for observation times and provenance, and `/v1/latest/master` for the default master image. Consumers can pin a generation when they need a repeatable output.
 
 TouchDesigner can use a file bridge or an HTTP request that updates a texture. Blender can reload the resulting image into a material. Notch can reload it through a Dynamic Image Loader. The same pattern extends to Unity, Unreal Engine, a Three.js website, a projection-mapping system or a video-production workflow that reads a periodically refreshed image. These are integration patterns, not a claim that every application has the same native URL support.
 
@@ -76,15 +101,15 @@ The supplied bridge keeps a stable local file and retains the last valid image w
 
 ## Keep the infrastructure proportionate
 
-An image that changes every few minutes does not need a request every animation frame. One producer checks the upstream services; viewers share the results. Requests are spaced, cached and budgeted. Rate-limit responses trigger a cooldown. Activity pauses when the site is idle.
+The browser fetches imagery directly from NASA GIBS and composes it on the viewer’s device. It checks at most every 30 minutes while visible, shares its cache and request budget between tabs, and pauses checks when hidden. The optional local API uses a shared producer and cache for its consumers. Neither workflow needs a network request every animation frame.
 
-The prototype works from a 4096-pixel-wide source grid. Larger exports are available, but increasing the dimensions does not create additional satellite detail. “Near real time” also needs qualification: GOES products may have a ten-minute cadence, while delivery can lag and the fallback imagery can be days old. A static background has no observation age at all.
+Browser mode uses a 2048-pixel-wide source grid; the local API uses a 4096-pixel-wide grid. Their cached histories can differ, so their mosaics may differ too. Increasing export dimensions does not create additional satellite detail. GOES products can have a ten-minute cadence, but delivery, checking intervals and older fallback imagery all affect what appears in the finished map.
 
 That is why the dates are part of the product, rather than a footnote hidden behind the picture.
 
 ## Where it stands
 
-Earth is currently a local working prototype, being prepared for **earth.matteocurcio.com**. The public API is not launched yet. Source-specific redistribution, attribution and caching terms remain part of the commercial launch review. I would rather state those limits than pretend that a compelling preview is already a production service.
+Earth revision 0.7 has a browser application intended for **earth.matteocurcio.com**, plus the optional Python service for local API use. The public domain did not resolve during this screenshot session, so these captures use the local build. The API requires repository access or a source archive; a public installer is not yet available. Source-specific redistribution, attribution and caching terms remain part of the commercial launch review.
 
 The reason for building it is already settled. We have one planet. Making it easier to see, understand and include in our work feels like a worthwhile use of these skills. It will not substitute for emissions cuts or political accountability. It can make the subject a little harder to push out of frame.
 

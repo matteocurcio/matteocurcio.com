@@ -21,6 +21,7 @@ const description = post.data.description || post.data.excerpt;
 const metaTitle = post.data.metaTitle || `${post.data.title} | Matteo Curcio`;
 const ogImage = post.data.ogImage || post.data.cover;
 const ogImageAlt = post.data.ogImageAlt || post.data.coverAlt || post.data.title;
+const dek = post.data.subtitle || post.data.excerpt;
 ---
 
 <BaseLayout
@@ -36,9 +37,11 @@ const ogImageAlt = post.data.ogImageAlt || post.data.coverAlt || post.data.title
     {post.data.cover ? (
       <figure class="blog-hero">
         <img src={post.data.cover} alt={post.data.coverAlt || post.data.title} loading="eager" />
+        {post.data.coverCaption ? <figcaption>{post.data.coverCaption}</figcaption> : null}
       </figure>
     ) : null}
     <h1>{post.data.title}</h1>
+    {dek ? <p class="post-dek">{dek}</p> : null}
     <p class="post-meta">{formattedDate}</p>
     <Content />
   </article>
