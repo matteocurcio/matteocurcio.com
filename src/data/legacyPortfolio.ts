@@ -92,6 +92,14 @@ export const LEGACY_PHOTO_WORKS: LegacyWorkItem[] = [
 
 export const LEGACY_CODE_WORKS: LegacyWorkItem[] = [
   {
+    slug: "knowing-what-i-own-was-the-easy-half",
+    title: "Inventory",
+    category: "CODE",
+    image: "/images/blog/inventory/locations-studio.png",
+    href: "/blog/knowing-what-i-own-was-the-easy-half/",
+    meta: "Visual storage system \u00b7 Product design and architecture",
+  },
+  {
     slug: "earth-one-planet-no-undo",
     title: "Earth",
     category: "CODE",
