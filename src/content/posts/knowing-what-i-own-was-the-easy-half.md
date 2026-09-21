@@ -1,7 +1,7 @@
 ---
-title: "Knowing What I Own Was the Easy Half"
+title: "Everything in its right place"
 date: "2026-09-20"
-excerpt: "Turning a spreadsheet of possessions into a useful map of where they live. A case study in designing around real furniture, revising assumptions, and keeping a private tool inexpensive to run."
+excerpt: "Turning a spreadsheet of gear into a useful map of where it lives. A case study in designing around real furniture, revising assumptions, and keeping a private tool inexpensive to run."
 description: "Designing a private inventory around real storage: visual drawers and shelves, permanent labels, clearer placement choices, and a small Cloudflare architecture with browser-side image processing."
 cover: "/images/blog/inventory/locations-studio.png"
 coverAlt: "Studio storage diagrams showing Alex drawers and Kallax compartments, with occupied slots highlighted in green"
@@ -18,7 +18,7 @@ writingKind: "technical"
 topic: "tools"
 ---
 
-For years my possessions lived in a Google Sheet with nine tabs. Cameras, computers, audio equipment, tools. It worked well enough that I kept adding to it.
+For years my gear lived in a Google Sheet with nine tabs. Cameras, computers, audio equipment, tools. It worked well enough that I kept adding to it.
 
 It could tell me whether I owned a particular lens. Finding that lens was another matter. A location recorded as “Home” was not much help when I was already standing at home, looking for it.
 
@@ -81,7 +81,16 @@ A storage system needs to survive reorganisation. A drawer labelled “Camera ac
 
 I separated its permanent address from its editable name. A code such as **A2-D3** stays the same when the description changes. Printed labels can therefore remain attached to the furniture while the inventory evolves.
 
-The app exports labels with a readable name, the permanent code and a QR code that opens the compartment’s contents after sign-in. They are generated locally as vector files, keeping label creation independent of an external QR service and making the output suitable for different print sizes.
+The app exports labels with a readable name, the permanent code and a QR code. They are generated locally as vector files, keeping label creation independent of an external QR service and making the output suitable for different print sizes.
+
+Scanning a label with a phone opens the private inventory, asks me to sign in if needed, and takes me straight to the list of gear assigned to that compartment. I can see what belongs in a drawer without opening it or searching the whole catalogue.
+
+The QR code contains a link to the compartment’s permanent address. Its contents stay in the database, so moving gear updates the list behind the label without needing to print a new QR code.
+
+<figure>
+  <a href="/images/blog/inventory/label-sheet.png"><img src="/images/blog/inventory/label-sheet.png" alt="Nine printable Alex 1 drawer labels, each with a name, a permanent drawer code and a QR code" loading="lazy" width="2221" height="981" style="background: #fff;" /></a>
+  <figcaption>Labels for the Alex 1 drawers. Scan a QR code to open the current inventory records for that drawer after sign-in.</figcaption>
+</figure>
 
 This is where the digital catalogue meets the physical routine: look up an item to find its drawer, or scan a drawer to see what belongs inside.
 
