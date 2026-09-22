@@ -1,0 +1,134 @@
+[
+  {
+    "index": 1,
+    "slug": "colour_grading",
+    "label": "Grading panel",
+    "page": "/colour-grading/"
+  },
+  {
+    "index": 2,
+    "slug": "editing",
+    "label": "Keyboard, trackball and tablet",
+    "page": "/editing/"
+  },
+  {
+    "index": 3,
+    "slug": "finishing",
+    "label": "Grading monitors",
+    "page": "/finishing/"
+  },
+  {
+    "index": 4,
+    "slug": "motion",
+    "label": "Motion",
+    "page": "/motion/"
+  },
+  {
+    "index": 5,
+    "slug": "reels",
+    "label": "Reels",
+    "page": "/reels/"
+  },
+  {
+    "index": 7,
+    "slug": "presentation",
+    "label": "Projector",
+    "page": "/presentation/"
+  },
+  {
+    "index": 8,
+    "slug": "immersive",
+    "label": "360 camera and VR headset",
+    "page": "/immersive/"
+  },
+  {
+    "index": 9,
+    "slug": "training",
+    "label": "Training",
+    "page": "/training/"
+  },
+  {
+    "index": 10,
+    "slug": "videography",
+    "label": "Cinema camera",
+    "page": "/videography/"
+  },
+  {
+    "index": 11,
+    "slug": "services",
+    "label": "Services",
+    "page": "/services/"
+  },
+  {
+    "index": 12,
+    "slug": "about",
+    "label": "About",
+    "page": "/about/"
+  },
+  {
+    "index": 13,
+    "slug": "musetta",
+    "label": "Original music",
+    "page": "/reels/music/"
+  },
+  {
+    "index": 14,
+    "slug": "works",
+    "label": "File cabinet",
+    "page": "/works/"
+  },
+  {
+    "index": 15,
+    "slug": "music",
+    "label": "Stock music",
+    "page": "/reels/royaltyfree/"
+  },
+  {
+    "index": 16,
+    "slug": "workflow",
+    "label": "Server rack",
+    "page": "/workflow/"
+  },
+  {
+    "index": 17,
+    "slug": "code",
+    "label": "The PC",
+    "page": "/code/"
+  },
+  {
+    "index": 19,
+    "slug": "blog",
+    "label": "Typewriter",
+    "page": "/blog/"
+  },
+  {
+    "index": 20,
+    "slug": "podcast",
+    "label": "Headphones",
+    "page": "/podcast/"
+  },
+  {
+    "index": 21,
+    "slug": "substack",
+    "label": "Magazine",
+    "page": "https://matteocurcio.substack.com/"
+  },
+  {
+    "index": 23,
+    "slug": "sync",
+    "label": "Music for film and sync",
+    "page": "/reels/sync/"
+  },
+  {
+    "index": 24,
+    "slug": "infographic",
+    "label": "Data visualisation",
+    "page": "/data-visualisation/"
+  },
+  {
+    "index": 25,
+    "slug": "ar",
+    "label": "Augmented reality",
+    "page": "/reels/ar/"
+  }
+]

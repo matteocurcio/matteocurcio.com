@@ -1,0 +1,197 @@
+---
+// Alternate landing page: an isometric studio where each object links to a
+// section of the site. Everything starts grey; hovering an object fades it to
+// colour. Hit-testing uses an ID render (public/world/world_ids.png) in which
+// each hotspot is a flat grey level of index * 10. The Blender scene and renders
+// live outside the repo in "10 Code/matteocurcio.com-landing".
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Matteo Curcio | Studio"
+  description="An isometric tour of Matteo Curcio's studio: grading suite, video studio, music room and machine room."
+  path="/world/"
+  noIndex
+>
+  <section class="world" aria-label="Studio">
+    <div class="world-stage" id="world-stage" aria-hidden="true">
+      <img src="/world/world_grey.webp" alt="" width="1920" height="1080" />
+      <img src="/world/world_grey_dark.webp" alt="" width="1920" height="1080" class="world-night" />
+      <p class="world-loading" id="world-loading">Loading the studio…</p>
+    </div>
+    <nav class="world-index" id="world-index" aria-label="Studio objects"></nav>
+  </section>
+  <div class="world-pill" id="world-pill"></div>
+</BaseLayout>
+
+<style is:global>
+  .world {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    padding: 8px 16px 24px;
+    display: grid;
+    justify-items: center;
+  }
+  .world-stage {
+    position: relative;
+    width: min(100%, calc((100svh - 110px) * 16 / 9));
+    aspect-ratio: 16 / 9;
+  }
+  .world-stage img, .world-stage canvas { position: absolute; display: block; user-select: none; -webkit-user-drag: none; }
+  .world-stage > img { inset: 0; width: 100%; height: 100%; }
+  .world-stage.is-hot { cursor: pointer; }
+  /* Idle background swaps to a night render in dark mode; hover colours stay the same either way. */
+  .world-night { opacity: 0; transition: opacity 0.6s ease; }
+  body[data-theme="dark"] .world-night { opacity: 1; }
+  /* The room under the cursor fades to its colours; the other rooms and all objects stay grey. */
+  .world-room { opacity: 0; transition: opacity 0.6s ease; pointer-events: none; }
+  .world-room.is-on { opacity: 1; }
+  .world-layer { opacity: 0; transition: opacity 0.7s ease; pointer-events: none; }
+  .world-layer.is-on { opacity: 1; }
+  .world-loading { position: absolute; inset: 0; display: grid; place-items: center; margin: 0; color: var(--muted); font-size: 13px; }
+  /* Links stay for screen readers and keyboard users, hidden from sight. */
+  .world-index { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .world-index a:focus-visible { position: fixed; left: 16px; bottom: 16px; width: auto; height: auto; clip: auto; }
+  .world-pill {
+    position: fixed; z-index: 50; pointer-events: none; padding: 6px 12px; border-radius: 999px;
+    background: var(--text); color: var(--bg); white-space: nowrap; font: 12px/1.4 var(--font-mono);
+    opacity: 0; transform: translate(14px, 14px); transition: opacity 0.15s ease;
+  }
+  .world-pill.is-on { opacity: 1; }
+  @media (prefers-reduced-motion: reduce) { .world-layer, .world-room { transition: none; } }
+</style>
+
+<script is:inline>
+  (async () => {
+    const W = 1920, H = 1080;
+    const stage = document.getElementById("world-stage");
+    const pill = document.getElementById("world-pill");
+    const index = document.getElementById("world-index");
+    const load = (src) => new Promise((ok, err) => { const i = new Image(); i.onload = () => ok(i); i.onerror = err; i.src = src; });
+
+    const [spots, color, ids, bg, rooms] = await Promise.all([
+      fetch("/world/hotspots.json").then((r) => r.json()),
+      load("/world/world_color.webp"),
+      load("/world/world_ids.png"),
+      load("/world/world_bg.webp"),
+      load("/world/world_rooms.png"),
+    ]);
+    const read = (img, w = W, h = H) => {
+      const c = document.createElement("canvas"); c.width = w; c.height = h;
+      const g = c.getContext("2d", { willReadFrequently: true }); g.drawImage(img, 0, 0);
+      return g.getImageData(0, 0, w, h).data;
+    };
+    // The id and room maps are rendered at 2x without anti-aliasing. Decode them once, noting each
+    // code's bounding box (in 1x pixels); the top-left sub-pixel drives hit-testing, and the count of
+    // matching sub-pixels (0..4) gives each layer soft edge coverage.
+    const W2 = W * 2, H2 = H * 2;
+    const colPx = read(color), bgPx = read(bg);
+    const decode = (img, step) => {
+      const px = read(img, W2, H2), codes = new Uint8Array(W2 * H2), boxes = new Map();
+      for (let j = 0; j < W2 * H2; j++) {
+        if (px[j * 4 + 3] < 128) continue;
+        const k = Math.round(px[j * 4] / step);
+        if (!k) continue;
+        codes[j] = k;
+        const x = (j % W2) >> 1, y = ((j / W2) | 0) >> 1;
+        const b = boxes.get(k) || boxes.set(k, [W, H, -1, -1]).get(k);
+        if (x < b[0]) b[0] = x; if (y < b[1]) b[1] = y; if (x > b[2]) b[2] = x; if (y > b[3]) b[3] = y;
+      }
+      return { codes, boxes };
+    };
+    const idMap = decode(ids, 10), roomMap = decode(rooms, 50);
+    const at = (map, i) => { const x = i % W, y = (i - x) / W; return map.codes[y * 2 * W2 + x * 2]; };
+    const idAt = (i) => at(idMap, i);
+    const roomAt = (i) => at(roomMap, i);
+
+    // Copy `src` pixels into a positioned canvas, with alpha scaled by how many of the four
+    // sub-pixels belong to code `k`, so edges blend instead of stepping.
+    const layer = (src, map, k, className) => {
+      const b = map.boxes.get(k);
+      if (!b) return null;
+      const [x0, y0, x1, y1] = b, w = x1 - x0 + 1, h = y1 - y0 + 1, c4 = map.codes;
+      const c = document.createElement("canvas"); c.width = w; c.height = h;
+      const g = c.getContext("2d"); const out = g.createImageData(w, h);
+      for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+        const j = (y0 + y) * 2 * W2 + (x0 + x) * 2;
+        const n = (c4[j] === k) + (c4[j + 1] === k) + (c4[j + W2] === k) + (c4[j + W2 + 1] === k);
+        if (!n) continue;
+        const i = ((y0 + y) * W + (x0 + x)) * 4, o = (y * w + x) * 4;
+        out.data[o] = src[i]; out.data[o + 1] = src[i + 1]; out.data[o + 2] = src[i + 2];
+        out.data[o + 3] = (src[i + 3] * n) >> 2;
+      }
+      g.putImageData(out, 0, 0);
+      c.className = className;
+      Object.assign(c.style, { left: (x0 / W) * 100 + "%", top: (y0 / H) * 100 + "%", width: (w / W) * 100 + "%", height: (h / H) * 100 + "%" });
+      stage.appendChild(c);
+      return c;
+    };
+
+    // One background layer per room (the room in colour, its objects in the same grey as the base image).
+    const roomLayers = new Map();
+    for (const r of [1, 2, 3, 4]) roomLayers.set(r, layer(bgPx, roomMap, r, "world-room"));
+
+    // One colour layer per hotspot, drawn above the room layers.
+    const byIndex = new Map(spots.map((s) => [s.index, { ...s }]));
+    for (const s of [...byIndex.values()]) {
+      s.layer = layer(colPx, idMap, s.index, "world-layer");
+      if (!s.layer) byIndex.delete(s.index);
+    }
+
+    let current = 0;
+    const activate = (k, ev) => {
+      if (k !== current) {
+        byIndex.get(current)?.layer.classList.remove("is-on");
+        byIndex.get(k)?.layer.classList.add("is-on");
+        current = k;
+      }
+      stage.classList.toggle("is-hot", k > 0);
+      const s = byIndex.get(k);
+      pill.classList.toggle("is-on", !!s && !!ev);
+      if (s && ev) {
+        pill.textContent = s.page.replace(/^https?:\/\//, "");
+        pill.style.left = ev.clientX + "px"; pill.style.top = ev.clientY + "px";
+      }
+    };
+
+    // Plain links: the accessible route in, and a shortcut for repeat visitors.
+    for (const s of byIndex.values()) {
+      const a = document.createElement("a"); a.href = s.page; a.textContent = s.label;
+      a.addEventListener("mouseenter", () => activate(s.index));
+      a.addEventListener("focus", () => activate(s.index));
+      a.addEventListener("mouseleave", () => activate(0));
+      a.addEventListener("blur", () => activate(0));
+      index.appendChild(a);
+    }
+
+    const hit = (ev) => {
+      const r = stage.getBoundingClientRect();
+      const x = Math.floor(((ev.clientX - r.left) / r.width) * W), y = Math.floor(((ev.clientY - r.top) / r.height) * H);
+      if (x < 0 || y < 0 || x >= W || y >= H) return 0;
+      const k = idAt(y * W + x);
+      return byIndex.has(k) ? k : 0;
+    };
+    let room = 0;
+    const setRoom = (r) => {
+      if (r === room) return;
+      roomLayers.get(room)?.classList.remove("is-on");
+      roomLayers.get(r)?.classList.add("is-on");
+      room = r;
+    };
+    stage.addEventListener("pointermove", (ev) => {
+      const r = stage.getBoundingClientRect();
+      const x = Math.floor(((ev.clientX - r.left) / r.width) * W), y = Math.floor(((ev.clientY - r.top) / r.height) * H);
+      const inside = x >= 0 && y >= 0 && x < W && y < H;
+      const k = inside ? roomAt(y * W + x) : 0;
+      if (k) setRoom(k);                     // keep the last room lit while crossing gaps between objects
+      activate(hit(ev), ev);
+    });
+    stage.addEventListener("pointerleave", () => { setRoom(0); activate(0); });
+    stage.addEventListener("click", (ev) => {
+      const k = hit(ev); if (!k) return;
+      if (ev.pointerType === "touch" && current !== k) { activate(k, ev); return; }   // first tap reveals
+      window.location.href = byIndex.get(k).page;
+    });
+    document.getElementById("world-loading").remove();
+  })();
+</script>
