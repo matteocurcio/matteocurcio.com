@@ -38,7 +38,7 @@
   {
     "index": 8,
     "slug": "immersive",
-    "label": "360 camera and VR headset",
+    "label": "360 camera, VR headset and AR",
     "page": "/immersive/"
   },
   {
@@ -124,11 +124,5 @@
     "slug": "infographic",
     "label": "Data visualisation",
     "page": "/data-visualisation/"
-  },
-  {
-    "index": 25,
-    "slug": "ar",
-    "label": "Augmented reality",
-    "page": "/reels/ar/"
   }
 ]
