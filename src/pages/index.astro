@@ -1,15 +1,5 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import HomePageContent from "../components/HomePageContent.astro";
-
+import WorldPage from "./world.astro";
 ---
 
-<BaseLayout
-  title="Matteo Curcio | Melbourne Colourist & Finishing Artist"
-  description="Matteo Curcio is a Melbourne-based online editor, colourist, finishing artist, and workflow consultant for commercial, branded, and agency post-production."
-  path="/"
-  ogImage="/images/og/matteo-curcio-home-og.png"
-  ogImageAlt="Matteo Curcio homepage social card"
->
-  <HomePageContent />
-</BaseLayout>
+<WorldPage path="/" noIndex={false} />

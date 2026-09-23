@@ -5,13 +5,18 @@
 // each hotspot is a flat grey level of index * 10. The Blender scene and renders
 // live outside the repo in "10 Code/matteocurcio.com-landing".
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const {
+  path = "/world/",
+  noIndex = true,
+} = Astro.props;
 ---
 
 <BaseLayout
   title="Matteo Curcio | Studio"
   description="An isometric tour of Matteo Curcio's studio: grading suite, video studio, music room and machine room."
-  path="/world/"
-  noIndex
+  path={path}
+  noIndex={noIndex}
 >
   <section class="world" aria-label="Studio">
     <div class="world-stage" id="world-stage" aria-hidden="true">
