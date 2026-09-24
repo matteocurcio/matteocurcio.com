@@ -54,7 +54,7 @@ const {
      Phones fill the width and scroll through the floors; tablets show it larger, centred. */
   @media (max-width: 760px), (orientation: portrait) and (max-width: 1100px) {
     .world { padding: 8px 0 24px; }
-    .world-stage { width: min(100%, 520px); aspect-ratio: 1080 / 2340; }
+    .world-stage { width: min(100%, 520px); aspect-ratio: 1080 / 2600; }
   }
   @media (orientation: portrait) and (min-width: 761px) and (max-width: 1100px) {
     .world-stage { width: min(100%, 680px); }
@@ -88,7 +88,7 @@ const {
     const mq = window.matchMedia("(max-width: 760px), (orientation: portrait) and (max-width: 1100px)");
     const MOBILE = mq.matches;
     const BASE = MOBILE ? "/world/mobile/" : "/world/";
-    const W = MOBILE ? 1080 : 1920, H = MOBILE ? 2340 : 1080;
+    let W = MOBILE ? 1080 : 1920, H = MOBILE ? 2600 : 1080;   // replaced by the renders' real size once loaded
     mq.addEventListener("change", () => window.location.reload());
     const stage = document.getElementById("world-stage");
     const pill = document.getElementById("world-pill");
@@ -102,6 +102,9 @@ const {
       load(BASE + "world_bg.webp"),
       load(BASE + "world_rooms.png"),
     ]);
+    // Each set is framed tightly on its building, so take the size from the render itself.
+    W = color.naturalWidth; H = color.naturalHeight;
+    stage.style.aspectRatio = W + " / " + H;
     const read = (img, w = W, h = H) => {
       const c = document.createElement("canvas"); c.width = w; c.height = h;
       const g = c.getContext("2d", { willReadFrequently: true }); g.drawImage(img, 0, 0);
@@ -224,6 +227,9 @@ const {
     // click as a plain MouseEvent with no pointerType, so remember what the last press was, and treat
     // any screen without hover as touch.
     let lastPointer = "mouse";
+    // After a tap, fade back to grey if nothing else is tapped within 4 seconds.
+    let idle = 0;
+    const armIdle = () => { clearTimeout(idle); idle = setTimeout(() => { activate(0); setRoom(0); }, 4000); };
     stage.addEventListener("pointerdown", (ev) => { lastPointer = ev.pointerType || "mouse"; });
     const noHover = window.matchMedia("(hover: none)");
     stage.addEventListener("click", (ev) => {
@@ -233,6 +239,7 @@ const {
         const r = stage.getBoundingClientRect();
         const x = Math.floor(((ev.clientX - r.left) / r.width) * W), y = Math.floor(((ev.clientY - r.top) / r.height) * H);
         if (x >= 0 && y >= 0 && x < W && y < H) setRoom(roomAt(y * W + x) || room);
+        armIdle();
         if (!k) { activate(0); return; }
         if (current !== k) { activate(k, ev); return; }                               // first tap reveals
       }
