@@ -217,9 +217,17 @@ const {
       activate(hit(ev), ev);
     });
     stage.addEventListener("pointerleave", () => { setRoom(0); activate(0); });
+    // Touch screens have no hover, so a tap stands in for it: the first tap on an object reveals it
+    // (colour, room and label), a second tap on the same object follows the link. iOS Safari fires
+    // click as a plain MouseEvent with no pointerType, so remember what the last press was, and treat
+    // any screen without hover as touch.
+    let lastPointer = "mouse";
+    stage.addEventListener("pointerdown", (ev) => { lastPointer = ev.pointerType || "mouse"; });
+    const noHover = window.matchMedia("(hover: none)");
     stage.addEventListener("click", (ev) => {
       const k = hit(ev);
-      if (ev.pointerType === "touch") {                                               // touch has no hover: light the tapped room
+      const touch = ev.pointerType === "touch" || ev.pointerType === "pen" || lastPointer !== "mouse" || noHover.matches;
+      if (touch) {                                                                    // touch has no hover: light the tapped room
         const r = stage.getBoundingClientRect();
         const x = Math.floor(((ev.clientX - r.left) / r.width) * W), y = Math.floor(((ev.clientY - r.top) / r.height) * H);
         if (x >= 0 && y >= 0 && x < W && y < H) setRoom(roomAt(y * W + x) || room);
