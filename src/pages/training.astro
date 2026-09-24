@@ -235,12 +235,7 @@ const trainingSchema = {
         unitText: "hour",
         availability: "https://schema.org/InStock",
         url: `${siteUrl}/training/`
-      },
-      review: testimonials.map((item) => ({
-        "@type": "Review",
-        reviewBody: item.quote,
-        author: { "@type": "Person", name: item.name }
-      }))
+      }
     },
     ...courseSchemas,
     {
