@@ -1,6 +1,6 @@
 # Legacy section URLs
-/coding /workflow/ 301
-/coding/ /workflow/ 301
+/coding /code/ 301
+/coding/ /code/ 301
 /making /workflow/ 301
 /making/ /workflow/ 301
 /problem-solving /workflow/ 301

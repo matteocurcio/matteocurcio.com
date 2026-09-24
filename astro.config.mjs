@@ -56,7 +56,7 @@ export default defineConfig({
     }
   ],
   redirects: {
-    "/coding": "/workflow",
+    "/coding": "/code",
     "/making": "/workflow",
     "/problem-solving": "/workflow",
     "/tools": "/workflow",
