@@ -24,12 +24,6 @@
     "page": "/motion/"
   },
   {
-    "index": 5,
-    "slug": "reels",
-    "label": "Reels",
-    "page": "/reels/"
-  },
-  {
     "index": 7,
     "slug": "presentation",
     "label": "Projector",
@@ -52,12 +46,6 @@
     "slug": "videography",
     "label": "Cinema camera",
     "page": "/videography/"
-  },
-  {
-    "index": 11,
-    "slug": "services",
-    "label": "Services",
-    "page": "/services/"
   },
   {
     "index": 12,
