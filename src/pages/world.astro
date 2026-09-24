@@ -10,6 +10,9 @@ const {
   path = "/world/",
   noIndex = true,
 } = Astro.props;
+// Renders keep their file names between versions, so tag them with the build time to get past
+// browser and CDN caches whenever they change.
+const V = Date.now().toString(36);
 ---
 
 <BaseLayout
@@ -21,12 +24,12 @@ const {
   <section class="world" aria-label="Studio">
     <div class="world-stage" id="world-stage" aria-hidden="true">
       <picture>
-        <source media="(max-width: 760px), (orientation: portrait) and (max-width: 1100px)" srcset="/world/mobile/world_grey.webp" />
-        <img src="/world/world_grey.webp" alt="" width="1920" height="1080" />
+        <source media="(max-width: 760px), (orientation: portrait) and (max-width: 1100px)" srcset={`/world/mobile/world_grey.webp?v=${V}`} />
+        <img src={`/world/world_grey.webp?v=${V}`} alt="" width="1920" height="1080" />
       </picture>
       <picture>
-        <source media="(max-width: 760px), (orientation: portrait) and (max-width: 1100px)" srcset="/world/mobile/world_grey_dark.webp" />
-        <img src="/world/world_grey_dark.webp" alt="" width="1920" height="1080" class="world-night" />
+        <source media="(max-width: 760px), (orientation: portrait) and (max-width: 1100px)" srcset={`/world/mobile/world_grey_dark.webp?v=${V}`} />
+        <img src={`/world/world_grey_dark.webp?v=${V}`} alt="" width="1920" height="1080" class="world-night" />
       </picture>
       <p class="world-loading" id="world-loading">Loading the studio…</p>
     </div>
@@ -36,25 +39,29 @@ const {
 </BaseLayout>
 
 <style is:global>
+  /* --hh is the height of the header when it floats over the page (the home page); --ar is the
+     render's aspect ratio, set from the image once loaded. Each render is framed tightly on its
+     building, so the page supplies the breathing room. */
   .world {
+    --ar: 1920 / 1472;
     width: 100vw;
     margin-left: calc(50% - 50vw);
-    padding: clamp(24px, 3vh, 40px) 16px 24px;
+    padding: calc(var(--hh, 0px) + clamp(16px, 3vh, 32px)) 16px 0;
     display: grid;
     justify-items: center;
   }
   .world-stage {
     position: relative;
-    width: min(100%, calc((100svh - 110px) * 16 / 9));
-    aspect-ratio: 16 / 9;
+    width: min(100%, calc((100svh - var(--hh, 0px) - clamp(16px, 3vh, 32px) - 32px) * (var(--ar))));
+    aspect-ratio: var(--ar);
   }
   .world-stage img, .world-stage canvas { position: absolute; display: block; user-select: none; -webkit-user-drag: none; }
   .world-stage > img, .world-stage > picture > img { inset: 0; width: 100%; height: 100%; }
   /* Phones and portrait tablets get the tower (1080 x 2340); landscape tablets and desktops keep the studio.
      Phones fill the width and scroll through the floors; tablets show it larger, centred. */
   @media (max-width: 760px), (orientation: portrait) and (max-width: 1100px) {
-    .world { padding: 20px 10px 24px; }
-    .world-stage { width: min(100%, 520px); aspect-ratio: 1080 / 2600; }
+    .world { --ar: 1080 / 2600; padding: calc(var(--hh, 0px) + 16px) 12px 0; }
+    .world-stage { width: min(100%, 520px); }
   }
   @media (orientation: portrait) and (min-width: 761px) and (max-width: 1100px) {
     .world-stage { width: min(100%, 680px); }
@@ -81,7 +88,7 @@ const {
   @media (prefers-reduced-motion: reduce) { .world-layer, .world-room { transition: none; } }
 </style>
 
-<script is:inline>
+<script is:inline define:vars={{ V }}>
   (async () => {
     // Phones and portrait tablets load the tower set from /world/mobile/, everything else the desktop studio;
     // rotating a tablet across the breakpoint reloads into the other world.
@@ -90,21 +97,28 @@ const {
     const BASE = MOBILE ? "/world/mobile/" : "/world/";
     let W = MOBILE ? 1080 : 1920, H = MOBILE ? 2600 : 1080;   // replaced by the renders' real size once loaded
     mq.addEventListener("change", () => window.location.reload());
+    // On the home page the header floats over the content: leave room for it.
+    const header = document.querySelector(".site-header");
+    const fitHeader = () => {
+      const fixed = header && getComputedStyle(header).position === "fixed";
+      document.querySelector(".world").style.setProperty("--hh", fixed ? header.offsetHeight + "px" : "0px");
+    };
+    fitHeader(); window.addEventListener("resize", fitHeader);
     const stage = document.getElementById("world-stage");
     const pill = document.getElementById("world-pill");
     const index = document.getElementById("world-index");
     const load = (src) => new Promise((ok, err) => { const i = new Image(); i.onload = () => ok(i); i.onerror = err; i.src = src; });
 
     const [spots, color, ids, bg, rooms] = await Promise.all([
-      fetch(BASE + "hotspots.json").then((r) => r.json()),
-      load(BASE + "world_color.webp"),
-      load(BASE + "world_ids.png"),
-      load(BASE + "world_bg.webp"),
-      load(BASE + "world_rooms.png"),
+      fetch(BASE + "hotspots.json?v=" + V).then((r) => r.json()),
+      load(BASE + "world_color.webp?v=" + V),
+      load(BASE + "world_ids.png?v=" + V),
+      load(BASE + "world_bg.webp?v=" + V),
+      load(BASE + "world_rooms.png?v=" + V),
     ]);
     // Each set is framed tightly on its building, so take the size from the render itself.
     W = color.naturalWidth; H = color.naturalHeight;
-    stage.style.aspectRatio = W + " / " + H;
+    stage.parentElement.style.setProperty("--ar", W + " / " + H);
     const read = (img, w = W, h = H) => {
       const c = document.createElement("canvas"); c.width = w; c.height = h;
       const g = c.getContext("2d", { willReadFrequently: true }); g.drawImage(img, 0, 0);
