@@ -20,8 +20,14 @@ const {
 >
   <section class="world" aria-label="Studio">
     <div class="world-stage" id="world-stage" aria-hidden="true">
-      <img src="/world/world_grey.webp" alt="" width="1920" height="1080" />
-      <img src="/world/world_grey_dark.webp" alt="" width="1920" height="1080" class="world-night" />
+      <picture>
+        <source media="(max-width: 760px)" srcset="/world/mobile/world_grey.webp" />
+        <img src="/world/world_grey.webp" alt="" width="1920" height="1080" />
+      </picture>
+      <picture>
+        <source media="(max-width: 760px)" srcset="/world/mobile/world_grey_dark.webp" />
+        <img src="/world/world_grey_dark.webp" alt="" width="1920" height="1080" class="world-night" />
+      </picture>
       <p class="world-loading" id="world-loading">Loading the studio…</p>
     </div>
     <nav class="world-index" id="world-index" aria-label="Studio objects"></nav>
@@ -43,7 +49,12 @@ const {
     aspect-ratio: 16 / 9;
   }
   .world-stage img, .world-stage canvas { position: absolute; display: block; user-select: none; -webkit-user-drag: none; }
-  .world-stage > img { inset: 0; width: 100%; height: 100%; }
+  .world-stage > img, .world-stage > picture > img { inset: 0; width: 100%; height: 100%; }
+  /* Phones get the portrait tower (1080 x 2340): full width, the page scrolls down through the floors. */
+  @media (max-width: 760px) {
+    .world { padding: 8px 0 24px; }
+    .world-stage { width: min(100%, 520px); aspect-ratio: 1080 / 2340; }
+  }
   .world-stage.is-hot { cursor: pointer; }
   /* Idle background swaps to a night render in dark mode; hover colours stay the same either way. */
   .world-night { opacity: 0; transition: opacity 0.6s ease; }
@@ -68,18 +79,23 @@ const {
 
 <script is:inline>
   (async () => {
-    const W = 1920, H = 1080;
+    // Phones load the portrait tower set from /world/mobile/, everything else the desktop studio.
+    const mq = window.matchMedia("(max-width: 760px)");
+    const MOBILE = mq.matches;
+    const BASE = MOBILE ? "/world/mobile/" : "/world/";
+    const W = MOBILE ? 1080 : 1920, H = MOBILE ? 2340 : 1080;
+    mq.addEventListener("change", () => window.location.reload());
     const stage = document.getElementById("world-stage");
     const pill = document.getElementById("world-pill");
     const index = document.getElementById("world-index");
     const load = (src) => new Promise((ok, err) => { const i = new Image(); i.onload = () => ok(i); i.onerror = err; i.src = src; });
 
     const [spots, color, ids, bg, rooms] = await Promise.all([
-      fetch("/world/hotspots.json").then((r) => r.json()),
-      load("/world/world_color.webp"),
-      load("/world/world_ids.png"),
-      load("/world/world_bg.webp"),
-      load("/world/world_rooms.png"),
+      fetch(BASE + "hotspots.json").then((r) => r.json()),
+      load(BASE + "world_color.webp"),
+      load(BASE + "world_ids.png"),
+      load(BASE + "world_bg.webp"),
+      load(BASE + "world_rooms.png"),
     ]);
     const read = (img, w = W, h = H) => {
       const c = document.createElement("canvas"); c.width = w; c.height = h;
@@ -184,6 +200,7 @@ const {
       room = r;
     };
     stage.addEventListener("pointermove", (ev) => {
+      if (ev.pointerType === "touch") return;  // on phones a drag is a scroll; taps are handled on click
       const r = stage.getBoundingClientRect();
       const x = Math.floor(((ev.clientX - r.left) / r.width) * W), y = Math.floor(((ev.clientY - r.top) / r.height) * H);
       const inside = x >= 0 && y >= 0 && x < W && y < H;
@@ -193,8 +210,15 @@ const {
     });
     stage.addEventListener("pointerleave", () => { setRoom(0); activate(0); });
     stage.addEventListener("click", (ev) => {
-      const k = hit(ev); if (!k) return;
-      if (ev.pointerType === "touch" && current !== k) { activate(k, ev); return; }   // first tap reveals
+      const k = hit(ev);
+      if (ev.pointerType === "touch") {                                               // touch has no hover: light the tapped room
+        const r = stage.getBoundingClientRect();
+        const x = Math.floor(((ev.clientX - r.left) / r.width) * W), y = Math.floor(((ev.clientY - r.top) / r.height) * H);
+        if (x >= 0 && y >= 0 && x < W && y < H) setRoom(roomAt(y * W + x) || room);
+        if (!k) { activate(0); return; }
+        if (current !== k) { activate(k, ev); return; }                               // first tap reveals
+      }
+      if (!k) return;
       window.location.href = byIndex.get(k).page;
     });
     document.getElementById("world-loading").remove();
