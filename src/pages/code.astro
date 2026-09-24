@@ -3,128 +3,164 @@
 // how I work with AI agents now, and where it is heading (live events and installations).
 // The studio world's PC links here.
 import BaseLayout from "../layouts/BaseLayout.astro";
-import ThumbnailCarousel from "../components/ThumbnailCarousel.astro";
-import PostCard from "../components/PostCard.astro";
-import { allPosts } from "../lib/posts";
 import { CONTACT_MAILTO } from "../config/site";
 
-const builds = [
+const groups = [
   {
-    title: "Inventory",
-    href: "/blog/knowing-what-i-own-was-the-easy-half/",
-    image: "/images/blog/inventory/locations-studio.png",
-    imageAlt: "Studio storage diagrams showing drawers and Kallax compartments, with occupied slots highlighted in green",
-    meta: "Private inventory",
-    stack: ["Product design", "Cloudflare", "Image processing", "Labels"],
-    body:
-      "A private inventory mapped onto the real furniture: drawers and shelves drawn as they are, permanent labels, and a small Cloudflare setup that keeps it cheap to run."
+    title: "Production tools",
+    blurb: "Utilities for the edit suite, the set and the classroom.",
+    items: [
+      {
+        title: "Teleprompter",
+        href: "/blog/browser-teleprompter-production-tool/",
+        image: "/images/coding/teleprompter.png",
+        imageAlt: "Sanitized teleprompter interface concept showing display, remote, library and device controls",
+        meta: "Production utility",
+        stack: ["Production UX", "Local network", "Device approval", "Reliable sync"],
+        body:
+          "A browser teleprompter with script library, remote control, mirrored display mode, device coordination, and local-network behaviour designed for practical production use."
+      },
+      {
+        title: "Scopes",
+        href: "/blog/scopes-image-analysis-tool/",
+        image: "/images/coding/scopes.png",
+        imageAlt: "Scope Tools interface composite showing waveform, RGB parade and vectorscope output panels",
+        meta: "Teaching analysis tool",
+        stack: ["Colour education", "Portable scopes", "Resolve conventions", "Visual evidence"],
+        body:
+          "A scopes workflow for generating DaVinci Resolve-style waveform, RGB parade, and vectorscope images from still frames, useful for teaching, writing, and visual analysis."
+      },
+      {
+        title: "Transcripts",
+        href: "/blog/resolve-transcript-cleaner-python/",
+        image: "/assets/services/common/Screenshot-2025-08-19-at-2.29.01-pm.png",
+        imageAlt: "DaVinci Resolve transcript turned into readable dialogue by a Python script",
+        meta: "Python utility",
+        stack: ["Python", "DaVinci Resolve", "Editorial"],
+        body:
+          "A small Python utility that turns DaVinci Resolve transcript exports into readable interview dialogue for editorial and publishing."
+      }
+    ]
   },
   {
-    title: "Earth",
-    href: "/blog/earth-one-planet-no-undo/",
-    image: "/images/coding/earth.png",
-    imageAlt: "Satellite mosaic of Earth with a complete geographic background",
-    meta: "Satellite imagery API · prototype",
-    stack: ["Climate awareness", "NASA GIBS", "Image API", "Creative tools"],
-    body: "A portable view of our shared planet for installations, education and creative work. Recent satellite imagery, dated gap fill and a static geographic background, with an API designed to travel between tools."
+    title: "Private by design",
+    blurb: "Personal tools that keep the data with the person it belongs to.",
+    items: [
+      {
+        title: "Portfolio",
+        href: "/blog/portfolio-tracker-private-by-design/",
+        image: "/images/coding/portfolio.png",
+        imageAlt: "Portfolio tracker interface with market value cards, allocation panel and transaction tables",
+        meta: "Personal finance tool",
+        stack: ["Privacy model", "Local data", "Quote layer", "Readable state"],
+        body:
+          "A browser-first holdings tracker for stocks and ETFs, designed around local data, import/export, live quotes, readable financial state, and a deliberately private data model."
+      },
+      {
+        title: "Travel",
+        href: "/blog/offline-first-travel-expense-tracker/",
+        image: "/images/coding/travel.png",
+        imageAlt: "Travel tracker log view showing a Bangkok trip total in three currencies, a trip-wide flight and per-night accommodation splits",
+        meta: "Offline-first PWA",
+        stack: ["Offline UX", "Trip budgets", "Location memory", "Recoverable sync"],
+        body:
+          "A mobile-first travel expense tracker designed around the reality of travelling: no signal, quick entry, trip budgets, currency conversion, maps, reports, and sync that waits its turn."
+      },
+      {
+        title: "Living Costs",
+        href: "/blog/living-costs-tracker/",
+        image: "/images/coding/expenses.png",
+        imageAlt: "Living costs tracker interface showing summary cards, categories, and expense records",
+        meta: "Private cost tracker",
+        stack: ["Living costs", "Design system", "Private data", "Monthly clarity"],
+        body:
+          "A private living costs tracker for recurring and one-off expenses: monthly commitments, everyday costs, categories, projections, places, and a shared interface language carried across the rest of my tools."
+      },
+      {
+        title: "Inventory",
+        href: "/blog/knowing-what-i-own-was-the-easy-half/",
+        image: "/images/blog/inventory/locations-studio.png",
+        imageAlt: "Studio storage diagrams showing drawers and Kallax compartments, with occupied slots highlighted in green",
+        meta: "Private inventory",
+        stack: ["Product design", "Cloudflare", "Image processing", "Labels"],
+        body:
+          "A private inventory mapped onto the real furniture: drawers and shelves drawn as they are, permanent labels, and a small Cloudflare setup that keeps it cheap to run."
+      }
+    ]
   },
   {
-    title: "Grid",
-    href: "/blog/grid-layout-system-generator/",
-    image: "/images/coding/grid.png",
-    imageAlt: "Grid layout generator interface showing page settings and a generated print grid preview",
-    meta: "Static browser tool",
-    stack: ["Layout systems", "Export design", "Print geometry", "Static web"],
-    body:
-      "A layout grid generator for print and screen work: page presets, margins, bleed, columns, rows, baseline grids, measurement overlays, and clean exports shaped around designer expectations."
+    title: "Design, imagery and 3D",
+    blurb: "Layout systems, satellite imagery, and a studio built by an agent.",
+    items: [
+      {
+        title: "Grid",
+        href: "/blog/grid-layout-system-generator/",
+        image: "/images/coding/grid.png",
+        imageAlt: "Grid layout generator interface showing page settings and a generated print grid preview",
+        meta: "Static browser tool",
+        stack: ["Layout systems", "Export design", "Print geometry", "Static web"],
+        body:
+          "A layout grid generator for print and screen work: page presets, margins, bleed, columns, rows, baseline grids, measurement overlays, and clean exports shaped around designer expectations."
+      },
+      {
+        title: "Earth",
+        href: "/blog/earth-one-planet-no-undo/",
+        image: "/images/coding/earth.png",
+        imageAlt: "Satellite mosaic of Earth with a complete geographic background",
+        meta: "Satellite imagery API · prototype",
+        stack: ["Climate awareness", "NASA GIBS", "Image API", "Creative tools"],
+        body: "A portable view of our shared planet for installations, education and creative work. Recent satellite imagery, dated gap fill and a static geographic background, with an API designed to travel between tools."
+      },
+      {
+        title: "Studio World",
+        href: "/",
+        image: "/world/world_color.webp",
+        imageAlt: "Isometric render of the studio: four rooms stacked two by two with a roof garden and solar panels",
+        meta: "Agentic 3D pipeline",
+        stack: ["Blender", "Python", "MCP", "AI agents", "Astro"],
+        body:
+          "The isometric studio on the home page: modelled, lit and rendered in Blender by an AI agent over MCP, with object and room passes that make every piece of furniture a link."
+      }
+    ]
   },
   {
-    title: "Portfolio",
-    href: "/blog/portfolio-tracker-private-by-design/",
-    image: "/images/coding/portfolio.png",
-    imageAlt: "Portfolio tracker interface with market value cards, allocation panel and transaction tables",
-    meta: "Personal finance tool",
-    stack: ["Privacy model", "Local data", "Quote layer", "Readable state"],
-    body:
-      "A browser-first holdings tracker for stocks and ETFs, designed around local data, import/export, live quotes, readable financial state, and a deliberately private data model."
-  },
-  {
-    title: "Travel",
-    href: "/blog/offline-first-travel-expense-tracker/",
-    image: "/images/coding/travel.png",
-    imageAlt: "Travel tracker log view showing a Bangkok trip total in three currencies, a trip-wide flight and per-night accommodation splits",
-    meta: "Offline-first PWA",
-    stack: ["Offline UX", "Trip budgets", "Location memory", "Recoverable sync"],
-    body:
-      "A mobile-first travel expense tracker designed around the reality of travelling: no signal, quick entry, trip budgets, currency conversion, maps, reports, and sync that waits its turn."
-  },
-  {
-    title: "Living Costs",
-    href: "/blog/living-costs-tracker/",
-    image: "/images/coding/expenses.png",
-    imageAlt: "Living costs tracker interface showing summary cards, categories, and expense records",
-    meta: "Private cost tracker",
-    stack: ["Living costs", "Design system", "Private data", "Monthly clarity"],
-    body:
-      "A private living costs tracker for recurring and one-off expenses: monthly commitments, everyday costs, categories, projections, places, and a shared interface language carried across the rest of my tools."
-  },
-  {
-    title: "Teleprompter",
-    href: "/blog/browser-teleprompter-production-tool/",
-    image: "/images/coding/teleprompter.png",
-    imageAlt: "Sanitized teleprompter interface concept showing display, remote, library and device controls",
-    meta: "Production utility",
-    stack: ["Production UX", "Local network", "Device approval", "Reliable sync"],
-    body:
-      "A browser teleprompter with script library, remote control, mirrored display mode, device coordination, and local-network behaviour designed for practical production use."
-  },
-  {
-    title: "Scopes",
-    href: "/blog/scopes-image-analysis-tool/",
-    image: "/images/coding/scopes.png",
-    imageAlt: "Scope Tools interface composite showing waveform, RGB parade and vectorscope output panels",
-    meta: "Teaching analysis tool",
-    stack: ["Colour education", "Portable scopes", "Resolve conventions", "Visual evidence"],
-    body:
-      "A scopes workflow for generating DaVinci Resolve-style waveform, RGB parade, and vectorscope images from still frames, useful for teaching, writing, and visual analysis."
-  },
-  {
-    title: "Network Kiosk",
-    href: "/blog/proxmox-observability-kiosk/",
-    image: "/images/blog/proxmox-observability-kiosk/proxmox-observability-kiosk-rack.png",
-    imageAlt: "Rack-mounted homelab observability kiosk showing green Grafana status panels",
-    meta: "Homelab observability",
-    stack: ["Proxmox", "Grafana", "Prometheus", "Loki", "Raspberry Pi"],
-    body:
-      "A rack-mounted observability kiosk for the homelab: Proxmox, logs, metrics, backups, network state, and a small Pi display that works like a miniature NOC."
-  },
-  {
-    title: "Home Kiosk",
-    href: "/blog/building-an-ultrawide-home-kiosk/",
-    image: "/images/blog/wide-home-kiosk/ultrawide-kiosk-cover.png",
-    imageAlt: "Ultrawide home kiosk in a 3D-printed frame with a seven-button switcher",
-    meta: "Domestic information display",
-    stack: ["Raspberry Pi", "Python", "Chromium", "Fusion", "3D printing"],
-    body:
-      "An ultrawide home information kiosk with calendar, transport, weather, satellite, system status, clocks, living costs, and physical seven-key navigation."
-  },
-  {
-    title: "Transcripts",
-    href: "/blog/resolve-transcript-cleaner-python/",
-    image: "/assets/services/common/Screenshot-2025-08-19-at-2.29.01-pm.png",
-    imageAlt: "DaVinci Resolve transcript turned into readable dialogue by a Python script",
-    meta: "Python utility",
-    stack: ["Python", "DaVinci Resolve", "Editorial"],
-    body:
-      "A small Python utility that turns DaVinci Resolve transcript exports into readable interview dialogue for editorial and publishing."
+    title: "Hardware and homelab",
+    blurb: "Displays, racks and storage: the physical side of keeping things running.",
+    items: [
+      {
+        title: "Network Kiosk",
+        href: "/blog/proxmox-observability-kiosk/",
+        image: "/images/blog/proxmox-observability-kiosk/proxmox-observability-kiosk-rack.png",
+        imageAlt: "Rack-mounted homelab observability kiosk showing green Grafana status panels",
+        meta: "Homelab observability",
+        stack: ["Proxmox", "Grafana", "Prometheus", "Loki", "Raspberry Pi"],
+        body:
+          "A rack-mounted observability kiosk for the homelab: Proxmox, logs, metrics, backups, network state, and a small Pi display that works like a miniature NOC."
+      },
+      {
+        title: "Home Kiosk",
+        href: "/blog/building-an-ultrawide-home-kiosk/",
+        image: "/images/blog/wide-home-kiosk/ultrawide-kiosk-cover.png",
+        imageAlt: "Ultrawide home kiosk in a 3D-printed frame with a seven-button switcher",
+        meta: "Domestic information display",
+        stack: ["Raspberry Pi", "Python", "Chromium", "Fusion", "3D printing"],
+        body:
+          "An ultrawide home information kiosk with calendar, transport, weather, satellite, system status, clocks, living costs, and physical seven-key navigation."
+      },
+      {
+        title: "Plex Migration",
+        href: "/blog/from-wd-ex2-ultra-to-qnap-migrating-a-plex-media-library-the-hard-way-and-surviving-it/",
+        image: "/assets/services/common/4477FA15-10DB-4934-AF3C-D0AD0F7B9684.png",
+        imageAlt: "Migrating a Plex media library from a WD EX2 Ultra to a QNAP",
+        meta: "NAS migration · field report",
+        stack: ["Automation", "Recovery", "Storage", "Homelab"],
+        body:
+          "A quick NAS move that turned into a reliability exercise: scripted transfers, recovery strategy, and not trusting optimistic copy estimates."
+      }
+    ]
   }
 ];
 
-// Other writing about tools and infrastructure that isn't already a card above.
-const builtSlugs = new Set(builds.map((b) => b.href.replace(/^\/blog\/|\/$/g, "")));
-const moreWriting = allPosts.filter(
-  (post) => !post.draft && (post.topic === "tools" || post.topic === "infrastructure") && !builtSlugs.has(post.slug)
-);
 
 const lanes = [
   {
@@ -177,20 +213,33 @@ const lanes = [
     </div>
   </section>
 
-  <section class="section" aria-label="Things I've built">
-    <ThumbnailCarousel
-      items={builds.map((project) => ({
-        title: project.title,
-        href: project.href,
-        image: project.image,
-        imageAlt: project.imageAlt,
-        meta: project.meta,
-        body: project.body,
-        stack: project.stack
-      }))}
-      ariaLabel="Things I've built"
-    />
-  </section>
+  {groups.map((group) => (
+    <section class="section blog-topic code-group" aria-label={group.title}>
+      <div class="blog-topic-head">
+        <h2>{group.title}</h2>
+        <p>{group.blurb}</p>
+      </div>
+      <div class="blog-grid code-grid">
+        {group.items.map((item) => (
+          <article class="post-card coding-card">
+            <a href={item.href}>
+              <div class="thumb-frame">
+                <img class="thumb" src={item.image} alt={item.imageAlt} loading="lazy" />
+              </div>
+              <div class="body">
+                <p class="post-meta">{item.meta}</p>
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
+                <div class="coding-tags" aria-label={`${item.title} stack`}>
+                  {item.stack.map((tag) => <span>{tag}</span>)}
+                </div>
+              </div>
+            </a>
+          </article>
+        ))}
+      </div>
+    </section>
+  ))}
 
   <section class="section" id="background">
     <div class="two-col">
@@ -252,27 +301,6 @@ const lanes = [
       </p>
     </div>
   </section>
-
-  {moreWriting.length > 0 && (
-    <section class="section blog-topic" aria-label="More writing on tools and infrastructure">
-      <div class="blog-topic-head">
-        <h2>More writing</h2>
-        <p>Infrastructure, migrations and the other tools behind the work.</p>
-      </div>
-      <div class="blog-grid">
-        {moreWriting.map((post) => (
-          <PostCard
-            slug={post.slug}
-            title={post.title}
-            date={post.date}
-            excerpt={post.excerpt}
-            cover={post.cover}
-            coverAlt={post.coverAlt}
-          />
-        ))}
-      </div>
-    </section>
-  )}
 
   <section class="cta section">
     <div>
