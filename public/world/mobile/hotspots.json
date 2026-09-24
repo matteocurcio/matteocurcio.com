@@ -124,5 +124,11 @@
     "slug": "infographic",
     "label": "Data visualisation",
     "page": "/data-visualisation/"
+  },
+  {
+    "index": 25,
+    "slug": "radio",
+    "label": "Ham radio",
+    "page": "/radio/"
   }
 ]
