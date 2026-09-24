@@ -172,6 +172,9 @@ const {
       if (s && ev) {
         pill.textContent = s.page.replace(/^https?:\/\//, "");
         pill.style.left = ev.clientX + "px"; pill.style.top = ev.clientY + "px";
+        // keep the label on screen: flip it to the left of the pointer near the right edge
+        const flip = ev.clientX + pill.offsetWidth + 24 > window.innerWidth;
+        pill.style.transform = flip ? "translate(calc(-100% - 14px), 14px)" : "";
       }
     };
 
