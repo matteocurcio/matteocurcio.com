@@ -1,0 +1,312 @@
+---
+// The code page: the tools I've built (each links to its write-up), where the habit came from,
+// how I work with AI agents now, and where it is heading (live events and installations).
+// The studio world's PC links here.
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { CONTACT_MAILTO } from "../config/site";
+
+const groups = [
+  {
+    title: "Production tools",
+    blurb: "Utilities for the edit suite, the set and the classroom.",
+    items: [
+      {
+        title: "Teleprompter",
+        href: "/blog/browser-teleprompter-production-tool/",
+        image: "/images/coding/teleprompter.png",
+        imageAlt: "Sanitized teleprompter interface concept showing display, remote, library and device controls",
+        meta: "Production utility",
+        stack: ["Production UX", "Local network", "Device approval", "Reliable sync"],
+        body:
+          "A browser teleprompter with script library, remote control, mirrored display mode, device coordination, and local-network behaviour designed for practical production use."
+      },
+      {
+        title: "Scopes",
+        href: "/blog/scopes-image-analysis-tool/",
+        image: "/images/coding/scopes.png",
+        imageAlt: "Scope Tools interface composite showing waveform, RGB parade and vectorscope output panels",
+        meta: "Teaching analysis tool",
+        stack: ["Colour education", "Portable scopes", "Resolve conventions", "Visual evidence"],
+        body:
+          "A scopes workflow for generating DaVinci Resolve-style waveform, RGB parade, and vectorscope images from still frames, useful for teaching, writing, and visual analysis."
+      },
+      {
+        title: "Transcripts",
+        href: "/blog/resolve-transcript-cleaner-python/",
+        image: "/assets/services/common/Screenshot-2025-08-19-at-2.29.01-pm.png",
+        imageAlt: "DaVinci Resolve transcript turned into readable dialogue by a Python script",
+        meta: "Python utility",
+        stack: ["Python", "DaVinci Resolve", "Editorial"],
+        body:
+          "A small Python utility that turns DaVinci Resolve transcript exports into readable interview dialogue for editorial and publishing."
+      }
+    ]
+  },
+  {
+    title: "Private by design",
+    blurb: "Personal tools that keep the data with the person it belongs to.",
+    items: [
+      {
+        title: "Portfolio",
+        href: "/blog/portfolio-tracker-private-by-design/",
+        image: "/images/coding/portfolio.png",
+        imageAlt: "Portfolio tracker interface with market value cards, allocation panel and transaction tables",
+        meta: "Personal finance tool",
+        stack: ["Privacy model", "Local data", "Quote layer", "Readable state"],
+        body:
+          "A browser-first holdings tracker for stocks and ETFs, designed around local data, import/export, live quotes, readable financial state, and a deliberately private data model."
+      },
+      {
+        title: "Travel",
+        href: "/blog/offline-first-travel-expense-tracker/",
+        image: "/images/coding/travel.png",
+        imageAlt: "Travel tracker log view showing a Bangkok trip total in three currencies, a trip-wide flight and per-night accommodation splits",
+        meta: "Offline-first PWA",
+        stack: ["Offline UX", "Trip budgets", "Location memory", "Recoverable sync"],
+        body:
+          "A mobile-first travel expense tracker designed around the reality of travelling: no signal, quick entry, trip budgets, currency conversion, maps, reports, and sync that waits its turn."
+      },
+      {
+        title: "Living Costs",
+        href: "/blog/living-costs-tracker/",
+        image: "/images/coding/expenses.png",
+        imageAlt: "Living costs tracker interface showing summary cards, categories, and expense records",
+        meta: "Private cost tracker",
+        stack: ["Living costs", "Design system", "Private data", "Monthly clarity"],
+        body:
+          "A private living costs tracker for recurring and one-off expenses: monthly commitments, everyday costs, categories, projections, places, and a shared interface language carried across the rest of my tools."
+      }
+    ]
+  },
+  {
+    title: "Design, imagery and 3D",
+    blurb: "Layout systems, satellite imagery, and a studio built by an agent.",
+    items: [
+      {
+        title: "Grid",
+        href: "/blog/grid-layout-system-generator/",
+        image: "/images/coding/grid.png",
+        imageAlt: "Grid layout generator interface showing page settings and a generated print grid preview",
+        meta: "Static browser tool",
+        stack: ["Layout systems", "Export design", "Print geometry", "Static web"],
+        body:
+          "A layout grid generator for print and screen work: page presets, margins, bleed, columns, rows, baseline grids, measurement overlays, and clean exports shaped around designer expectations."
+      },
+      {
+        title: "Earth",
+        href: "/blog/earth-one-planet-no-undo/",
+        image: "/images/coding/earth.png",
+        imageAlt: "Satellite mosaic of Earth with a complete geographic background",
+        meta: "Satellite imagery API · prototype",
+        stack: ["Climate awareness", "NASA GIBS", "Image API", "Creative tools"],
+        body: "A portable view of our shared planet for installations, education and creative work. Recent satellite imagery, dated gap fill and a static geographic background, with an API designed to travel between tools."
+      },
+      {
+        title: "Studio World",
+        href: "/",
+        image: "/world/world_color.webp",
+        imageAlt: "Isometric render of the studio: four rooms stacked two by two with a roof garden and solar panels",
+        meta: "Agentic 3D pipeline",
+        stack: ["Blender", "Python", "MCP", "AI agents", "Astro"],
+        body:
+          "The isometric studio on the home page: modelled, lit and rendered in Blender by an AI agent over MCP, with object and room passes that make every piece of furniture a link."
+      }
+    ]
+  },
+  {
+    title: "Studio, hardware and homelab",
+    blurb: "Displays, racks and shelves: the physical side of keeping things running and findable.",
+    items: [
+      {
+        title: "Network Kiosk",
+        href: "/blog/proxmox-observability-kiosk/",
+        image: "/images/blog/proxmox-observability-kiosk/proxmox-observability-kiosk-rack.png",
+        imageAlt: "Rack-mounted homelab observability kiosk showing green Grafana status panels",
+        meta: "Homelab observability",
+        stack: ["Proxmox", "Grafana", "Prometheus", "Loki", "Raspberry Pi"],
+        body:
+          "A rack-mounted observability kiosk for the homelab: Proxmox, logs, metrics, backups, network state, and a small Pi display that works like a miniature NOC."
+      },
+      {
+        title: "Home Kiosk",
+        href: "/blog/building-an-ultrawide-home-kiosk/",
+        image: "/images/blog/wide-home-kiosk/ultrawide-kiosk-cover.png",
+        imageAlt: "Ultrawide home kiosk in a 3D-printed frame with a seven-button switcher",
+        meta: "Domestic information display",
+        stack: ["Raspberry Pi", "Python", "Chromium", "Fusion", "3D printing"],
+        body:
+          "An ultrawide home information kiosk with calendar, transport, weather, satellite, system status, clocks, living costs, and physical seven-key navigation."
+      },
+      {
+        title: "Inventory",
+        href: "/blog/knowing-what-i-own-was-the-easy-half/",
+        image: "/images/blog/inventory/locations-studio.png",
+        imageAlt: "Studio storage diagrams showing drawers and Kallax compartments, with occupied slots highlighted in green",
+        meta: "Private inventory",
+        stack: ["Product design", "Cloudflare", "Image processing", "Labels"],
+        body:
+          "A private inventory mapped onto the real furniture: drawers and shelves drawn as they are, permanent labels, and a small Cloudflare setup that keeps it cheap to run."
+      }
+    ]
+  }
+];
+
+
+const lanes = [
+  {
+    title: "Post-production",
+    body:
+      "Twenty-five years of grading, finishing and delivery is where most of the problems come from: scopes for teaching, transcripts an editor can actually read, project structures that survive a handover."
+  },
+  {
+    title: "Security",
+    body:
+      "A Certificate IV in Cyber Security from RMIT and the ISC2 Certified in Cybersecurity credential sit underneath the way I build: private data models, local-first storage, and a segmented homelab where the theory has to hold up."
+  },
+  {
+    title: "Design",
+    body:
+      "Interaction design training through the Interaction Design Foundation shapes every tool here. Each one starts from what the person using it needs to see and do, not from what is easy to code."
+  },
+  {
+    title: "Practical things",
+    body:
+      "Some problems are physical: a kiosk in a 3D-printed frame, a rack display that works like a miniature NOC, a map of which drawer the lens is actually in."
+  }
+];
+---
+
+<BaseLayout
+  title="Code: Tools, Automation & Agentic Workflows | Matteo Curcio"
+  description="Small tools built for specific problems in post-production, security, design and the studio, how I build them with AI agents, and where it goes next: live events and installations."
+  path="/code"
+>
+  <section class="page-head">
+    <h1>I write small tools for specific problems.</h1>
+    <p>
+      Most of what is on this page started as a nuisance: a spreadsheet that couldn't tell me where a lens was, a
+      transcript nobody could read, a homelab I couldn't see at a glance. Each one turned into a small tool, and most of
+      them into an article about how it was designed and why.
+    </p>
+    <p>
+      The problems sit where my work overlaps: post-production, cybersecurity, interface design, and the practical
+      business of running a studio. I solve them in the browser, in Python, on a Raspberry Pi, and increasingly with AI
+      agents doing a lot of the typing.
+    </p>
+  </section>
+
+  <section class="section" id="builds">
+    <div class="page-head">
+      <p class="kicker">Software &amp; Hardware</p>
+      <h2>Things I've built.</h2>
+      <p>Every card links to the write-up: the problem, the design decisions, and what I would change.</p>
+    </div>
+  </section>
+
+  {groups.map((group) => (
+    <section class="section blog-topic code-group" aria-label={group.title}>
+      <div class="blog-topic-head">
+        <h2>{group.title}</h2>
+        <p>{group.blurb}</p>
+      </div>
+      <div class="blog-grid code-grid">
+        {group.items.map((item) => (
+          <article class="post-card coding-card">
+            <a href={item.href}>
+              <div class="thumb-frame">
+                <img class="thumb" src={item.image} alt={item.imageAlt} loading="lazy" />
+              </div>
+              <div class="body">
+                <p class="post-meta">{item.meta}</p>
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
+                <div class="coding-tags" aria-label={`${item.title} stack`}>
+                  {item.stack.map((tag) => <span>{tag}</span>)}
+                </div>
+              </div>
+            </a>
+          </article>
+        ))}
+      </div>
+    </section>
+  ))}
+
+  <section class="section" id="background">
+    <div class="two-col">
+      <article class="panel">
+        <p class="kicker">Where it started</p>
+        <h2>Visual Basic, fintech, Y2K.</h2>
+        <p>
+          I started with Visual Basic, and studied some computer science at university before being thrown into
+          workflow work in fintech, right in time for the Y2K bug. It was a crash course in how much a system rests on
+          assumptions nobody wrote down, and how much work it takes to find them before they find you.
+        </p>
+        <p>
+          Post-production took over after that, but the habit stayed. Python became what I reach for when a folder of
+          files, an export or an API needs sorting out, and the instinct for where a process will break turned out to
+          be useful in a grading suite too.
+        </p>
+      </article>
+
+      <article class="panel">
+        <p class="kicker">How I build now</p>
+        <h2>Working with agents.</h2>
+        <p>
+          These days much of the implementation is done with AI coding agents. I write the brief, set the constraints,
+          decide the architecture and review what comes back. The part that still takes the time is the part it always
+          did: defining the problem clearly enough that the tool has a reason to exist, and knowing when the output is
+          wrong.
+        </p>
+        <p>
+          This site is built that way, including the isometric studio on the home page: modelled, lit and rendered in
+          Blender by an agent driving it through MCP, then wired into the page so every object links to a section.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="lanes">
+    <div class="page-head">
+      <p class="kicker">Where the problems come from</p>
+      <h2>Four overlapping fields.</h2>
+    </div>
+    <div class="two-col">
+      {lanes.map((lane) => (
+        <article class="panel">
+          <h3>{lane.title}</h3>
+          <p>{lane.body}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section" id="next">
+    <div class="page-head">
+      <p class="kicker">What's next</p>
+      <h2>Live events and installations.</h2>
+      <p>
+        I'm now moving into technology for live events and installations: TouchDesigner for real-time visuals, Dante for
+        audio over the network, and Q-SYS for control and processing. It is the same instinct pointed at a room instead
+        of a timeline: signal flow, networks, and systems that have to work first time, in front of an audience.
+      </p>
+    </div>
+  </section>
+
+  <section class="cta section">
+    <div>
+      <h2>A small problem that won't go away?</h2>
+      <p>
+        If a tool is too heavy, too vague, or missing entirely, describe the friction. I'll tell you whether it is worth
+        building.
+      </p>
+    </div>
+    <a href={CONTACT_MAILTO}>Get in touch</a>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Three cards per row in every group, so rows are always full and even. */
+  @media (min-width: 900px) {
+    .code-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+</style>
