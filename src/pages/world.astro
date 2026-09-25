@@ -35,7 +35,7 @@ const V = Date.now().toString(36);
     </div>
     <nav class="world-index" id="world-index" aria-label="Studio objects"></nav>
   </section>
-  <div class="world-pill" id="world-pill"></div>
+  <a class="world-pill" id="world-pill" aria-hidden="true" tabindex="-1"></a>
 </BaseLayout>
 
 <style is:global>
@@ -85,6 +85,8 @@ const V = Date.now().toString(36);
     opacity: 0; transform: translate(14px, 14px); transition: opacity 0.15s ease;
   }
   .world-pill.is-on { opacity: 1; }
+  /* On touch screens the revealed label is the link: tap it to open the page. */
+  .world-pill.is-tap { pointer-events: auto; padding: 10px 16px; font-size: 13px; text-decoration: none; }
   @media (prefers-reduced-motion: reduce) { .world-layer, .world-room { transition: none; } }
 </style>
 
@@ -182,7 +184,7 @@ const V = Date.now().toString(36);
     }
 
     let current = 0;
-    const activate = (k, ev) => {
+    const activate = (k, ev, tap = false) => {
       if (k !== current) {
         byIndex.get(current)?.layer.classList.remove("is-on");
         byIndex.get(k)?.layer.classList.add("is-on");
@@ -191,8 +193,10 @@ const V = Date.now().toString(36);
       stage.classList.toggle("is-hot", k > 0);
       const s = byIndex.get(k);
       pill.classList.toggle("is-on", !!s && !!ev);
+      pill.classList.toggle("is-tap", !!s && !!ev && tap);
       if (s && ev) {
-        pill.textContent = s.page.replace(/^https?:\/\//, "");
+        pill.href = s.page;
+        pill.textContent = s.page.replace(/^https?:\/\//, "") + (tap ? " \u2192" : "");
         pill.style.left = ev.clientX + "px"; pill.style.top = ev.clientY + "px";
         // keep the label on screen: flip it to the left of the pointer near the right edge
         const flip = ev.clientX + pill.offsetWidth + 24 > window.innerWidth;
@@ -255,11 +259,13 @@ const V = Date.now().toString(36);
         if (x >= 0 && y >= 0 && x < W && y < H) setRoom(roomAt(y * W + x) || room);
         armIdle();
         if (!k) { activate(0); return; }
-        if (current !== k) { activate(k, ev); return; }                               // first tap reveals
+        if (current !== k) { activate(k, ev, true); return; }                         // first tap reveals; the label is now a link
       }
       if (!k) return;
       window.location.href = byIndex.get(k).page;
     });
+    // The label is pinned to the screen, so once the page scrolls it no longer sits by its object: hide it.
+    window.addEventListener("scroll", () => { if (pill.classList.contains("is-tap")) pill.classList.remove("is-on", "is-tap"); }, { passive: true });
     document.getElementById("world-loading").remove();
   })();
 </script>
