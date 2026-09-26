@@ -5088,9 +5088,9 @@ main p a:not([class]):focus-visible {
 
 /* Sync reel: films and series, shown as a compact grid of uniform posters. */
 .project-gallery.reel-gallery.is-sync-gallery {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 0.75rem;
-  max-width: 44rem;
+  max-width: 50rem;
 }
 
 .project-gallery.reel-gallery.is-sync-gallery img {
@@ -5171,7 +5171,7 @@ main p a:not([class]):focus-visible {
 
 @media (max-width: 760px) {
   .project-gallery.reel-gallery.is-sync-gallery {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 0.5rem;
   }
 
@@ -5201,7 +5201,7 @@ main p a:not([class]):focus-visible {
 
 .presentation-slide-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 0.9rem;
 }
 
@@ -5214,6 +5214,7 @@ main p a:not([class]):focus-visible {
 
 .presentation-slide img {
   width: 100%;
+  height: auto; /* the width/height attributes would otherwise fix it at 900px tall */
   aspect-ratio: 16 / 9;
   object-fit: cover;
   display: block;
@@ -5225,6 +5226,12 @@ main p a:not([class]):focus-visible {
 .presentation-slide:hover img,
 .presentation-slide:focus-visible img {
   transform: translateY(-2px);
+}
+
+@media (max-width: 1080px) {
+  .presentation-slide-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 760px) {

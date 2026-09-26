@@ -63,7 +63,10 @@ const WORK_VIDEO_OVERRIDES: Record<string, string> = {
   "rasta-man-vibration": "/assets/projects/cinemastone-rasta-man-vibration/thumbnail_rasta_man_vibration.mov",
   "amp": "/assets/projects/amp-quay-quarter/thumbnail_amp.mov",
   "kakadu-complex": "/assets/projects/nature-s-goodness-kakadu-complex/thumbnail_kakadu_complex.mov",
-  "2xu": "/assets/projects/2xu-compression/thumbnail_2xu.mp4"
+  // Flat-to-graded wipes built from the graded stills; each starts on the tile's still.
+  "2xu": "/assets/projects/2xu-compression/hover_2xu.mp4",
+  "six-the-musical-2024-trailer": "/assets/projects/six-the-musical-australia-2024-trailer/hover_six_the_musical.mp4",
+  "sunset-boulevard-epk-trailer": "/assets/projects/sunset-boulevard-australia-epk-trailer/hover_sunset_boulevard.mp4"
 };
 
 function isGenericThumb(src?: string) {
