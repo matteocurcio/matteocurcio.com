@@ -1021,7 +1021,7 @@ const pageTitle = pageTitleBase.length > 68
 
 // Every project page previously inherited the site-wide description, so 107
 // pages shipped identical meta. Build one from what this project actually is.
-const pageDescription = (() => {
+const pageDescription = project?.data.description || (() => {
   const cleanClient = project?.data.client && project.data.client !== "Selected Work" ? project.data.client : "";
   const role = isReelPage
     ? "showreel"

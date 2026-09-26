@@ -136,7 +136,7 @@ const testimonials = [
 const tutoringSignals = [
   "One-on-one sessions",
   "Remote or in person in Fitzroy, Melbourne",
-  "One-on-one sessions from $100/h",
+  "Fair, competitive rates for students through to agencies",
   "Team and project blocks quoted on request"
 ];
 
@@ -159,7 +159,7 @@ const faqs = [
   {
     icon: "pricing",
     q: "What does a session cost?",
-    a: "One-on-one sessions start from $100/h. Team or project blocks are quoted on request. Tell me what you are working on and what you want to walk away able to do, and I will suggest a simple structure before anything is booked."
+    a: "The rate is fair and competitive for everyone, from film students to large agencies, and it scales with the job: a single session, a block of sessions, or team training. Tell me what you are working on and what you want to walk away able to do, and I will suggest a simple structure before anything is booked."
   },
   {
     icon: "software",
@@ -230,9 +230,6 @@ const trainingSchema = {
       ],
       offers: {
         "@type": "Offer",
-        price: "100",
-        priceCurrency: "AUD",
-        unitText: "hour",
         availability: "https://schema.org/InStock",
         url: `${siteUrl}/training/`
       }
@@ -276,20 +273,24 @@ const trainingSchema = {
         Sessions come from that: current practice, real constraints, and the shortcuts that only show up on paid work.
       </p>
       <p>
-        One-on-one sessions start from $100/h. Team training and project-based blocks are quoted once the scope is clear.
+        Pricing is fair and competitive for anyone, from the film student to the large agency. One-on-one sessions,
+        team training and project-based blocks are quoted once the scope is clear.
       </p>
       <div class="credibility-strip" aria-label="Tutoring booking details">
         {tutoringSignals.map((item) => <span>{item}</span>)}
       </div>
     </div>
-    <figure class="training-hero-media">
-      <img
-        src="/images/training/colour-systems-foundations.jpeg"
-        alt="Colour Systems foundations slide for a DaVinci Resolve colour training session"
-        loading="eager"
-        decoding="async"
-      />
-    </figure>
+    <div class="training-hero-slides">
+      <figure>
+        <img src="/images/training/slide-session-1-foundations.webp" alt="Session 1 Foundations slide listing the topics of a DaVinci Resolve colour training session" width="1280" height="720" loading="eager" decoding="async" />
+      </figure>
+      <figure>
+        <img src="/images/training/slide-why-a-colour-pipeline.webp" alt="Workshop slide: why a colour pipeline, from scene and camera to file, processing and display" width="1280" height="720" loading="lazy" decoding="async" />
+      </figure>
+      <figure>
+        <img src="/images/training/slide-colour-management.webp" alt="Workshop slide comparing non-colour-managed and colour-managed workflows in Resolve, Baselight and ACES" width="1280" height="720" loading="lazy" decoding="async" />
+      </figure>
+    </div>
   </section>
 
   <section class="services-index services-card-grid tutoring-index" aria-label="Tutoring areas">

@@ -3699,6 +3699,34 @@ body.is-lightbox-open {
   object-fit: cover;
 }
 
+.training-hero-slides {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  align-self: center;
+  min-width: 0;
+}
+
+.training-hero-slides figure:first-child {
+  grid-column: 1 / -1;
+}
+
+.training-hero-slides figure {
+  margin: 0;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #171411;
+}
+
+.training-hero-slides img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
 .tutoring-index .service-description {
   margin-top: 0.65rem;
 }
@@ -5040,5 +5068,123 @@ body[data-theme="dark"] .client-marquee-list li.has-logo:hover img {
 
   .services-head .credibility-strip {
     margin-top: 1.2rem;
+  }
+}
+
+/* Inline links inside running copy should look like links. Buttons, cards and
+   nav links all carry a class, so they are left alone. */
+main p a:not([class]) {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  text-decoration-color: color-mix(in srgb, currentColor 45%, transparent);
+  transition: text-decoration-color 0.15s ease;
+}
+
+main p a:not([class]):hover,
+main p a:not([class]):focus-visible {
+  text-decoration-color: currentColor;
+}
+
+/* Sync reel: films and series, shown as a compact grid of uniform posters. */
+.project-gallery.reel-gallery.is-sync-gallery {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+  max-width: 44rem;
+}
+
+.project-gallery.reel-gallery.is-sync-gallery img {
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  background: #000;
+}
+
+/* Original music reel: each release as a sleeve with its record sliding out.
+   The label in the middle of the disc is the cover art itself (--cover). */
+.project-gallery.reel-gallery.is-square-gallery {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.4rem 3.2rem;
+  max-width: 46rem;
+  padding-right: 2.2rem;
+}
+
+.project-gallery.reel-gallery.is-square-gallery .reel-lightbox-trigger {
+  position: relative;
+  overflow: visible;
+  isolation: isolate;
+}
+
+.project-gallery.reel-gallery.is-square-gallery .reel-lightbox-trigger img {
+  position: relative;
+  z-index: 2;
+  border-radius: 3px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+}
+
+.project-gallery.reel-gallery.is-square-gallery .reel-lightbox-trigger::before,
+.project-gallery.reel-gallery.is-square-gallery .reel-lightbox-trigger::after {
+  content: "";
+  position: absolute;
+  top: 4%;
+  left: 4%;
+  width: 92%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  z-index: 1;
+  transform: translateX(22%);
+  transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.project-gallery.reel-gallery.is-square-gallery .reel-lightbox-trigger::before {
+  background:
+    radial-gradient(circle, transparent 0 34%, rgba(255, 255, 255, 0.06) 34.5% 35%, transparent 35.5%),
+    repeating-radial-gradient(circle, #111 0 1px, #1c1c1c 1.5px 2.5px),
+    #111;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+}
+
+.project-gallery.reel-gallery.is-square-gallery .reel-lightbox-trigger::after {
+  top: calc(4% + 92% * 0.33);
+  left: calc(4% + 92% * 0.33);
+  width: calc(92% * 0.34);
+  background: radial-gradient(circle, #111 0 7%, transparent 8%), var(--cover) center / cover;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.35);
+  transform: translateX(59.5%); /* same distance as the disc: 22% x 92/34 */
+}
+
+.project-gallery.reel-gallery.is-square-gallery .reel-lightbox-trigger:hover::before,
+.project-gallery.reel-gallery.is-square-gallery .reel-lightbox-trigger:focus-visible::before,
+.project-gallery.reel-gallery.is-square-gallery .reel-lightbox-trigger:hover::after,
+.project-gallery.reel-gallery.is-square-gallery .reel-lightbox-trigger:focus-visible::after {
+  transform: translateX(46%);
+}
+
+.project-gallery.reel-gallery.is-square-gallery .reel-lightbox-trigger:hover::after,
+.project-gallery.reel-gallery.is-square-gallery .reel-lightbox-trigger:focus-visible::after {
+  transform: translateX(124.5%) rotate(160deg);
+}
+
+.project-gallery.reel-gallery.is-square-gallery .reel-lightbox-trigger:hover img,
+.project-gallery.reel-gallery.is-square-gallery .reel-lightbox-trigger:focus-visible img {
+  transform: none;
+}
+
+@media (max-width: 760px) {
+  .project-gallery.reel-gallery.is-sync-gallery {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.5rem;
+  }
+
+  .project-gallery.reel-gallery.is-square-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.2rem 2.6rem;
+    padding-right: 1.8rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-gallery.reel-gallery.is-square-gallery .reel-lightbox-trigger::before,
+  .project-gallery.reel-gallery.is-square-gallery .reel-lightbox-trigger::after {
+    transition: none;
   }
 }

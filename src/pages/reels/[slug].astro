@@ -60,6 +60,27 @@ const REEL_LAYOUT_OVERRIDES: Record<
   }
 };
 
+// Explicit before/after pairs, restored from the 2024 WordPress backup
+// (reels-retouching and reels-retouching-beauty uploads). Six each.
+const REEL_COMPARE_PAIRS: Record<string, Array<{ before: string; after: string }>> = {
+  "finishing": [
+    { before: "/assets/reels/reels-finishing/compare_natgeo-logo-removal-1_before.webp", after: "/assets/reels/reels-finishing/compare_natgeo-logo-removal-1_after.webp" },
+    { before: "/assets/reels/reels-finishing/compare_natgeo-logo-removal-2_before.webp", after: "/assets/reels/reels-finishing/compare_natgeo-logo-removal-2_after.webp" },
+    { before: "/assets/reels/reels-finishing/compare_natgeo-screen-replacement_before.webp", after: "/assets/reels/reels-finishing/compare_natgeo-screen-replacement_after.webp" },
+    { before: "/assets/reels/reels-finishing/compare_shams-dirt-removal_before.webp", after: "/assets/reels/reels-finishing/compare_shams-dirt-removal_after.webp" },
+    { before: "/assets/reels/reels-finishing/compare_subito-object-removal_before.webp", after: "/assets/reels/reels-finishing/compare_subito-object-removal_after.webp" },
+    { before: "/assets/reels/reels-finishing/compare_subito-wall-fix_before.webp", after: "/assets/reels/reels-finishing/compare_subito-wall-fix_after.webp" }
+  ],
+  "beauty-retouch": [
+    { before: "/assets/reels/reels-beauty-retouch/compare_beauty-1_before.webp", after: "/assets/reels/reels-beauty-retouch/compare_beauty-1_after.webp" },
+    { before: "/assets/reels/reels-beauty-retouch/compare_beauty-3_before.webp", after: "/assets/reels/reels-beauty-retouch/compare_beauty-3_after.webp" },
+    { before: "/assets/reels/reels-beauty-retouch/compare_beauty-4_before.webp", after: "/assets/reels/reels-beauty-retouch/compare_beauty-4_after.webp" },
+    { before: "/assets/reels/reels-beauty-retouch/compare_beauty-5_before.webp", after: "/assets/reels/reels-beauty-retouch/compare_beauty-5_after.webp" },
+    { before: "/assets/reels/reels-beauty-retouch/compare_beauty-6_before.webp", after: "/assets/reels/reels-beauty-retouch/compare_beauty-6_after.webp" },
+    { before: "/assets/reels/reels-beauty-retouch/compare_beauty-9_before.webp", after: "/assets/reels/reels-beauty-retouch/compare_beauty-9_after.webp" }
+  ]
+};
+
 const SYNC_POSTER_LIGHTBOX: Record<string, string> = {
   "/assets/reels/reels-sync/slide_better-call-saul-v3_sync.jpg": "/assets/reels/reels-sync/poster_better-call-saul_sync.jpg",
   "/assets/reels/reels-sync/slide_elementary-v3_sync.jpg": "/assets/reels/reels-sync/poster_elementary_sync.jpg",
@@ -67,7 +88,9 @@ const SYNC_POSTER_LIGHTBOX: Record<string, string> = {
   "/assets/reels/reels-sync/slide_romeo-gigli-v3_sync.jpg": "/assets/reels/reels-sync/poster_romeo-gigli_sync.jpg",
   "/assets/reels/reels-sync/slide_enough-said-v3_sync.jpg": "/assets/reels/reels-sync/poster_enough-said_sync.jpg",
   "/assets/reels/reels-sync/slide_star-crossed-v3_sync.jpg": "/assets/reels/reels-sync/poster_star-crossed_sync.jpg",
-  "/assets/reels/reels-sync/slide_il-passato-v3_sync.jpg": "/assets/reels/reels-sync/poster_il-passato_sync.jpg"
+  "/assets/reels/reels-sync/slide_il-passato-v3_sync.jpg": "/assets/reels/reels-sync/poster_il-passato_sync.jpg",
+  // No release poster for the Logan campaign: this is a 2:3 crop of its frame.
+  "/assets/reels/reels-sync/slide_logan-fall-winter-v3_sync.jpg": "/assets/reels/reels-sync/poster_logan-fall-winter_sync.jpg"
 };
 
 const CREDIT_LABELS = new Set([
@@ -902,7 +925,7 @@ const disableGallery = slug === "spring-party" || reelHideGallery;
 const gallery = isReelPage
   ? reelUsesCompare
     ? {
-        pairs: buildBeforeAfterPairs(galleryImages, undefined).pairs,
+        pairs: REEL_COMPARE_PAIRS[slug] || buildBeforeAfterPairs(galleryImages, undefined).pairs,
         extras: [] as string[]
       }
     : {
@@ -915,8 +938,9 @@ const gallery = isReelPage
         extras: galleryImages.length > 0 ? galleryImages : cover ? [cover] : []
       }
     : buildBeforeAfterPairs(galleryImages, service === "COLOUR" ? cover : undefined);
+// Sync placements are films and series, so their grid shows the posters.
 const linkedGalleryExtras = gallery.extras.map((src) => ({
-  src,
+  src: slug === "sync" ? SYNC_POSTER_LIGHTBOX[src] || src : src,
   href: slug === "music" ? MUSIC_ALBUM_LINKS[src] : undefined,
   lightboxSrc: slug === "sync" ? SYNC_POSTER_LIGHTBOX[src] : undefined
 }));
@@ -1271,7 +1295,7 @@ const reelSchema = {
             <section class={`project-gallery reel-gallery ${slug === "music" ? "is-square-gallery" : ""} ${slug === "sync" ? "is-sync-gallery" : ""}`} aria-label="Project stills">
               {linkedGalleryExtras.map((item, idx) => (
                 item.href ? (
-                  <a class="reel-lightbox-trigger" href={item.href} target="_blank" rel="noopener noreferrer" aria-label={`Open ${title} album on Bandcamp`}>
+                  <a class="reel-lightbox-trigger" href={item.href} target="_blank" rel="noopener noreferrer" aria-label={`Open ${title} album on Bandcamp`} style={`--cover: url('${item.src}')`}>
                     <img src={item.src} alt={title} loading="lazy" />
                   </a>
                 ) : (

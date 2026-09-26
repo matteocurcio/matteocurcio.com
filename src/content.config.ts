@@ -9,6 +9,7 @@ const projects = defineCollection({
     client: z.string(),
     year: z.number(),
     excerpt: z.string(),
+    description: z.string().optional(), // meta description; generated from title and client when absent
     cover: z.string(),
     coverAlt: z.string(),
     featured: z.boolean().default(false),

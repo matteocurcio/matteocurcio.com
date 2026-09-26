@@ -118,7 +118,7 @@ const socialLinks = [
     <title>{title}</title>
     <meta name="description" content={description} />
     {noIndex && <meta name="robots" content="noindex, nofollow" />}
-    <link rel="canonical" href={canonical.href} />
+    {!noIndex && <link rel="canonical" href={canonical.href} />}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.svg" />
     <meta property="og:type" content={ogType} />
