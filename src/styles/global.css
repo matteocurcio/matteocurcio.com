@@ -5188,3 +5188,47 @@ main p a:not([class]):focus-visible {
     transition: none;
   }
 }
+
+/* Presentation page: a grid of real slides, each linking to its deck. */
+.presentation-slides h2 {
+  margin: 0;
+}
+
+.presentation-slides-note {
+  margin: 0.35rem 0 1rem;
+  color: var(--muted);
+}
+
+.presentation-slide-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.presentation-slide {
+  display: grid;
+  gap: 0.4rem;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.presentation-slide img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  transition: transform 0.2s ease;
+}
+
+.presentation-slide:hover img,
+.presentation-slide:focus-visible img {
+  transform: translateY(-2px);
+}
+
+@media (max-width: 760px) {
+  .presentation-slide-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

@@ -20,6 +20,15 @@ const reels = [
   }
 ];
 
+const slides = [
+  { src: "/assets/projects/dubai-tourism-business-events-presentation/slide_01.webp", href: "/projects/dubai-business-events/", deck: "Business Events Presentation", alt: "Opening slide of the Dubai Tourism Business Events Presentation" },
+  { src: "/assets/projects/dubai-tourism-business-events-presentation/slide_02.webp", href: "/projects/dubai-business-events/", deck: "Business Events Presentation", alt: "Emirates airline figures laid over a hero image" },
+  { src: "/assets/projects/dubai-tourism-business-events-presentation/slide_13.webp", href: "/projects/dubai-business-events/", deck: "Business Events Presentation", alt: "Bar chart of international visitors to Dubai, 2011 to 2019" },
+  { src: "/assets/projects/dubai-tourism-master-business-presentation/slide_04.webp", href: "/projects/dubai-master-business-presentation/", deck: "Master Business Presentation", alt: "Dubai Metro passenger figures slide" },
+  { src: "/assets/projects/dubai-tourism-master-business-presentation/slide_12.webp", href: "/projects/dubai-master-business-presentation/", deck: "Master Business Presentation", alt: "Re-exports figures over a container ship" },
+  { src: "/assets/projects/dubai-tourism-business-events-presentation/slide_09.webp", href: "/projects/dubai-business-events/", deck: "Business Events Presentation", alt: "Trade and economy statistics over an aerial port view" }
+];
+
 const principles = [
   {
     title: "Structure Before Surface",
@@ -98,6 +107,19 @@ const pageSchema = serviceSchema({
         <p>{item.body}</p>
       </article>
     ))}
+  </section>
+
+  <section class="section presentation-slides" aria-label="Selected slides">
+    <h2>Selected slides</h2>
+    <p class="presentation-slides-note">From two decks for Dubai Tourism, designed as Senior Designer at Touchline Dubai.</p>
+    <div class="presentation-slide-grid">
+      {slides.map((slide) => (
+        <a class="presentation-slide" href={slide.href}>
+          <img src={slide.src} alt={slide.alt} width="1600" height="900" loading="lazy" decoding="async" />
+          <span>Dubai Tourism · {slide.deck}</span>
+        </a>
+      ))}
+    </div>
   </section>
 
   <section class="section" aria-label="Presentation reels">
