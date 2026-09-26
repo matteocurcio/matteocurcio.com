@@ -88,9 +88,7 @@ const SYNC_POSTER_LIGHTBOX: Record<string, string> = {
   "/assets/reels/reels-sync/slide_romeo-gigli-v3_sync.jpg": "/assets/reels/reels-sync/poster_romeo-gigli_sync.jpg",
   "/assets/reels/reels-sync/slide_enough-said-v3_sync.jpg": "/assets/reels/reels-sync/poster_enough-said_sync.jpg",
   "/assets/reels/reels-sync/slide_star-crossed-v3_sync.jpg": "/assets/reels/reels-sync/poster_star-crossed_sync.jpg",
-  "/assets/reels/reels-sync/slide_il-passato-v3_sync.jpg": "/assets/reels/reels-sync/poster_il-passato_sync.jpg",
-  // No release poster for the Logan campaign: this is a 2:3 crop of its frame.
-  "/assets/reels/reels-sync/slide_logan-fall-winter-v3_sync.jpg": "/assets/reels/reels-sync/poster_logan-fall-winter_sync.jpg"
+  "/assets/reels/reels-sync/slide_il-passato-v3_sync.jpg": "/assets/reels/reels-sync/poster_il-passato_sync.jpg"
 };
 
 const CREDIT_LABELS = new Set([
@@ -916,7 +914,7 @@ const creditsForDisplay = isReelPage
   : parsed.credits;
 const workCreditsColumnLeft = !isReelPage ? creditsForDisplay.filter((_, index) => index % 2 === 0) : [];
 const workCreditsColumnRight = !isReelPage ? creditsForDisplay.filter((_, index) => index % 2 === 1) : [];
-const galleryImages = sanitizeReelGalleryImages(migrated.images || [], cover).slice(0, 16);
+const galleryImages = sanitizeReelGalleryImages(migrated.images || [], cover).slice(0, 30);
 const reelOverride = isReelPage ? REEL_LAYOUT_OVERRIDES[slug] || {} : {};
 const reelUsesCompare = isReelPage && Boolean(reelOverride.sliderGallery);
 const reelHideGallery = isReelPage && Boolean(reelOverride.hideGallery);
