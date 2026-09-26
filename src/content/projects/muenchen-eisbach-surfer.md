@@ -4,7 +4,7 @@ service: "motion"
 client: "Independent"
 year: 2016
 excerpt: "Location-driven short-form piece balancing movement, texture, and available-light constraints in post."
-cover: "https://mir-s3-cdn-cf.behance.net/projects/original/f520ab35081503.Y3JvcCwxNzMxLDEzNTMsMjI0LDA.jpg"
+cover: "/assets/projects/muenchen-eisbach-surfer/behance-f520ab35081503.webp"
 coverAlt: "Eisbach Surfers"
 featured: false
 tags: []

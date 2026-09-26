@@ -819,19 +819,54 @@ const title = legacy?.title || project?.data.title || slug;
 const service = "REELS";
 const client = project?.data.client || "Selected Work";
 const year = project?.data.year;
-const cover = legacy?.image || project?.data.cover;
+const coverCandidate = legacy?.image || project?.data.cover;
+const cover = coverCandidate && !REEL_PLACEHOLDER_IMAGES.has(coverCandidate) ? coverCandidate : undefined;
 const coverAlt = project?.data.coverAlt || title;
+// legacy.video is sometimes the generic placeholder JPG; only a real video file may feed the player.
 const previewVideo =
-  legacy?.video ||
+  (legacy?.video && /\.(mp4|mov|webm)(\?|#|$)/i.test(legacy.video) ? legacy.video : undefined) ||
   project?.data.previewVideo ||
   (project?.data.videoUrl && /\.(mp4|mov)(\?|#|$)/i.test(project.data.videoUrl) ? project.data.videoUrl : undefined);
 const originalUrl = project?.data.originalUrl || `${WP_WORK_BASE}/${slug}`;
 const excerpt = cleanExcerpt(project?.data.excerpt);
 
+// Reels whose migrated content never carried the video. Both are uploads on Matteo's own
+// YouTube channel ("Advertising Reel" and "Augmented Reality").
+const REEL_VIDEO_FALLBACKS: Record<string, string> = {
+  advertising: "https://www.youtube.com/watch?v=CJ0QY1E_0S8",
+  ar: "https://www.youtube.com/watch?v=TiR83POC9iY"
+};
+
+// Real YouTube publish dates and running times, read from each video's watch page in
+// September 2026. Google needs uploadDate before a VideoObject is eligible for video results.
+const YOUTUBE_VIDEO_META: Record<string, { uploadDate: string; duration: string }> = {
+  "QafhrB3HESs": { uploadDate: "2023-12-18T01:03:45-08:00", duration: "PT0M55S" },
+  "2rnxWmgKCPA": { uploadDate: "2023-12-18T01:06:01-08:00", duration: "PT1M24S" },
+  "5pJGPQAJ6hs": { uploadDate: "2023-12-18T00:38:23-08:00", duration: "PT5M11S" },
+  "hFVLoSdTsEw": { uploadDate: "2023-11-26T21:48:07-08:00", duration: "PT1M1S" },
+  "UeKHFpK7xhI": { uploadDate: "2023-12-18T00:55:51-08:00", duration: "PT1M2S" },
+  "-a2CO1GYPcg": { uploadDate: "2023-11-27T02:25:38-08:00", duration: "PT1M0S" },
+  "ddIv6iO7MkE": { uploadDate: "2023-12-18T01:01:08-08:00", duration: "PT2M19S" },
+  "33-8u94Kelw": { uploadDate: "2023-12-18T01:03:42-08:00", duration: "PT1M26S" },
+  "m2g04UzYY3o": { uploadDate: "2023-12-18T00:51:02-08:00", duration: "PT1M28S" },
+  "kG_0fReY2Qk": { uploadDate: "2015-02-15T08:55:26-08:00", duration: "PT5M33S" },
+  "mx2LaixR0BI": { uploadDate: "2023-12-18T01:12:10-08:00", duration: "PT1M9S" },
+  "8te6U9qnXDc": { uploadDate: "2023-12-18T00:35:24-08:00", duration: "PT3M29S" },
+  "XG38ikTiBMQ": { uploadDate: "2023-11-28T18:53:11-08:00", duration: "PT1M1S" },
+  "A4DrBB8s9-U": { uploadDate: "2023-12-03T16:57:47-08:00", duration: "PT0M45S" },
+  "3oFnS-EwxSI": { uploadDate: "2015-02-11T02:16:54-08:00", duration: "PT2M0S" },
+  "CJ0QY1E_0S8": { uploadDate: "2023-11-30T18:46:01-08:00", duration: "PT1M1S" },
+  "TiR83POC9iY": { uploadDate: "2023-12-18T00:42:32-08:00", duration: "PT2M18S" },
+  "OpklT-y-C4w": { uploadDate: "2023-12-18T01:09:54-08:00", duration: "PT1M46S" }
+};
+
 const embeddedUrl =
   toEmbedUrl(migrated.embedUrl) ||
   toEmbedUrl(project?.data.videoUrl) ||
-  toEmbedUrl(legacy?.video);
+  toEmbedUrl(legacy?.video) ||
+  toEmbedUrl(REEL_VIDEO_FALLBACKS[slug]);
+const youtubeId = embeddedUrl?.match(/youtube(?:-nocookie)?\.com\/embed\/([\w-]{11})/)?.[1];
+const youtubeMeta = youtubeId ? YOUTUBE_VIDEO_META[youtubeId] : undefined;
 const videoUrl = embeddedUrl ? undefined : previewVideo;
 
 const descriptionParagraphs =
@@ -961,7 +996,11 @@ const pageDescription = (
 // service page the reel is evidence for, so these 20 pages stop being dead ends.
 const siteOrigin = `https://${SITE_CONFIG.primaryDomain}`;
 const reelUrl = `${siteOrigin}/reels/${slug}/`;
-const reelThumbnail = cover ? `${siteOrigin}${cover}` : `${siteOrigin}/images/og/matteo-curcio-og.png`;
+const reelThumbnail = cover
+  ? `${siteOrigin}${cover}`
+  : youtubeId
+    ? `https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg`
+    : `${siteOrigin}/images/og/matteo-curcio-og.png`;
 
 const REEL_SERVICE_PAGES: Record<string, { href: string; label: string; note: string }> = {
   "online-editing": {
@@ -1054,22 +1093,21 @@ const relatedService = REEL_SERVICE_PAGES[slug];
 const reelSchema = {
   "@context": "https://schema.org",
   "@graph": [
-    {
+    // Only real videos get VideoObject markup: a SoundCloud player (royaltyfree) is audio.
+    ...((youtubeId || videoUrl) ? [{
       "@type": "VideoObject",
       "@id": `${reelUrl}#video`,
       name: `${title} showreel — Matteo Curcio`,
       description: pageDescription,
       thumbnailUrl: [reelThumbnail],
-      // Derived from the project's own year rather than invented; omitted where
-      // there is no year to derive it from.
-      ...(project?.data.year ? { uploadDate: `${project.data.year}-01-01` } : {}),
+      ...(youtubeMeta ? { uploadDate: youtubeMeta.uploadDate, duration: youtubeMeta.duration } : {}),
       contentUrl: videoUrl ? `${siteOrigin}${videoUrl}` : undefined,
       embedUrl: embeddedUrl || undefined,
       inLanguage: "en-AU",
       isFamilyFriendly: true,
       creator: { "@id": `${siteOrigin}/#person` },
       publisher: { "@id": `${siteOrigin}/#business` }
-    },
+    }] : []),
     {
       "@type": "BreadcrumbList",
       "@id": `${reelUrl}#breadcrumb`,

@@ -4,7 +4,7 @@ Persistent handoff for the Astro site so the working state does not depend on Co
 
 ## Repo
 
-- Path: `/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Projects/50-Web/matteocurcio.com`
+- Path: `/Users/matteo/Library/CloudStorage/SeaDrive-matteo.curcio(10.0.10.15)/My Libraries/Projects/50 Web/matteocurcio.com` (SeaDrive). Any iCloud copy under `Mobile Documents/.../50-Web` is stale; build and commit here.
 - Project memory name: `website`
 - Primary remote: `git@github.com:matteocurcio/matteocurcio.com.git`
 - Stack: Astro static site
@@ -12,7 +12,7 @@ Persistent handoff for the Astro site so the working state does not depend on Co
 ## Current Focus
 
 - Maintain and polish the Astro portfolio as the live source of truth for `matteocurcio.com`
-- Keep the editorial homepage, About narrative, Services, Tutoring, and Security microsite aligned
+- Keep the studio-world homepage, About narrative, Services and Training pages aligned
 - Preserve the current light/dark theme system, mobile nav behavior, and OG/social preview setup
 - Keep the contact/enquiry flow working through the current static-site-friendly submission setup
 - Treat bilingual Italian support as a future enhancement, not an active implementation
@@ -22,9 +22,9 @@ Persistent handoff for the Astro site so the working state does not depend on Co
 - `src/components/HomePageContent.astro`
 - `src/layouts/BaseLayout.astro`
 - `src/pages/about.astro`
-- `src/pages/security.astro`
 - `src/pages/services.astro`
-- `src/pages/tutoring.astro`
+- `src/pages/training.astro`
+- `src/pages/world.astro` (homepage studio; source in `studio-world/`)
 - `src/config/site.ts`
 - `src/styles/global.css`
 - `public/favicon.svg`
@@ -32,6 +32,14 @@ Persistent handoff for the Astro site so the working state does not depend on Co
 - `public/images/about/`
 - `public/icons/apps/`
 - `public/icons/social/substack.svg`
+
+## Folder Layout
+
+- `src/`, `public/`: the site. `public/` holds only files a page actually uses.
+- `studio-world/`: Blender source and render pipeline for the homepage studio (see its README; mostly git-ignored).
+- `archive/`: git-ignored. Unused assets moved out of `public/` (listed in `archive/MANIFEST.txt`) and the Capture & Craft source slides.
+- `research/`: migration reports and audit notes. `docs/`, `tools/`: how-tos and helper scripts. `functions/`: Cloudflare Pages functions.
+- `_to_delete/`: git-ignored. Things set aside for deletion; empty it when you're happy.
 
 ## Resume Workflow
 
@@ -53,6 +61,6 @@ Persistent handoff for the Astro site so the working state does not depend on Co
 - The durable source of truth is the git repo plus GitHub remote, not the Codex app sidebar/history.
 - Documentation also has a second copy in `HomeLab/Website/matteocurcio.com`.
 - Keep secrets out of git. Local env files under `tools/**/.env` are ignored.
-- The current site includes a dedicated `/security` microsite, an OG image, a static-form submission flow for Services, and a mobile-only nav toggle with external theme switcher.
+- `/security` now redirects to `/workflow/`. The site includes an OG image, a static-form submission flow for Services, and a mobile-only nav toggle with external theme switcher.
 - The About page image intentionally uses the Dubai camera photo under `public/images/about/matteo-curcio-dubai-camera.jpg`.
 - If future work touches localization, prefer a proper `/it` route structure with a language switcher rather than geo-only redirection.

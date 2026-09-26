@@ -28,6 +28,22 @@
 /blog/teaching-the-why-behind-colour-decisions /blog/grade-with-intention/ 301
 /blog/teaching-the-why-behind-colour-decisions/ /blog/grade-with-intention/ 301
 
+# Template placeholder projects and a duplicate, removed 2026-09
+/projects/night-drive-grade /works/ 301
+/projects/night-drive-grade/ /works/ 301
+/projects/riverbank-documentary /works/ 301
+/projects/riverbank-documentary/ /works/ 301
+/projects/brand-system-launch /works/ 301
+/projects/brand-system-launch/ /works/ 301
+/projects/stone-and-steel /works/ 301
+/projects/stone-and-steel/ /works/ 301
+/projects/late-cut-social /works/ 301
+/projects/late-cut-social/ /works/ 301
+/projects/opening-title-study /works/ 301
+/projects/opening-title-study/ /works/ 301
+/projects/ikea-temporary-store-duplicate /projects/upcycling-zu-kostbar-fuer-die-tonne/ 301
+/projects/ikea-temporary-store-duplicate/ /projects/upcycling-zu-kostbar-fuer-die-tonne/ 301
+
 # Reel pages used to render under /projects as duplicate canonical copies.
 /projects/advertising /reels/advertising/ 301
 /projects/advertising/ /reels/advertising/ 301

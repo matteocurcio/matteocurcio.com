@@ -114,6 +114,7 @@ const pathways = [
   </section>
 
   <section class="section lane-grid" aria-label="Approach to music">
+    <h2 class="sr-only">Approach to music</h2>
     {approach.map((item) => (
       <article class="lane">
         <h3>{item.title}</h3>
@@ -123,6 +124,7 @@ const pathways = [
   </section>
 
   <section class="section" aria-label="Music reels">
+    <h2 class="sr-only">Music reels</h2>
     <ThumbnailCarousel
       items={musicReels.map((reel) => ({
         title: reel.title,

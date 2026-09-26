@@ -108,6 +108,7 @@ const pageSchema = serviceSchema({
   </section>
 
   <section class="section lane-grid" aria-label="How immersive work is approached">
+    <h2 class="sr-only">How immersive work is approached</h2>
     {principles.map((item) => (
       <article class="lane">
         <h3>{item.title}</h3>
@@ -117,6 +118,7 @@ const pageSchema = serviceSchema({
   </section>
 
   <section class="section" aria-label="Immersive reels">
+    <h2 class="sr-only">Immersive reels</h2>
     <ThumbnailCarousel
       items={reels.map((reel) => ({
         title: reel.title,

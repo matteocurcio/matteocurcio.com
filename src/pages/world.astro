@@ -2,13 +2,17 @@
 // Alternate landing page: an isometric studio where each object links to a
 // section of the site. Everything starts grey; hovering an object fades it to
 // colour. Hit-testing uses an ID render (public/world/world_ids.png) in which
-// each hotspot is a flat grey level of index * 10. The Blender scene and renders
-// live outside the repo in "10 Code/matteocurcio.com-landing".
+// each hotspot is a flat grey level of index * 10. The Blender scene and render
+// scripts live in studio-world/ (see studio-world/README.md).
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 const {
   path = "/world/",
   noIndex = true,
+  title = "Matteo Curcio | Studio",
+  description = "An isometric tour of Matteo Curcio's studio: grading suite, video studio, music room and machine room.",
+  ogImage,
+  ogImageAlt,
 } = Astro.props;
 // Renders keep their file names between versions, so tag them with the build time to get past
 // browser and CDN caches whenever they change.
@@ -16,12 +20,15 @@ const V = Date.now().toString(36);
 ---
 
 <BaseLayout
-  title="Matteo Curcio | Studio"
-  description="An isometric tour of Matteo Curcio's studio: grading suite, video studio, music room and machine room."
+  title={title}
+  description={description}
   path={path}
   noIndex={noIndex}
+  ogImage={ogImage}
+  ogImageAlt={ogImageAlt}
 >
   <section class="world" aria-label="Studio">
+    <h1 class="sr-only">Matteo Curcio, colourist and online editor in Melbourne</h1>
     <div class="world-stage" id="world-stage" aria-hidden="true">
       <picture>
         <source media="(max-width: 760px), (orientation: portrait) and (max-width: 1100px)" srcset={`/world/mobile/world_grey.webp?v=${V}`} />
@@ -175,7 +182,8 @@ const V = Date.now().toString(36);
     for (const r of [1, 2, 3, 4]) roomLayers.set(r, layer(bgPx, roomMap, r, "world-room"));
 
     // One colour layer per hotspot, drawn above the room layers.
-    const byIndex = new Map(spots.map((s) => [s.index, { ...s }]));
+    // Objects whose section doesn't exist yet have no "page" and stay grey and inert.
+    const byIndex = new Map(spots.filter((s) => s.page).map((s) => [s.index, { ...s }]));
     for (const s of [...byIndex.values()]) {
       s.layer = layer(colPx, idMap, s.index, "world-layer");
       if (!s.layer) byIndex.delete(s.index);

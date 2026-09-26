@@ -105,7 +105,7 @@
     "index": 20,
     "slug": "podcast",
     "label": "Headphones",
-    "page": "/podcast/"
+    "plannedPage": "/podcast/"
   },
   {
     "index": 21,
@@ -123,12 +123,12 @@
     "index": 24,
     "slug": "infographic",
     "label": "Data visualisation",
-    "page": "/data-visualisation/"
+    "page": "/reels/dataviz/"
   },
   {
     "index": 25,
     "slug": "radio",
     "label": "Ham radio",
-    "page": "/radio/"
+    "plannedPage": "/radio/"
   }
 ]

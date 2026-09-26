@@ -14,3 +14,16 @@ research/*.txt
 
 # Scratch: files Claude could not delete (safe to remove)
 _to_delete/
+
+# Unused site assets moved out of public/ (see archive/MANIFEST.txt)
+archive/
+
+# Studio world source (Blender scenes, textures, renders): only README and scripts are tracked
+/studio-world/*
+!/studio-world/README.md
+!/studio-world/blender/
+/studio-world/blender/*
+!/studio-world/blender/*.py
+
+# Cloudflare wrangler local state
+.wrangler/

@@ -17,8 +17,10 @@ import wpProjectContent from "../../data/wpProjectContent.json";
 const WP_WORK_BASE = "https://matteocurcio.com/work";
 const PLACEHOLDER_IMAGE = "/assets/services/common/thumbnail_placeholder.jpg";
 
+// The migration filled missing covers and videos with a generic photo of Matteo on set.
+// Treat it like any other placeholder so it never stands in for a project's own images.
 function isPlaceholderImage(src?: string) {
-  return Boolean(src && src.includes("borouge_day2_1000.jpg"));
+  return Boolean(src && (src.includes("borouge_day2_1000.jpg") || src === PLACEHOLDER_IMAGE));
 }
 
 const HERO_SLIDE_OVERRIDES: Record<string, string[]> = {
@@ -830,10 +832,11 @@ const isNonCompareWork = NON_COMPARE_WORK_SLUGS.has(slug);
 const service = LEGACY_REEL_SLUGS.has(slug) ? "REELS" : isNonCompareWork ? "MOTION/PHOTO" : "POST-PRODUCTION";
 const client = project?.data.client || "Selected Work";
 const year = project?.data.year;
-const cover = NON_COMPARE_THUMBNAILS[slug] || legacy?.image || project?.data.cover;
+const coverCandidate = NON_COMPARE_THUMBNAILS[slug] || legacy?.image || project?.data.cover;
+const cover = isPlaceholderImage(coverCandidate) ? undefined : coverCandidate;
 const coverAlt = project?.data.coverAlt || title;
 const previewVideo =
-  legacy?.video ||
+  (legacy?.video && /\.(mp4|mov|webm)(\?|#|$)/i.test(legacy.video) ? legacy.video : undefined) ||
   project?.data.previewVideo ||
   (project?.data.videoUrl && /\.(mp4|mov)(\?|#|$)/i.test(project.data.videoUrl) ? project.data.videoUrl : undefined);
 const originalUrl = project?.data.originalUrl || `${WP_WORK_BASE}/${slug}`;

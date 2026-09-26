@@ -4,7 +4,7 @@ service: "motion"
 client: "Netica"
 year: 2016
 excerpt: "Corporate video work focused on technical messaging clarity and consistent delivery across business channels."
-cover: "https://mir-s3-cdn-cf.behance.net/projects/original/65373547095589.Y3JvcCwyNTkxLDIwMjgsMTg1LDA.png"
+cover: "/assets/projects/netica-your-it-designers/behance-65373547095589.webp"
 coverAlt: "Netica — Your IT Designers"
 featured: false
 tags: []

@@ -18,7 +18,7 @@ draft: false
 
 
 
-<figure class="wp-block-image size-full is-style-default"><img width="1536" height="1024" src="/assets/services/common/4477FA15-10DB-4934-AF3C-D0AD0F7B9684.png" alt="" srcset="/assets/services/common/4477FA15-10DB-4934-AF3C-D0AD0F7B9684.png 1536w, /assets/services/common/thumbnail_placeholder.jpg 768w" sizes="auto, (max-width: 1536px) 100vw, 1536px" /></figure>
+<figure class="wp-block-image size-full is-style-default"><img width="1536" height="1024" src="/assets/services/common/4477FA15-10DB-4934-AF3C-D0AD0F7B9684.png" alt="" /></figure>
 
 
 
@@ -243,7 +243,7 @@ draft: false
 <pre class="wp-block-code"><code>#!/bin/sh
 
 # ---- CONFIG ----
-SRC="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="394a4a515d7908091709170f09170b09">[email&#160;protected]</a>:/mnt/HD/HD_a2/PLEX/"
+SRC="sshd@10.0.60.20:/mnt/HD/HD_a2/PLEX/"
 DST="/share/PLEX/"
 WD_HOST="10.0.60.20"
 

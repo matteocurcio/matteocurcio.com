@@ -9,7 +9,7 @@ import { fileURLToPath } from "node:url";
 const EXCLUDE = [
   "/coding", "/making", "/problem-solving", "/tools", "/security",
   "/for-studios", "/tutoring", "/work", "/contact",
-  "/dark-preview", "/client", "/color",
+  "/dark-preview", "/client", "/color", "/404", "/world",
   "/blog/life-cost-tracker",
   "/blog/recurring-expenses-tracker",
   "/blog/teaching-the-why-behind-colour-decisions",

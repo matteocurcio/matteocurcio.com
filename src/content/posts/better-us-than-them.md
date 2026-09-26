@@ -89,7 +89,7 @@ Then there's the question of thresholds. In a 1959 magazine interview with the w
 
 <figure>
   <img src="/images/blog/better-us-than-them/pearl-buck-bomb.webp" alt="Scan of Pearl S. Buck’s article The Bomb — The End of the World?" width="1796" height="1022" loading="lazy" />
-  <figcaption><a href="http://large.stanford.edu/courses/2015/ph241/chung1/docs/buck.pdf">Pearl S. Buck, &#x27;The Bomb — The End of the World?&#x27;, The American Weekly, March 1959. Scan via Stanford University course archive.</a></figcaption>
+  <figcaption><a href="https://large.stanford.edu/courses/2015/ph241/chung1/docs/buck.pdf">Pearl S. Buck, &#x27;The Bomb — The End of the World?&#x27;, The American Weekly, March 1959. Scan via Stanford University course archive.</a></figcaption>
 </figure>
 
 I want to be fair to the sceptics here. These numbers aren't measurements. There's no validated model behind a p(doom) estimate. It's a considered personal guess, and informed people land anywhere from near zero to well above half. Plenty of serious researchers think the extinction framing is overblown, and nobody has actually built recursive self-improvement yet. But that uncertainty cuts both ways. Trinity had a calculation. Superintelligence doesn't have one, and nobody currently knows how to write it.

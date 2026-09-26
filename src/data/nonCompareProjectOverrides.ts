@@ -25,13 +25,13 @@ export const NON_COMPARE_THUMBNAILS: Record<string, string> = {
   "la-grande-bellezza": "/assets/projects/events-la-grande-bellezza/thumbnail_la_grande_bellezza.webp",
   "uae-year-of-reading": "/assets/projects/events-uae-year-of-reading/thumbnail_uae_year_of_reading.webp",
   "ikea": "/assets/services/common/thumbnail.webp",
-  "dubai-majlis-2018": "https://mir-s3-cdn-cf.behance.net/projects/max_808/ee383c80811281.Y3JvcCw5ODEsNzY4LDI0LDA.jpg",
-  "netica-your-it-designers": "https://mir-s3-cdn-cf.behance.net/projects/max_808/65373547095589.Y3JvcCwyNTkxLDIwMjgsMTg1LDA.png",
-  "sophos": "https://mir-s3-cdn-cf.behance.net/projects/max_808/0c885a40144361.5773b1e8bd1e1.jpg",
-  "oy-live": "https://mir-s3-cdn-cf.behance.net/project_modules/1400/9d19dc35356921.56f3816b1f7b8.jpg",
-  "muenchen-eisbach-surfer": "https://mir-s3-cdn-cf.behance.net/projects/original/f520ab35081503.Y3JvcCwxNzMxLDEzNTMsMjI0LDA.jpg",
-  "upcycling-zu-kostbar-fuer-die-tonne": "https://mir-s3-cdn-cf.behance.net/project_modules/1400/68bb1e35564099.56fbca28211b3.jpg",
-  "deborah-raccagni": "https://mir-s3-cdn-cf.behance.net/project_modules/1400/88850127924017.5636cd75b669b.jpg"
+  "dubai-majlis-2018": "/assets/projects/dubai-majlis-2018/behance-ee383c80811281-thumb.webp",
+  "netica-your-it-designers": "/assets/projects/netica-your-it-designers/behance-65373547095589-thumb.webp",
+  "sophos": "/assets/projects/sophos/behance-0c885a40144361-thumb.webp",
+  "oy-live": "/assets/projects/oy-live/behance-9d19dc35356921-thumb.webp",
+  "muenchen-eisbach-surfer": "/assets/projects/muenchen-eisbach-surfer/behance-f520ab35081503.webp",
+  "upcycling-zu-kostbar-fuer-die-tonne": "/assets/projects/upcycling-zu-kostbar-fuer-die-tonne/behance-68bb1e35564099-thumb.webp",
+  "deborah-raccagni": "/assets/projects/deborah-raccagni/behance-88850127924017-thumb.webp"
 };
 
 export const NON_COMPARE_CAPTIONS: Record<string, string[]> = {

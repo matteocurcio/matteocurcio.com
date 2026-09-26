@@ -235,12 +235,7 @@ const trainingSchema = {
         unitText: "hour",
         availability: "https://schema.org/InStock",
         url: `${siteUrl}/training/`
-      },
-      review: testimonials.map((item) => ({
-        "@type": "Review",
-        reviewBody: item.quote,
-        author: { "@type": "Person", name: item.name }
-      }))
+      }
     },
     ...courseSchemas,
     {
@@ -258,7 +253,7 @@ const trainingSchema = {
 ---
 
 <BaseLayout
-  title="DaVinci Resolve & Adobe Training in Melbourne and Remote | Matteo Curcio"
+  title="DaVinci Resolve & Adobe Training Melbourne | Matteo Curcio"
   description="One-on-one DaVinci Resolve, Premiere Pro, Final Cut Pro and Adobe training in Melbourne and online, taught by a working colourist and RMIT Adobe coach."
   path="/training"
   navSection="tutoring"

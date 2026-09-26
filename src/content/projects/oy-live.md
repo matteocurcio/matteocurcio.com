@@ -4,7 +4,7 @@ service: "motion"
 client: "OY"
 year: 2016
 excerpt: "Live-event content captured and finished for promotional and archival use with coherent pacing and tonal continuity."
-cover: "https://mir-s3-cdn-cf.behance.net/projects/original/59f2b235356921.Y3JvcCwxNzA5LDEzMzUsMCwxMzY.jpg"
+cover: "/assets/projects/oy-live/behance-59f2b235356921.webp"
 coverAlt: "OY live"
 featured: false
 tags: []

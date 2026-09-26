@@ -13,7 +13,7 @@ draft: false
 
 
 
-<figure class="wp-block-image size-full"><img width="1314" height="1180" src="/assets/services/common/Screenshot-2025-08-19-at-2.29.01-pm.png" alt="" srcset="/assets/services/common/Screenshot-2025-08-19-at-2.29.01-pm.png 1314w, /assets/services/common/thumbnail_placeholder.jpg 768w" sizes="auto, (max-width: 1314px) 100vw, 1314px" /></figure>
+<figure class="wp-block-image size-full"><img width="1314" height="1180" src="/assets/services/common/Screenshot-2025-08-19-at-2.29.01-pm.png" alt="DaVinci Resolve transcript turned into readable dialogue by a Python script" /></figure>
 
 
 
@@ -121,7 +121,7 @@ Vasileios: Something I love that people would not expect is my diverse taste in 
 """
 Author: Matteo Curcio
 Website: https://matteocurcio.com
-Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="375f525b5b58775a5643435258544245545e581954585a">[email&#160;protected]</a>
+Email: hello@matteocurcio.com
 
 Description:
     Clean Resolve transcripts by:

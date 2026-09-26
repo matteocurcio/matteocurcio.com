@@ -1,0 +1,52 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+// Cloudflare Pages serves dist/404.html with a real 404 status. Without this file it falls
+// back to the homepage with a 200, which turns every broken link into a soft 404.
+const links = [
+  { href: "/", label: "The studio" },
+  { href: "/services/", label: "Services" },
+  { href: "/reels/", label: "Reels" },
+  { href: "/works/", label: "Works" },
+  { href: "/training/", label: "Training" },
+  { href: "/blog/", label: "Blog" },
+  { href: "/about/", label: "About & contact" }
+];
+---
+
+<BaseLayout
+  title="Page not found | Matteo Curcio"
+  description="This page doesn't exist or has moved."
+  path="/404"
+  noIndex={true}
+>
+  <section class="not-found">
+    <h1>This page isn't here.</h1>
+    <p>It may have moved, or the link may be wrong. Try one of these instead:</p>
+    <ul>
+      {links.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+    </ul>
+  </section>
+</BaseLayout>
+
+<style>
+  .not-found {
+    max-width: 780px;
+    margin: 0 auto;
+    display: grid;
+    gap: 1rem;
+  }
+
+  .not-found p {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .not-found ul {
+    margin: 0;
+    padding-left: 1.2rem;
+    display: grid;
+    gap: 0.4rem;
+  }
+</style>
