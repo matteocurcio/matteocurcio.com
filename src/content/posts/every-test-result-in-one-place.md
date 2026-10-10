@@ -48,6 +48,16 @@ Apple Health imports extend the timeline beyond occasional lab visits. Dense dai
 
 A chart can open full screen, with zoom, pan and an overview strip. The recorded points remain visible so a smooth line does not hide what was actually measured.
 
+<figure>
+  <a href="/images/blog/every-test-result-in-one-place/health-history.jpg"><img src="/images/blog/every-test-result-in-one-place/health-history.jpg" alt="Headphone-level result history with a trend chart and dated rows showing values, reference ranges, sources and editing controls" loading="lazy" width="1270" height="714" /></a>
+  <figcaption>Opening a card reveals the recorded observations behind the line: date, value, range and source. The source column links to a PDF when an observation came from a report. This demonstration uses illustrative samples. All values and dates are fictional demonstration data.</figcaption>
+</figure>
+
+<figure>
+  <a href="/images/blog/every-test-result-in-one-place/health-fullscreen.jpg"><img src="/images/blog/every-test-result-in-one-place/health-fullscreen.jpg" alt="Full-screen headphone-level chart with range shading, time-window buttons and an overview strip" loading="lazy" width="1270" height="714" /></a>
+  <figcaption>Full screen gives a trend room to breathe. Time presets, zoom, pan and the overview strip let you inspect a period while keeping the individual measurements visible. All values and dates are fictional demonstration data.</figcaption>
+</figure>
+
 ## The doctor view
 
 The most useful moment for this data is ten minutes in a consulting room. So there is a doctor view designed for an iPad: the relevant charts, clean and readable, with nothing to explain. It is easier to hand someone a tablet than to scroll through a phone while they wait.
@@ -56,7 +66,7 @@ Export goes the other way: a standard or doctor-summary PDF, or a CSV of the rec
 
 ## Private by design
 
-This is the most personal data I have, so the defaults are strict. The app sits behind Cloudflare Access, so nothing loads at all without signing in, and it deploys from git to Cloudflare. The records themselves never go into the repository. The screenshot on this page was captured from a separate local preview of the interface using entirely fictional data. No personal readings, source reports or patient details were included.
+This is the most personal data I have, so the defaults are strict. The app sits behind Cloudflare Access, so nothing loads at all without signing in, and it deploys from git to Cloudflare. The records themselves never go into the repository. The screenshots on this page were captured from a separate local preview of the interface using entirely fictional data. No personal readings, source reports or patient details were included.
 
 The same rule applies here as in my other personal tools: if it would be uncomfortable to find it in a public repo, it does not go into one.
 
