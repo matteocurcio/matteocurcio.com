@@ -36,9 +36,14 @@ The sun section is computed in the browser from the coordinates, the date and th
 
 The calculations use SunCalc’s definitions, so the assumptions are explicit. They are planning estimates: terrain, buildings and cloud cover can still change the light on location. Sunrise and sunset are the moment the top of the sun touches the horizon. First and last light are civil twilight, the sun six degrees below the horizon. Golden hour is the window while the sun is lower than six degrees above it.
 
-Times alone are not enough when you are deciding which way a window faces or where to park the camera. So sunrise and sunset each carry a compass bearing, and there is an hourly table of where the sun sits and how high it is, from the first full hour after sunrise to the last before sunset. For the example sheet in Fitzroy on 17 October 2026, that reads as sunrise at 102 degrees east-south-east, the sun almost due north and 61 degrees up at lunch, and sunset at 258 degrees west-south-west.
+Times alone are not enough when you are deciding which way a window faces or where to park the camera. So sunrise and sunset each carry a compass bearing, and there is an hourly table of where the sun sits and how high it is, from the first full hour after sunrise to the last before sunset. For the example sheet in Fitzroy on 12 October 2026, that reads as sunrise at 100 degrees east, the sun almost due north and 60 degrees up around solar noon, and sunset at 260 degrees west.
 
 The map makes the same information visual. It draws the location with orange lines towards sunrise and sunset and drops a small numbered marker for each hour along the sun's path. For an exterior, that is usually the first thing a camera operator looks at.
+
+<figure>
+  <a href="/images/blog/call-sheet-for-the-shooting-day/preview.jpg"><img src="/images/blog/call-sheet-for-the-shooting-day/preview.jpg" alt="Complete example call sheet with a schedule, sun times, map and hourly bearings, forecast, fictional contacts and emergency section" loading="lazy" width="1746" height="4960" style="max-height: 1000px; width: auto; max-width: 100%; display: block; margin: auto;" /></a>
+  <figcaption>The finished example sheet for 12 October 2026: calculated light, a map with sunrise and sunset directions, the forecast and crew information. The forecast is the one captured in the screenshot. Click to view the full sheet.</figcaption>
+</figure>
 
 ## The forecast is a hint, not a dependency
 
@@ -53,6 +58,11 @@ Every production needs a slightly different sheet, so the body is a list of sect
 Sections can be dragged or moved with arrow buttons. The eye icon hides one from the sheet without deleting it, which is useful when the same document goes to crew and to a client who does not need everyone's phone number.
 
 The emergency section starts with 000, and 112 from a mobile, already filled in, along with empty rows for the nearest hospital, the first aider and the assembly point. Those rows are the ones most often left blank on a real sheet, so the template asks for them by default.
+
+<figure>
+  <a href="/images/blog/call-sheet-for-the-shooting-day/editor.jpg"><img src="/images/blog/call-sheet-for-the-shooting-day/editor.jpg" alt="Call-sheet editor showing sheet details, location, editable schedule and contacts, reorder controls and the section library" loading="lazy" width="2422" height="6258" style="max-height: 900px; width: auto; max-width: 100%; display: block; margin: auto;" /></a>
+  <figcaption>The editor keeps location, date and production details together. Each section can be edited, reordered or hidden. Click the image to view it at full size. All contacts are fictional examples.</figcaption>
+</figure>
 
 ## One sheet, several ways out
 
