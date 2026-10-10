@@ -91,6 +91,31 @@ export const LEGACY_PHOTO_WORKS: LegacyWorkItem[] = [
 ];
 
 export const LEGACY_CODE_WORKS: LegacyWorkItem[] = [
+{
+  "slug": "call-sheet-for-the-shooting-day",
+  "title": "Call Sheet",
+  "category": "CODE",
+  "image": "/images/blog/call-sheet-for-the-shooting-day/callsheet.jpg",
+  "href": "/blog/call-sheet-for-the-shooting-day/",
+  "meta": "Shooting-day planning · Sun, weather and sharing"
+},
+{
+  "slug": "every-test-result-in-one-place",
+  "title": "Health Records",
+  "category": "CODE",
+  "image": "/images/blog/every-test-result-in-one-place/health-demo.jpg",
+  "href": "/blog/every-test-result-in-one-place/",
+  "meta": "Private records · Charts and source reports"
+},
+{
+  "slug": "walking-a-low-poly-fitzroy",
+  "title": "Fitzroy",
+  "category": "CODE",
+  "image": "/images/blog/walking-a-low-poly-fitzroy/04-rainbow-hotel.jpg",
+  "href": "/blog/walking-a-low-poly-fitzroy/",
+  "meta": "Walkable 3D suburb · Building data and facade capture"
+},
+
   {
     slug: "knowing-what-i-own-was-the-easy-half",
     title: "Inventory",

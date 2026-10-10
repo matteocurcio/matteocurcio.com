@@ -11,6 +11,7 @@ ogImageAlt: "Fitzroy browser walk start screen over a low-poly Brunswick Street 
 tags: ["Blender", "three.js", "Open Data"]
 draft: false
 writingKind: "technical"
+topic: "tools"
 ---
 
 
@@ -38,6 +39,17 @@ Collision is real, not decorative. The building outlines become wall segments, p
 
 The URL keeps your position and heading. Copy it and you can send someone to a specific corner.
 
+<div style="display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: flex-start;">
+<figure style="flex: 1 1 260px; margin: 0; min-width: 0;">
+<a href="/images/blog/walking-a-low-poly-fitzroy/03-napier-street.jpg"><img src="/images/blog/walking-a-low-poly-fitzroy/03-napier-street.jpg" alt="Photo-textured terraces on Napier Street in the Fitzroy browser walk" loading="lazy" width="1744" height="2580" style="width: 100%; height: auto;" /></a>
+<figcaption>Napier Street: photographs bring the surveyed building shapes closer to the street you recognise.</figcaption>
+</figure>
+<figure style="flex: 1 1 260px; margin: 0; min-width: 0;">
+<a href="/images/blog/walking-a-low-poly-fitzroy/04-rainbow-hotel.jpg"><img src="/images/blog/walking-a-low-poly-fitzroy/04-rainbow-hotel.jpg" alt="Photo-textured Rainbow Hotel at Young Street with minimap and building label" loading="lazy" width="1744" height="2580" style="width: 100%; height: auto;" /></a>
+<figcaption>The Rainbow Hotel at Young Street. The minimap and street label keep the view grounded in the suburb.</figcaption>
+</figure>
+</div>
+
 ## Day and night
 
 Fitzroy is a different place after dark, so N switches between day and night. At night the sky, fog and lighting change together, the fog closes in, and warm lamp light comes on. It is a small touch, but it is the one that makes people stay a little longer.
@@ -47,6 +59,17 @@ Fitzroy is a different place after dark, so N switches between day and night. At
 Low-poly does not have to mean blank. Every wall that faces a street or a lane is its own facade, sized in metres and stored with its position and orientation. There are about thirteen thousand of them, split into 128 metre tiles that load as you approach and unload behind you.
 
 C opens capture mode. I stand in front of a building, select the facade in the model, and attach a photo. The upload carries the facade, the building, my position in the scene and the phone's GPS accuracy, so the photo can be matched to the right wall later. Each facade then moves from untouched, to raw photo, to processed texture. Master textures are prepared at a hundred pixels per metre; the walking view uses lighter versions at 48 pixels per metre.
+
+<div style="display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: flex-start;">
+<figure style="flex: 1 1 260px; margin: 0; min-width: 0;">
+<a href="/images/blog/walking-a-low-poly-fitzroy/01-facade-capture.jpg"><img src="/images/blog/walking-a-low-poly-fitzroy/01-facade-capture.jpg" alt="Capture mode highlighting a plain laneway facade beneath the crosshair" loading="lazy" width="1744" height="2580" style="width: 100%; height: auto;" /></a>
+<figcaption>Capture mode identifies the wall under the crosshair and shows its dimensions.</figcaption>
+</figure>
+<figure style="flex: 1 1 260px; margin: 0; min-width: 0;">
+<a href="/images/blog/walking-a-low-poly-fitzroy/02-facade-selected.jpg"><img src="/images/blog/walking-a-low-poly-fitzroy/02-facade-selected.jpg" alt="Selected laneway facade with a Choose photo control and capture status" loading="lazy" width="1744" height="2580" style="width: 100%; height: auto;" /></a>
+<figcaption>Selecting the facade opens its capture card: attach a photograph to this wall, then straighten it in the capture app.</figcaption>
+</figure>
+</div>
 
 That turns the project into something slow and pleasant: a walk with a phone, filling in the suburb a few buildings at a time. Capture is gated behind a personal token, so anyone can walk the model but only I can add to it. Buildings can also carry a name and a category, which is how Fitzroy Town Hall gets labelled as a town hall rather than another box.
 
