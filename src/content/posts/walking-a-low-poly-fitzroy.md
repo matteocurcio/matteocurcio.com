@@ -71,6 +71,32 @@ C opens capture mode. I stand in front of a building, select the facade in the m
 </figure>
 </div>
 
+### From a street photograph to a texture
+
+The capture app also gives me a nearby list, so I can work through the facades while walking. For the Napier Hotel, the sequence is to open the wall’s details, choose a photograph, align its four corners and review the straightened result. The building’s measured proportions determine the output texture.
+
+<div style="display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: flex-start;">
+<figure style="flex: 1 1 260px; margin: 0; min-width: 0;">
+<a href="/images/blog/walking-a-low-poly-fitzroy/05-capture-nearby.jpg"><img src="/images/blog/walking-a-low-poly-fitzroy/05-capture-nearby.jpg" alt="Nearby facades in Fitzroy Capture, shown on a map and grouped by capture status" loading="lazy" width="2830" height="4243" style="width: 100%; height: auto;" /></a>
+<figcaption>The nearby map and facade list show what is still to do, already finished, or waiting for an edit.</figcaption>
+</figure>
+<figure style="flex: 1 1 260px; margin: 0; min-width: 0;">
+<a href="/images/blog/walking-a-low-poly-fitzroy/06-facade-details.jpg"><img src="/images/blog/walking-a-low-poly-fitzroy/06-facade-details.jpg" alt="Napier Hotel facade details with photo, straightening and building metadata controls" loading="lazy" width="1300" height="1864" style="width: 100%; height: auto;" /></a>
+<figcaption>The facade card ties a photograph to the right wall, with dimensions, building details and a Photoshop template option.</figcaption>
+</figure>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: flex-start;">
+<figure style="flex: 1 1 260px; margin: 0; min-width: 0;">
+<a href="/images/blog/walking-a-low-poly-fitzroy/07-align-corners.jpg"><img src="/images/blog/walking-a-low-poly-fitzroy/07-align-corners.jpg" alt="Napier Hotel photo with four draggable corners and a magnified alignment view" loading="lazy" width="2828" height="2232" style="width: 100%; height: auto;" /></a>
+<figcaption>Drag the four corners onto the facade. The magnifier helps place each corner accurately before straightening.</figcaption>
+</figure>
+<figure style="flex: 1 1 260px; margin: 0; min-width: 0;">
+<a href="/images/blog/walking-a-low-poly-fitzroy/08-straightened-preview.jpg"><img src="/images/blog/walking-a-low-poly-fitzroy/08-straightened-preview.jpg" alt="Straightened Napier Hotel facade preview ready to publish" loading="lazy" width="2784" height="1960" style="width: 100%; height: auto;" /></a>
+<figcaption>Review the straightened texture at the facade’s proportions, then publish it onto the model.</figcaption>
+</figure>
+</div>
+
 That turns the project into something slow and pleasant: a walk with a phone, filling in the suburb a few buildings at a time. Capture is gated behind a personal token, so anyone can walk the model but only I can add to it. Buildings can also carry a name and a category, which is how Fitzroy Town Hall gets labelled as a town hall rather than another box.
 
 ## The judgement calls
