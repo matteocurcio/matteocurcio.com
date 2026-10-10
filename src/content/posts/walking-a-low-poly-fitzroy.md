@@ -3,10 +3,10 @@ title: "Walking a Low-Poly Fitzroy"
 date: "2026-10-10"
 excerpt: "A first-person, low-poly walk through Melbourne's first suburb, built from the City of Yarra's 3D building survey and OpenStreetMap streets, shaped in Blender and running in the browser."
 description: "A first-person, low-poly walk through Melbourne's first suburb, built from the City of Yarra's 3D building survey and OpenStreetMap streets, shaped in Blender and running in the browser."
-cover: "/images/blog/walking-a-low-poly-fitzroy/fitzroy.png"
+cover: "/images/blog/walking-a-low-poly-fitzroy/fitzroy.jpg"
 coverAlt: "Fitzroy browser walk start screen over a low-poly Brunswick Street scene at dusk"
 coverCaption: "The start screen on Brunswick Street. Council building data and OpenStreetMap streets provide the model’s proportions."
-ogImage: "/images/blog/walking-a-low-poly-fitzroy/fitzroy.png"
+ogImage: "/images/blog/walking-a-low-poly-fitzroy/fitzroy.jpg"
 ogImageAlt: "Fitzroy browser walk start screen over a low-poly Brunswick Street scene at dusk"
 tags: ["Blender", "three.js", "Open Data"]
 draft: false
